@@ -5,6 +5,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
 /**
@@ -19,11 +20,18 @@ public class JndiPanel extends Panel {
 
     public JndiPanel(String id) {
         super(id);
+        getSession().info("building  jndi panel");
+        String ic = "(none)";
         try {
-            initialContext = new InitialContext();           
+            initialContext = new InitialContext();
+            ic  = initialContext.toString();
         }
         catch (NamingException ne) {
             logger.error("Naming exception");
+            getSession().error("naming exception");
         }
+        add (new Label("initial", ic));
+        
+        
     }
 }
