@@ -10,13 +10,13 @@ import java.util.Properties;
 /**
  * thingy to keep key and value together in list view.
  */
-public class Binding implements Serializable {
+public class PropertyBinding implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private String key;
     private String value;
     
-    public Binding (String key, String value) {
+    public PropertyBinding (String key, String value) {
         this.key = key;
         this.value = value;
     }
@@ -28,12 +28,12 @@ public class Binding implements Serializable {
      * @param props
      * @return
      */
-    public static List<Binding> bindingList (Properties props){
-        List<Binding> result = new LinkedList<Binding>();
+    public static List<PropertyBinding> bindingList (Properties props){
+        List<PropertyBinding> result = new LinkedList<PropertyBinding>();
         for (Enumeration<?> e = props.propertyNames(); e.hasMoreElements();) {
             String name = (String) e.nextElement();
             String value = props.getProperty(name);
-            result.add (new Binding (name, value));
+            result.add (new PropertyBinding (name, value));
         }
         return Collections.unmodifiableList(result);
     }

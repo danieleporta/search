@@ -25,7 +25,7 @@ public class HomePage extends WebPage {
         add(new FeedbackPanel("feedback"));
         add(new JndiPanel("jndi"));
         add(new PropertyPanel("system", 
-                Binding.bindingList(System.getProperties())));
+                PropertyBinding.bindingList(System.getProperties())));
         getSession().info("Hello, this is feedback");
     }
 }

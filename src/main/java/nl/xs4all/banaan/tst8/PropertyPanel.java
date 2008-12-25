@@ -8,9 +8,9 @@ import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
 
 public class PropertyPanel extends Panel {
-    List<Binding> props;
+    List<PropertyBinding> props;
     
-    public PropertyPanel(String id, List<Binding> props) {
+    public PropertyPanel(String id, List<PropertyBinding> props) {
         super(id);
         getSession().info("building  property panel");
         this.props = props;
