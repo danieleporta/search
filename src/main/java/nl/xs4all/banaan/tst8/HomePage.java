@@ -3,6 +3,7 @@ package nl.xs4all.banaan.tst8;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
 /**
  * Homepage
@@ -21,8 +22,9 @@ public class HomePage extends WebPage {
         // Add the simplest type of label
         add(new Label("message",
                 "If you see this message wicket is properly configured and running"));
+        add(new FeedbackPanel("feedback"));
         add(new PropertyPanel("system", 
                 Binding.bindingList(System.getProperties())));
-
+        getSession().info("Hello, this is feedback");
     }
 }
