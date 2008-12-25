@@ -6,7 +6,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.IModel;
 
 public class PropertyPanel extends Panel {
     List<Binding> props;
@@ -16,14 +17,17 @@ public class PropertyPanel extends Panel {
         this.props = props;
         add (new ListView ("props", this.props) {
             private static final long serialVersionUID = 1L;
-
+            
+            @Override
+            protected IModel getListItemModel(final IModel listViewModel, final int index)
+            {
+                return new CompoundPropertyModel(super.getListItemModel(listViewModel, index));
+            }
+            
             @Override
             public void populateItem (ListItem item) {
-                Binding b = (Binding) item.getModelObject();
-                item.add(new Label("key", 
-                        new PropertyModel(b, "key")));
-                item.add(new Label("value", 
-                        new PropertyModel(b,"value")));
+                item.add(new Label("key"));
+                item.add(new Label("value"));
             }
         });
     }
