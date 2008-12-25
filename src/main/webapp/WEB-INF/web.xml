@@ -29,6 +29,21 @@
   <filter-name>wicket.tst8-app</filter-name>
 	<url-pattern>/*</url-pattern>
  </filter-mapping>
+ 
+ 	
+<!-- Two meaningless properties to be examined via JNDI -->
+<!-- Normally these are set via the container rather than via web.xml -->
+<env-entry>
+  <env-entry-name>myprop</env-entry-name>
+  <env-entry-value>jansen</env-entry-value>
+  <env-entry-type>java.lang.String</env-entry-type>
+</env-entry>
+
+<env-entry>
+  <env-entry-name>mydir/otherprop</env-entry-name>
+  <env-entry-value>pietersen</env-entry-value>
+  <env-entry-type>java.lang.String</env-entry-type>
+</env-entry> 
 
 
 </web-app>
