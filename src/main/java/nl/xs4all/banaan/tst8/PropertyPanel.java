@@ -12,6 +12,7 @@ public class PropertyPanel extends Panel {
     
     public PropertyPanel(String id, List<Binding> props) {
         super(id);
+        getSession().info("building  property panel");
         this.props = props;
         add (new PropertyListView ("props", this.props) {
             private static final long serialVersionUID = 1L;
