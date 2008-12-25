@@ -13,15 +13,14 @@ import java.util.Properties;
 public class Binding implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    String key;
-    String value;
+    private String key;
+    private String value;
     
     public Binding (String key, String value) {
         this.key = key;
         this.value = value;
     }
-    
- 
+
     /**
      * present the bindings as a list.
      * Not some Iterable wrapper, Listview wants a List,
@@ -38,4 +37,21 @@ public class Binding implements Serializable {
         }
         return Collections.unmodifiableList(result);
     }
-}
+ 
+    
+    public void setKey(String key) {
+        this.key = key;
+    }
+    
+    public String getKey() {
+        return key;
+    }
+    
+    public void setValue(String value) {
+        this.value = value;
+    }
+    
+    public String getValue() {
+        return value;
+    }
+ }
