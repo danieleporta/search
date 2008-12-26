@@ -8,6 +8,8 @@ import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
 
 public class PropertyPanel extends Panel {
+    private static final long serialVersionUID = 1L;
+    
     List<PropertyBinding> props;
     
     public PropertyPanel(String id, List<PropertyBinding> props) {
@@ -24,7 +26,4 @@ public class PropertyPanel extends Panel {
             }
         });
     }
-
-    private static final long serialVersionUID = 1L;
-
 }

@@ -49,8 +49,7 @@ public class JndiPanel extends Panel {
         String path = "java:comp/env/";
         add(new Label("path", path));
         
-        add(
-                new PropertyListView("bindings", jndiBindingList(path)) {
+        add(new PropertyListView("bindings", jndiBindingList(path)) {
             private static final long serialVersionUID = 1L;
 
             @Override

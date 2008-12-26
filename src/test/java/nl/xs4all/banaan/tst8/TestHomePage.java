@@ -1,6 +1,7 @@
 package nl.xs4all.banaan.tst8;
 
 import junit.framework.TestCase;
+
 import org.apache.wicket.util.tester.WicketTester;
 
 /**
@@ -12,7 +13,8 @@ public class TestHomePage extends TestCase
 
 	public void setUp()
 	{
-		tester = new WicketTester();
+	    WicketApplication app = new WicketApplication();
+		tester = new WicketTester(app);
 	}
 
 	public void testRenderMyPage()

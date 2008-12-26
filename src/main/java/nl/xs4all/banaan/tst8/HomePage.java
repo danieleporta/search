@@ -23,6 +23,7 @@ public class HomePage extends WebPage {
         add(new Label("message",
                 "If you see this message wicket is properly configured and running"));
         add(new FeedbackPanel("feedback"));
+        add(new ParamPanel("params"));
         add(new JndiPanel("jndi"));
         add(new PropertyPanel("system", 
                 PropertyBinding.bindingList(System.getProperties())));

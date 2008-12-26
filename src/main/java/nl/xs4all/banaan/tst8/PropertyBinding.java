@@ -7,20 +7,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
-/**
- * thingy to keep key and value together in list view.
- */
-public class PropertyBinding implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
-    private String key;
-    private String value;
-    
-    public PropertyBinding (String key, String value) {
-        this.key = key;
-        this.value = value;
-    }
 
+public class PropertyBinding extends AbstractBinding implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    public PropertyBinding (String key, String value) {
+        super(key,value);
+    }
+    
     /**
      * present the bindings as a list.
      * Not some Iterable wrapper, Listview wants a List,
@@ -37,21 +31,5 @@ public class PropertyBinding implements Serializable {
         }
         return Collections.unmodifiableList(result);
     }
- 
-    
-    public void setKey(String key) {
-        this.key = key;
-    }
-    
-    public String getKey() {
-        return key;
-    }
-    
-    public void setValue(String value) {
-        this.value = value;
-    }
-    
-    public String getValue() {
-        return value;
-    }
- }
+}
+

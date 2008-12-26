@@ -35,15 +35,29 @@
 <!-- Normally these are set via the container rather than via web.xml -->
 <env-entry>
   <env-entry-name>myprop</env-entry-name>
-  <env-entry-value>jansen</env-entry-value>
   <env-entry-type>java.lang.String</env-entry-type>
+  <env-entry-value>jansen</env-entry-value>
 </env-entry>
 
 <env-entry>
   <env-entry-name>mydir/otherprop</env-entry-name>
-  <env-entry-value>pietersen</env-entry-value>
   <env-entry-type>java.lang.String</env-entry-type>
+  <env-entry-value>pietersen</env-entry-value>
 </env-entry> 
+
+<!--
+ ! Yet another meaningless property, accessed like so:
+ ! String value = getServletContext().getInitParameter("name");
+ ! enumerate these params via getInitParameterNames.
+ ! see Servlet specification, SRV 3.3.
+ -->
+<context-param>
+    <description>
+        An example setting accessible without JNDI to the servlet.
+    </description>
+    <param-name>webmaster</param-name>
+    <param-value>myaddress@mycompany.com</param-value>
+</context-param>
 
 
 </web-app>

@@ -1,5 +1,6 @@
 package nl.xs4all.banaan.tst8;
 
+import org.apache.wicket.Application;
 import org.apache.wicket.protocol.http.WebApplication;
 
 /**
@@ -9,17 +10,14 @@ import org.apache.wicket.protocol.http.WebApplication;
  */
 public class WicketApplication extends WebApplication
 {    
-    /**
-     * Constructor
-     */
-	public WicketApplication()
-	{
-	}
+    public static WicketApplication get() {
+        return (WicketApplication) Application.get();
+    }
 	
 	/**
 	 * @see wicket.Application#getHomePage()
 	 */
-	public Class getHomePage()
+	public Class<?> getHomePage()
 	{
 		return HomePage.class;
 	}
