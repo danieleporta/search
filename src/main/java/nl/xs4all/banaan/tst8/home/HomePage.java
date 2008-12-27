@@ -30,6 +30,5 @@ public class HomePage extends BasePage {
         add(new PropertyPanel("system", 
                 PropertyBinding.bindingList(System.getProperties())));
         add(new BookmarkablePageLink("paramLink", ParamPage.class));
-        getSession().info("Hello, this is feedback");
     }
 }
