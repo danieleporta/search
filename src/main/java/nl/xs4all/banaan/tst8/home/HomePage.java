@@ -1,7 +1,15 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.home;
+
+import nl.xs4all.banaan.tst8.base.BasePage;
+import nl.xs4all.banaan.tst8.jndi.JndiPanel;
+import nl.xs4all.banaan.tst8.param.ParamPage;
+import nl.xs4all.banaan.tst8.param.ParamPanel;
+import nl.xs4all.banaan.tst8.property.PropertyBinding;
+import nl.xs4all.banaan.tst8.property.PropertyPanel;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+
 
 /**
  * Homepage

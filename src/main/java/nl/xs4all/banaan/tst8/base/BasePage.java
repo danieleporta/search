@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.base;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;

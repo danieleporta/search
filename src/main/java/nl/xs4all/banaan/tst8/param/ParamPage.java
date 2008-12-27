@@ -1,6 +1,9 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.param;
+
+import nl.xs4all.banaan.tst8.base.BasePage;
 
 import org.apache.wicket.PageParameters;
+
 
 public class ParamPage extends BasePage {
     private static final long serialVersionUID = 1L;

@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.jndi;
 
 import java.util.Collections;
 import java.util.LinkedList;

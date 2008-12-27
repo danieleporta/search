@@ -1,5 +1,7 @@
 package nl.xs4all.banaan.tst8;
 
+import nl.xs4all.banaan.tst8.home.HomePage;
+
 import org.apache.wicket.Application;
 import org.apache.wicket.protocol.http.WebApplication;
 
