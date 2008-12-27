@@ -1,10 +1,9 @@
 package nl.xs4all.banaan.tst8.home;
 
-import nl.xs4all.banaan.tst8.PropertyBinding;
 import nl.xs4all.banaan.tst8.base.BasePage;
 import nl.xs4all.banaan.tst8.jndi.JndiPage;
 import nl.xs4all.banaan.tst8.param.ParamPage;
-import nl.xs4all.banaan.tst8.property.PropertyPanel;
+import nl.xs4all.banaan.tst8.property.PropertyPage;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -26,7 +25,6 @@ public class HomePage extends BasePage {
         super (parameters);
         add(new BookmarkablePageLink("paramLink", ParamPage.class));
         add(new BookmarkablePageLink("jndiLink", JndiPage.class));
-        add(new PropertyPanel("system", 
-                PropertyBinding.bindingList(System.getProperties())));
+        add(new BookmarkablePageLink("propertyLink", PropertyPage.class));
     }
 }

@@ -2,8 +2,8 @@ package nl.xs4all.banaan.tst8;
 
 import junit.framework.TestCase;
 import nl.xs4all.banaan.tst8.home.HomePage;
-import nl.xs4all.banaan.tst8.property.PropertyPanel;
 
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.util.tester.WicketTester;
 
 /**
@@ -28,6 +28,6 @@ public class TestHomePage extends TestCase
 		tester.assertRenderedPage(HomePage.class);
 
 		//assert rendered label component
-		tester.assertComponent("system", PropertyPanel.class);
+		tester.assertComponent("feedback", FeedbackPanel.class);
 	}
 }
