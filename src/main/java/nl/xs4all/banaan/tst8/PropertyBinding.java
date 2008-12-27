@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8.property;
+package nl.xs4all.banaan.tst8;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
-import nl.xs4all.banaan.tst8.AbstractBinding;
 
 
 public class PropertyBinding extends AbstractBinding implements Serializable {
