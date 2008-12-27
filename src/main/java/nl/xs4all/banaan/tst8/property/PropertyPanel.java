@@ -2,7 +2,6 @@ package nl.xs4all.banaan.tst8.property;
 
 import java.util.List;
 
-
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;

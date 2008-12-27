@@ -1,9 +1,8 @@
 package nl.xs4all.banaan.tst8.home;
 
 import nl.xs4all.banaan.tst8.base.BasePage;
-import nl.xs4all.banaan.tst8.jndi.JndiPanel;
+import nl.xs4all.banaan.tst8.jndi.JndiPage;
 import nl.xs4all.banaan.tst8.param.ParamPage;
-import nl.xs4all.banaan.tst8.param.ParamPanel;
 import nl.xs4all.banaan.tst8.property.PropertyBinding;
 import nl.xs4all.banaan.tst8.property.PropertyPanel;
 
@@ -25,10 +24,9 @@ public class HomePage extends BasePage {
      */
     public HomePage(final PageParameters parameters) {
         super (parameters);
-        add(new ParamPanel("params"));
-        add(new JndiPanel("jndi"));
+        add(new BookmarkablePageLink("paramLink", ParamPage.class));
+        add(new BookmarkablePageLink("jndiLink", JndiPage.class));
         add(new PropertyPanel("system", 
                 PropertyBinding.bindingList(System.getProperties())));
-        add(new BookmarkablePageLink("paramLink", ParamPage.class));
     }
 }
