@@ -15,16 +15,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 public class HomePage extends BasePage {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Constructor that is invoked when page is invoked without a session.
-     * 
-     * @param parameters
-     *            Page parameters
-     */
     public HomePage(final PageParameters parameters) {
         super (parameters);
-        add(new BookmarkablePageLink("paramLink", ParamPage.class));
-        add(new BookmarkablePageLink("jndiLink", JndiPage.class));
-        add(new BookmarkablePageLink("propertyLink", PropertyPage.class));
     }
 }
