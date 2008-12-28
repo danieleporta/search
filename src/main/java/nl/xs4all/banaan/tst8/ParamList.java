@@ -12,18 +12,18 @@ public class ParamList {
     private static final long serialVersionUID = 1L;
     private static Logger logger = Logger.getLogger(ParamList.class);
 
-    private List<Binding<String>> list;
+    private List<GenericBinding<String>> list;
     
     public ParamList () {
-        list = new LinkedList<Binding<String>>();
+        list = new LinkedList<GenericBinding<String>>();
         init();
     }
     
     private void add (String key, String value) {
-        list.add(new Binding<String>(key, value));
+        list.add(new GenericBinding<String>(key, value));
     }
     
-    public List<Binding<String>> getList () {
+    public List<GenericBinding<String>> getList () {
         return list;
     }
     

@@ -1,6 +1,6 @@
 package nl.xs4all.banaan.tst8.menu;
 
-import nl.xs4all.banaan.tst8.Binding;
+import nl.xs4all.banaan.tst8.GenericBinding;
 import nl.xs4all.banaan.tst8.WicketApplication;
 
 import org.apache.wicket.markup.html.WebPage;
@@ -22,8 +22,8 @@ public class MenuPanel extends Panel {
            
             @Override
             protected void populateItem (ListItem item) {
-                Binding<Class<? extends WebPage>> binding = 
-                    (Binding<Class<? extends WebPage>>) item.getModelObject();
+                GenericBinding<Class<? extends WebPage>> binding = 
+                    (GenericBinding<Class<? extends WebPage>>) item.getModelObject();
                 item.add(new BookmarkablePageLink("value", binding.getValue()).
                     add(new Label("key")));
             }

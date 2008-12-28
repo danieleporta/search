@@ -6,13 +6,13 @@ package nl.xs4all.banaan.tst8;
  *
  * @param <T>
  */
-public class Binding<T> {
+public class GenericBinding<T> {
     private static final long serialVersionUID = 1L;
 
     private String key;
     private T value;
 
-    public Binding(String key, T value) {
+    public GenericBinding(String key, T value) {
         this.key = key;
         this.value = value;
     }
