@@ -1,6 +1,6 @@
 package nl.xs4all.banaan.tst8.property;
 
-import nl.xs4all.banaan.tst8.PropertyBinding;
+import nl.xs4all.banaan.tst8.PropertyList;
 import nl.xs4all.banaan.tst8.base.BasePage;
 
 import org.apache.wicket.PageParameters;
@@ -9,7 +9,7 @@ import org.apache.wicket.PageParameters;
 public class PropertyPage extends BasePage {
     public PropertyPage(final PageParameters parameters) {
         super (parameters);
-        add(new PropertyPanel("properties",
-                PropertyBinding.bindingList(System.getProperties())));
+        PropertyList propertyList = new PropertyList(System.getProperties());
+        add(new PropertyPanel("properties", propertyList.getList()));
     }
 }
