@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.service;
 
 import javax.naming.Binding;
 import javax.naming.Context;
@@ -6,9 +6,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 
-import nl.xs4all.banaan.tst8.jndi.JndiPage;
+import nl.xs4all.banaan.tst8.util.GenericBindingList;
+import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 
 import org.apache.log4j.Logger;
+
 
 public class JndiList extends GenericBindingList<Object> {
     private static Logger logger = Logger.getLogger(JndiPage.class);

@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.service;
 
 /**
  * Exception in terms relevant to the application

@@ -1,12 +1,13 @@
-package nl.xs4all.banaan.tst8.jndi;
+package nl.xs4all.banaan.tst8.web.jndi;
 
-import nl.xs4all.banaan.tst8.JndiList;
-import nl.xs4all.banaan.tst8.ServiceException;
-import nl.xs4all.banaan.tst8.base.BasePage;
-import nl.xs4all.banaan.tst8.error.ErrorPage;
+import nl.xs4all.banaan.tst8.service.JndiList;
+import nl.xs4all.banaan.tst8.service.ServiceException;
+import nl.xs4all.banaan.tst8.web.base.BasePage;
+import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
+
 
 public class JndiPage extends BasePage {
     private static final long serialVersionUID = 1L;

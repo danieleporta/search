@@ -1,9 +1,10 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.web;
 
-import nl.xs4all.banaan.tst8.home.HomePage;
-import nl.xs4all.banaan.tst8.jndi.JndiPage;
-import nl.xs4all.banaan.tst8.param.ParamPage;
-import nl.xs4all.banaan.tst8.property.PropertyPage;
+import nl.xs4all.banaan.tst8.web.home.HomePage;
+import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
+import nl.xs4all.banaan.tst8.web.menu.MenuList;
+import nl.xs4all.banaan.tst8.web.param.ParamPage;
+import nl.xs4all.banaan.tst8.web.property.PropertyPage;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.protocol.http.WebApplication;

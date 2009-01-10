@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.util;
 
 /**
  * A binding says a string and object go together;

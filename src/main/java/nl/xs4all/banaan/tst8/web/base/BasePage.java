@@ -1,6 +1,6 @@
-package nl.xs4all.banaan.tst8.base;
+package nl.xs4all.banaan.tst8.web.base;
 
-import nl.xs4all.banaan.tst8.menu.MenuPanel;
+import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;

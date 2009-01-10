@@ -1,6 +1,6 @@
-package nl.xs4all.banaan.tst8.param;
+package nl.xs4all.banaan.tst8.web.param;
 
-import nl.xs4all.banaan.tst8.base.BasePage;
+import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 import org.apache.wicket.PageParameters;
 

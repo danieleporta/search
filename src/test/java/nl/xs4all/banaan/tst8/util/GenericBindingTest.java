@@ -1,6 +1,8 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.util;
 
 import static org.junit.Assert.*;
+
+import nl.xs4all.banaan.tst8.util.GenericBinding;
 
 import org.junit.After;
 import org.junit.Before;

@@ -1,9 +1,10 @@
-package nl.xs4all.banaan.tst8.property;
+package nl.xs4all.banaan.tst8.web.property;
 
-import nl.xs4all.banaan.tst8.PropertyList;
-import nl.xs4all.banaan.tst8.base.BasePage;
+import nl.xs4all.banaan.tst8.service.PropertyList;
+import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 import org.apache.wicket.PageParameters;
+
 
 
 public class PropertyPage extends BasePage {

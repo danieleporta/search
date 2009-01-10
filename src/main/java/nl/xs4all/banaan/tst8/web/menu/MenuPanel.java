@@ -1,7 +1,7 @@
-package nl.xs4all.banaan.tst8.menu;
+package nl.xs4all.banaan.tst8.web.menu;
 
-import nl.xs4all.banaan.tst8.GenericBinding;
-import nl.xs4all.banaan.tst8.WicketApplication;
+import nl.xs4all.banaan.tst8.util.GenericBinding;
+import nl.xs4all.banaan.tst8.web.WicketApplication;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;

@@ -1,25 +1,25 @@
-package nl.xs4all.banaan.tst8.param;
+package nl.xs4all.banaan.tst8.web.property;
 
-import nl.xs4all.banaan.tst8.ParamList;
+import java.util.List;
+
+import nl.xs4all.banaan.tst8.util.GenericBinding;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
 
-public class ParamPanel extends Panel {
+public class PropertyPanel extends Panel {
     private static final long serialVersionUID = 1L;
     
-    public ParamPanel(String id) {
+    public PropertyPanel(String id, List<GenericBinding<String>> props) {
         super(id);
-        getSession().info("building  param panel");
-        
-        ParamList paramList = new ParamList();
-        add (new PropertyListView("bindings", paramList.getList()) {
+        getSession().info("building  property panel");
+        add (new PropertyListView ("props", props) {
             private static final long serialVersionUID = 1L;
            
             @Override
-            protected void populateItem (ListItem item) {
+            public void populateItem (ListItem item) {
                 item.add(new Label("key"));
                 item.add(new Label("value"));
             }

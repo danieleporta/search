@@ -1,9 +1,10 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.util;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+
 
 public class GenericBindingList<T> {
     private static final long serialVersionUID = 1L;

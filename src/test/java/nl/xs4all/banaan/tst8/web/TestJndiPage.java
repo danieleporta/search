@@ -1,7 +1,8 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.web;
 
-import nl.xs4all.banaan.tst8.jndi.JndiPage;
-import nl.xs4all.banaan.tst8.menu.MenuPanel;
+import nl.xs4all.banaan.tst8.web.WicketApplication;
+import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
+import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;

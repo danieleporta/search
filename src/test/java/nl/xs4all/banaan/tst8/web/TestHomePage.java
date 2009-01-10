@@ -1,6 +1,7 @@
-package nl.xs4all.banaan.tst8;
+package nl.xs4all.banaan.tst8.web;
 
-import nl.xs4all.banaan.tst8.home.HomePage;
+import nl.xs4all.banaan.tst8.web.WicketApplication;
+import nl.xs4all.banaan.tst8.web.home.HomePage;
 
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.util.tester.WicketTester;

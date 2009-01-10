@@ -1,8 +1,8 @@
-package nl.xs4all.banaan.tst8.jndi;
+package nl.xs4all.banaan.tst8.web.jndi;
 
 import java.util.List;
 
-import nl.xs4all.banaan.tst8.GenericBinding;
+import nl.xs4all.banaan.tst8.util.GenericBinding;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
