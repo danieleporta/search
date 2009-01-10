@@ -11,7 +11,12 @@ import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 
 import org.apache.log4j.Logger;
 
-
+/**
+ * List of objects found via JNDI, set either in wb.xml in war file,
+ * or in configuration of the web server.
+ * @author konijn
+ *
+ */
 public class JndiList extends GenericBindingList<Object> {
     private static Logger logger = Logger.getLogger(JndiPage.class);
     

@@ -4,5 +4,10 @@ import nl.xs4all.banaan.tst8.util.GenericBindingList;
 
 import org.apache.wicket.markup.html.WebPage;
 
+/**
+ * Menulist map name of menu item to page to be visited
+ * @author konijn
+ *
+ */
 public class MenuList extends GenericBindingList<Class<? extends WebPage>> {
 }

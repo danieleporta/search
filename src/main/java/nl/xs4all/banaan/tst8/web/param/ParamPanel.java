@@ -8,7 +8,11 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
 
-
+/**
+ * The actual panel with initialisation parameters provided by servlet context.
+ * @author konijn
+ *
+ */
 public class ParamPanel extends Panel {
     private static final long serialVersionUID = 1L;
     

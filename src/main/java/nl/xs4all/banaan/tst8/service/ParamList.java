@@ -7,6 +7,13 @@ import javax.servlet.ServletContext;
 import nl.xs4all.banaan.tst8.util.GenericBindingList;
 import nl.xs4all.banaan.tst8.web.WicketApplication;
 
+/**
+ * List of configuration parameters as provided by the environment,
+ * either in web.xml in the war file, or in configuration of the web server.
+ * 
+ * @author konijn
+ *
+ */
 public class ParamList extends GenericBindingList<String> {
 
     public ParamList () {

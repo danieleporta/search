@@ -8,7 +8,11 @@ import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
 
-
+/**
+ * Shows result of a JNDI lookup.
+ * @author konijn
+ *
+ */
 public class JndiPage extends BasePage {
     private static final long serialVersionUID = 1L;
     private static Logger logger = Logger.getLogger(JndiPage.class);

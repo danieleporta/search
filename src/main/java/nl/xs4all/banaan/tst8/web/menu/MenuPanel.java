@@ -10,6 +10,11 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
 
+/**
+ * Show links to the various environments the visitor may be interested in
+ * @author konijn
+ *
+ */
 public class MenuPanel extends Panel {
     private static final long serialVersionUID = 1L;
     

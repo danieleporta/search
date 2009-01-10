@@ -9,6 +9,11 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
 
+/**
+ * Display key/value pairs in some property set.
+ * @author konijn
+ *
+ */
 public class PropertyPanel extends Panel {
     private static final long serialVersionUID = 1L;
     

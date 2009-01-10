@@ -5,7 +5,14 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * Bindinglist maintains key/value pairs in a list that is
+ * convenient for wicket to display.
+ * @author konijn
+ *
+ * @param <T>
+ * The type of the value in individual bindings.
+ */
 public class GenericBindingList<T> {
     private static final long serialVersionUID = 1L;
 

@@ -5,6 +5,11 @@ import java.util.Properties;
 
 import nl.xs4all.banaan.tst8.util.GenericBindingList;
 
+/**
+ * List of key/value pairs as found in some properties object.
+ * @author konijn
+ *
+ */
 public class PropertyList extends GenericBindingList<String> {
     private static final long serialVersionUID = 1L;
 

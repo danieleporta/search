@@ -4,6 +4,12 @@ import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 import org.apache.wicket.PageParameters;
 
+/**
+ * Error page displayed in case of internal errors,
+ * also suitable for redirecting to via web.xml config.
+ * @author konijn
+ *
+ */
 public class ErrorPage extends BasePage {
     public ErrorPage(final PageParameters parameters) {
         super (parameters);
