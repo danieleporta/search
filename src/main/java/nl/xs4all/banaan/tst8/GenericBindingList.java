@@ -20,10 +20,10 @@ public class GenericBindingList<T> {
     
     public List<GenericBinding<T>> getList() {
         Collections.sort(list, new Comparator<GenericBinding<T>>() {
-            @Override
             public int compare(GenericBinding<T> o1, GenericBinding<T> o2) {
                 return o1.getKey().compareTo(o2.getKey());
             }
+
         });
         return list;
     }

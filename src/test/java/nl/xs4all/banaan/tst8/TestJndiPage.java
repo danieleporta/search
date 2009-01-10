@@ -1,17 +1,19 @@
 package nl.xs4all.banaan.tst8;
 
-import junit.framework.TestCase;
 import nl.xs4all.banaan.tst8.jndi.JndiPage;
 import nl.xs4all.banaan.tst8.menu.MenuPanel;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.util.tester.WicketTester;
+import org.junit.Before;
+import org.junit.Test;
 
-public class TestJndiPage extends TestCase {
+public class TestJndiPage {
     private static Logger logger = Logger.getLogger(TestJndiPage.class);
     private WicketTester tester;
 
+    @Before
     public void setUp()
     {
         logger.info("Starting testjndipage setup");
@@ -19,6 +21,7 @@ public class TestJndiPage extends TestCase {
         tester = new WicketTester(app);
     }
 
+    @Test
     public void testRenderJndiPage()
     {
         logger.info("Starting testjndipage run");
