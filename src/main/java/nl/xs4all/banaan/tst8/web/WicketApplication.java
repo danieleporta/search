@@ -22,6 +22,7 @@ public class WicketApplication extends WebApplication
         return (WicketApplication) Application.get();
     }
     
+    @Override
     protected void init() {
         menuList = new MenuList();
         menuList.add("home", HomePage.class);
@@ -33,12 +34,13 @@ public class WicketApplication extends WebApplication
     public MenuList getMenuList() {
         return menuList;
     }
-	/**
-	 * @see wicket.Application#getHomePage()
-	 */
-	public Class<?> getHomePage()
-	{
-		return HomePage.class;
-	}
+    
+    /**
+     * @see wicket.Application#getHomePage()
+     */
+    @Override
+    public Class<?> getHomePage() {
+	return HomePage.class;
+    }
 
 }
