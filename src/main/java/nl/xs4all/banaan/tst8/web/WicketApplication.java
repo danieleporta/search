@@ -29,7 +29,7 @@ public class WicketApplication extends WebApplication
         menuList.add("home", HomePage.class);
         menuList.add("jndi", JndiPage.class);
         menuList.add("param", ParamPage.class);        
-        menuList.add("property", PropertyPage.class);        
+        menuList.add("property", PropertyPage.class);
     }
 	
     public MenuList getMenuList() {

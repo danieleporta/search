@@ -1,5 +1,7 @@
 package nl.xs4all.banaan.tst8.web.jndi;
 
+import java.util.Locale;
+
 import nl.xs4all.banaan.tst8.service.JndiList;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
@@ -17,11 +19,23 @@ public class JndiPage extends BasePage {
     private static final long serialVersionUID = 1L;
     private static Logger logger = Logger.getLogger(JndiPage.class);
 
+    /**
+     * location relative to JNDI system root to display in this page.
+     */
+    private String location = "";
+
+    public String getLocation() {
+	return location;
+    }
+    
+    public void setLocation(String location) {
+	this.location = location;
+    }
+    
     public JndiPage(final PageParameters parameters) {
         super (parameters);
         try {
-            JndiList jndiList = new JndiList();
-            add(new JndiPanel("jndi", jndiList.getList()));
+            add(new JndiPanel("jndi", location));
         }
         catch (ServiceException se) {
             logger.error("Caught Service Exception", se);
