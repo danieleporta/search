@@ -1,7 +1,9 @@
 package nl.xs4all.banaan.tst8;
 
 /**
- * Can we do a strongly typed binding for both menus and jndi?
+ * A binding says a string and object go together;
+ * the type of object is parameterized: it could be a property
+ * or a destination for a menu.
  * @author konijn
  *
  * @param <T>
