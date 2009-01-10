@@ -22,16 +22,26 @@ public class JndiList extends GenericBindingList<Object> {
     
     public JndiList() throws ServiceException {
         super();
-        
+        retrieve("");
+    }
+    
+    public JndiList(String location) throws ServiceException {
+        super();
+        retrieve(location);
+    }
+    
+    private void retrieve(String location) throws ServiceException {
         // JNDI can query multiple namespaces;
         // the java:comp/env path gives access to bindings
         // that are provided by web.xml or the container.
         // See servlet 2.4 spec, SRV 9.11, SRV 13.4.20, SRV 13.4.24, via
         // http://jcp.org/aboutJava/communityprocess/final/jsr154/index.html
         //
-        String path = "java:comp/env/";
-        try {
-            logger.info("start jndilist init");
+        String base = "java:comp/env/";
+        String path = base + location;
+        
+	try {
+            logger.info("start jndilist init for " + path + "." );
 
             Context initialContext = new InitialContext();
             NamingEnumeration<Binding> e = initialContext.listBindings(path);
