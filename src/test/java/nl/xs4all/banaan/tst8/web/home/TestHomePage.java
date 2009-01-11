@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8.web;
+package nl.xs4all.banaan.tst8.web.home;
 
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
