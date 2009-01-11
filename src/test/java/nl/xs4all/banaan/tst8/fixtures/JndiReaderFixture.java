@@ -32,8 +32,7 @@ public class JndiReaderFixture implements JndiReader {
             result.add("entry3", "entry3val");            
         }        
         else {
-            throw new ServiceException ("jndi fixture unknown argument",
-        	    new RuntimeException("fake cause"));            
+            throw new ServiceException ("jndi fixture unknown argument");            
         }
         return result;
     }
