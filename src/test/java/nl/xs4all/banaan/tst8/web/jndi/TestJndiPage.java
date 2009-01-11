@@ -46,5 +46,23 @@ public class TestJndiPage {
         // check for value found under jdbc key
         tester.startPage(new JndiPage("jdbc"));
         fixtures.checkBasePage(JndiPage.class, "miesval");
+    }
+    
+    /**
+     * Clickthrough works better with bookmarkable pages than with
+     * links: link wants to save whole rendered page in session,
+     * which requires serialisability.
+     */
+    // disabled @Test
+    public void testRenderJndiPage5() {
+        // check clickability of jndi entries
+        tester.startPage(JndiPage.class);
+        
+        // dir1 should lead to known page
+        tester.clickLink("jndi:bindings:1:key");
+
+        // in dir1, we see its own name, plus ptr to dir2
+        tester.debugComponentTrees();
+        fixtures.checkBasePage(JndiPage.class, "dir1", "dir2", "DIR2\\-NODE");
     }  
 }
