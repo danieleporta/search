@@ -3,6 +3,7 @@ package nl.xs4all.banaan.tst8.web.jndi;
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,6 +47,51 @@ public class TestJndiPage {
         // check for value found under jdbc key
         tester.startPage(new JndiPage("jdbc"));
         fixtures.checkBasePage(JndiPage.class, "miesval");
+    }
+    
+    /**
+     * Empty page parameters should end up in main page
+     */
+    @Test
+    public void testRenderJndiPageParam1() {
+        tester.startPage(new JndiPage(new PageParameters ()));
+        fixtures.checkBasePage(JndiPage.class, "aapval");
+    }
+    
+    /**
+     * ignore garbage keys
+     */
+    @Test
+    public void testRenderJndiPageParam2() {
+        tester.startPage(new JndiPage(new PageParameters ("garbage=ignored")));
+        fixtures.checkBasePage(JndiPage.class, "aapval");
+    } 
+    
+    /**
+     * empty location to root
+     */
+    @Test
+    public void testRenderJndiPageParam3() {
+        tester.startPage(new JndiPage(new PageParameters ("location=")));
+        fixtures.checkBasePage(JndiPage.class, "aapval");
+    } 
+    
+    /**
+     * see that dir2 is in dir1
+     */
+    @Test
+    public void testRenderJndiPageParam4() {
+        tester.startPage(new JndiPage(new PageParameters ("location=dir1")));
+        fixtures.checkBasePage(JndiPage.class, "DIR2");
+    }
+    
+    /**
+     * see that subdirs work
+     */
+    @Test
+    public void testRenderJndiPageParam5() {
+        tester.startPage(new JndiPage(new PageParameters ("location=dir1/dir2")));
+        fixtures.checkBasePage(JndiPage.class, "entry3val");
     }
     
     /**
