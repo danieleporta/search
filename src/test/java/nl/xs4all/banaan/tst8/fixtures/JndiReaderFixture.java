@@ -18,11 +18,19 @@ public class JndiReaderFixture implements JndiReader {
         if (location.equals("")) {
             result.add("aap", "aapval");
             result.add("noot", "nootval");
+            result.add("jdbc", "JDBC-NODE");            
+            result.add("dir1", "DIR1-NODE");
         }
         else if (location.equals("jdbc")) {
             result.add("mies", "miesval");
             result.add("wim", "wimval");
         }
+        else if (location.equals("dir1")) {
+            result.add("dir2", "DIR2-NODE");            
+        }
+        else if (location.equals("dir1/dir2")) {
+            result.add("entry3", "entry3val");            
+        }        
         else {
             throw new ServiceException ("jndi fixture unknown argument",
         	    new RuntimeException("fake cause"));            
