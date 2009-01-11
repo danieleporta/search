@@ -11,21 +11,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestJndiPage {
-    private static Logger logger = Logger.getLogger(TestJndiPage.class);
+    private Fixtures fixtures;
     private WicketTester tester;
 
     @Before
     public void setUp()
     {
-        logger.info("Starting testjndipage setup");
-        DemoApplication app = new DemoApplication();
-        tester = new WicketTester(app);
+        fixtures = new Fixtures();
+        tester = fixtures.getTester();
     }
 
     @Test
     public void testRenderJndiPage()
     {
-        logger.info("Starting testjndipage run");
         //start and render the test page
         tester.startPage(JndiPage.class);
 

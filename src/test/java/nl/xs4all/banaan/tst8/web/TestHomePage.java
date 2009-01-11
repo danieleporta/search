@@ -1,6 +1,5 @@
 package nl.xs4all.banaan.tst8.web;
 
-import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -12,13 +11,14 @@ import org.junit.Test;
  * Simple test using the WicketTester
  */
 public class TestHomePage {
+    	private Fixtures fixtures;
 	private WicketTester tester;
 
 	@Before
 	public void setUp()
 	{
-	    DemoApplication app = new DemoApplication();
-		tester = new WicketTester(app);
+	        fixtures = new Fixtures();
+	        tester = fixtures.getTester();
 	}
 
 	@Test

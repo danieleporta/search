@@ -1,6 +1,5 @@
 package nl.xs4all.banaan.tst8.web;
 
-import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 
@@ -10,13 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestErrorPage {
+    private Fixtures fixtures;
     private WicketTester tester;
 
     @Before
     public void setUp()
     {
-        DemoApplication app = new DemoApplication();
-        tester = new WicketTester(app);
+        fixtures = new Fixtures();
+        tester = fixtures.getTester();
     }
 
     @Test
