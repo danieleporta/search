@@ -13,7 +13,6 @@ import org.apache.wicket.PageParameters;
  *
  */
 public class JndiPage extends BasePage {
-    private static final long serialVersionUID = 1L;
     private static Logger logger = Logger.getLogger(JndiPage.class);
 
     /**
@@ -29,8 +28,7 @@ public class JndiPage extends BasePage {
 	this.location = location;
     }
     
-    public JndiPage(final PageParameters parameters) {
-        super (parameters);
+    public JndiPage() {
         try {
             add(new JndiPanel("jndi", location));
         }

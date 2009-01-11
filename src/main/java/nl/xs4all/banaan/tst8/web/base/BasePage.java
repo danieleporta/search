@@ -14,7 +14,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
  */
 public class BasePage extends WebPage {
     
-    public BasePage(final PageParameters parameters) {
+    public BasePage() {
         add(new MenuPanel("menu"));
         add(new FeedbackPanel("feedback"));
         getSession().info("Setting up basepage");
