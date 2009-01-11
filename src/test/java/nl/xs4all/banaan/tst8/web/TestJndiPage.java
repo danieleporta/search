@@ -26,6 +26,16 @@ public class TestJndiPage {
         //start and render the test page
         tester.startPage(JndiPage.class);
 
+        checkComponents();
+        
+        // assert rendered data from fixture
+        tester.assertContains("aapval");
+    }
+   
+    /**
+     * Any rendered JndiPage should have feedback and menu panel
+     */
+    private void checkComponents() {
         //assert rendered page class
         tester.assertRenderedPage(JndiPage.class);
 
@@ -33,4 +43,5 @@ public class TestJndiPage {
         tester.assertComponent("feedback", FeedbackPanel.class);
         tester.assertComponent("menu", MenuPanel.class);
     }
+    
 }
