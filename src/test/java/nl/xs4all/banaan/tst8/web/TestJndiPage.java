@@ -2,13 +2,17 @@ package nl.xs4all.banaan.tst8.web;
 
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
-import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Test jndi page: required components should exist,
+ * and for some known models, expected content should show up.
+ * @author konijn
+ *
+ */
 public class TestJndiPage {
     private Fixtures fixtures;
     private WicketTester tester;
@@ -21,59 +25,26 @@ public class TestJndiPage {
 
     @Test
     public void testRenderJndiPage1() {
-        //start and render the test page
         tester.startPage(JndiPage.class);
-        checkContents("aapval");
+        fixtures.checkBasePage(JndiPage.class, "aapval");
     }
  
     @Test
     public void testRenderJndiPage2() {
-        //start and render the test page
         tester.startPage(new JndiPage());
-        checkContents("aapval");
+        fixtures.checkBasePage(JndiPage.class, "aapval");
     } 
     
     @Test
     public void testRenderJndiPage3() {
-        //start and render the test page
         tester.startPage(new JndiPage(""));
-        checkContents("aapval");
+        fixtures.checkBasePage(JndiPage.class, "aapval");
     }  
     
     @Test
     public void testRenderJndiPage4() {
-        //start and render the test page
+        // check for value found under jdbc key
         tester.startPage(new JndiPage("jdbc"));
-        checkContents("miesval");
-    }
-
-    /**
-     * It's a JNDI page, with given list of patterns occurring. 
-     */
-    private void checkContents(String ... patterns) {
-        checkJndiPage();
-        for (String pattern : patterns) {
-            tester.assertContains(pattern);            
-        }
+        fixtures.checkBasePage(JndiPage.class, "miesval");
     }  
-    
-    /**
-     * Any rendered JndiPage should have feedback and menu panel
-     */
-    private void checkJndiPage() {
-        //assert rendered page class
-        tester.assertRenderedPage(JndiPage.class);
-
-        checkBasePage();
-    }
-
-    /**
-     * These are the components a base page must have
-     */
-    private void checkBasePage() {
-        //assert rendered label component
-        tester.assertComponent("feedback", FeedbackPanel.class);
-        tester.assertComponent("menu", MenuPanel.class);
-    }
-    
 }

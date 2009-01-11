@@ -3,7 +3,6 @@ package nl.xs4all.banaan.tst8.web;
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,13 +22,8 @@ public class TestHomePage {
 
     @Test
     public void testRenderMyPage() {
-        // start and render the test page
         tester.startPage(HomePage.class);
+        fixtures.checkBasePage(HomePage.class, "This shows");
 
-        // assert rendered page class
-        tester.assertRenderedPage(HomePage.class);
-
-        // assert rendered label component
-        tester.assertComponent("feedback", FeedbackPanel.class);
     }
 }
