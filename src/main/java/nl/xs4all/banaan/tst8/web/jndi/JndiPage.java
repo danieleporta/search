@@ -1,8 +1,5 @@
 package nl.xs4all.banaan.tst8.web.jndi;
 
-import java.util.Locale;
-
-import nl.xs4all.banaan.tst8.service.JndiList;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
