@@ -14,31 +14,63 @@ public class TestJndiPage {
     private WicketTester tester;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         fixtures = new Fixtures();
         tester = fixtures.getTester();
     }
 
     @Test
-    public void testRenderJndiPage()
-    {
+    public void testRenderJndiPage1() {
         //start and render the test page
         tester.startPage(JndiPage.class);
-
-        checkComponents();
-        
-        // assert rendered data from fixture
-        tester.assertContains("aapval");
+        checkContents("aapval");
     }
-   
+ 
+    @Test
+    public void testRenderJndiPage2() {
+        //start and render the test page
+        tester.startPage(new JndiPage());
+        checkContents("aapval");
+    } 
+    
+    @Test
+    public void testRenderJndiPage3() {
+        //start and render the test page
+        tester.startPage(new JndiPage(""));
+        checkContents("aapval");
+    }  
+    
+    @Test
+    public void testRenderJndiPage4() {
+        //start and render the test page
+        tester.startPage(new JndiPage("jdbc"));
+        checkContents("miesval");
+    }
+
+    /**
+     * It's a JNDI page, with given list of patterns occurring. 
+     */
+    private void checkContents(String ... patterns) {
+        checkJndiPage();
+        for (String pattern : patterns) {
+            tester.assertContains(pattern);            
+        }
+    }  
+    
     /**
      * Any rendered JndiPage should have feedback and menu panel
      */
-    private void checkComponents() {
+    private void checkJndiPage() {
         //assert rendered page class
         tester.assertRenderedPage(JndiPage.class);
 
+        checkBasePage();
+    }
+
+    /**
+     * These are the components a base page must have
+     */
+    private void checkBasePage() {
         //assert rendered label component
         tester.assertComponent("feedback", FeedbackPanel.class);
         tester.assertComponent("menu", MenuPanel.class);

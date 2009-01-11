@@ -5,7 +5,6 @@ import nl.xs4all.banaan.tst8.web.base.BasePage;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 
 import org.apache.log4j.Logger;
-import org.apache.wicket.PageParameters;
 
 /**
  * Shows result of a JNDI lookup.
@@ -21,14 +20,24 @@ public class JndiPage extends BasePage {
     private String location = "";
 
     public String getLocation() {
-	return location;
+        return location;
     }
     
     public void setLocation(String location) {
-	this.location = location;
+        this.location = location;
     }
     
     public JndiPage() {
+        setLocation("");
+        init();
+    }
+    
+    public JndiPage(String location) {
+        setLocation(location);
+        init();
+    }
+
+    private void init() {
         try {
             add(new JndiPanel("jndi", location));
         }
