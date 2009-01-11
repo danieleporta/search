@@ -12,26 +12,24 @@ import org.junit.Test;
  * Simple test using the WicketTester
  */
 public class TestHomePage {
-    	private Fixtures fixtures;
-	private WicketTester tester;
+    private Fixtures fixtures;
+    private WicketTester tester;
 
-	@Before
-	public void setUp()
-	{
-	        fixtures = new Fixtures();
-	        tester = fixtures.getTester();
-	}
+    @Before
+    public void setUp() {
+        fixtures = new Fixtures();
+        tester = fixtures.getTester();
+    }
 
-	@Test
-	public void testRenderMyPage()
-	{
-		//start and render the test page
-		tester.startPage(HomePage.class);
+    @Test
+    public void testRenderMyPage() {
+        // start and render the test page
+        tester.startPage(HomePage.class);
 
-		//assert rendered page class
-		tester.assertRenderedPage(HomePage.class);
+        // assert rendered page class
+        tester.assertRenderedPage(HomePage.class);
 
-		//assert rendered label component
-		tester.assertComponent("feedback", FeedbackPanel.class);
-	}
+        // assert rendered label component
+        tester.assertComponent("feedback", FeedbackPanel.class);
+    }
 }
