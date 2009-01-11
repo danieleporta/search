@@ -1,5 +1,6 @@
 package nl.xs4all.banaan.tst8.web;
 
+import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 

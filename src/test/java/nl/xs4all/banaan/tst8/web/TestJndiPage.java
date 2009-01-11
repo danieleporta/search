@@ -1,10 +1,9 @@
 package nl.xs4all.banaan.tst8.web;
 
-import nl.xs4all.banaan.tst8.web.DemoApplication;
+import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 
-import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -28,9 +27,7 @@ public class TestJndiPage {
         tester.startPage(JndiPage.class);
 
         //assert rendered page class
-        // TODO: This may well be the error class,
-        // since tester provides us with a different jndi provider.
-        // tester.assertRenderedPage(JndiPage.class);
+        tester.assertRenderedPage(JndiPage.class);
 
         //assert rendered label component
         tester.assertComponent("feedback", FeedbackPanel.class);

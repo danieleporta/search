@@ -1,9 +1,8 @@
 package nl.xs4all.banaan.tst8.web.jndi;
 
 import nl.xs4all.banaan.tst8.service.JndiList;
-import nl.xs4all.banaan.tst8.service.JndiReader;
-import nl.xs4all.banaan.tst8.service.JndiReaderImpl;
 import nl.xs4all.banaan.tst8.service.ServiceException;
+import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -20,8 +19,7 @@ public class JndiPanel extends Panel {
     public JndiPanel(String id, String location) throws ServiceException {
         super(id);
 
-        JndiReader jndiReader = new JndiReaderImpl();
-        JndiList jndiList = jndiReader.read(location);
+        JndiList jndiList = DemoApplication.get().getJndiReader().read(location);
         add(new Label("location", location));
         add(new PropertyListView("bindings", jndiList.getList()) {
             private static final long serialVersionUID = 1L;
