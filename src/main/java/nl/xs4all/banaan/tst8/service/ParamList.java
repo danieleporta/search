@@ -5,7 +5,7 @@ import java.util.Enumeration;
 import javax.servlet.ServletContext;
 
 import nl.xs4all.banaan.tst8.util.GenericBindingList;
-import nl.xs4all.banaan.tst8.web.WicketApplication;
+import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 /**
  * List of configuration parameters as provided by the environment,
@@ -18,7 +18,7 @@ public class ParamList extends GenericBindingList<String> {
 
     public ParamList () {
         super();
-        WicketApplication app = WicketApplication.get();
+        DemoApplication app = DemoApplication.get();
         ServletContext sc = app.getServletContext();
         Enumeration<?> e = sc.getInitParameterNames();
         while (e.hasMoreElements()) {

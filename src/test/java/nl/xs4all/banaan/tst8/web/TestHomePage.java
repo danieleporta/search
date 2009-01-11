@@ -1,6 +1,6 @@
 package nl.xs4all.banaan.tst8.web;
 
-import nl.xs4all.banaan.tst8.web.WicketApplication;
+import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -17,7 +17,7 @@ public class TestHomePage {
 	@Before
 	public void setUp()
 	{
-	    WicketApplication app = new WicketApplication();
+	    DemoApplication app = new DemoApplication();
 		tester = new WicketTester(app);
 	}
 

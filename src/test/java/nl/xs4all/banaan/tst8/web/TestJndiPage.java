@@ -1,6 +1,6 @@
 package nl.xs4all.banaan.tst8.web;
 
-import nl.xs4all.banaan.tst8.web.WicketApplication;
+import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 
@@ -18,7 +18,7 @@ public class TestJndiPage {
     public void setUp()
     {
         logger.info("Starting testjndipage setup");
-        WicketApplication app = new WicketApplication();
+        DemoApplication app = new DemoApplication();
         tester = new WicketTester(app);
     }
 

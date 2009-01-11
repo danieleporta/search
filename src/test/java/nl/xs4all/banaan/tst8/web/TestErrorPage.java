@@ -1,6 +1,6 @@
 package nl.xs4all.banaan.tst8.web;
 
-import nl.xs4all.banaan.tst8.web.WicketApplication;
+import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 
@@ -15,7 +15,7 @@ public class TestErrorPage {
     @Before
     public void setUp()
     {
-        WicketApplication app = new WicketApplication();
+        DemoApplication app = new DemoApplication();
         tester = new WicketTester(app);
     }
 

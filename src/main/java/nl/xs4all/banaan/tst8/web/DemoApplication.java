@@ -15,12 +15,12 @@ import org.apache.wicket.protocol.http.WebApplication;
  * 
  * @see wicket.myproject.Start#main(String[])
  */
-public class WicketApplication extends WebApplication
+public class DemoApplication extends WebApplication
 {   
     private MenuList menuList;
     
-    public static WicketApplication get() {
-        return (WicketApplication) Application.get();
+    public static DemoApplication get() {
+        return (DemoApplication) Application.get();
     }
     
     @Override

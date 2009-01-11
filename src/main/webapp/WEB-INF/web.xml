@@ -21,7 +21,7 @@
  		<filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
 		<init-param>
 			<param-name>applicationClassName</param-name>
-			<param-value>nl.xs4all.banaan.tst8.web.WicketApplication</param-value>
+			<param-value>nl.xs4all.banaan.tst8.web.DemoApplication</param-value>
  		</init-param>
  	</filter>
 

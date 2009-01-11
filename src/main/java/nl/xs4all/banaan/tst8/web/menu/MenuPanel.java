@@ -1,7 +1,7 @@
 package nl.xs4all.banaan.tst8.web.menu;
 
 import nl.xs4all.banaan.tst8.util.GenericBinding;
-import nl.xs4all.banaan.tst8.web.WicketApplication;
+import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -22,7 +22,7 @@ public class MenuPanel extends Panel {
         super(id);
         getSession().info("building  menu panel");
 
-        add (new PropertyListView("bindings", WicketApplication.get().getMenuList().getList()) {
+        add (new PropertyListView("bindings", DemoApplication.get().getMenuList().getList()) {
             private static final long serialVersionUID = 1L;
            
             @Override
