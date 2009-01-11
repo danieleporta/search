@@ -17,9 +17,10 @@ public class JndiReaderFixture implements JndiReader {
 
         if (location.equals("")) {
             result.add("aap", "aapval");
-            result.add("noot", "nootval");
-            result.add("jdbc", "JDBC-NODE");            
             result.add("dir1", "DIR1-NODE");
+            result.add("jdbc", "JDBC-NODE");            
+            result.add("noot", "nootval");
+
         }
         else if (location.equals("jdbc")) {
             result.add("mies", "miesval");
