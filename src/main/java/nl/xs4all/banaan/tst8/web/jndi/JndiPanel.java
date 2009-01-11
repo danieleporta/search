@@ -2,9 +2,12 @@ package nl.xs4all.banaan.tst8.web.jndi;
 
 import nl.xs4all.banaan.tst8.service.JndiList;
 import nl.xs4all.banaan.tst8.service.ServiceException;
+import nl.xs4all.banaan.tst8.util.GenericBinding;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -26,7 +29,16 @@ public class JndiPanel extends Panel {
 
             @Override
             public void populateItem (ListItem item) {
-                item.add(new Label("key"));
+                GenericBinding<Object> binding = 
+                    (GenericBinding<Object>) item.getModelObject();
+                String key = binding.getKey();
+                
+                item.add(
+                    new BookmarkablePageLink(
+                            "keylink", JndiPage.class,
+                            new PageParameters("location=" + key)).
+                                    add(new Label("keytext", key)));
+                        
                 item.add(new Label("value"));
             }
         });

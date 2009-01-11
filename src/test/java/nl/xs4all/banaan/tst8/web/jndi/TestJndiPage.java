@@ -99,13 +99,13 @@ public class TestJndiPage {
      * links: link wants to save whole rendered page in session,
      * which requires serialisability.
      */
-    // disabled @Test
+    @Test
     public void testRenderJndiPage5() {
         // check clickability of jndi entries
         tester.startPage(JndiPage.class);
-        
+ 
         // dir1 should lead to known page
-        tester.clickLink("jndi:bindings:1:key");
+        tester.clickLink("jndi:bindings:1:keylink");
 
         // in dir1, we see its own name, plus ptr to dir2
         tester.debugComponentTrees();
