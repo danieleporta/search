@@ -108,7 +108,19 @@ public class TestJndiPage {
         tester.clickLink("jndi:bindings:1:keylink");
 
         // in dir1, we see its own name, plus ptr to dir2
-        tester.debugComponentTrees();
         fixtures.checkBasePage(JndiPage.class, "dir1", "dir2", "DIR2\\-NODE");
-    }  
+    }
+    
+    @Test
+    public void testRenderJndiPage6() {
+        // check clickability of jndi entries
+        tester.startPage(new JndiPage(new PageParameters ("location=dir1")));
+ 
+        // dir1 should lead to known page
+        tester.clickLink("jndi:bindings:0:keylink");
+
+        // in dir2, we see entry3
+        tester.debugComponentTrees();
+        fixtures.checkBasePage(JndiPage.class, "dir2", "entry3val");
+    } 
 }

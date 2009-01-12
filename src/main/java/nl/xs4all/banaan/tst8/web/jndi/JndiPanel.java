@@ -19,7 +19,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 public class JndiPanel extends Panel {
     private static final long serialVersionUID = 1L;
 
-    public JndiPanel(String id, String location) throws ServiceException {
+    public JndiPanel(String id, final String location) throws ServiceException {
         super(id);
 
         JndiList jndiList = DemoApplication.get().getJndiReader().read(location);
@@ -31,13 +31,19 @@ public class JndiPanel extends Panel {
             public void populateItem (ListItem item) {
                 GenericBinding<Object> binding = 
                     (GenericBinding<Object>) item.getModelObject();
-                String key = binding.getKey();
+                String path;
+                if (location.equals("")) {
+                    path = binding.getKey();
+                }
+                else {
+                    path = location + "/" + binding.getKey();
+                }
                 
                 item.add(
                     new BookmarkablePageLink(
                             "keylink", JndiPage.class,
-                            new PageParameters("location=" + key)).
-                                    add(new Label("keytext", key)));
+                            new PageParameters("location=" + path)).
+                                    add(new Label("keytext", binding.getKey())));
                         
                 item.add(new Label("value"));
             }
