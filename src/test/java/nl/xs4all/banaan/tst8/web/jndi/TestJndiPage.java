@@ -116,11 +116,8 @@ public class TestJndiPage {
         // check clickability of jndi entries
         tester.startPage(new JndiPage(new PageParameters ("location=dir1")));
  
-        // dir1 should lead to known page
+        // click to dir2, find entry2val there
         tester.clickLink("jndi:bindings:0:keylink");
-
-        // in dir2, we see entry3
-        tester.debugComponentTrees();
         fixtures.checkBasePage(JndiPage.class, "dir2", "entry3val");
     } 
 }
