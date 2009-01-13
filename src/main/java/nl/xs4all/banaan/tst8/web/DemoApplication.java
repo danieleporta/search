@@ -22,7 +22,7 @@ public class DemoApplication extends WebApplication
     private MenuList menuList;
     
     /**
-     * The reasder that will talk to JNDI; to be made pluggable via spring.
+     * jndi reader injected via spring
      */
     private JndiReader jndiReader;
     
@@ -37,7 +37,6 @@ public class DemoApplication extends WebApplication
         menuList.add("jndi", JndiPage.class);
         menuList.add("param", ParamPage.class);        
         menuList.add("property", PropertyPage.class);
-        jndiReader = new JndiReaderImpl();
     }
 	
     public MenuList getMenuList() {
@@ -46,11 +45,11 @@ public class DemoApplication extends WebApplication
     
   
     public void setJndiReader(JndiReader jndiReader) {
-	this.jndiReader = jndiReader;
+        this.jndiReader = jndiReader;
     }
 
     public JndiReader getJndiReader() {
-	return jndiReader;
+        return jndiReader;
     }
 
     
@@ -59,6 +58,6 @@ public class DemoApplication extends WebApplication
      */
     @Override
     public Class<?> getHomePage() {
-	return HomePage.class;
+        return HomePage.class;
     }
 }

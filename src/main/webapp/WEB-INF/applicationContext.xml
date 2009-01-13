@@ -5,6 +5,10 @@
          http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <!-- First cut at spring config -->
-  <bean id="demoApplication" class="nl.xs4all.banaan.tst8.web.DemoApplication" />
+  <bean id="jndiReader" class="nl.xs4all.banaan.tst8.service.JndiReaderImpl" />
+  
+  <bean id="demoApplication" class="nl.xs4all.banaan.tst8.web.DemoApplication">
+    <property name="jndiReader" ref="jndiReader" />
+  </bean>
 
 </beans>
