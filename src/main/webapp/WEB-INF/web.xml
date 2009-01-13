@@ -25,6 +25,13 @@
       <param-name>applicationClassName</param-name>
       <param-value>nl.xs4all.banaan.tst8.web.DemoApplication</param-value>
     </init-param>
+    <!-- Wicket should delegate the building of the application to a factory: spring. -->
+    <init-param>
+      <param-name>applicationFactoryClassName</param-name>
+      <param-value>
+        org.apache.wicket.spring.SpringWebApplicationFactory
+      </param-value>
+    </init-param>
   </filter>
 
   <filter-mapping>
@@ -63,4 +70,19 @@
     <param-value>myaddress@mycompany.com</param-value>
   </context-param>
 
+  <!-- 
+    Spring stuff.
+    The listener is responsible for reading spring config files.
+    The context param tells us where the config files are, space separated.
+  -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      /WEB-INF/applicationContext.xml
+    </param-value>
+  </context-param>
+  
 </web-app>
