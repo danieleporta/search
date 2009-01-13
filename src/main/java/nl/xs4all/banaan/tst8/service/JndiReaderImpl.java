@@ -30,7 +30,7 @@ public class JndiReaderImpl implements JndiReader {
         String path = base + location;
         JndiList result = new JndiList();
         
-	try {
+        try {
             logger.info("start jndilist init for " + path + "." );
 
             Context initialContext = new InitialContext();
