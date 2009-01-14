@@ -29,4 +29,19 @@ public class GenericBindingList<T> {
         Collections.sort(list, GenericBinding.<T>comparator());
         return list;
     }
+
+    /**
+     * @param substring
+     * @return list of bindings where substring occurs in key
+     */
+    public GenericBindingList<T> filter(String substring) {
+        GenericBindingList<T> result = new GenericBindingList<T>();
+        for (GenericBinding<T> binding : list) {
+            String key = binding.getKey();
+            if (key.contains(substring)) {
+                result.add(key, binding.getValue());
+            }
+        }
+        return result;
+    }
 }

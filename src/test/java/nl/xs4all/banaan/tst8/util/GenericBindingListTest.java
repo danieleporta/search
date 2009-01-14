@@ -13,10 +13,12 @@ public class GenericBindingListTest {
 
     @Before
     public void setUp() throws Exception {
-	bl = new GenericBindingList<String>();
-	bl.add("aap", "aapval");
-	bl.add("noot", "nootval");
-	bl.add("mies", "miesval");
+        bl = new GenericBindingList<String>();
+        bl.add("aap", "aapval");
+        bl.add("noot", "nootval");
+        bl.add("mies", "miesval");
+        bl.add("mies-postfix", "miesValPost");
+        bl.add("zprefix-mies-postfix", "zval");
     }
 
     @After
@@ -25,9 +27,21 @@ public class GenericBindingListTest {
 
     @Test
     public void testGetList() {
-	List<GenericBinding<String>> l = bl.getList();
-	assertEquals(l.get(0).getKey(), "aap");
-	assertEquals(l.get(1).getKey(), "mies");
-	assertEquals(l.get(2).getKey(), "noot");
+        List<GenericBinding<String>> l = bl.getList();
+        assertEquals("aap", l.get(0).getKey());
+        assertEquals("mies", l.get(1).getKey());
+        assertEquals("noot", l.get(3).getKey());
     }
+
+    @Test
+    public void testFilterListFound() {
+        List<GenericBinding<String>> list = bl.filter("mies").getList();
+        assertEquals(3, list.size());
+    }
+
+    @Test
+    public void testFilterListNotFound() {
+        List<GenericBinding<String>> list = bl.filter("schapen").getList();
+        assertEquals(0, list.size());
+    }    
 }
