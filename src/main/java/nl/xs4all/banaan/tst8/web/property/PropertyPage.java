@@ -10,7 +10,7 @@ import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 /**
  * Display key/value pairs in a property collection.
- * hardwired to display only system properties.
+ * takes a param to determine what property resource is shown.
  * @author konijn
  *
  */
