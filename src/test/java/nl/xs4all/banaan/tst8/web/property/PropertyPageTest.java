@@ -2,9 +2,6 @@ package nl.xs4all.banaan.tst8.web.property;
 
 
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
-import nl.xs4all.banaan.tst8.fixtures.ThrowingPage;
-import nl.xs4all.banaan.tst8.service.ServiceException;
-import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.util.tester.ITestPageSource;
