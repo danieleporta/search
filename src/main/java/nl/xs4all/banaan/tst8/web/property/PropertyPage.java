@@ -1,8 +1,13 @@
 package nl.xs4all.banaan.tst8.web.property;
 
+import org.apache.log4j.Logger;
+
 import nl.xs4all.banaan.tst8.service.PropertyList;
+import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
+import nl.xs4all.banaan.tst8.web.error.ErrorPage;
+import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 
 /**
  * Display key/value pairs in a property collection.
@@ -12,8 +17,16 @@ import nl.xs4all.banaan.tst8.web.base.BasePage;
  */
 
 public class PropertyPage extends BasePage {
+    private static Logger logger = Logger.getLogger(PropertyPage.class);
     public PropertyPage() {
-        PropertyList propertyList = DemoApplication.get().getPropertyReader().read();
-        add(new PropertyPanel("properties", propertyList.getList()));
+        try {
+            PropertyList propertyList = 
+                DemoApplication.get().getPropertyReader().read(null);
+            add(new PropertyPanel("properties", propertyList.getList()));
+        }
+        catch (ServiceException se) {
+            logger.error("Caught Service Exception", se);
+            setResponsePage(ErrorPage.class);
+        }
     }
 }

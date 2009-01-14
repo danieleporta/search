@@ -9,6 +9,11 @@ package nl.xs4all.banaan.tst8.service;
  */
 public interface PropertyReader {
 
-    public PropertyList read();
+    /**
+     * Read properties given resource name.
+     * @param path TODO
+     * @return
+     */
+    public PropertyList read(String path) throws ServiceException;
 
 }
