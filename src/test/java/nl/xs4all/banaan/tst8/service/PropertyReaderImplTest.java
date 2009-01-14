@@ -4,9 +4,8 @@ package nl.xs4all.banaan.tst8.service;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.junit.matchers.JUnitMatchers.*;
+import static org.junit.matchers.JUnitMatchers.containsString;
 
-import org.hamcrest.Matcher;
 import org.junit.Test;
 
 /**
