@@ -1,13 +1,22 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+import static org.junit.matchers.JUnitMatchers.containsString;
+
+import java.lang.reflect.InvocationTargetException;
+
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.PropertyReader;
 import nl.xs4all.banaan.tst8.service.PropertyReaderImpl;
+import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
 import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 
+import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.wicket.util.tester.ITestPageSource;
 import org.apache.wicket.util.tester.WicketTester;
 
 /**
@@ -47,5 +56,41 @@ public class Fixtures {
         for (String pattern : patterns) {
             tester.assertContains(pattern);
         }
+    }
+
+    /**
+     * verify that creating this page results in just the right kind
+     * of exception.
+     * @param source
+     * @param patterns
+     */
+    public void checkServiceException(ITestPageSource source,
+            String... patterns) {
+        try {
+            tester.startPage(source);
+            fail("Exception expected");
+        }
+        catch (Exception e) {
+            Throwable cause = e;
+            if (cause instanceof WicketRuntimeException) {
+                cause = cause.getCause();
+            }
+            if (cause instanceof InvocationTargetException) {
+                cause = cause.getCause();
+            }
+            if (cause instanceof RuntimeException) {
+                cause = cause.getCause();
+            }
+            if (cause instanceof ServiceException) {
+                for (String pattern : patterns) {
+                    String message = cause.getMessage();
+                    assertThat(message, containsString(pattern));
+                }
+            }
+            else {
+                fail("Unexcepted type of exception");
+            }
+        }
+        
     }
 }

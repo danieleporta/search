@@ -43,12 +43,14 @@ public class DemoApplication extends WebApplication
         menuList.add("param", ParamPage.class);        
         menuList.add("property", PropertyPage.class);
         
+        // following error page is only used in production mode
         IApplicationSettings settings = getApplicationSettings();
         settings.setInternalErrorPage(ErrorPage.class);
         
-        // show internal error page rather than default developer page
-        getExceptionSettings().setUnexpectedExceptionDisplay(
-                IExceptionSettings.SHOW_INTERNAL_ERROR_PAGE);
+        // you can show it in development mode, but that breaks
+        // junit testing of exceptions.
+        // getExceptionSettings().setUnexpectedExceptionDisplay(
+        //        IExceptionSettings.SHOW_INTERNAL_ERROR_PAGE);
 
     }
 	
