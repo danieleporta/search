@@ -1,7 +1,6 @@
 package nl.xs4all.banaan.tst8.util;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,12 +26,7 @@ public class GenericBindingList<T> {
     }
     
     public List<GenericBinding<T>> getList() {
-        Collections.sort(list, new Comparator<GenericBinding<T>>() {
-            public int compare(GenericBinding<T> o1, GenericBinding<T> o2) {
-                return o1.getKey().compareTo(o2.getKey());
-            }
-
-        });
+        Collections.sort(list, GenericBinding.<T>comparator());
         return list;
     }
 }

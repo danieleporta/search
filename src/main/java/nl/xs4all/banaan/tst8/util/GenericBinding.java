@@ -1,5 +1,7 @@
 package nl.xs4all.banaan.tst8.util;
 
+import java.util.Comparator;
+
 /**
  * A binding says a string and object go together;
  * the type of object is parameterized: it could be a property
@@ -19,6 +21,19 @@ public class GenericBinding<T> {
     public GenericBinding(String key, T value) {
         this.key = key;
         this.value = value;
+    }
+
+    /**
+     * comparator for use in collections.sort().
+     * @param <T>
+     * @return
+     */
+    public static <T> Comparator<GenericBinding<T>> comparator() {
+        return new Comparator<GenericBinding<T>> () {
+            public int compare(GenericBinding<T> o1, GenericBinding<T> o2) {
+                return o1.getKey().compareTo(o2.getKey());
+            }
+        };
     }
 
     public void setKey(String key) {
