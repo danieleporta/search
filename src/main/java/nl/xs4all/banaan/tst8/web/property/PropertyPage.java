@@ -1,6 +1,7 @@
 package nl.xs4all.banaan.tst8.web.property;
 
 import nl.xs4all.banaan.tst8.service.PropertyList;
+import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 /**
@@ -12,7 +13,7 @@ import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 public class PropertyPage extends BasePage {
     public PropertyPage() {
-        PropertyList propertyList = new PropertyList(System.getProperties());
+        PropertyList propertyList = DemoApplication.get().getPropertyReader().read();
         add(new PropertyPanel("properties", propertyList.getList()));
     }
 }

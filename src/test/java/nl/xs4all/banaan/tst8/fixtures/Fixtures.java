@@ -1,6 +1,8 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
 import nl.xs4all.banaan.tst8.service.JndiReader;
+import nl.xs4all.banaan.tst8.service.PropertyReader;
+import nl.xs4all.banaan.tst8.service.PropertyReaderImpl;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
 import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
@@ -17,9 +19,11 @@ public class Fixtures {
     private WicketTester tester;
 
     public Fixtures () {
-	JndiReader jndiReader = new JndiReaderFixture();
+        PropertyReader propertyReader = new PropertyReaderImpl();
+        JndiReader jndiReader = new JndiReaderFixture();
         DemoApplication app = new DemoApplication();
         tester = new WicketTester(app);
+        app.setPropertyReader(propertyReader);
         app.setJndiReader(jndiReader);
     }
     

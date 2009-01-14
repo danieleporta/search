@@ -6,9 +6,11 @@
 
   <!-- First cut at spring config -->
   <bean id="jndiReader" class="nl.xs4all.banaan.tst8.service.JndiReaderImpl" />
+  <bean id="propertyReader" class="nl.xs4all.banaan.tst8.service.PropertyReaderImpl" />
   
   <bean id="demoApplication" class="nl.xs4all.banaan.tst8.web.DemoApplication">
     <property name="jndiReader" ref="jndiReader" />
+    <property name="propertyReader" ref="propertyReader" />
   </bean>
 
 </beans>

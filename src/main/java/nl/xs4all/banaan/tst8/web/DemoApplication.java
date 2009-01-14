@@ -1,7 +1,7 @@
 package nl.xs4all.banaan.tst8.web;
 
 import nl.xs4all.banaan.tst8.service.JndiReader;
-import nl.xs4all.banaan.tst8.service.JndiReaderImpl;
+import nl.xs4all.banaan.tst8.service.PropertyReader;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 import nl.xs4all.banaan.tst8.web.menu.MenuList;
@@ -25,6 +25,7 @@ public class DemoApplication extends WebApplication
      * jndi reader injected via spring
      */
     private JndiReader jndiReader;
+    private PropertyReader propertyReader;
     
     public static DemoApplication get() {
         return (DemoApplication) Application.get();
@@ -43,7 +44,7 @@ public class DemoApplication extends WebApplication
         return menuList;
     }
     
-  
+
     public void setJndiReader(JndiReader jndiReader) {
         this.jndiReader = jndiReader;
     }
@@ -52,7 +53,15 @@ public class DemoApplication extends WebApplication
         return jndiReader;
     }
 
-    
+    public void setPropertyReader(PropertyReader propertyReader) {
+        this.propertyReader = propertyReader;
+    }
+
+    public PropertyReader getPropertyReader() {
+        return propertyReader;
+    }
+
+
     /**
      * @see wicket.Application#getHomePage()
      */
