@@ -14,14 +14,22 @@ import nl.xs4all.banaan.tst8.web.base.BasePage;
  */
 
 public class PropertyPage extends BasePage {
+    String path;
+    
     public PropertyPage() {
+        path = null;
         init();
     }
     
+    public PropertyPage(String path) {
+        this.path = path;
+        init();
+    }
+
     @Override
     public void doInit() throws ServiceException {
         PropertyList propertyList = 
-            DemoApplication.get().getPropertyReader().read(null);
+            DemoApplication.get().getPropertyReader().read(path);
         add(new PropertyPanel("properties", propertyList.getList()));
     }
 }

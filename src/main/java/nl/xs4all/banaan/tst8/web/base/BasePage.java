@@ -36,7 +36,7 @@ public abstract class BasePage extends WebPage {
         }
         catch (ServiceException se) {
             logger.error("Caught Service Exception", se);
-            setResponsePage(ErrorPage.class);
+            throw new RuntimeException(se);
         }
     }
 
