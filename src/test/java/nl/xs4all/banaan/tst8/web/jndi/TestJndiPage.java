@@ -2,8 +2,11 @@ package nl.xs4all.banaan.tst8.web.jndi;
 
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
+import nl.xs4all.banaan.tst8.web.property.PropertyPage;
 
+import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.util.tester.ITestPageSource;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
@@ -92,6 +95,19 @@ public class TestJndiPage {
     public void testRenderJndiPageParam5() {
         tester.startPage(new JndiPage(new PageParameters ("location=dir1/dir2")));
         fixtures.checkBasePage(JndiPage.class, "entry3val");
+    }
+    
+    /**
+     * see that unknown location results in error
+     */
+    @Test
+    public void testServiceError() {
+        fixtures.checkServiceException (new ITestPageSource () {
+            public Page getTestPage (){
+                return new JndiPage(new PageParameters ("location=never/never/land"));   
+            }
+        },
+        "not found", "never/land");
     }
     
     /**
