@@ -2,8 +2,10 @@ package nl.xs4all.banaan.tst8.web.property;
 
 
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
+import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.util.tester.ITestPageSource;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -51,5 +53,26 @@ public class PropertyPageTest {
         },
         "not/found");
     }
-
+        
+    /**
+     * empty location to system properties
+     */
+    @Test
+    public void testRenderPropertyViaPageParam() {
+        tester.startPage(new PropertyPage(new PageParameters ()));
+        fixtures.checkBasePage(PropertyPage.class, "Properties", "user.name");
+    } 
+    
+    @Test
+    public void testRenderPropertyViaPageParam2() {
+        tester.startPage(new PropertyPage(new PageParameters ("location=")));
+        fixtures.checkBasePage(PropertyPage.class, "Properties", "user.name");
+    }
+    
+    @Test
+    public void testRenderPropertyViaPageParam3() {
+        tester.startPage(new PropertyPage(
+                new PageParameters ("location=/build.properties")));
+        fixtures.checkBasePage(PropertyPage.class, "Properties", "group");
+    }
 }

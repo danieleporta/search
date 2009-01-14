@@ -14,7 +14,7 @@ public class PropertyReaderImpl implements PropertyReader {
     public PropertyList read (String path) throws ServiceException {
         Properties props;
         
-        if (path == null) {
+        if (path == null  || path.equals("")) {
             props = System.getProperties();
         }
         else {
