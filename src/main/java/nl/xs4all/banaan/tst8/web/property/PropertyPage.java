@@ -1,13 +1,12 @@
 package nl.xs4all.banaan.tst8.web.property;
 
-import org.apache.log4j.Logger;
-
 import nl.xs4all.banaan.tst8.service.PropertyList;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
-import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
+
+import org.apache.log4j.Logger;
 
 /**
  * Display key/value pairs in a property collection.
