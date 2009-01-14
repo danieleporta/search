@@ -1,11 +1,13 @@
 package nl.xs4all.banaan.tst8.web.property;
 
+import static org.junit.Assert.*;
 
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.ITestPageSource;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -41,6 +43,7 @@ public class PropertyPageTest {
     @Test
     public void testRenderPropertyPage2() {
         tester.startPage(new PropertyPage("/build.properties"));
+        tester.debugComponentTrees();
         fixtures.checkBasePage(PropertyPage.class, "Properties", "group");
     }
     
@@ -74,5 +77,19 @@ public class PropertyPageTest {
         tester.startPage(new PropertyPage(
                 new PageParameters ("location=/build.properties")));
         fixtures.checkBasePage(PropertyPage.class, "Properties", "group");
+    }
+    
+    /**
+     * There should be a form with a field and a button;
+     * used to select what property file to display.
+     */
+    @Test
+    public void testFormContents () {
+        tester.startPage(PropertyPage.class);
+        FormTester formTester = tester.newFormTester("form");
+        assertEquals("", formTester.getTextComponentValue("field"));
+        formTester.setValue("field", "/build.properties");
+        formTester.submit("confirm");
+        fixtures.checkBasePage(PropertyPage.class, "group");
     }
 }

@@ -1,11 +1,16 @@
 package nl.xs4all.banaan.tst8.web.property;
 
-import org.apache.wicket.PageParameters;
-
 import nl.xs4all.banaan.tst8.service.PropertyList;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
+
+import org.apache.wicket.PageParameters;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 
 
 /**
@@ -17,24 +22,44 @@ import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 public class PropertyPage extends BasePage {
     private String location;
+    private TextField field;
+    private Form form;
+    
+    public void setLocation(String location) {
+        this.location = location;
+    }
     
     public PropertyPage() {
-        location = null;
+        setLocation("");
         init();
     }
     
-    public PropertyPage(String path) {
-        this.location = path;
+    public PropertyPage(String location) {
+        setLocation(location);
         init();
     }
 
     public PropertyPage(PageParameters parameters) {
-        this.location = (parameters.getString("location", ""));
+        setLocation(parameters.getString("location", ""));
         init();
     }
 
     @Override
     public void doInit() throws ServiceException {
+        form = new Form("form");
+        field = new TextField("field", 
+                new Model(location));
+        form.add(field);
+        form.add(new Button("confirm") {
+            @Override
+            public void onSubmit() {
+                String result = field.getModelObjectAsString();
+                setResponsePage(PropertyPage.class, 
+                        new PageParameters("location="+result));
+            }
+        });
+        add(form);
+        
         PropertyList propertyList = 
             DemoApplication.get().getPropertyReader().read(location);
         add(new PropertyPanel("properties", propertyList.getList()));

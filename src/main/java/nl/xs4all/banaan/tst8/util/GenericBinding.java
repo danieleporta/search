@@ -1,5 +1,6 @@
 package nl.xs4all.banaan.tst8.util;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Comparator;
  * The type o the value to be stored in the bindings;
  * key always string.
  */
-public class GenericBinding<T> {
+public class GenericBinding<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String key;
