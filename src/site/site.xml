@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    see http://maven.apache.org/guides/mini/guide-site.html
+    http://maven.apache.org/doxia/references/apt-format.html
+-->
+<project name="Wicket Demo">
+  <body>
+    <menu name="Demo">
+      <item name="Introduction" href="index.html"/>
+      <item name="Todo" href="todo.html" />
+    </menu>
+
+    <menu ref="reports"/>
+    <menu ref="parent"/>
+    <menu ref="modules"/>
+  </body>
+</project>
