@@ -15,25 +15,39 @@ import org.apache.log4j.Logger;
  */
 public class JndiReaderImpl implements JndiReader {
     private static Logger logger = Logger.getLogger(JndiReaderImpl.class);
-    
+
+    // JNDI can query multiple namespaces;
+    // the java:comp/env path gives access to bindings
+    // that are provided by web.xml or the container.
+    // See servlet 2.4 spec, SRV 9.11, SRV 13.4.20, SRV 13.4.24, via
+    // http://jcp.org/aboutJava/communityprocess/final/jsr154/index.html
+    //
+    private Context initialContext;
+    public void setInitialContext(Context initialContext) {
+        this.initialContext = initialContext;
+    }
+
+    public JndiReaderImpl () throws ServiceException {
+        try {
+            initialContext = new InitialContext();        
+        } catch (NamingException ne) {
+            logger.info("jndilist  init got an exception");
+            throw new ServiceException ("JNDI init failure", ne);
+        }
+    }
+
     /* (non-Javadoc)
      * @see nl.xs4all.banaan.tst8.service.JndiReader#read(java.lang.String)
      */
     public JndiList read (String location) throws ServiceException {
-        // JNDI can query multiple namespaces;
-        // the java:comp/env path gives access to bindings
-        // that are provided by web.xml or the container.
-        // See servlet 2.4 spec, SRV 9.11, SRV 13.4.20, SRV 13.4.24, via
-        // http://jcp.org/aboutJava/communityprocess/final/jsr154/index.html
-        //
+
         String base = "java:comp/env/";
         String path = base + location;
         JndiList result = new JndiList();
         
         try {
             logger.info("start jndilist init for " + path + "." );
-
-            Context initialContext = new InitialContext();
+            
             NamingEnumeration<Binding> e = initialContext.listBindings(path);
             logger.info("jndilist have context");
             while (e.hasMoreElements()) {
