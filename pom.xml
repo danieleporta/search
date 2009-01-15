@@ -12,6 +12,10 @@
     A test to find effective ways to do testing and deployment
     of a wicket application.
   </description>
+  
+  <scm>
+    <url>http://github.com/ekonijn/wicket-demo/tree/master</url>
+  </scm>
 
   <!--
     TODO <organization> <name>company name</name> <url>company url</url>
