@@ -1,14 +1,12 @@
 package nl.xs4all.banaan.tst8.service;
 
 
-import javax.naming.Context;
+import static org.junit.Assert.assertTrue;
+import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.mock.jndi.SimpleNamingContext;
-
-import static org.junit.Assert.*;
 
 /**
  * Test that the JNDI reader works as expected.
@@ -17,13 +15,13 @@ import static org.junit.Assert.*;
  */
 public class JndiReaderImplTest {
     private JndiReaderImpl reader;
+    private Fixtures fixtures;
 
     @Before
     public void setUp() throws Exception {
-        Context initialContext = new SimpleNamingContext();
-        initialContext.bind("elders/groet", "goedemorgen");
+        fixtures = new Fixtures();
         reader = new JndiReaderImpl();
-        reader.setInitialContext(initialContext);
+        reader.setInitialContext(fixtures.getInitialContext());
     }
 
     @After

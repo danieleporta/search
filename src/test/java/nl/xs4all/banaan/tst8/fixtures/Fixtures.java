@@ -6,6 +6,9 @@ import static org.junit.matchers.JUnitMatchers.containsString;
 
 import java.lang.reflect.InvocationTargetException;
 
+import javax.naming.Context;
+import javax.naming.NamingException;
+
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.PropertyReader;
 import nl.xs4all.banaan.tst8.service.PropertyReaderImpl;
@@ -18,15 +21,18 @@ import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.util.tester.ITestPageSource;
 import org.apache.wicket.util.tester.WicketTester;
+import org.springframework.mock.jndi.SimpleNamingContext;
 
 /**
  * Various convenience objects for use during unit testing.
+ * Useslazy initialisation, in future may be springified.
  * @author konijn
  *
  */
 public class Fixtures {
+    private Context initialContext;
     private WicketTester tester;
-
+    
     public Fixtures () {
         PropertyReader propertyReader = new PropertyReaderImpl();
         JndiReader jndiReader = new JndiReaderFixture();
@@ -39,7 +45,19 @@ public class Fixtures {
     public WicketTester getTester() {
         return tester;
     }
-    
+
+    public Context getInitialContext() {
+        if (initialContext == null) {
+            try {
+                initialContext = new SimpleNamingContext();
+                initialContext.bind("elders/groet", "goedemorgen");
+            }
+            catch (NamingException ne) {
+                fail("JNDI fixture broken");
+            }
+        }
+        return initialContext;
+    }
 
     /**
      * check that a rendered subclass of basepage has expected class 
@@ -93,4 +111,5 @@ public class Fixtures {
         }
         
     }
+
 }
