@@ -1,8 +1,6 @@
 package nl.xs4all.banaan.tst8.web.jndi;
 
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
-import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
-import nl.xs4all.banaan.tst8.web.property.PropertyPage;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;

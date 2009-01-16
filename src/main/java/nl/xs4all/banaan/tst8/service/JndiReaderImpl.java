@@ -50,7 +50,8 @@ public class JndiReaderImpl implements JndiReader {
             
         } catch (NamingException ne) {
             logger.info("jndilist got an exception");
-            throw new ServiceException ("JNDI failure", ne);
+            throw new ServiceException("JNDI location not found" + location, 
+                    ne);
         }
         return result;
     }

@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 
 import nl.xs4all.banaan.tst8.service.JndiReader;
+import nl.xs4all.banaan.tst8.service.JndiReaderImpl;
 import nl.xs4all.banaan.tst8.service.PropertyReader;
 import nl.xs4all.banaan.tst8.service.PropertyReaderImpl;
 import nl.xs4all.banaan.tst8.service.ServiceException;
@@ -32,31 +33,54 @@ import org.springframework.mock.jndi.SimpleNamingContext;
 public class Fixtures {
     private Context initialContext;
     private WicketTester tester;
-    
-    public Fixtures () {
-        PropertyReader propertyReader = new PropertyReaderImpl();
-        JndiReader jndiReader = new JndiReaderFixture();
-        DemoApplication app = new DemoApplication();
-        tester = new WicketTester(app);
-        app.setPropertyReader(propertyReader);
-        app.setJndiReader(jndiReader);
-    }
-    
-    public WicketTester getTester() {
-        return tester;
-    }
+    private JndiReaderImpl jndiReader;
+    private DemoApplication application;
+
 
     public Context getInitialContext() {
         if (initialContext == null) {
             try {
                 initialContext = new SimpleNamingContext();
                 initialContext.bind("elders/groet", "goedemorgen");
+                initialContext.bind("aap", "aapval");
+                initialContext.bind("dir1", "DIR1-NODE");
+                initialContext.bind("jdbc", "JDBC-NODE");
+                initialContext.bind("noot", "nootval");
+                initialContext.bind("jdbc/mies", "miesval");
+                initialContext.bind("jdbc/wim", "wimval");
+                initialContext.bind("dir1/dir2", "DIR2-NODE");
+                initialContext.bind("dir1/dir2/entry3", "entry3val");
             }
             catch (NamingException ne) {
                 fail("JNDI fixture broken");
             }
         }
         return initialContext;
+    }
+
+    public JndiReader getJndiReader() {
+        if (jndiReader == null) {
+            jndiReader = new JndiReaderImpl();
+            jndiReader.setInitialContext(getInitialContext());
+        }
+        return jndiReader;
+    }
+
+    public DemoApplication getApplication() {
+        if (application == null) {
+            application = new DemoApplication();
+            PropertyReader propertyReader = new PropertyReaderImpl();
+            application.setPropertyReader(propertyReader);
+            application.setJndiReader(getJndiReader());
+        }
+        return application;
+    }
+
+    public WicketTester getTester() {
+        if (tester == null) {
+            tester = new WicketTester(getApplication());
+        }
+        return tester;
     }
 
     /**
