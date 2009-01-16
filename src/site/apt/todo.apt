@@ -14,15 +14,17 @@ Progress
         
         * jetty started via maven
         
-        * mocking the jndi initial context 
-        
-        * jndi properties via spring injection
-        
         * mailer configuration via jndi/spring
         
         * hibernate
+        
+        * JMX
 
 * Done
+        
+        * mocking the jndi initial context 
+        
+        * jndi properties via spring injection
 
         * Simple wicket application
         
