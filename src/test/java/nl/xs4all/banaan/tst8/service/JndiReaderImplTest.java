@@ -21,7 +21,7 @@ public class JndiReaderImplTest {
     @Before
     public void setUp() throws Exception {
         Context initialContext = new SimpleNamingContext();
-        initialContext.bind("java:comp/env/elders/groet", "goedemorgen");
+        initialContext.bind("elders/groet", "goedemorgen");
         reader = new JndiReaderImpl();
         reader.setInitialContext(initialContext);
     }

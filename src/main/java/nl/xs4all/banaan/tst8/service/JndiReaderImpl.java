@@ -27,21 +27,12 @@ public class JndiReaderImpl implements JndiReader {
         this.initialContext = initialContext;
     }
 
-    public JndiReaderImpl () throws ServiceException {
-        try {
-            initialContext = new InitialContext();        
-        } catch (NamingException ne) {
-            logger.info("jndilist  init got an exception");
-            throw new ServiceException ("JNDI init failure", ne);
-        }
-    }
-
     /* (non-Javadoc)
      * @see nl.xs4all.banaan.tst8.service.JndiReader#read(java.lang.String)
      */
     public JndiList read (String location) throws ServiceException {
 
-        String base = "java:comp/env/";
+        String base = "";
         String path = base + location;
         JndiList result = new JndiList();
         
