@@ -11,11 +11,11 @@ public class NotificatorImpl implements Notificator {
         this.mailSender = mailSender;
     }
     
-    public void send(String to, String subject, String body) {
+    public void send(Notification notification) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(body);
+        message.setTo(notification.getTo());
+        message.setSubject(notification.getSubject());
+        message.setText(notification.getBody());
         mailSender.send(message);
     }
 }

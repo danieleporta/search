@@ -6,5 +6,5 @@ package nl.xs4all.banaan.tst8.service;
  *
  */
 public interface Notificator {
-    public void send (String to, String subject, String body);
+    public void send (Notification notification);
 }
