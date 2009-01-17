@@ -1,13 +1,16 @@
-package nl.xs4all.banaan.tst8.web.error;
+package nl.xs4all.banaan.tst8.web.home;
 
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
-import nl.xs4all.banaan.tst8.web.error.ErrorPage;
+import nl.xs4all.banaan.tst8.web.home.HomePage;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestErrorPage {
+/**
+ * Simple test using the WicketTester
+ */
+public class HomePageTest {
     private Fixtures fixtures;
     private WicketTester tester;
 
@@ -18,8 +21,9 @@ public class TestErrorPage {
     }
 
     @Test
-    public void testRenderErrorPage() {
-        tester.startPage(ErrorPage.class);
-        fixtures.checkBasePage(ErrorPage.class, "could not be completed");
+    public void testRenderMyPage() {
+        tester.startPage(HomePage.class);
+        fixtures.checkBasePage(HomePage.class, "This shows");
+
     }
 }

@@ -15,7 +15,7 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class TestJndiPage {
+public class JndiPageTest {
     private Fixtures fixtures;
     private WicketTester tester;
 
