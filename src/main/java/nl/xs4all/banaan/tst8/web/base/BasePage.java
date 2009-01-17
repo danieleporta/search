@@ -1,9 +1,6 @@
 package nl.xs4all.banaan.tst8.web.base;
 
 import nl.xs4all.banaan.tst8.service.ServiceException;
-import nl.xs4all.banaan.tst8.web.error.ErrorPage;
-import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
-import nl.xs4all.banaan.tst8.web.jndi.JndiPanel;
 import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 
 import org.apache.log4j.Logger;

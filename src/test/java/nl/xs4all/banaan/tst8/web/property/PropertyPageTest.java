@@ -1,9 +1,7 @@
 package nl.xs4all.banaan.tst8.web.property;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
-import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;

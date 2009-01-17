@@ -12,8 +12,6 @@ import nl.xs4all.banaan.tst8.web.property.PropertyPage;
 import org.apache.wicket.Application;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.settings.IApplicationSettings;
-import org.apache.wicket.settings.IExceptionSettings;
-import org.apache.wicket.settings.Settings;
 
 /**
  * Application object for your web application. 
