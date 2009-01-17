@@ -11,6 +11,7 @@ import javax.naming.NamingException;
 
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.JndiReaderImpl;
+import nl.xs4all.banaan.tst8.service.NotificatorImpl;
 import nl.xs4all.banaan.tst8.service.PropertyReader;
 import nl.xs4all.banaan.tst8.service.PropertyReaderImpl;
 import nl.xs4all.banaan.tst8.service.ServiceException;
@@ -77,9 +78,14 @@ public class Fixtures {
     public DemoApplication getApplication() {
         if (application == null) {
             application = new DemoApplication();
+            
             PropertyReader propertyReader = new PropertyReaderImpl();
             application.setPropertyReader(propertyReader);
             application.setJndiReader(getJndiReader());
+            
+            NotificatorImpl notificator = new NotificatorImpl();
+            notificator.setMailSender(getMailSenderFixture());
+            application.setNotificator(notificator);
         }
         return application;
     }

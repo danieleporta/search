@@ -1,6 +1,7 @@
 package nl.xs4all.banaan.tst8.web;
 
 import nl.xs4all.banaan.tst8.service.JndiReader;
+import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.PropertyReader;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
@@ -24,10 +25,11 @@ public class DemoApplication extends WebApplication
     private MenuList menuList;
     
     /**
-     * jndi reader injected via spring
+     * services injected via spring
      */
     private JndiReader jndiReader;
     private PropertyReader propertyReader;
+    private Notificator notificator;
     
     public static DemoApplication get() {
         return (DemoApplication) Application.get();
@@ -71,6 +73,14 @@ public class DemoApplication extends WebApplication
 
     public PropertyReader getPropertyReader() {
         return propertyReader;
+    }
+    
+    public void setNotificator(Notificator notificator) {
+        this.notificator = notificator;
+    }
+    
+    public Notificator getNotificator() {
+        return notificator;
     }
 
 

@@ -16,6 +16,16 @@ Progress
         
         * mailer configuration via jndi/spring
         
+        * central service interface wired as single component into webapp.
+          this makes webapp contents more manageable and makes it easier
+          to test access to service layer.
+          
+        * easymock to verify interaction between web and service layer
+        
+        * spring-wiring the test setup, it's becoming biggish.
+        
+        * field validation in notification screen
+        
         * hibernate
         
         * JMX
