@@ -9,7 +9,7 @@ package nl.xs4all.banaan.tst8.service;
 public interface JndiReader {
 
     /**
-     * read objects fro mjndi
+     * read objects from JNDI
      * @param location relative to 'java:comp/env' Context.
      * @return
      * @throws ServiceException
