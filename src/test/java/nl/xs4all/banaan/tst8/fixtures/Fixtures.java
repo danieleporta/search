@@ -32,9 +32,10 @@ import org.springframework.mock.jndi.SimpleNamingContext;
  */
 public class Fixtures {
     private Context initialContext;
-    private WicketTester tester;
     private JndiReaderImpl jndiReader;
+    private MailSenderFixture mailSenderFixture;
     private DemoApplication application;
+    private WicketTester tester;
 
 
     public Context getInitialContext() {
@@ -64,6 +65,13 @@ public class Fixtures {
             jndiReader.setInitialContext(getInitialContext());
         }
         return jndiReader;
+    }
+
+    public MailSenderFixture getMailSenderFixture() {
+        if (mailSenderFixture == null) {
+            mailSenderFixture = new MailSenderFixture();
+        }
+        return mailSenderFixture;
     }
 
     public DemoApplication getApplication() {
@@ -135,5 +143,6 @@ public class Fixtures {
         }
         
     }
+
 
 }
