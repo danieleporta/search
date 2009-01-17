@@ -20,6 +20,8 @@ Progress
         
         * JMX
 
+        * testing for valid html
+
 * Done
         
         * mocking the jndi initial context 
