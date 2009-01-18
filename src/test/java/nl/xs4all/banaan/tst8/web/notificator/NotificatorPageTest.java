@@ -1,31 +1,26 @@
 package nl.xs4all.banaan.tst8.web.notificator;
 
 
+import javax.annotation.Resource;
+
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
-import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
 
 import org.apache.wicket.util.tester.FormTester;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"/testContext.xml"})
 public class NotificatorPageTest {
-    private Fixtures fixtures;
+    @Resource
     private BasePageTester tester;
+    
+    @Resource
     private MailSenderFixture mailSenderFixture;
-    
-    @Before
-    public void setUp() throws Exception {
-        fixtures = Fixtures.get();
-        tester = fixtures.getTester();
-        mailSenderFixture = fixtures.getMailSenderFixture();
-    }
 
-    @After
-    public void tearDown() throws Exception {
-    }
-    
     @Test
     public void testRenderNotificatorPage() {
         tester.startPage(NotificatorPage.class);
