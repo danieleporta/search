@@ -22,7 +22,8 @@ public class JndiPanel extends Panel {
     public JndiPanel(String id, final String location) throws ServiceException {
         super(id);
 
-        JndiList jndiList = DemoApplication.get().getJndiReader().read(location);
+        JndiList jndiList = DemoApplication.get().
+                getServices().getJndiReader().read(location);
         add(new Label("location", location));
         add(new PropertyListView("bindings", jndiList.getList()) {
             private static final long serialVersionUID = 1L;

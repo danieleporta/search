@@ -22,7 +22,8 @@ public class NotificationPanel extends Panel {
             @Override
             protected void onSubmit() {
                 Notification notification = (Notification) getModelObject();
-                DemoApplication.get().getNotificator().send(notification);
+                DemoApplication.get().
+                        getServices().getNotificator().send(notification);
             }
         };
         form.add(new TextField("to"));

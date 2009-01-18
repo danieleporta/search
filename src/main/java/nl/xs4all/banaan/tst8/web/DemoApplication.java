@@ -3,6 +3,7 @@ package nl.xs4all.banaan.tst8.web;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.PropertyReader;
+import nl.xs4all.banaan.tst8.service.Services;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
@@ -27,9 +28,7 @@ public class DemoApplication extends WebApplication
     /**
      * services injected via spring
      */
-    private JndiReader jndiReader;
-    private PropertyReader propertyReader;
-    private Notificator notificator;
+    private Services services;
     
     public static DemoApplication get() {
         return (DemoApplication) Application.get();
@@ -58,31 +57,13 @@ public class DemoApplication extends WebApplication
         return menuList;
     }
     
-
-    public void setJndiReader(JndiReader jndiReader) {
-        this.jndiReader = jndiReader;
-    }
-
-    public JndiReader getJndiReader() {
-        return jndiReader;
-    }
-
-    public void setPropertyReader(PropertyReader propertyReader) {
-        this.propertyReader = propertyReader;
-    }
-
-    public PropertyReader getPropertyReader() {
-        return propertyReader;
+    public void setServices(Services services) {
+        this.services = services;
     }
     
-    public void setNotificator(Notificator notificator) {
-        this.notificator = notificator;
+    public Services getServices() {
+        return services;
     }
-    
-    public Notificator getNotificator() {
-        return notificator;
-    }
-
 
     /**
      * @see wicket.Application#getHomePage()

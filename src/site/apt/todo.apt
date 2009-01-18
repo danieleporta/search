@@ -15,12 +15,13 @@ Progress
         * jetty started via maven
         
         * mailer configuration via jndi/spring
-        
-        * central service interface wired as single component into webapp.
-          this makes webapp contents more manageable and makes it easier
-          to test access to service layer.
           
-        * easymock to verify interaction between web and service layer
+        * easymock to verify interaction between web and service layer?
+        
+        * intercepting service locator?
+          Put a proxy in front of the service locator to make a log
+          of which services are looked up, and to make a log of the
+          actions on those services; a kind of two-level easymock.
         
         * field validation in notification screen
         
@@ -31,6 +32,10 @@ Progress
         * testing for valid html
 
 * Done
+        
+        * central service interface wired as single component into webapp.
+          this makes webapp contents more manageable and makes it easier
+          to test access to service layer.
         
         * spring-wiring the test setup, it's becoming biggish.
         

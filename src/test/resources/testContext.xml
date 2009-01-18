@@ -35,10 +35,14 @@
     <property name="mailSender" ref="mailSender" />
   </bean>
   
-  <bean id="demoApplication" class="nl.xs4all.banaan.tst8.web.DemoApplication">
+  <bean id="services" class="nl.xs4all.banaan.tst8.service.Services">
     <property name="jndiReader" ref="jndiReader" />
     <property name="propertyReader" ref="propertyReader" />
     <property name="notificator" ref="notificator" />
+  </bean>
+  
+  <bean id="demoApplication" class="nl.xs4all.banaan.tst8.web.DemoApplication">
+    <property name="services" ref="services" />
   </bean>
 
   <bean id="tester" class="org.apache.wicket.util.tester.WicketTester">
