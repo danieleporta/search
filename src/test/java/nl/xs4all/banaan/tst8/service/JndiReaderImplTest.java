@@ -19,7 +19,7 @@ public class JndiReaderImplTest {
 
     @Before
     public void setUp() throws Exception {
-        fixtures = new Fixtures();
+        fixtures = Fixtures.get();
         reader = new JndiReaderImpl();
         reader.setInitialContext(fixtures.getInitialContext());
     }

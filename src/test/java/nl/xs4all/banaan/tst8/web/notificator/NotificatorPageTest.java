@@ -17,7 +17,7 @@ public class NotificatorPageTest {
     
     @Before
     public void setUp() throws Exception {
-        fixtures = new Fixtures();
+        fixtures = Fixtures.get();
         tester = fixtures.getTester();
         mailSenderFixture = fixtures.getMailSenderFixture();
     }

@@ -30,43 +30,74 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  */
 public class Fixtures {
-    private ApplicationContext ctx;
     private WicketTester tester;
+    private Context jndiRootContext;
+    private JndiReaderImpl jndiReader;
+    private MailSenderFixture mailSenderFixture;
+    private PropertyReader propertyReader;
+    private Notificator notificator;
+    private DemoApplication application;
 
-
-    public Fixtures () {
-        ctx = new ClassPathXmlApplicationContext("testContext.xml");
-        tester = (WicketTester) ctx.getBean("tester", WicketTester.class);
+    public static Fixtures get() {
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("testContext.xml");
+        return (Fixtures) ctx.getBean("fixtures", Fixtures.class);
     }
     
     public Context getInitialContext() {
-        return (Context) ctx.getBean("jndiRootContext", Context.class);
+        return jndiRootContext;
+    }
+    
+    public void setJndiRootContext(Context jndiRootContext) {
+        this.jndiRootContext = jndiRootContext;
+    }
+    
+    public JndiReaderImpl getJndiReader() {
+        return jndiReader;
     }
 
-    public JndiReader getJndiReader() {
-        return (JndiReaderImpl) ctx.getBean("jndiReader", JndiReaderImpl.class);
+    public void setJndiReader(JndiReaderImpl jndiReader) {
+        this.jndiReader = jndiReader;
     }
-
+    
     public MailSenderFixture getMailSenderFixture() {
-        return (MailSenderFixture) ctx.getBean("mailSender", MailSenderFixture.class);
+        return mailSenderFixture;
+    }
+    
+    public void setMailSenderFixture(MailSenderFixture mailSenderFixture) {
+        this.mailSenderFixture = mailSenderFixture;
     }
 
     public PropertyReader getPropertyReader() {
-        return (PropertyReader) ctx.getBean("propertyReader", PropertyReader.class);
+        return propertyReader;
+    }
+    
+    public void setPropertyReader(PropertyReader propertyReader) {
+        this.propertyReader = propertyReader;
     }
     
     public Notificator getNotificator() {
-        return (Notificator) ctx.getBean("notificator", Notificator.class);
+        return notificator;
+    }
+    
+    public void setNotificator(Notificator notificator) {
+        this.notificator = notificator;
     }
 
     public DemoApplication getApplication() {
-         return (DemoApplication) ctx.getBean("demoApplication", DemoApplication.class);
+        return application;
+    }
+    
+    public void setApplication(DemoApplication application) {
+        this.application = application;
     }
 
     public WicketTester getTester() {
         return tester;
     }
 
+    public void setTester(WicketTester tester) {
+        this.tester = tester;
+    }
     
     /**
      * check that a rendered subclass of basepage has expected class 

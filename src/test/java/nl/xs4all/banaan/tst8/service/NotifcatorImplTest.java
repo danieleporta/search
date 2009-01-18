@@ -22,7 +22,7 @@ public class NotifcatorImplTest {
 
     @Before
     public void setUp() throws Exception {
-        fixtures = new Fixtures();
+        fixtures = Fixtures.get();
         mailSenderFixture = fixtures.getMailSenderFixture();
         notificator = new NotificatorImpl();
         notificator.setMailSender(mailSenderFixture);

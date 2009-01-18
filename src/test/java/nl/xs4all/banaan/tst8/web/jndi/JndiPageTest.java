@@ -21,7 +21,7 @@ public class JndiPageTest {
 
     @Before
     public void setUp() {
-        fixtures = new Fixtures();
+        fixtures = Fixtures.get();
         tester = fixtures.getTester();
     }
 

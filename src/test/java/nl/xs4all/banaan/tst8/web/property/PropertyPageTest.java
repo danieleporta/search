@@ -22,7 +22,7 @@ public class PropertyPageTest {
 
     @Before
     public void setUp() throws Exception {
-        fixtures = new Fixtures();
+        fixtures = Fixtures.get();
         tester = fixtures.getTester();
     }
 
