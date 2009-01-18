@@ -23,48 +23,37 @@ import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.util.tester.ITestPageSource;
 import org.apache.wicket.util.tester.WicketTester;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.mock.jndi.SimpleNamingContext;
 
 /**
  * Various convenience objects for use during unit testing.
- * Useslazy initialisation, in future may be springified.
  * @author konijn
  *
  */
 public class Fixtures {
+    private ApplicationContext ctx;
     private Context initialContext;
     private JndiReaderImpl jndiReader;
+    private PropertyReader propertyReader;
     private MailSenderFixture mailSenderFixture;
     private DemoApplication application;
     private WicketTester tester;
 
 
+    public Fixtures () {
+        ctx = new ClassPathXmlApplicationContext("testContext.xml");
+        initialContext = (Context) ctx.getBean("jndiRootContext", Context.class);
+        jndiReader = (JndiReaderImpl) ctx.getBean("jndiReader", JndiReaderImpl.class);
+        propertyReader = (PropertyReader) ctx.getBean("propertyReader", PropertyReaderImpl.class);
+    }
+    
     public Context getInitialContext() {
-        if (initialContext == null) {
-            try {
-                initialContext = new SimpleNamingContext();
-                initialContext.bind("elders/groet", "goedemorgen");
-                initialContext.bind("aap", "aapval");
-                initialContext.bind("dir1", "DIR1-NODE");
-                initialContext.bind("jdbc", "JDBC-NODE");
-                initialContext.bind("noot", "nootval");
-                initialContext.bind("jdbc/mies", "miesval");
-                initialContext.bind("jdbc/wim", "wimval");
-                initialContext.bind("dir1/dir2", "DIR2-NODE");
-                initialContext.bind("dir1/dir2/entry3", "entry3val");
-            }
-            catch (NamingException ne) {
-                fail("JNDI fixture broken");
-            }
-        }
         return initialContext;
     }
 
     public JndiReader getJndiReader() {
-        if (jndiReader == null) {
-            jndiReader = new JndiReaderImpl();
-            jndiReader.setInitialContext(getInitialContext());
-        }
         return jndiReader;
     }
 
@@ -79,7 +68,7 @@ public class Fixtures {
         if (application == null) {
             application = new DemoApplication();
             
-            PropertyReader propertyReader = new PropertyReaderImpl();
+            propertyReader = new PropertyReaderImpl();
             application.setPropertyReader(propertyReader);
             application.setJndiReader(getJndiReader());
             
