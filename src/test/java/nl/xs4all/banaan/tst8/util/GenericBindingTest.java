@@ -14,18 +14,18 @@ public class GenericBindingTest {
 
     @Before
     public void setUp() throws Exception {
-	binding = new GenericBinding<Integer>("aap", 17);
+        binding = new GenericBinding<Integer>("aap", 17);
     }
 
     @After
     public void tearDown() throws Exception {
-	binding = null;
+        binding = null;
     }
     
     @Test
     public void testBinding () {
-	assertEquals(binding.getKey(), "aap");
-	assertEquals(binding.getValue(), new Integer(17));
+        assertEquals(binding.getKey(), "aap");
+        assertEquals(binding.getValue(), new Integer(17));
     }
     
 
