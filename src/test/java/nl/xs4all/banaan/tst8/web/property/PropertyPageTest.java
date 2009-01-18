@@ -1,6 +1,9 @@
 package nl.xs4all.banaan.tst8.web.property;
 
 import static org.junit.Assert.assertEquals;
+
+import javax.annotation.Resource;
+
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 
@@ -10,21 +13,20 @@ import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.ITestPageSource;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * verify that expected points show up on property page
  * @author konijn
  *
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"/testContext.xml"})
 public class PropertyPageTest {
-    private Fixtures fixtures;
+    @Resource
     private BasePageTester tester;
-
-    @Before
-    public void setUp() throws Exception {
-        fixtures = Fixtures.get();
-        tester = fixtures.getTester();
-    }
 
     /**
      * default page shows system properties.
