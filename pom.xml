@@ -46,10 +46,17 @@
       <version>${wicket.version}</version> </dependency>
     -->
     <dependency>
-      <!-- The spring-web application factory.-->
+      <!-- The spring-web application factory. --> 
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-spring</artifactId>
       <version>${wicket.version}</version>
+      <!-- exclude spring 2.0 framework that wicket pulls in; clashes with 2.5.6 -->
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     
     <!-- SPRING DEPENDENCIES -->
@@ -58,13 +65,24 @@
       <artifactId>spring-web</artifactId>
       <version>${spring.version}</version>
     </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework</groupId>-->
+<!--      <artifactId>spring-mock</artifactId>-->
+<!--      <version>2.0.8</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.springframework</groupId>
-      <artifactId>spring-mock</artifactId>
-      <version>2.0.8</version>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
       <scope>test</scope>
     </dependency>
-      
+    <dependency>
+      <!-- Interface to java mail; used to be spring-support -->
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>${spring.version}</version>
+    </dependency>      
     <!-- LOGGING DEPENDENCIES - LOG4J -->
     <dependency>
       <groupId>org.slf4j</groupId>

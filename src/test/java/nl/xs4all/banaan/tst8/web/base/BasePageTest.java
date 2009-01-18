@@ -1,8 +1,9 @@
 package nl.xs4all.banaan.tst8.web.base;
 
 
+import javax.annotation.Resource;
+
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
-import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.fixtures.ThrowingPage;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
@@ -12,8 +13,10 @@ import nl.xs4all.banaan.tst8.web.property.PropertyPage;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.util.tester.ITestPageSource;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Verify that the links provided by the base page are clickable
@@ -21,15 +24,12 @@ import org.junit.Test;
  * @author konijn
  *
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"/testContext.xml"})
 public class BasePageTest {
-    private Fixtures fixtures;
+    @Resource
     private BasePageTester tester;
 
-    @Before
-    public void setUp() {
-        fixtures = Fixtures.get();
-        tester = fixtures.getTester();
-    }
 
     @Test
     public void testClickLink1() {
