@@ -13,7 +13,7 @@ import java.util.Comparator;
  * The type o the value to be stored in the bindings;
  * key always string.
  */
-public class GenericBinding<T> implements Serializable {
+public class GenericBinding<T> {
     private static final long serialVersionUID = 1L;
 
     private String key;
