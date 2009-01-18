@@ -29,9 +29,20 @@
 
   <bean id="propertyReader" class="nl.xs4all.banaan.tst8.service.PropertyReaderImpl" />
 
+  <bean id="mailSender" class="nl.xs4all.banaan.tst8.fixtures.MailSenderFixture" />
+
+  <bean id="notificator" class="nl.xs4all.banaan.tst8.service.NotificatorImpl">
+    <property name="mailSender" ref="mailSender" />
+  </bean>
+  
   <bean id="demoApplication" class="nl.xs4all.banaan.tst8.web.DemoApplication">
     <property name="jndiReader" ref="jndiReader" />
     <property name="propertyReader" ref="propertyReader" />
+    <property name="notificator" ref="notificator" />
+  </bean>
+
+  <bean id="tester" class="org.apache.wicket.util.tester.WicketTester">
+    <constructor-arg ref="demoApplication" />
   </bean>
 
 </beans>
