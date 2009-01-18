@@ -1,11 +1,11 @@
 package nl.xs4all.banaan.tst8.web.jndi;
 
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.util.tester.ITestPageSource;
-import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +17,7 @@ import org.junit.Test;
  */
 public class JndiPageTest {
     private Fixtures fixtures;
-    private WicketTester tester;
+    private BasePageTester tester;
 
     @Before
     public void setUp() {
@@ -28,26 +28,26 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPage1() {
         tester.startPage(JndiPage.class);
-        fixtures.checkBasePage(JndiPage.class, "aapval");
+        tester.checkBasePage(JndiPage.class, "aapval");
     }
  
     @Test
     public void testRenderJndiPage2() {
         tester.startPage(new JndiPage());
-        fixtures.checkBasePage(JndiPage.class, "aapval");
+        tester.checkBasePage(JndiPage.class, "aapval");
     } 
     
     @Test
     public void testRenderJndiPage3() {
         tester.startPage(new JndiPage(""));
-        fixtures.checkBasePage(JndiPage.class, "aapval");
+        tester.checkBasePage(JndiPage.class, "aapval");
     }  
     
     @Test
     public void testRenderJndiPage4() {
         // check for value found under jdbc key
         tester.startPage(new JndiPage("jdbc"));
-        fixtures.checkBasePage(JndiPage.class, "miesval");
+        tester.checkBasePage(JndiPage.class, "miesval");
     }
     
     /**
@@ -56,7 +56,7 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPageParam1() {
         tester.startPage(new JndiPage(new PageParameters ()));
-        fixtures.checkBasePage(JndiPage.class, "aapval");
+        tester.checkBasePage(JndiPage.class, "aapval");
     }
     
     /**
@@ -65,7 +65,7 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPageParam2() {
         tester.startPage(new JndiPage(new PageParameters ("garbage=ignored")));
-        fixtures.checkBasePage(JndiPage.class, "aapval");
+        tester.checkBasePage(JndiPage.class, "aapval");
     } 
     
     /**
@@ -74,7 +74,7 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPageParam3() {
         tester.startPage(new JndiPage(new PageParameters ("location=")));
-        fixtures.checkBasePage(JndiPage.class, "aapval");
+        tester.checkBasePage(JndiPage.class, "aapval");
     } 
     
     /**
@@ -83,7 +83,7 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPageParam4() {
         tester.startPage(new JndiPage(new PageParameters ("location=dir1")));
-        fixtures.checkBasePage(JndiPage.class, "DIR2");
+        tester.checkBasePage(JndiPage.class, "DIR2");
     }
     
     /**
@@ -92,7 +92,7 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPageParam5() {
         tester.startPage(new JndiPage(new PageParameters ("location=dir1/dir2")));
-        fixtures.checkBasePage(JndiPage.class, "entry3val");
+        tester.checkBasePage(JndiPage.class, "entry3val");
     }
     
     /**
@@ -100,7 +100,7 @@ public class JndiPageTest {
      */
     @Test
     public void testServiceError() {
-        fixtures.checkServiceException (new ITestPageSource () {
+        tester.checkServiceException (new ITestPageSource () {
             public Page getTestPage (){
                 return new JndiPage(new PageParameters ("location=never/never/land"));   
             }
@@ -122,7 +122,7 @@ public class JndiPageTest {
         tester.clickLink("jndi:bindings:1:keylink");
 
         // in dir1, we see its own name, plus ptr to dir2
-        fixtures.checkBasePage(JndiPage.class, "dir1", "dir2", "DIR2\\-NODE");
+        tester.checkBasePage(JndiPage.class, "dir1", "dir2", "DIR2\\-NODE");
     }
     
     @Test
@@ -132,6 +132,6 @@ public class JndiPageTest {
  
         // click to dir2, find entry2val there
         tester.clickLink("jndi:bindings:0:keylink");
-        fixtures.checkBasePage(JndiPage.class, "dir2", "entry3val");
+        tester.checkBasePage(JndiPage.class, "dir2", "entry3val");
     } 
 }

@@ -1,6 +1,7 @@
 package nl.xs4all.banaan.tst8.web.base;
 
 
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.fixtures.ThrowingPage;
 import nl.xs4all.banaan.tst8.service.ServiceException;
@@ -11,7 +12,6 @@ import nl.xs4all.banaan.tst8.web.property.PropertyPage;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.util.tester.ITestPageSource;
-import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,7 +23,7 @@ import org.junit.Test;
  */
 public class BasePageTest {
     private Fixtures fixtures;
-    private WicketTester tester;
+    private BasePageTester tester;
 
     @Before
     public void setUp() {
@@ -36,35 +36,35 @@ public class BasePageTest {
         tester.startPage(HomePage.class);
         // tester.debugComponentTrees();
         tester.clickLink("menu:bindings:0:value");
-        fixtures.checkBasePage(HomePage.class);
+        tester.checkBasePage(HomePage.class);
     }
     
     @Test
     public void testClickLink2() {
         tester.startPage(HomePage.class);
         tester.clickLink("menu:bindings:1:value");
-        fixtures.checkBasePage(JndiPage.class);
+        tester.checkBasePage(JndiPage.class);
     }
     
     @Test
     public void testClickLink3() {
         tester.startPage(HomePage.class);
         tester.clickLink("menu:bindings:2:value");
-        fixtures.checkBasePage(ParamPage.class);
+        tester.checkBasePage(ParamPage.class);
     }
     
     @Test
     public void testClickLink4() {
         tester.startPage(HomePage.class);
         tester.clickLink("menu:bindings:3:value");
-        fixtures.checkBasePage(PropertyPage.class);
+        tester.checkBasePage(PropertyPage.class);
     }
 
  
 
     @Test
     public void testServiceError() {
-        fixtures.checkServiceException (new ITestPageSource () {
+        tester.checkServiceException (new ITestPageSource () {
             public Page getTestPage (){
                 return new ThrowingPage(new ServiceException ("oops"));   
             }

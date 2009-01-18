@@ -1,9 +1,8 @@
 package nl.xs4all.banaan.tst8.web.home;
 
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
-import nl.xs4all.banaan.tst8.web.home.HomePage;
 
-import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +11,7 @@ import org.junit.Test;
  */
 public class HomePageTest {
     private Fixtures fixtures;
-    private WicketTester tester;
+    private BasePageTester tester;
 
     @Before
     public void setUp() {
@@ -23,7 +22,7 @@ public class HomePageTest {
     @Test
     public void testRenderMyPage() {
         tester.startPage(HomePage.class);
-        fixtures.checkBasePage(HomePage.class, "This shows");
+        tester.checkBasePage(HomePage.class, "This shows");
 
     }
 }

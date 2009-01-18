@@ -1,13 +1,13 @@
 package nl.xs4all.banaan.tst8.web.property;
 
 import static org.junit.Assert.assertEquals;
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.ITestPageSource;
-import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ import org.junit.Test;
  */
 public class PropertyPageTest {
     private Fixtures fixtures;
-    private WicketTester tester;
+    private BasePageTester tester;
 
     @Before
     public void setUp() throws Exception {
@@ -32,7 +32,7 @@ public class PropertyPageTest {
     @Test
     public void testRenderPropertyPage1() {
         tester.startPage(PropertyPage.class);
-        fixtures.checkBasePage(PropertyPage.class, "Properties", "user.name");
+        tester.checkBasePage(PropertyPage.class, "Properties", "user.name");
     }
 
     /**
@@ -42,12 +42,12 @@ public class PropertyPageTest {
     public void testRenderPropertyPage2() {
         tester.startPage(new PropertyPage("/build.properties"));
         tester.debugComponentTrees();
-        fixtures.checkBasePage(PropertyPage.class, "Properties", "group");
+        tester.checkBasePage(PropertyPage.class, "Properties", "group");
     }
     
     @Test
     public void testServiceError() {
-        fixtures.checkServiceException (new ITestPageSource () {
+        tester.checkServiceException (new ITestPageSource () {
             public Page getTestPage (){
                 return new PropertyPage("/not/found/build.properties");   
             }
@@ -61,20 +61,20 @@ public class PropertyPageTest {
     @Test
     public void testRenderPropertyViaPageParam() {
         tester.startPage(new PropertyPage(new PageParameters ()));
-        fixtures.checkBasePage(PropertyPage.class, "Properties", "user.name");
+        tester.checkBasePage(PropertyPage.class, "Properties", "user.name");
     } 
     
     @Test
     public void testRenderPropertyViaPageParam2() {
         tester.startPage(new PropertyPage(new PageParameters ("location=")));
-        fixtures.checkBasePage(PropertyPage.class, "Properties", "user.name");
+        tester.checkBasePage(PropertyPage.class, "Properties", "user.name");
     }
     
     @Test
     public void testRenderPropertyViaPageParam3() {
         tester.startPage(new PropertyPage(
                 new PageParameters ("location=/build.properties")));
-        fixtures.checkBasePage(PropertyPage.class, "Properties", "group");
+        tester.checkBasePage(PropertyPage.class, "Properties", "group");
     }
     
     /**
@@ -88,6 +88,6 @@ public class PropertyPageTest {
         assertEquals("", formTester.getTextComponentValue("field"));
         formTester.setValue("field", "/build.properties");
         formTester.submit("confirm");
-        fixtures.checkBasePage(PropertyPage.class, "group");
+        tester.checkBasePage(PropertyPage.class, "group");
     }
 }

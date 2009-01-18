@@ -1,18 +1,18 @@
 package nl.xs4all.banaan.tst8.web.notificator;
 
 
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
 
 import org.apache.wicket.util.tester.FormTester;
-import org.apache.wicket.util.tester.WicketTester;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class NotificatorPageTest {
     private Fixtures fixtures;
-    private WicketTester tester;
+    private BasePageTester tester;
     private MailSenderFixture mailSenderFixture;
     
     @Before
@@ -29,7 +29,7 @@ public class NotificatorPageTest {
     @Test
     public void testRenderNotificatorPage() {
         tester.startPage(NotificatorPage.class);
-        fixtures.checkBasePage(NotificatorPage.class, "Send notifications");
+        tester.checkBasePage(NotificatorPage.class, "Send notifications");
         tester.assertComponent("notification", NotificationPanel.class);
     }
 
