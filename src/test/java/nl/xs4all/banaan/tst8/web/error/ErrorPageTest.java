@@ -1,20 +1,19 @@
 package nl.xs4all.banaan.tst8.web.error;
 
+import javax.annotation.Resource;
+
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
-import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"/testContext.xml"})
 public class ErrorPageTest {
-    private Fixtures fixtures;
+    @Resource
     private BasePageTester tester;
-
-    @Before
-    public void setUp() {
-        fixtures = Fixtures.get();
-        tester = fixtures.getTester();
-    }
 
     @Test
     public void testRenderErrorPage() {
