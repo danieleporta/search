@@ -1,28 +1,26 @@
 package nl.xs4all.banaan.tst8.web.home;
 
-import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
-import nl.xs4all.banaan.tst8.fixtures.Fixtures;
+import javax.annotation.Resource;
 
-import org.junit.Before;
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Simple test using the WicketTester
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"/testContext.xml"})
 public class HomePageTest {
-    private Fixtures fixtures;
+    @Resource
     private BasePageTester tester;
-
-    @Before
-    public void setUp() {
-        fixtures = Fixtures.get();
-        tester = fixtures.getTester();
-    }
 
     @Test
     public void testRenderMyPage() {
         tester.startPage(HomePage.class);
         tester.checkBasePage(HomePage.class, "This shows");
-
     }
 }
