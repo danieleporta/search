@@ -22,8 +22,6 @@ Progress
           
         * easymock to verify interaction between web and service layer
         
-        * spring-wiring the test setup, it's becoming biggish.
-        
         * field validation in notification screen
         
         * hibernate
@@ -33,6 +31,8 @@ Progress
         * testing for valid html
 
 * Done
+        
+        * spring-wiring the test setup, it's becoming biggish.
         
         * mocking the jndi initial context 
         
