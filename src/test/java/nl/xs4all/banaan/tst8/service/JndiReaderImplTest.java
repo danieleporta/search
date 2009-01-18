@@ -2,36 +2,29 @@ package nl.xs4all.banaan.tst8.service;
 
 
 import static org.junit.Assert.assertTrue;
-import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 
-import org.junit.After;
-import org.junit.Before;
+import javax.annotation.Resource;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Test that the JNDI reader works as expected.
  * @author konijn
  *
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"/testContext.xml"})
 public class JndiReaderImplTest {
-    private JndiReaderImpl reader;
-    private Fixtures fixtures;
+    // appropriate intitialContext wired in in spring
+    @Resource
+    private JndiReaderImpl jndiReader;
 
-    @Before
-    public void setUp() throws Exception {
-        fixtures = Fixtures.get();
-        reader = new JndiReaderImpl();
-        reader.setInitialContext(fixtures.getInitialContext());
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        reader = null;
-    }
-    
     @Test
     public void testRead () throws ServiceException {
-        JndiList list = reader.read("elders");
+        JndiList list = jndiReader.read("elders");
         assertTrue(list.getList().size() > 0);
     }
 
