@@ -1,32 +1,40 @@
 package nl.xs4all.banaan.tst8.service;
 
+import static org.junit.Assert.fail;
+
+import javax.annotation.Resource;
+
 import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Test E-mail notification by scanning the outbox of a mock mailer. 
  * @author konijn
  *
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"/testContext.xml"})
 public class NotifcatorImplTest {
 
+    @Resource
     private NotificatorImpl notificator;
-    private Fixtures fixtures;
+    
+    @Resource
     private MailSenderFixture mailSenderFixture;
+
     private Notification notification1;
     private Notification notification2;
 
     @Before
     public void setUp() throws Exception {
-        fixtures = Fixtures.get();
-        mailSenderFixture = fixtures.getMailSenderFixture();
-        notificator = new NotificatorImpl();
-        notificator.setMailSender(mailSenderFixture);
-        
         notification1 = new Notification ("test1@example.org",
                 "this is subject1", "this is body1");
         notification2 = new Notification ("test2@example.org",
@@ -43,12 +51,14 @@ public class NotifcatorImplTest {
         mailSenderFixture.checkMessageCount(0);
     }
     
+    @DirtiesContext
     @Test
     public void testSendOne() {
         notificator.send(notification1);
         mailSenderFixture.checkMessageCount(1);
     }
     
+    @DirtiesContext
     @Test
     public void testSendTwo() {
         notificator.send(notification1);
