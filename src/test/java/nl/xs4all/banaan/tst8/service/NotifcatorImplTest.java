@@ -1,10 +1,7 @@
 package nl.xs4all.banaan.tst8.service;
 
-import static org.junit.Assert.fail;
-
 import javax.annotation.Resource;
 
-import nl.xs4all.banaan.tst8.fixtures.Fixtures;
 import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
 
 import org.junit.After;

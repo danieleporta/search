@@ -49,14 +49,4 @@
     <constructor-arg ref="demoApplication" />
   </bean>
   
-  <bean id="fixtures" class="nl.xs4all.banaan.tst8.fixtures.Fixtures">
-    <property name="jndiRootContext" ref="jndiRootContext"></property>
-    <property name="jndiReader" ref="jndiReader" />
-    <property name="propertyReader" ref="propertyReader" />
-    <property name="mailSenderFixture" ref="mailSender" />
-    <property name="notificator" ref="notificator" />
-    <property name="tester" ref="tester" />
-    <property name="application" ref="demoApplication" />
-  </bean>
-
 </beans>
