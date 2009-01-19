@@ -9,6 +9,7 @@ import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
 import org.apache.wicket.util.tester.FormTester;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -33,6 +34,7 @@ public class NotificatorPageTest {
      * unsure about this one: perhaps it's cleaner for a unit test
      * to just verify the interaction with service layer.
      */
+    @DirtiesContext
     @Test
     public void testRenderNotificatorPage2() {
         tester.startPage(NotificatorPage.class);
