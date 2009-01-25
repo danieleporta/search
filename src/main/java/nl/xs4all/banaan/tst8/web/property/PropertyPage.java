@@ -58,10 +58,6 @@ public class PropertyPage extends BasePage {
             }
         });
         add(form);
-        
-        PropertyList propertyList = 
-            DemoApplication.get().
-                    getServices().getPropertyReader().read(location);
-        add(new PropertyPanel("properties", propertyList.getList()));
+        add(new PropertyPanel("properties", location));
     }
 }
