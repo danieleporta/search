@@ -2,11 +2,11 @@ package nl.xs4all.banaan.tst8.web.param;
 
 
 import nl.xs4all.banaan.tst8.service.ParamList;
-
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.Model;
 
 /**
  * The actual panel with initialisation parameters provided by servlet context.
@@ -19,9 +19,18 @@ public class ParamPanel extends Panel {
     public ParamPanel(String id) {
         super(id);
         getSession().info("building  param panel");
+
+        // make model dynamic to avoid it being serialized into the session
+        Model model = new Model () {
+            private static final long serialVersionUID = 1L;
+            @Override
+            public Object getObject () {
+                ParamList paramList = new ParamList();
+                return paramList.getList();
+            }
+        };
         
-        ParamList paramList = new ParamList();
-        add (new PropertyListView("bindings", paramList.getList()) {
+        add (new PropertyListView("bindings", model) {
             private static final long serialVersionUID = 1L;
            
             @Override
