@@ -35,7 +35,7 @@
     <property name="mailSender" ref="mailSender" />
   </bean>
   
-  <bean id="services" class="nl.xs4all.banaan.tst8.service.Services">
+  <bean id="services" class="nl.xs4all.banaan.tst8.service.ServicesImpl">
     <property name="jndiReader" ref="jndiReader" />
     <property name="propertyReader" ref="propertyReader" />
     <property name="notificator" ref="notificator" />
