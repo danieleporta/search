@@ -2,10 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:jee="http://www.springframework.org/schema/jee"
+  xmlns:aop="http://www.springframework.org/schema/aop"
   xsi:schemaLocation="http://www.springframework.org/schema/beans 
                 http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/jee 
-                http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+                http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
+         http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
   <bean id="jndiRootContext" class="nl.xs4all.banaan.tst8.fixtures.InitializedNamingContext">
     <constructor-arg>
@@ -27,9 +30,11 @@
     <property name="initialContext" ref="jndiRootContext"></property>
   </bean>
 
-  <bean id="propertyReader" class="nl.xs4all.banaan.tst8.service.PropertyReaderImpl" />
+  <bean id="propertyReader" 
+        class="nl.xs4all.banaan.tst8.service.PropertyReaderImpl" />
 
-  <bean id="mailSender" class="nl.xs4all.banaan.tst8.fixtures.MailSenderFixture" />
+  <bean id="mailSender" 
+        class="nl.xs4all.banaan.tst8.fixtures.MailSenderFixture" />
 
   <bean id="notificator" class="nl.xs4all.banaan.tst8.service.NotificatorImpl">
     <property name="mailSender" ref="mailSender" />
@@ -48,5 +53,21 @@
   <bean id="tester" class="nl.xs4all.banaan.tst8.fixtures.BasePageTester">
     <constructor-arg ref="demoApplication" />
   </bean>
+  
+  <bean id="flightRecorder" 
+        class="nl.xs4all.banaan.tst8.fixtures.FlightRecorder" />
+        
+  <bean id="flightRecorderProbe" 
+        class="nl.xs4all.banaan.tst8.fixtures.FlightRecorderProbe">
+    <property name="flightRecorder" ref="flightRecorder" />        
+  </bean>
+  
+  <aop:config>
+    <aop:pointcut  id="flightEvent"
+       expression="execution(* nl.xs4all.banaan.tst8.service.Services.*(..))" />
+    <aop:aspect ref="flightRecorderProbe">
+      <aop:around pointcut-ref="flightEvent" method="invoke"/>
+    </aop:aspect>
+  </aop:config>
   
 </beans>

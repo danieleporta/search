@@ -1,16 +1,16 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import java.io.PrintStream;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Proxy;
 import java.util.LinkedList;
 import java.util.List;
-import static org.junit.Assert.*;
-import static org.junit.matchers.JUnitMatchers.*;
-import static org.hamcrest.core.IsEqual.*;
 
 /**
- * Given an interface to an object, it will return a proxy that logs all calls.
+ * FlightRecorderProbes use this to keep a record of invocations.
  * @author konijn
  *
  */
@@ -21,13 +21,6 @@ public class FlightRecorder {
         record = new LinkedList<FlightEvent>();
     }
     
-    public Object enlist(Class<?> clazz, Object o) {
-        Class<?>[] interfaces = new Class<?>[] { clazz };
-        ClassLoader loader = clazz.getClassLoader();
-        InvocationHandler handler = new FlightRecorderProbe(clazz, o, this);
-        return Proxy.newProxyInstance(loader, interfaces, handler);
-    }
-
     public void list() {
         list(System.out);
     }
@@ -37,6 +30,7 @@ public class FlightRecorder {
     }
     
     public void list(PrintStream out) {
+        out.println("===== Flight Record Starts =====");
         Integer i = 0;
         for (FlightEvent event : record) {
             out.println("===== Flight Record: " + i);
@@ -47,6 +41,7 @@ public class FlightRecorder {
             out.println("Throws: " + event.getThrowable());
             i++;
         }
+        out.println("===== Flight Record Ends =====");
     }
     
     public List<FlightEvent> getRecord() {

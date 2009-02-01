@@ -1,34 +1,33 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
+import org.aspectj.lang.ProceedingJoinPoint;
 
-public class FlightRecorderProbe implements InvocationHandler {
-    private String interfaceName;
-    private Object proxee;
-    private FlightRecorder recorder;
+/**
+ * Use AOP to record method invocations.
+ * @author konijn
+ *
+ */
+public class FlightRecorderProbe {
+    private FlightRecorder flightRecorder;
 
-    public FlightRecorderProbe(Class<?> clazz, Object proxee,
-            FlightRecorder recorder) 
-    {
-        this.interfaceName = clazz.getSimpleName();
-        this.proxee = proxee;
-        this.recorder = recorder;
-    }
-
-    public Object invoke(Object proxy, Method method, Object[] args)
-            throws Throwable {
-        String methodName = method.getName();
+    public Object invoke(ProceedingJoinPoint invocation) throws Throwable {
+        String interfaceName = invocation.getSignature().getDeclaringTypeName();
+        String methodName = invocation.getSignature().getName();
+        Object [] args = invocation.getArgs();
         try {
-            Object result = method.invoke(proxee, args);
-            recorder.record(new FlightEvent(
+            Object result = invocation.proceed();
+            flightRecorder.record(new FlightEvent(
                     interfaceName, methodName, args, result, null));
             return result;
         }
         catch (Throwable throwable) {
-            recorder.record(new FlightEvent(
+            flightRecorder.record(new FlightEvent(
                     interfaceName, methodName, args, null, throwable));
             throw throwable;
         }
+    }
+    
+    public void setFlightRecorder(FlightRecorder flightRecorder) {
+        this.flightRecorder = flightRecorder;
     }
 }

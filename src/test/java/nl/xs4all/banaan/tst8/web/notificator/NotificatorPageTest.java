@@ -4,15 +4,12 @@ package nl.xs4all.banaan.tst8.web.notificator;
 import javax.annotation.Resource;
 
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
-import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
 import nl.xs4all.banaan.tst8.fixtures.FlightRecorder;
-import nl.xs4all.banaan.tst8.service.Notification;
+import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
 import nl.xs4all.banaan.tst8.service.Notificator;
-import nl.xs4all.banaan.tst8.service.Services;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.wicket.util.tester.FormTester;
-import org.hamcrest.core.Is;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.DirtiesContext;
@@ -30,6 +27,9 @@ public class NotificatorPageTest {
     
     @Resource
     private Notificator notificator;
+    
+    @Resource
+    private FlightRecorder flightRecorder;
     
     @Resource
     private MailSenderFixture mailSenderFixture;
@@ -62,5 +62,7 @@ public class NotificatorPageTest {
         mailSenderFixture.checkMessageTo(0, "test1@example.org");
         mailSenderFixture.checkMessageSubject(0, "this is subject1");
         mailSenderFixture.checkMessageBodyContains(0, "body1");
+        
+        flightRecorder.list();
     }
 }

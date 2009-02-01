@@ -76,7 +76,19 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
       <version>${spring.version}</version>
-    </dependency>      
+    </dependency> 
+    <dependency>
+      <!-- Aspect oriented programming -->
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <!-- The Aspectj expression language used with AOP -->
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
     <!-- LOGGING DEPENDENCIES - LOG4J -->
     <dependency>
       <groupId>org.slf4j</groupId>
