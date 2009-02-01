@@ -56,16 +56,11 @@
   
   <bean id="flightRecorder" 
         class="nl.xs4all.banaan.tst8.fixtures.FlightRecorder" />
-        
-  <bean id="flightRecorderProbe" 
-        class="nl.xs4all.banaan.tst8.fixtures.FlightRecorderProbe">
-    <property name="flightRecorder" ref="flightRecorder" />        
-  </bean>
   
   <aop:config>
     <aop:pointcut  id="flightEvent"
        expression="execution(* nl.xs4all.banaan.tst8.service.Services.*(..))" />
-    <aop:aspect ref="flightRecorderProbe">
+    <aop:aspect ref="flightRecorder">
       <aop:around pointcut-ref="flightEvent" method="invoke"/>
     </aop:aspect>
   </aop:config>

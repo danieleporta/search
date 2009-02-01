@@ -9,8 +9,10 @@ import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+
 /**
- * FlightRecorderProbes use this to keep a record of invocations.
+ * Use AOP to record method invocations.
  * @author konijn
  *
  */
@@ -21,12 +23,25 @@ public class FlightRecorder {
         record = new LinkedList<FlightEvent>();
     }
     
+    public Object invoke(ProceedingJoinPoint invocation) throws Throwable {
+        String interfaceName = invocation.getSignature().getDeclaringTypeName();
+        String methodName = invocation.getSignature().getName();
+        Object [] args = invocation.getArgs();
+        try {
+            Object result = invocation.proceed();
+            record.add(new FlightEvent(
+                    interfaceName, methodName, args, result, null));
+            return result;
+        }
+        catch (Throwable throwable) {
+            record.add(new FlightEvent(
+                    interfaceName, methodName, args, null, throwable));
+            throw throwable;
+        }
+    }
+
     public void list() {
         list(System.out);
-    }
-    
-    public void record(FlightEvent event) {
-        this.record.add(event);
     }
     
     public void list(PrintStream out) {
