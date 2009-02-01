@@ -41,7 +41,6 @@ public class PropertyPageTest {
     @Test
     public void testRenderPropertyPage2() {
         tester.startPage(new PropertyPage("/build.properties"));
-        tester.debugComponentTrees();
         tester.checkBasePage(PropertyPage.class, "Properties", "group");
     }
     
