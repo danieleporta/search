@@ -22,7 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class NotifcatorImplTest {
 
     @Resource
-    private NotificatorImpl notificator;
+    private Notificator notificator;
     
     @Resource
     private MailSenderFixture mailSenderFixture;
@@ -42,6 +42,7 @@ public class NotifcatorImplTest {
     public void tearDown() throws Exception {
     }
 
+    @DirtiesContext
     @Test
     public void testSender() {
         // the sender starts of empty.

@@ -1,11 +1,6 @@
 package nl.xs4all.banaan.tst8.web.property;
 
-import java.util.List;
-
-import nl.xs4all.banaan.tst8.service.ParamList;
-import nl.xs4all.banaan.tst8.service.PropertyList;
 import nl.xs4all.banaan.tst8.service.ServiceException;
-import nl.xs4all.banaan.tst8.util.GenericBinding;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.log4j.Logger;

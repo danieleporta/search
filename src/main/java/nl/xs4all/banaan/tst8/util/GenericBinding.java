@@ -1,6 +1,5 @@
 package nl.xs4all.banaan.tst8.util;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
 /**

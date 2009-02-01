@@ -6,8 +6,6 @@ import javax.annotation.Resource;
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.FlightRecorder;
 import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
-import nl.xs4all.banaan.tst8.service.Notificator;
-import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.wicket.util.tester.FormTester;
 import org.junit.Test;
@@ -23,17 +21,12 @@ public class NotificatorPageTest {
     private BasePageTester tester;
     
     @Resource
-    private DemoApplication demoApplication;
-    
-    @Resource
-    private Notificator notificator;
-    
-    @Resource
     private FlightRecorder flightRecorder;
     
     @Resource
     private MailSenderFixture mailSenderFixture;
 
+    @DirtiesContext
     @Test
     public void testRenderNotificatorPage() {
         tester.startPage(NotificatorPage.class);

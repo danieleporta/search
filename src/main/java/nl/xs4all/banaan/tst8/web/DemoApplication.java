@@ -1,9 +1,6 @@
 package nl.xs4all.banaan.tst8.web;
 
 import nl.xs4all.banaan.tst8.service.Services;
-import nl.xs4all.banaan.tst8.service.JndiReader;
-import nl.xs4all.banaan.tst8.service.Notificator;
-import nl.xs4all.banaan.tst8.service.PropertyReader;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;

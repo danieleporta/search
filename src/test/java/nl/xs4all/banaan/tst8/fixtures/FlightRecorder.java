@@ -49,7 +49,9 @@ public class FlightRecorder {
         Integer i = 0;
         for (FlightEvent event : record) {
             out.println("===== Flight Record: " + i);
-            out.println("Call: "+ event.getInterfaceName() 
+            out.println("Call("
+                    + event.getArguments().length
+                    + "): "+ event.getInterfaceName() 
                     + "." + event.getMethodName()
                     + "(" + event.getArguments() + ")");
             out.println("Result: " + event.getResult());

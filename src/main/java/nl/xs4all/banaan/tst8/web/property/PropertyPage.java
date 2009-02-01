@@ -1,8 +1,6 @@
 package nl.xs4all.banaan.tst8.web.property;
 
-import nl.xs4all.banaan.tst8.service.PropertyList;
 import nl.xs4all.banaan.tst8.service.ServiceException;
-import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 import org.apache.wicket.PageParameters;
