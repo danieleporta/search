@@ -49,11 +49,6 @@ public class NotificatorPageTest {
     @DirtiesContext
     @Test
     public void testRenderNotificatorPage2() {
-        FlightRecorder recorder = new FlightRecorder();
-        
-        demoApplication.setServices(
-                (Services) recorder.enlist(Services.class, 
-                        demoApplication.getServices()));
         tester.startPage(NotificatorPage.class);
         FormTester formTester = tester.newFormTester("notification:form");
         formTester.setValue("to", "test1@example.org");
@@ -67,14 +62,5 @@ public class NotificatorPageTest {
         mailSenderFixture.checkMessageTo(0, "test1@example.org");
         mailSenderFixture.checkMessageSubject(0, "this is subject1");
         mailSenderFixture.checkMessageBodyContains(0, "body1");
-                
-        recorder.check(0, "Services", "getNotificator", null, notificator, null);
-//        recorder.check(1, "Notificator", "send", 
-//                new Object[] { new Notification("test1@example.org",
-//                        "this is subject1",
-//                        "this is body1"
-//                )}, 
-//                null, null);
-        
     }
 }
