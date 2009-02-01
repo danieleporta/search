@@ -54,17 +54,4 @@
     <constructor-arg ref="demoApplication" />
   </bean>
   
-  <bean id="flightRecorder" 
-        class="nl.xs4all.banaan.tst8.fixtures.FlightRecorder" />
-  
-  <aop:config>
-    <aop:pointcut  id="flightEvent" expression=
-           "execution(* nl.xs4all.banaan.tst8.service.Services.*(..))
-         || execution(* nl.xs4all.banaan.tst8.service.Notificator.*(..))" />
-
-    <aop:aspect ref="flightRecorder">
-      <aop:around pointcut-ref="flightEvent" method="invoke"/>
-    </aop:aspect>
-    
-  </aop:config>
 </beans>
