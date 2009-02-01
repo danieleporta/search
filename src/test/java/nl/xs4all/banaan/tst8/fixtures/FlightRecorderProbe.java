@@ -23,12 +23,6 @@ public class FlightRecorderProbe implements InvocationHandler {
             Object result = method.invoke(proxee, args);
             recorder.record(new FlightEvent(
                     interfaceName, methodName, args, result, null));
-            Class<?> resultClass = method.getReturnType();
-            if (resultClass.isInterface()) {
-                // suitable for recursive enlisting
-                return recorder.enlist(resultClass, result);
-            }
-
             return result;
         }
         catch (Throwable throwable) {
