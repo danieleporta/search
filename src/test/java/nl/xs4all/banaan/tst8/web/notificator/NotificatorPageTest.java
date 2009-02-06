@@ -1,10 +1,18 @@
 package nl.xs4all.banaan.tst8.web.notificator;
 
 
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
+
 import javax.annotation.Resource;
 
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
-import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
+import nl.xs4all.banaan.tst8.service.Notification;
+import nl.xs4all.banaan.tst8.service.Notificator;
+import nl.xs4all.banaan.tst8.service.Services;
+import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.wicket.util.tester.FormTester;
 import org.junit.Test;
@@ -20,7 +28,7 @@ public class NotificatorPageTest {
     private BasePageTester tester;
     
     @Resource
-    private MailSenderFixture mailSenderFixture;
+    private DemoApplication demoApplication;
 
     @DirtiesContext
     @Test
@@ -31,13 +39,23 @@ public class NotificatorPageTest {
     }
 
     /**
-     * Test that submitting the form results in mail in the outbox.
-     * unsure about this one: perhaps it's cleaner for a unit test
-     * to just verify the interaction with service layer.
+     * Test that submitting the form results in invoking notificator
+     * with expected msg.
      */
     @DirtiesContext
     @Test
     public void testRenderNotificatorPage2() {
+        Notification notification = new Notification(
+                "test1@example.org",
+                "this is subject1",
+                "this is body1");
+        Notificator notificator = createMock(Notificator.class);
+        Services services = createMock(Services.class);
+        expect(services.getNotificator()).andReturn(notificator);
+        notificator.send(notification);
+        replay(services, notificator);
+        
+        demoApplication.setServices(services);
         tester.startPage(NotificatorPage.class);
         FormTester formTester = tester.newFormTester("notification:form");
         formTester.setValue("to", "test1@example.org");
@@ -45,12 +63,8 @@ public class NotificatorPageTest {
         formTester.setValue("body", "this is body1");
         formTester.submit();
         
+        verify(services, notificator);
         tester.assertRenderedPage(NotificatorPage.class);
         tester.assertNoErrorMessage();
-        mailSenderFixture.checkMessageCount(1);
-        mailSenderFixture.checkMessageTo(0, "test1@example.org");
-        mailSenderFixture.checkMessageSubject(0, "this is subject1");
-        mailSenderFixture.checkMessageBodyContains(0, "body1");
-
     }
 }
