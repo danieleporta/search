@@ -14,11 +14,23 @@
   xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
   version="2.4">
 
-   <context-param>
+  <context-param>
     <description>
       Demo parameter
     </description>
     <param-name>companyName</param-name>
     <param-value>My Company, Incorporated</param-value>
-  </context-param> 
+  </context-param>     
+  
+  <env-entry>
+    <env-entry-name>myContextProp</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>twiet</env-entry-value>
+  </env-entry>
+  
+  <env-entry>
+    <env-entry-name>myContextDir/prop2</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>prop2val</env-entry-value>
+  </env-entry>
 </web-app>
