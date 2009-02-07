@@ -67,4 +67,78 @@ public class NotificatorPageTest {
         tester.assertRenderedPage(NotificatorPage.class);
         tester.assertNoErrorMessage();
     }
+    
+    @DirtiesContext
+    @Test
+    public void testEmptyToFieldIsDetected() {
+        Services services = createMock(Services.class);
+        replay(services);
+        
+        demoApplication.setServices(services);
+        tester.startPage(NotificatorPage.class);
+        FormTester formTester = tester.newFormTester("notification:form");
+        formTester.setValue("subject", "this is subject1");
+        formTester.setValue("body", "this is body1");
+        formTester.submit();
+        
+        verify(services);
+        tester.assertRenderedPage(NotificatorPage.class);
+        tester.assertErrorMessages(new String[]{"Field 'to' is required."});
+    }
+    
+    @DirtiesContext
+    @Test
+    public void testEmptySubjectFieldIsDetected() {
+        Services services = createMock(Services.class);
+        replay(services);
+        
+        demoApplication.setServices(services);
+        tester.startPage(NotificatorPage.class);
+        FormTester formTester = tester.newFormTester("notification:form");
+        formTester.setValue("to", "test1@example.org");
+        formTester.setValue("body", "this is body1");
+        formTester.submit();
+        
+        verify(services);
+        tester.assertRenderedPage(NotificatorPage.class);
+        tester.assertErrorMessages(new String[]{"Field 'subject' is required."});
+    }
+    
+    @DirtiesContext
+    @Test
+    public void testEmptyBodyFieldIsDetected() {
+        Services services = createMock(Services.class);
+        replay(services);
+        
+        demoApplication.setServices(services);
+        tester.startPage(NotificatorPage.class);
+        FormTester formTester = tester.newFormTester("notification:form");
+        formTester.setValue("to", "test1@example.org");
+        formTester.setValue("subject", "this is subject1");
+        formTester.submit();
+        
+        verify(services);
+        tester.assertRenderedPage(NotificatorPage.class);
+        tester.assertErrorMessages(new String[]{"Field 'body' is required."});
+    }
+
+    @DirtiesContext
+    @Test
+    public void testBrokenToFieldIsDetected() {
+        Services services = createMock(Services.class);
+        replay(services);
+        
+        demoApplication.setServices(services);
+        tester.startPage(NotificatorPage.class);
+        FormTester formTester = tester.newFormTester("notification:form");
+        formTester.setValue("to", "This is not a love song");
+        formTester.setValue("subject", "this is subject1");
+        formTester.setValue("body", "this is body1");
+        formTester.submit();
+        
+        verify(services);
+        tester.assertRenderedPage(NotificatorPage.class);
+        tester.assertErrorMessages(new String[]{
+                "'This is not a love song' is not a valid email address."});
+    }
 }

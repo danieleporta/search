@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.validation.validator.EmailAddressValidator;
 
 public class NotificationPanel extends Panel {
     private static final long serialVersionUID = 1L;
@@ -26,9 +27,11 @@ public class NotificationPanel extends Panel {
                         getServices().getNotificator().send(notification);
             }
         };
-        form.add(new TextField("to"));
-        form.add(new TextField("subject"));
-        form.add(new TextArea("body"));
+        form.add(new TextField("to")
+                .setRequired(true)
+                .add(EmailAddressValidator.getInstance()));
+        form.add(new TextField("subject").setRequired(true));
+        form.add(new TextArea("body").setRequired(true));
         form.add(new Button("confirm"));
         add (form);
     }
