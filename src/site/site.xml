@@ -7,6 +7,7 @@
   <body>
     <menu name="Demo">
       <item name="Introduction" href="index.html"/>
+      <item name="Testing" href="testing.html" />
       <item name="Todo" href="todo.html" />
     </menu>
 
