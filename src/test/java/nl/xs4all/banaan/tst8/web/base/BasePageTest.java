@@ -8,6 +8,7 @@ import nl.xs4all.banaan.tst8.fixtures.ThrowingPage;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
+import nl.xs4all.banaan.tst8.web.notificator.NotificatorPage;
 import nl.xs4all.banaan.tst8.web.param.ParamPage;
 import nl.xs4all.banaan.tst8.web.property.PropertyPage;
 
@@ -50,13 +51,20 @@ public class BasePageTest {
     public void testClickLink3() {
         tester.startPage(HomePage.class);
         tester.clickLink("menu:bindings:2:value");
-        tester.checkBasePage(ParamPage.class);
+        tester.checkBasePage(NotificatorPage.class);
     }
-    
+
     @Test
     public void testClickLink4() {
         tester.startPage(HomePage.class);
         tester.clickLink("menu:bindings:3:value");
+        tester.checkBasePage(ParamPage.class);
+    }
+    
+    @Test
+    public void testClickLink5() {
+        tester.startPage(HomePage.class);
+        tester.clickLink("menu:bindings:4:value");
         tester.checkBasePage(PropertyPage.class);
     }
 

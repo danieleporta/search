@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ ! This file is used during development by mvn jetty:run
+ ! to override settings in the web.xml file in the application.
+ ! This can be used to override init-params or context params,
+ ! so that you can have an identical war file for test and production
+ ! and still modify settings as needed.
+ ! The syntax is identical to that used for normal web.xml files.
+ ! http://docs.codehaus.org/display/JETTY/override+web.xml
+ !-->
+<web-app 
+  xmlns="http://java.sun.com/xml/ns/j2ee" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+  version="2.4">
+
+   <context-param>
+    <description>
+      Demo parameter
+    </description>
+    <param-name>companyName</param-name>
+    <param-value>My Company, Incorporated</param-value>
+  </context-param> 
+</web-app>

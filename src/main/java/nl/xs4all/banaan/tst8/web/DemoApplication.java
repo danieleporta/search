@@ -5,6 +5,7 @@ import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 import nl.xs4all.banaan.tst8.web.menu.MenuList;
+import nl.xs4all.banaan.tst8.web.notificator.NotificatorPage;
 import nl.xs4all.banaan.tst8.web.param.ParamPage;
 import nl.xs4all.banaan.tst8.web.property.PropertyPage;
 
@@ -38,6 +39,7 @@ public class DemoApplication extends WebApplication
         menuList.add("jndi", JndiPage.class);
         menuList.add("param", ParamPage.class);        
         menuList.add("property", PropertyPage.class);
+        menuList.add("notificator", NotificatorPage.class);
         
         // following error page is only used in production mode
         IApplicationSettings settings = getApplicationSettings();
