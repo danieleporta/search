@@ -1,6 +1,10 @@
 package nl.xs4all.banaan.tst8.web.notificator;
 
 
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BODY1;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NOTIFICATION1;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.SUBJECT1;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.TO1;
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
@@ -9,7 +13,6 @@ import static org.easymock.EasyMock.verify;
 import javax.annotation.Resource;
 
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
-import nl.xs4all.banaan.tst8.service.Notification;
 import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.Services;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
@@ -40,27 +43,23 @@ public class NotificatorPageTest {
 
     /**
      * Test that submitting the form results in invoking notificator
-     * with expected msg.
+     * with expected message.
      */
     @DirtiesContext
     @Test
     public void testRenderNotificatorPage2() {
-        Notification notification = new Notification(
-                "test1@example.org",
-                "this is subject1",
-                "this is body1");
         Notificator notificator = createMock(Notificator.class);
         Services services = createMock(Services.class);
         expect(services.getNotificator()).andReturn(notificator);
-        notificator.send(notification);
+        notificator.send(NOTIFICATION1);
         replay(services, notificator);
         
         demoApplication.setServices(services);
         tester.startPage(NotificatorPage.class);
         FormTester formTester = tester.newFormTester("notification:form");
-        formTester.setValue("to", "test1@example.org");
-        formTester.setValue("subject", "this is subject1");
-        formTester.setValue("body", "this is body1");
+        formTester.setValue("to", TO1);
+        formTester.setValue("subject", SUBJECT1);
+        formTester.setValue("body", BODY1);
         formTester.submit();
         
         verify(services, notificator);
@@ -77,8 +76,8 @@ public class NotificatorPageTest {
         demoApplication.setServices(services);
         tester.startPage(NotificatorPage.class);
         FormTester formTester = tester.newFormTester("notification:form");
-        formTester.setValue("subject", "this is subject1");
-        formTester.setValue("body", "this is body1");
+        formTester.setValue("subject", SUBJECT1);
+        formTester.setValue("body", BODY1);
         formTester.submit();
         
         verify(services);
@@ -95,8 +94,8 @@ public class NotificatorPageTest {
         demoApplication.setServices(services);
         tester.startPage(NotificatorPage.class);
         FormTester formTester = tester.newFormTester("notification:form");
-        formTester.setValue("to", "test1@example.org");
-        formTester.setValue("body", "this is body1");
+        formTester.setValue("to", TO1);
+        formTester.setValue("body", BODY1);
         formTester.submit();
         
         verify(services);
@@ -113,8 +112,8 @@ public class NotificatorPageTest {
         demoApplication.setServices(services);
         tester.startPage(NotificatorPage.class);
         FormTester formTester = tester.newFormTester("notification:form");
-        formTester.setValue("to", "test1@example.org");
-        formTester.setValue("subject", "this is subject1");
+        formTester.setValue("to", TO1);
+        formTester.setValue("subject", SUBJECT1);
         formTester.submit();
         
         verify(services);
@@ -132,8 +131,8 @@ public class NotificatorPageTest {
         tester.startPage(NotificatorPage.class);
         FormTester formTester = tester.newFormTester("notification:form");
         formTester.setValue("to", "This is not a love song");
-        formTester.setValue("subject", "this is subject1");
-        formTester.setValue("body", "this is body1");
+        formTester.setValue("subject", SUBJECT1);
+        formTester.setValue("body", BODY1);
         formTester.submit();
         
         verify(services);

@@ -1,6 +1,6 @@
 package nl.xs4all.banaan.tst8.service;
 
-
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -22,18 +22,20 @@ public class NotificationTest {
     
     @Test
     public void testToString() {
-        Notification notification = new Notification("t1", "s1", "b1");
-        assertEquals("Notification[to=t1,subject=s1,body=b1]", 
+        Notification notification = NOTIFICATION1;
+        assertEquals("Notification[to=" + TO1
+                + ",subject=" + SUBJECT1
+                + ",body=" + BODY1 + "]", 
                 notification.toString());
     }
     
     @Test
     public void testEquals() {
-        Notification notification = new Notification("t1", "s1", "b1");
-        Notification sameNotification = new Notification("t1","s1","b1");
-        Notification otherNotification = new Notification("t2","s1","b1");
-        Notification subNotification = new NotificationSubclass("t1", "s1", "b1");
-        Notification sameSubNotification = new NotificationSubclass("t1", "s1", "b1");
+        Notification notification = NOTIFICATION1;
+        Notification sameNotification = new Notification(TO1,SUBJECT1,BODY1);
+        Notification otherNotification = NOTIFICATION2;
+        Notification subNotification = new NotificationSubclass(TO1,SUBJECT1,BODY1);
+        Notification sameSubNotification = new NotificationSubclass(TO1,SUBJECT1,BODY1);
         
         assertTrue("reflexive", notification.equals(notification));
         assertTrue("symmetric", notification.equals(sameNotification));

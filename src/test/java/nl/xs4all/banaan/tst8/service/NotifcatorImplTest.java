@@ -1,5 +1,6 @@
 package nl.xs4all.banaan.tst8.service;
 
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.*;
 import javax.annotation.Resource;
 
 import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
@@ -27,21 +28,6 @@ public class NotifcatorImplTest {
     @Resource
     private MailSenderFixture mailSenderFixture;
 
-    private Notification notification1;
-    private Notification notification2;
-
-    @Before
-    public void setUp() throws Exception {
-        notification1 = new Notification ("test1@example.org",
-                "this is subject1", "this is body1");
-        notification2 = new Notification ("test2@example.org",
-                "this is subject2", "this is body2");
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
     @DirtiesContext
     @Test
     public void testSender() {
@@ -52,20 +38,20 @@ public class NotifcatorImplTest {
     @DirtiesContext
     @Test
     public void testSendOne() {
-        notificator.send(notification1);
+        notificator.send(NOTIFICATION1);
         mailSenderFixture.checkMessageCount(1);
     }
     
     @DirtiesContext
     @Test
     public void testSendTwo() {
-        notificator.send(notification1);
-        notificator.send(notification2);
+        notificator.send(NOTIFICATION1);
+        notificator.send(NOTIFICATION2);
         
         mailSenderFixture.checkMessageCount(2);
-        mailSenderFixture.checkMessageTo(0, "test1@example.org");
-        mailSenderFixture.checkMessageSubject(1, "this is subject2");
-        mailSenderFixture.checkMessageBodyContains(1, "this", "body2");
+        mailSenderFixture.checkMessageTo(0, TO1);
+        mailSenderFixture.checkMessageSubject(1, SUBJECT2);
+        mailSenderFixture.checkMessageBodyContains(1, BODY2);
     }
 
 }
