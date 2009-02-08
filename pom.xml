@@ -191,6 +191,7 @@
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>maven-jetty-plugin</artifactId>
         <configuration>
+          <jettyEnvXml>src/test/resources/jetty-env.xml</jettyEnvXml>
           <overrideWebXml>src/test/resources/override-web.xml</overrideWebXml>
         </configuration>
       </plugin>

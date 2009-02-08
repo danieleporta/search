@@ -7,6 +7,8 @@
  ! and still modify settings as needed.
  ! The syntax is identical to that used for normal web.xml files.
  ! http://docs.codehaus.org/display/JETTY/override+web.xml
+ !
+ ! Here only used for demonstration purposes.
  !-->
 <web-app 
   xmlns="http://java.sun.com/xml/ns/j2ee" 

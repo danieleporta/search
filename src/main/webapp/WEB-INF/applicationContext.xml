@@ -14,13 +14,22 @@
     <property name="initialContext" ref="jndiRootContext"></property>
   </bean>
 
-  <bean id="propertyReader" class="nl.xs4all.banaan.tst8.service.PropertyReaderImpl" />
+  <bean id="propertyReader" 
+        class="nl.xs4all.banaan.tst8.service.PropertyReaderImpl" />
 
-  <bean id="notificator" class="nl.xs4all.banaan.tst8.service.NotificatorImpl">
-    <property name="mailSender">
-      <!-- TODO: jndi mailserver lookup -->
-      <null />
-    </property>
+  <jee:jndi-lookup id="mailSession" 
+        jndi-name="mail/Session" 
+        resource-ref="true" />
+  
+  <bean id="mailSender"
+        class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="session" ref="mailSession" />
+    <!-- alternatively, you can set host, username, password -->
+  </bean>
+  
+  <bean id="notificator" 
+        class="nl.xs4all.banaan.tst8.service.NotificatorImpl">
+    <property name="mailSender" ref="mailSender" />
   </bean>
   
   <bean id="services" class="nl.xs4all.banaan.tst8.service.ServicesImpl">
