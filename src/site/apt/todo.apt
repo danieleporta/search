@@ -10,14 +10,6 @@ Progress
 
         * example tomcat configuration to provide jndi settings
         
-        * example jetty configuration
-        
-        * jetty started via maven
-        
-        * mailer configuration via jndi/spring
-       
-        * field validation in notification screen
-        
         * hibernate
         
         * JMX
@@ -25,6 +17,14 @@ Progress
         * testing for valid html
 
 * Done
+
+        * example jetty configuration
+        
+        * jetty started via maven
+        
+        * mailer configuration via jndi/spring
+       
+        * field validation in notification screen
           
         * easymock to verify interaction between web and service layer?
         
