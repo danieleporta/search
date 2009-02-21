@@ -69,6 +69,15 @@ mvn site                 -- build documentation site
 * Deploying on Tomcat
 
     TBD
+    
+    Tomcat should provide a mailSession to the application;
+    to support this, 
+    download java mail from {{{http://java.sun.com/products/javamail/}}},
+    unpack it,
+    and install the contained file <<<mail.jar>>> in <<<$CATALINA_HOME/lib>>>.
+    
+    TO process attachments, you may also need
+    http://java.sun.com/javase/technologies/desktop/javabeans/glasgow/jaf.html
 
 * Deploying on Jetty
 
