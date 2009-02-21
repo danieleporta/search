@@ -27,6 +27,8 @@ public class JndiPanel extends Panel {
 
         // Make model dynamic to avoid it being serialised into the session.
         Model model = new Model() {
+            private static final long serialVersionUID = -6205291386596032973L;
+
             @Override
             public Object getObject() {
                 try {

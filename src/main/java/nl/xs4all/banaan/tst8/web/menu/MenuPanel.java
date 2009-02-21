@@ -25,6 +25,8 @@ public class MenuPanel extends Panel {
 
         // make model dynamic to avoid it being serialised into the session
         Model model = new Model () {
+            private static final long serialVersionUID = 1328703313038270829L;
+
             @Override
             public Object getObject () {
                 return DemoApplication.get().getMenuList().getList();

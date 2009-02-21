@@ -73,6 +73,8 @@ public class BasePageTest {
     @Test
     public void testServiceError() {
         tester.checkServiceException (new ITestPageSource () {
+            private static final long serialVersionUID = -6384361110224898899L;
+
             public Page getTestPage (){
                 return new ThrowingPage(new ServiceException ("oops"));   
             }

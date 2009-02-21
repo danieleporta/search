@@ -48,6 +48,8 @@ public class PropertyPage extends BasePage {
                 new Model(location));
         form.add(field);
         form.add(new Button("confirm") {
+            private static final long serialVersionUID = 7054234909853489009L;
+
             @Override
             public void onSubmit() {
                 String result = field.getModelObjectAsString();

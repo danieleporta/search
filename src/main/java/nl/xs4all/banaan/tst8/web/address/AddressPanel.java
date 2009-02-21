@@ -15,7 +15,11 @@ public class AddressPanel extends Panel {
 
     /** model must return an address as object */
     public AddressPanel(String id, IModel model) {
-        super(id, new CompoundPropertyModel(model));
+        super(id);
+        
+        // without the wrap, passing an enclosing ComponentPropertyModel breaks;
+        // see http://www.nabble.com/N-level-CompoundPropertyModel-td22024267.html
+        setModel(new CompoundPropertyModel(wrap(model)));
         add (new Label("name"));
         add (new Label("street"));
         add (new Label("city"));

@@ -66,6 +66,8 @@ public class NotificationTest {
      *
      */
     public static class NotificationSubclass extends Notification {
+        private static final long serialVersionUID = -1602966083196699966L;
+
         public NotificationSubclass (String to, String subject, String body) {
             super(to, subject, body);
         }

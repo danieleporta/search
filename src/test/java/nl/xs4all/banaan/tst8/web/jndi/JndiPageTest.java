@@ -100,6 +100,8 @@ public class JndiPageTest {
     @Test
     public void testServiceError() {
         tester.checkServiceException (new ITestPageSource () {
+            private static final long serialVersionUID = 5720624554600813387L;
+
             public Page getTestPage (){
                 return new JndiPage(new PageParameters ("location=never/never/land"));   
             }

@@ -1,9 +1,14 @@
-package nl.xs4all.banaan.tst8.web.address;
+package nl.xs4all.banaan.tst8.web.letter;
 
-import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.ADDRESS1;
+
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.CITY1;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.CITY2;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.LETTER1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NAME1;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NAME2;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.POSTAGE1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET1;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET2;
 
 import javax.annotation.Resource;
 
@@ -18,39 +23,43 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-/**
- * Test component page: a demo of nested compound property model use.
- * @author konijn
- *
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/testContext.xml"})
-public class AddressPanelTest {
+public class LetterPanelTest {
     @Resource
     private BasePageTester tester;
-    
+
     @Test
     public void testAddressPanel() {
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
 
             public Panel getTestPanel(String panelId) {
-                return new AddressPanel(panelId, new AddressModel());
+                return new LetterPanel(panelId, new LetterModel());
             }
         });
-        tester.assertComponent("panel:name", Label.class);
-        tester.assertComponent("panel:street", Label.class);
-        tester.assertComponent("panel:city", Label.class);
+        tester.assertComponent("panel:from:name", Label.class);
+        tester.assertComponent("panel:from:street", Label.class);
+        tester.assertComponent("panel:from:city", Label.class);
+        tester.assertComponent("panel:to:name", Label.class);
+        tester.assertComponent("panel:to:street", Label.class);
+        tester.assertComponent("panel:to:city", Label.class);
+        tester.assertComponent("panel:postage", Label.class);    
+        
         tester.assertContains(NAME1);
         tester.assertContains(STREET1);
         tester.assertContains(CITY1);
+        tester.assertContains(NAME2);
+        tester.assertContains(STREET2);
+        tester.assertContains(CITY2);
+        tester.assertContains(POSTAGE1.toString());
     }
     
-    private static class AddressModel implements IModel {
+    private static class LetterModel implements IModel {
         private static final long serialVersionUID = 1L;
 
         public Object getObject() {
-            return ADDRESS1;
+            return LETTER1;
         }
 
         public void setObject(Object object) {
