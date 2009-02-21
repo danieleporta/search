@@ -38,18 +38,18 @@ public class JndiReaderImpl implements JndiReader {
         JndiList result = new JndiList();
         
         try {
-            logger.info("start jndilist init for " + location + "." );
+            logger.debug("start jndilist init for " + location + "." );
             
             NamingEnumeration<Binding> e = initialContext.listBindings(location);
-            logger.info("jndilist have context");
+            logger.debug("jndilist have context");
             while (e.hasMoreElements()) {
                 Binding b = e.nextElement();
                 result.add(b.getName(), b.getObject());
             }
-            logger.info("jndilist completed iteration");
+            logger.debug("jndilist completed iteration");
             
         } catch (NamingException ne) {
-            logger.info("jndilist got an exception");
+            logger.debug("jndilist got an exception");
             throw new ServiceException("JNDI location not found" + location, 
                     ne);
         }
