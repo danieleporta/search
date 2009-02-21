@@ -4,6 +4,7 @@ import nl.xs4all.banaan.tst8.service.Services;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
+import nl.xs4all.banaan.tst8.web.letter.LetterPage;
 import nl.xs4all.banaan.tst8.web.menu.MenuList;
 import nl.xs4all.banaan.tst8.web.notificator.NotificatorPage;
 import nl.xs4all.banaan.tst8.web.param.ParamPage;
@@ -37,6 +38,7 @@ public class DemoApplication extends WebApplication
         menuList = new MenuList();
         menuList.add("home", HomePage.class);
         menuList.add("jndi", JndiPage.class);
+        menuList.add("letter", LetterPage.class);
         menuList.add("param", ParamPage.class);        
         menuList.add("property", PropertyPage.class);
         menuList.add("notificator", NotificatorPage.class);
