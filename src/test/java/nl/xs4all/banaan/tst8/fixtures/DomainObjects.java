@@ -1,9 +1,7 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
-import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.CITY1;
-import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NAME1;
-import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET1;
 import nl.xs4all.banaan.tst8.domain.Address;
+import nl.xs4all.banaan.tst8.domain.Letter;
 import nl.xs4all.banaan.tst8.service.Notification;
 
 /**
@@ -37,4 +35,7 @@ public class DomainObjects {
             = new Address (NAME2, STREET2, CITY2);
 
     public static final Long POSTAGE1 = 43L;
+    public static final Letter LETTER1 
+            = new Letter(ADDRESS1, ADDRESS2, POSTAGE1);
+
 }
