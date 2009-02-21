@@ -18,7 +18,7 @@ import org.apache.wicket.util.tester.WicketTester;
 
 /**
  * Wicket tester with some extra assertions applicable to
- * BaePage objects.
+ * BasePage objects.
  * @author konijn
  *
  */
