@@ -30,4 +30,11 @@ public class DomainObjects {
     public static final Address ADDRESS1 
             = new Address (NAME1, STREET1, CITY1);
 
+    public static final String NAME2 = "This is name2";
+    public static final String STREET2 = "This is street2";
+    public static final String CITY2 = "This is city2";
+    public static final Address ADDRESS2 
+            = new Address (NAME2, STREET2, CITY2);
+
+    public static final Long POSTAGE1 = 43L;
 }

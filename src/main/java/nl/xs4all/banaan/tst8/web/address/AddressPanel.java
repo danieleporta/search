@@ -6,7 +6,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 
 /**
- * Simple panel, intended to demonstrate compositin of panels.
+ * Simple panel, intended to demonstrate composition of panels.
  * @author konijn
  *
  */
