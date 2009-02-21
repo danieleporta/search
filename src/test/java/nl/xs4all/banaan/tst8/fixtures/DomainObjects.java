@@ -1,5 +1,9 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.CITY1;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NAME1;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET1;
+import nl.xs4all.banaan.tst8.domain.Address;
 import nl.xs4all.banaan.tst8.service.Notification;
 
 /**
@@ -18,5 +22,12 @@ public class DomainObjects {
     public final static String SUBJECT2 = "this is subject2";
     public final static String BODY2 = "this is body2";
     public final static Notification NOTIFICATION2 
-            = new Notification(TO2, SUBJECT2, BODY2);    
+            = new Notification(TO2, SUBJECT2, BODY2); 
+    
+    public static final String NAME1 = "This is name1";
+    public static final String STREET1 = "This is street1";
+    public static final String CITY1 = "This is city1";
+    public static final Address ADDRESS1 
+            = new Address (NAME1, STREET1, CITY1);
+
 }
