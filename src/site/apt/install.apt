@@ -68,25 +68,32 @@ mvn site                 -- build documentation site
     
 * Deploying on Tomcat
 
-    TBD
-    
     Tomcat should provide a mailSession to the application;
     to support this, 
-    download java mail from {{{http://java.sun.com/products/javamail/}}},
+    download {{{http://java.sun.com/products/javamail/}Java Mail}},
     unpack it,
     and install the contained file <<<mail.jar>>> in <<<$CATALINA_HOME/lib>>>.
     
-    TO process attachments, you may also need
-    http://java.sun.com/javase/technologies/desktop/javabeans/glasgow/jaf.html
+    To process attachments, you may also need
+    {{{http://java.sun.com/javase/technologies/desktop/javabeans/glasgow/jaf.html}the java activation framework}}.
 
 * Deploying on Jetty
 
     With Maven the application can be deployed to an embedded Jetty
     application server.  This is convenient and allows turn-round times,
     since Maven takes care of downloading any required dependencies, 
-    and the application does not have to be packaged before deploying. 
+    and the application does not have to be packaged before deploying.
+    
+    To configure the environment of the web application, 
+    Jetty uses two configuration files: 
+    <<<jetty-env.xml>>> and <<<override-web.xml>>>.
+    The first is used to define JNDI resources for all applications
+    running in the container, 
+    the second overrides init parameters normally set in the war-file
+    for an individual application.
+    Sample configurations are provided in <<<src/jetty>>>.
 
-    TBD: config file, activation via properties.
+    TBD: activation via properties.
 
 * Deploying with Eclipse WTP
 
