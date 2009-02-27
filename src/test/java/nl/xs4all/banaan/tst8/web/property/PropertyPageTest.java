@@ -47,6 +47,8 @@ public class PropertyPageTest {
     @Test
     public void testServiceError() {
         tester.checkServiceException (new ITestPageSource () {
+            private static final long serialVersionUID = 1L;
+
             public Page getTestPage (){
                 return new PropertyPage("/not/found/build.properties");   
             }
