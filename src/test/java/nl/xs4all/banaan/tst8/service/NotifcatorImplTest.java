@@ -5,8 +5,6 @@ import javax.annotation.Resource;
 
 import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.DirtiesContext;

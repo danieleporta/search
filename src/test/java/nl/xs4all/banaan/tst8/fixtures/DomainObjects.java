@@ -1,8 +1,5 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
-
-import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_PROPERTIES1;
-
 import java.util.Properties;
 
 import nl.xs4all.banaan.tst8.domain.Address;
