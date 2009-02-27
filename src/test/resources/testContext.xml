@@ -3,12 +3,16 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:jee="http://www.springframework.org/schema/jee"
   xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:util="http://www.springframework.org/schema/util"
+  
   xsi:schemaLocation="http://www.springframework.org/schema/beans 
                 http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/jee 
                 http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
          http://www.springframework.org/schema/aop
-                http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+                http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+         http://www.springframework.org/schema/util
+                http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
   <bean id="jndiRootContext" class="nl.xs4all.banaan.tst8.fixtures.InitializedNamingContext">
     <constructor-arg>
@@ -48,6 +52,13 @@
   
   <bean id="demoApplication" class="nl.xs4all.banaan.tst8.web.DemoApplication">
     <property name="services" ref="services" />
+  </bean>
+  
+  <util:properties id="buildInfoProperties"
+    location="classpath:/dummy-build.properties"/>
+    
+  <bean id="buildInfo" class="nl.xs4all.banaan.tst8.service.BuildInfoImpl">
+    <property name="properties" ref="buildInfoProperties" />
   </bean>
 
   <bean id="tester" class="nl.xs4all.banaan.tst8.fixtures.BasePageTester">
