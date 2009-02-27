@@ -1,7 +1,13 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
+
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_PROPERTIES1;
+
+import java.util.Properties;
+
 import nl.xs4all.banaan.tst8.domain.Address;
 import nl.xs4all.banaan.tst8.domain.Letter;
+import nl.xs4all.banaan.tst8.service.BuildInfoImpl;
 import nl.xs4all.banaan.tst8.service.Notification;
 
 /**
@@ -37,5 +43,25 @@ public class DomainObjects {
     public static final Long POSTAGE1 = 43L;
     public static final Letter LETTER1 
             = new Letter(ADDRESS1, ADDRESS2, POSTAGE1);
+    
+    public static final String BUILD_NAME1 = "Groovy Goldfish";
+    public static final String BUILD_GROUP1 = "nl.xs4all.banaan.tst-test";
+    public static final String BUILD_VERSION1 = "1.0-dummy-version-label";
+    public static final String BUILD_USER1 = "root";
+    
+    public static final Properties BUILD_PROPERTIES1;
+    static {
+        BUILD_PROPERTIES1 = new Properties();
+        BUILD_PROPERTIES1.put("name", BUILD_NAME1);
+        BUILD_PROPERTIES1.put("group", BUILD_GROUP1);
+        BUILD_PROPERTIES1.put("version", BUILD_VERSION1);
+        BUILD_PROPERTIES1.put("user", BUILD_USER1);
+    }
+    
+    public static final BuildInfoImpl BUILD_INFO1;
+    static {
+        BUILD_INFO1 = new BuildInfoImpl();
+        BUILD_INFO1.setProperties(BUILD_PROPERTIES1);
+    }
 
 }
