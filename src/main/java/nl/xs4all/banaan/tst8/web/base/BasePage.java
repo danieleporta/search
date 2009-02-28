@@ -1,6 +1,7 @@
 package nl.xs4all.banaan.tst8.web.base;
 
 import nl.xs4all.banaan.tst8.service.ServiceException;
+import nl.xs4all.banaan.tst8.web.buildInfo.BuildInfoPanel;
 import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 
 import org.apache.log4j.Logger;
@@ -20,6 +21,7 @@ public abstract class BasePage extends WebPage {
     public BasePage() {
         add(new MenuPanel("menu"));
         add(new FeedbackPanel("feedback"));
+        add(new BuildInfoPanel("buildinfo"));
         getSession().info("Setting up basepage");
     }
 

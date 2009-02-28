@@ -1,5 +1,6 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_NAME1;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.junit.matchers.JUnitMatchers.containsString;
@@ -38,6 +39,7 @@ public class BasePageTester extends WicketTester {
         //assert rendered label components that any basepage has
         assertComponent("feedback", FeedbackPanel.class);
         assertComponent("menu", MenuPanel.class);
+        assertLabel("buildinfo:name", BUILD_NAME1);
         
         for (String pattern : patterns) {
             assertContains(pattern);

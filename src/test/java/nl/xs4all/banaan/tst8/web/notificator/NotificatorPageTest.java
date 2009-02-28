@@ -13,6 +13,7 @@ import static org.easymock.EasyMock.verify;
 import javax.annotation.Resource;
 
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+import nl.xs4all.banaan.tst8.service.BuildInfo;
 import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.Services;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
@@ -33,6 +34,9 @@ public class NotificatorPageTest {
     @Resource
     private DemoApplication demoApplication;
 
+    @Resource
+    private BuildInfo buildInfo;
+
     @DirtiesContext
     @Test
     public void testRenderNotificatorPage() {
@@ -52,6 +56,7 @@ public class NotificatorPageTest {
         Services services = createMock(Services.class);
         expect(services.getNotificator()).andReturn(notificator);
         notificator.send(NOTIFICATION1);
+        expect(services.getBuildInfo()).andReturn(buildInfo).times(2);
         replay(services, notificator);
         
         demoApplication.setServices(services);
@@ -71,6 +76,7 @@ public class NotificatorPageTest {
     @Test
     public void testEmptyToFieldIsDetected() {
         Services services = createMock(Services.class);
+        expect(services.getBuildInfo()).andReturn(buildInfo).times(2);
         replay(services);
         
         demoApplication.setServices(services);
@@ -89,6 +95,7 @@ public class NotificatorPageTest {
     @Test
     public void testEmptySubjectFieldIsDetected() {
         Services services = createMock(Services.class);
+        expect(services.getBuildInfo()).andReturn(buildInfo).times(2);
         replay(services);
         
         demoApplication.setServices(services);
@@ -107,6 +114,7 @@ public class NotificatorPageTest {
     @Test
     public void testEmptyBodyFieldIsDetected() {
         Services services = createMock(Services.class);
+        expect(services.getBuildInfo()).andReturn(buildInfo).times(2);
         replay(services);
         
         demoApplication.setServices(services);
@@ -125,6 +133,7 @@ public class NotificatorPageTest {
     @Test
     public void testBrokenToFieldIsDetected() {
         Services services = createMock(Services.class);
+        expect(services.getBuildInfo()).andReturn(buildInfo).times(2);
         replay(services);
         
         demoApplication.setServices(services);
