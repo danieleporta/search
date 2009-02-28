@@ -1,5 +1,6 @@
 package nl.xs4all.banaan.tst8.service.impl;
 
+import nl.xs4all.banaan.tst8.service.BuildInfo;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.PropertyReader;
@@ -17,13 +18,14 @@ public class ServicesImpl implements Services {
     private JndiReader jndiReader;
     private Notificator notificator;
     private PropertyReader propertyReader;
+    private BuildInfo buildInfo;
     
     public void setJndiReader(JndiReader jndiReader) {
         this.jndiReader = jndiReader;
     }
     
-    /* (non-Javadoc)
-     * @see nl.xs4all.banaan.tst8.service.Services#getJndiReader()
+    /**
+     * @{inheritDoc}
      */
     public JndiReader getJndiReader() {
         return jndiReader;
@@ -33,8 +35,8 @@ public class ServicesImpl implements Services {
         this.notificator = notificator;
     }
     
-    /* (non-Javadoc)
-     * @see nl.xs4all.banaan.tst8.service.Services#getNotificator()
+    /**
+     * @{inheritDoc}
      */
     public Notificator getNotificator() {
         return notificator;
@@ -44,10 +46,21 @@ public class ServicesImpl implements Services {
         this.propertyReader = propertyReader;
     }
     
-    /* (non-Javadoc)
-     * @see nl.xs4all.banaan.tst8.service.Services#getPropertyReader()
+    /**
+     * @{inheritDoc}
      */
     public PropertyReader getPropertyReader() {
         return propertyReader;
+    }
+    
+    public void setBuildInfo(BuildInfo buildInfo) {
+        this.buildInfo = buildInfo;
+    }
+    
+    /**
+     * @{inheritDoc}
+     */
+    public BuildInfo getBuildInfo() {
+        return buildInfo;
     }
 }

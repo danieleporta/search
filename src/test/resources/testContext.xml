@@ -44,21 +44,22 @@
     <property name="mailSender" ref="mailSender" />
   </bean>
   
-  <bean id="services" class="nl.xs4all.banaan.tst8.service.impl.ServicesImpl">
-    <property name="jndiReader" ref="jndiReader" />
-    <property name="propertyReader" ref="propertyReader" />
-    <property name="notificator" ref="notificator" />
-  </bean>
-  
-  <bean id="demoApplication" class="nl.xs4all.banaan.tst8.web.DemoApplication">
-    <property name="services" ref="services" />
-  </bean>
-  
   <util:properties id="buildInfoProperties"
     location="classpath:/dummy-build.properties"/>
     
   <bean id="buildInfo" class="nl.xs4all.banaan.tst8.service.impl.BuildInfoImpl">
     <property name="properties" ref="buildInfoProperties" />
+  </bean>
+    
+  <bean id="services" class="nl.xs4all.banaan.tst8.service.impl.ServicesImpl">
+    <property name="jndiReader" ref="jndiReader" />
+    <property name="propertyReader" ref="propertyReader" />
+    <property name="notificator" ref="notificator" />
+    <property name="buildInfo" ref="buildInfo" />
+  </bean>
+  
+  <bean id="demoApplication" class="nl.xs4all.banaan.tst8.web.DemoApplication">
+    <property name="services" ref="services" />
   </bean>
 
   <bean id="tester" class="nl.xs4all.banaan.tst8.fixtures.BasePageTester">
