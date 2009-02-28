@@ -38,21 +38,13 @@ public class LetterPanelTest {
                 return new LetterPanel(panelId, new LetterModel());
             }
         });
-        tester.assertComponent("panel:from:name", Label.class);
-        tester.assertComponent("panel:from:street", Label.class);
-        tester.assertComponent("panel:from:city", Label.class);
-        tester.assertComponent("panel:to:name", Label.class);
-        tester.assertComponent("panel:to:street", Label.class);
-        tester.assertComponent("panel:to:city", Label.class);
-        tester.assertComponent("panel:postage", Label.class);    
-        
-        tester.assertContains(NAME1);
-        tester.assertContains(STREET1);
-        tester.assertContains(CITY1);
-        tester.assertContains(NAME2);
-        tester.assertContains(STREET2);
-        tester.assertContains(CITY2);
-        tester.assertContains(POSTAGE1.toString());
+        tester.assertLabel("panel:from:name", NAME1);
+        tester.assertLabel("panel:from:street", STREET1);
+        tester.assertLabel("panel:from:city", CITY1);
+        tester.assertLabel("panel:to:name", NAME2);
+        tester.assertLabel("panel:to:street", STREET2);
+        tester.assertLabel("panel:to:city", CITY2);
+        tester.assertLabel("panel:postage", POSTAGE1.toString());    
     }
     
     private static class LetterModel implements IModel {
