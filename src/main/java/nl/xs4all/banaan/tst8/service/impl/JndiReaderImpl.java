@@ -1,9 +1,13 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.service.impl;
 
 import javax.naming.Binding;
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
+
+import nl.xs4all.banaan.tst8.service.JndiList;
+import nl.xs4all.banaan.tst8.service.JndiReader;
+import nl.xs4all.banaan.tst8.service.ServiceException;
 
 import org.apache.log4j.Logger;
 

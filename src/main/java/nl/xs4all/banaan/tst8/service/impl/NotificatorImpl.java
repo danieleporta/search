@@ -1,4 +1,7 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.service.impl;
+
+import nl.xs4all.banaan.tst8.service.Notification;
+import nl.xs4all.banaan.tst8.service.Notificator;
 
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;

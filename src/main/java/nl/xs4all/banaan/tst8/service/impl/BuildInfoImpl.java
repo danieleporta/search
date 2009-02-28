@@ -1,6 +1,8 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.service.impl;
 
 import java.util.Properties;
+
+import nl.xs4all.banaan.tst8.service.BuildInfo;
 
 public class BuildInfoImpl implements  BuildInfo {
     Properties properties;

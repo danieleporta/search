@@ -4,8 +4,8 @@ import java.util.Properties;
 
 import nl.xs4all.banaan.tst8.domain.Address;
 import nl.xs4all.banaan.tst8.domain.Letter;
-import nl.xs4all.banaan.tst8.service.BuildInfoImpl;
 import nl.xs4all.banaan.tst8.service.Notification;
+import nl.xs4all.banaan.tst8.service.impl.BuildInfoImpl;
 
 /**
  * Simple predefined domain objects for use in unit testing.

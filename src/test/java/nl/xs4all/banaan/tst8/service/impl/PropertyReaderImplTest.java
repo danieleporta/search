@@ -1,10 +1,15 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.service.impl;
 
 
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.matchers.JUnitMatchers.containsString;
+
+import nl.xs4all.banaan.tst8.service.PropertyList;
+import nl.xs4all.banaan.tst8.service.PropertyReader;
+import nl.xs4all.banaan.tst8.service.ServiceException;
+import nl.xs4all.banaan.tst8.service.impl.PropertyReaderImpl;
 
 import org.junit.Test;
 

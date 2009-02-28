@@ -1,9 +1,10 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.service.impl;
 
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.*;
 import javax.annotation.Resource;
 
 import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
+import nl.xs4all.banaan.tst8.service.Notificator;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

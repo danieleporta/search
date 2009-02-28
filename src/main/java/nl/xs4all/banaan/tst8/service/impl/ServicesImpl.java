@@ -1,4 +1,9 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.service.impl;
+
+import nl.xs4all.banaan.tst8.service.JndiReader;
+import nl.xs4all.banaan.tst8.service.Notificator;
+import nl.xs4all.banaan.tst8.service.PropertyReader;
+import nl.xs4all.banaan.tst8.service.Services;
 
 /**
  * Centralised access to services.

@@ -1,9 +1,13 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.service.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.Properties;
+
+import nl.xs4all.banaan.tst8.service.PropertyList;
+import nl.xs4all.banaan.tst8.service.PropertyReader;
+import nl.xs4all.banaan.tst8.service.ServiceException;
 
 /**
  * implement property reader

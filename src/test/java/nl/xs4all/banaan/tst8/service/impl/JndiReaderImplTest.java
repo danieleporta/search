@@ -1,9 +1,13 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.service.impl;
 
 
 import static org.junit.Assert.assertTrue;
 
 import javax.annotation.Resource;
+
+import nl.xs4all.banaan.tst8.service.JndiList;
+import nl.xs4all.banaan.tst8.service.ServiceException;
+import nl.xs4all.banaan.tst8.service.impl.JndiReaderImpl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

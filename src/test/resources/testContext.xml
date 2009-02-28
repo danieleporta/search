@@ -30,21 +30,21 @@
     </constructor-arg> 
   </bean>
 
-  <bean id="jndiReader" class="nl.xs4all.banaan.tst8.service.JndiReaderImpl">
+  <bean id="jndiReader" class="nl.xs4all.banaan.tst8.service.impl.JndiReaderImpl">
     <property name="initialContext" ref="jndiRootContext"></property>
   </bean>
 
   <bean id="propertyReader" 
-        class="nl.xs4all.banaan.tst8.service.PropertyReaderImpl" />
+        class="nl.xs4all.banaan.tst8.service.impl.PropertyReaderImpl" />
 
   <bean id="mailSender" 
         class="nl.xs4all.banaan.tst8.fixtures.MailSenderFixture" />
 
-  <bean id="notificator" class="nl.xs4all.banaan.tst8.service.NotificatorImpl">
+  <bean id="notificator" class="nl.xs4all.banaan.tst8.service.impl.NotificatorImpl">
     <property name="mailSender" ref="mailSender" />
   </bean>
   
-  <bean id="services" class="nl.xs4all.banaan.tst8.service.ServicesImpl">
+  <bean id="services" class="nl.xs4all.banaan.tst8.service.impl.ServicesImpl">
     <property name="jndiReader" ref="jndiReader" />
     <property name="propertyReader" ref="propertyReader" />
     <property name="notificator" ref="notificator" />
@@ -57,7 +57,7 @@
   <util:properties id="buildInfoProperties"
     location="classpath:/dummy-build.properties"/>
     
-  <bean id="buildInfo" class="nl.xs4all.banaan.tst8.service.BuildInfoImpl">
+  <bean id="buildInfo" class="nl.xs4all.banaan.tst8.service.impl.BuildInfoImpl">
     <property name="properties" ref="buildInfoProperties" />
   </bean>
 

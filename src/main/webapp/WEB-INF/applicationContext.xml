@@ -10,12 +10,12 @@
   <!-- First cut at spring config -->
   <jee:jndi-lookup id="jndiRootContext" jndi-name="java:comp/env" />
   
-  <bean id="jndiReader" class="nl.xs4all.banaan.tst8.service.JndiReaderImpl">
+  <bean id="jndiReader" class="nl.xs4all.banaan.tst8.service.impl.JndiReaderImpl">
     <property name="initialContext" ref="jndiRootContext"></property>
   </bean>
 
   <bean id="propertyReader" 
-        class="nl.xs4all.banaan.tst8.service.PropertyReaderImpl" />
+        class="nl.xs4all.banaan.tst8.service.impl.PropertyReaderImpl" />
 
   <jee:jndi-lookup id="mailSession" 
         jndi-name="mail/Session" 
@@ -28,11 +28,11 @@
   </bean>
   
   <bean id="notificator" 
-        class="nl.xs4all.banaan.tst8.service.NotificatorImpl">
+        class="nl.xs4all.banaan.tst8.service.impl.NotificatorImpl">
     <property name="mailSender" ref="mailSender" />
   </bean>
   
-  <bean id="services" class="nl.xs4all.banaan.tst8.service.ServicesImpl">
+  <bean id="services" class="nl.xs4all.banaan.tst8.service.impl.ServicesImpl">
     <property name="jndiReader" ref="jndiReader" />
     <property name="propertyReader" ref="propertyReader" />
     <property name="notificator" ref="notificator" />
