@@ -38,12 +38,9 @@ public class AddressPanelTest {
                 return new AddressPanel(panelId, new AddressModel());
             }
         });
-        tester.assertComponent("panel:name", Label.class);
-        tester.assertComponent("panel:street", Label.class);
-        tester.assertComponent("panel:city", Label.class);
-        tester.assertContains(NAME1);
-        tester.assertContains(STREET1);
-        tester.assertContains(CITY1);
+        tester.assertLabel("panel:name", NAME1);
+        tester.assertLabel("panel:street", STREET1);
+        tester.assertLabel("panel:city", CITY1);
     }
     
     private static class AddressModel implements IModel {
