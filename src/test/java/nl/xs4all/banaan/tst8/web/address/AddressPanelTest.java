@@ -11,6 +11,7 @@ import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.tester.TestPanelSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,17 +43,12 @@ public class AddressPanelTest {
         tester.assertLabel("panel:city", CITY1);
     }
     
-    private static class AddressModel implements IModel {
+    private static class AddressModel extends LoadableDetachableModel {
         private static final long serialVersionUID = 1L;
 
-        public Object getObject() {
+        @Override
+        protected Object load() {
             return ADDRESS1;
-        }
-
-        public void setObject(Object object) {
-        }
-
-        public void detach() {
         }
     }
 
