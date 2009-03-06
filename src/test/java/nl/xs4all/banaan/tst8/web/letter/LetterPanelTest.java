@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.tester.TestPanelSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,17 +46,11 @@ public class LetterPanelTest {
         tester.assertLabel("panel:postage", POSTAGE1.toString());    
     }
     
-    private static class LetterModel implements IModel {
+    private static class LetterModel extends LoadableDetachableModel {
         private static final long serialVersionUID = 1L;
-
-        public Object getObject() {
+        @Override
+        public Object load() {
             return LETTER1;
-        }
-
-        public void setObject(Object object) {
-        }
-
-        public void detach() {
         }
     }
 
