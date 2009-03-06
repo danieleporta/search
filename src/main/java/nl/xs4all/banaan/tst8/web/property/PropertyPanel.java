@@ -8,7 +8,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 
 /**
  * Display key/value pairs in some property set.
@@ -23,11 +24,10 @@ public class PropertyPanel extends Panel {
         super(id);
         getSession().info("building  property panel");
         
-        // make model dynamic to avoid it being serialized into the session
-        Model model = new Model () {
+        IModel model = new LoadableDetachableModel () {
             private static final long serialVersionUID = 1L;
             @Override
-            public Object getObject () {
+            public Object load() {
                 try {
                     return DemoApplication.get().getServices().
                         getPropertyReader().read(location).getList();
