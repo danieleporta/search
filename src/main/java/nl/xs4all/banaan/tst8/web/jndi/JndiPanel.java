@@ -11,7 +11,8 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 
 /**
  * Show JNDI data, given a location to find them
@@ -25,12 +26,11 @@ public class JndiPanel extends Panel {
         super(id);
         getSession().info("building jndi panel");
 
-        // Make model dynamic to avoid it being serialised into the session.
-        Model model = new Model() {
+        IModel model = new LoadableDetachableModel() {
             private static final long serialVersionUID = -6205291386596032973L;
 
             @Override
-            public Object getObject() {
+            public Object load() {
                 try {
                     return DemoApplication.get().getServices().
                         getJndiReader().read(location).getList();
