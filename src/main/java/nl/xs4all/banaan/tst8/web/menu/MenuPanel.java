@@ -9,7 +9,8 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 
 /**
  * Show links to the various environments the visitor may be interested in
@@ -23,12 +24,11 @@ public class MenuPanel extends Panel {
         super(id);
         getSession().info("building  menu panel");
 
-        // make model dynamic to avoid it being serialised into the session
-        Model model = new Model () {
+        IModel model = new LoadableDetachableModel () {
             private static final long serialVersionUID = 1328703313038270829L;
 
             @Override
-            public Object getObject () {
+            public Object load () {
                 return DemoApplication.get().getMenuList().getList();
             }
         };
