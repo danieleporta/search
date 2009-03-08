@@ -43,7 +43,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
         formTester.submit();
-        checkEvents(true, false, false, false, false);
+        checkEvents(true, false, false, false, false, false);
     }
     
     /** standard submit sequence with validation error */
@@ -52,7 +52,7 @@ public class FormPanelTest {
         makeTester();
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.submit();
-        checkEvents(false, true, false, false, false);
+        checkEvents(false, true, false, false, false, false);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
         formTester.submit("button1");
-        checkEvents(true, false, true, false, false);
+        checkEvents(true, false, true, false, false, false);
     }
     
     /** 
@@ -74,7 +74,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
         formTester.submit("button2");
-        checkEvents(true, false, false, true, false);
+        checkEvents(true, false, false, true, false, false);
     }
     
     /** 
@@ -89,20 +89,47 @@ public class FormPanelTest {
     public void testFormPanelClickButtonWithOnClickEvenIfNoValidation() {
         makeTester();
         tester.clickLink("panel:form:button3");
-        checkEvents(false, false, false, false, true);
+        checkEvents(false, false, false, false, true, false);
     }
 
+    /**
+     * without defaultFromProcessing, the form onSubmit() is not called,
+     * fields are not updated and there is no validation.
+     */
+    @Test
+    public void testFormPanelClickButtonWithoutDefaultFormProcessingDoesNoFieldUpdate() {
+        makeTester();
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.setValue("text", "required");
+        formTester.submit("button4");
+        tester.assertModelValue("panel:form:text", "");
+        checkEvents(false, false, false, false, false, true);
+    }
+    
+    /**
+     * without defaultFromProcessing,show absence of validation.
+     */
+    @Test
+    public void testFormPanelClickButtonWithoutDefaultFormProcessingDoesNoValidation() {
+        makeTester();
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.submit("button4");
+        checkEvents(false, false, false, false, false, true);
+    }  
+    
+    
     private String convert(Boolean val) {
         return val ? "true" : "false";
     }
     
     private void checkEvents(Boolean submit, Boolean error, 
-            Boolean button1, Boolean button2, Boolean button3) {
+            Boolean button1, Boolean button2, Boolean button3, Boolean button4) {
         tester.assertModelValue("panel:form:submitSeen", convert(submit));
         tester.assertModelValue("panel:form:errorSeen", convert(error));
         tester.assertModelValue("panel:form:button1Seen", convert(button1));        
         tester.assertModelValue("panel:form:button2Seen", convert(button2));
         tester.assertModelValue("panel:form:button3Seen", convert(button3));
+        tester.assertModelValue("panel:form:button4Seen", convert(button4));
     }    
     
     
@@ -120,6 +147,7 @@ public class FormPanelTest {
                                         + ",button1Seen=false"
                                         + ",button2Seen=false"
                                         + ",button3Seen=false"
+                                        + ",button4Seen=false"
                                         )));
             }
         });

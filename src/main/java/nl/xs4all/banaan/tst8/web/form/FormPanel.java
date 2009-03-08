@@ -59,7 +59,7 @@ public class FormPanel extends Panel {
         
         // a link, marked up as plain button
         form.add(new Link("button3", model) {
-            private static final long serialVersionUID = -2440693329626812016L;
+            private static final long serialVersionUID = -2538713712765931224L;
 
             @Override
             public void onClick() {
@@ -67,11 +67,23 @@ public class FormPanel extends Panel {
                 map.put("button3Seen", "true");
             }
         });
-                
+        
+        // marked up as plain button, without form processing
+        form.add(new Button("button4", model) {
+            private static final long serialVersionUID = -2440693329626812016L;
+
+            @Override
+            public void onSubmit() {
+                ValueMap map = (ValueMap) getModelObject();
+                map.put("button4Seen", "true");
+            }
+        }.setDefaultFormProcessing(false));
+
         form.add(new Label("submitSeen"));
         form.add(new Label("errorSeen"));
         form.add(new Label("button1Seen"));
         form.add(new Label("button2Seen"));
-        form.add(new Label("button3Seen"));        
+        form.add(new Label("button3Seen"));
+        form.add(new Label("button4Seen")); 
     }
 }
