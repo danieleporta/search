@@ -4,6 +4,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.value.ValueMap;
@@ -56,9 +57,21 @@ public class FormPanel extends Panel {
             }
         });
         
+        // a link, marked up as plain button
+        form.add(new Link("button3", model) {
+            private static final long serialVersionUID = -2440693329626812016L;
+
+            @Override
+            public void onClick() {
+                ValueMap map = (ValueMap) getModelObject();
+                map.put("button3Seen", "true");
+            }
+        });
+                
         form.add(new Label("submitSeen"));
         form.add(new Label("errorSeen"));
         form.add(new Label("button1Seen"));
         form.add(new Label("button2Seen"));
+        form.add(new Label("button3Seen"));        
     }
 }

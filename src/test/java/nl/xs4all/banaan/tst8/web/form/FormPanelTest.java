@@ -47,6 +47,7 @@ public class FormPanelTest {
         tester.assertModelValue("panel:form:errorSeen", "false");
         tester.assertModelValue("panel:form:button1Seen", "false");
         tester.assertModelValue("panel:form:button2Seen", "false");
+        tester.assertModelValue("panel:form:button3Seen", "false");
     }
     
     /** standard submit sequence with validation error */
@@ -59,6 +60,7 @@ public class FormPanelTest {
         tester.assertModelValue("panel:form:errorSeen", "true");
         tester.assertModelValue("panel:form:button1Seen", "false");
         tester.assertModelValue("panel:form:button2Seen", "false");
+        tester.assertModelValue("panel:form:button3Seen", "false");
     }
 
     @Test
@@ -71,12 +73,12 @@ public class FormPanelTest {
         tester.assertModelValue("panel:form:errorSeen", "false");
         tester.assertModelValue("panel:form:button1Seen", "true");        
         tester.assertModelValue("panel:form:button2Seen", "false");
+        tester.assertModelValue("panel:form:button3Seen", "false");
     }
     
     /** 
      * a button, marked up as "button" rather than "submit"
-     * will submit the form just like an input of type submit,
-     * provided there is an onSubmit() and no onClick() on the button.
+     * will submit the form just like an input of type submit.
      */
     @Test
     public void testFormPanelClickNonSubmitButton() {
@@ -88,7 +90,28 @@ public class FormPanelTest {
         tester.assertModelValue("panel:form:errorSeen", "false");
         tester.assertModelValue("panel:form:button1Seen", "false");        
         tester.assertModelValue("panel:form:button2Seen", "true");
+        tester.assertModelValue("panel:form:button3Seen", "false");
+    }
+    
+    /** 
+     * the simplest way to avoid onSubmit() is to make a button
+     * markup with a Link component behind it.  Notes:
+     * <ul>
+     * <li> this is tested with clickLink() rather than submit().
+     * <li> this bypasses validation
+     * </ul> 
+     */
+    @Test
+    public void testFormPanelClickButtonWithOnClickEvenIfNoValidation() {
+        makeTester();
+        tester.clickLink("panel:form:button3");
+        tester.assertModelValue("panel:form:submitSeen", "false");
+        tester.assertModelValue("panel:form:errorSeen", "false");
+        tester.assertModelValue("panel:form:button1Seen", "false");        
+        tester.assertModelValue("panel:form:button2Seen", "false");
+        tester.assertModelValue("panel:form:button3Seen", "true");
     }    
+    
     
     /** create FormPanel to be tested */
     private void makeTester() {
@@ -103,6 +126,7 @@ public class FormPanelTest {
                                         + ",errorSeen=false"
                                         + ",button1Seen=false"
                                         + ",button2Seen=false"
+                                        + ",button3Seen=false"
                                         )));
             }
         });
