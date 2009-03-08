@@ -45,7 +45,8 @@ public class FormPanelTest {
         formTester.submit();
         tester.assertModelValue("panel:form:submitSeen", "true");
         tester.assertModelValue("panel:form:errorSeen", "false");
-        tester.assertModelValue("panel:form:buttonSeen", "false");
+        tester.assertModelValue("panel:form:button1Seen", "false");
+        tester.assertModelValue("panel:form:button2Seen", "false");
     }
     
     /** standard submit sequence with validation error */
@@ -56,7 +57,8 @@ public class FormPanelTest {
         formTester.submit();
         tester.assertModelValue("panel:form:submitSeen", "false");
         tester.assertModelValue("panel:form:errorSeen", "true");
-        tester.assertModelValue("panel:form:buttonSeen", "false");
+        tester.assertModelValue("panel:form:button1Seen", "false");
+        tester.assertModelValue("panel:form:button2Seen", "false");
     }
 
     @Test
@@ -64,11 +66,29 @@ public class FormPanelTest {
         makeTester();
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
-        formTester.submit("submitButton");
+        formTester.submit("button1");
         tester.assertModelValue("panel:form:submitSeen", "true");
         tester.assertModelValue("panel:form:errorSeen", "false");
-        tester.assertModelValue("panel:form:buttonSeen", "true");        
+        tester.assertModelValue("panel:form:button1Seen", "true");        
+        tester.assertModelValue("panel:form:button2Seen", "false");
     }
+    
+    /** 
+     * a button, marked up as "button" rather than "submit"
+     * will submit the form just like an input of type submit,
+     * provided there is an onSubmit() and no onClick() on the button.
+     */
+    @Test
+    public void testFormPanelClickNonSubmitButton() {
+        makeTester();
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.setValue("text", "required");
+        formTester.submit("button2");
+        tester.assertModelValue("panel:form:submitSeen", "true");
+        tester.assertModelValue("panel:form:errorSeen", "false");
+        tester.assertModelValue("panel:form:button1Seen", "false");        
+        tester.assertModelValue("panel:form:button2Seen", "true");
+    }    
     
     /** create FormPanel to be tested */
     private void makeTester() {
@@ -78,7 +98,12 @@ public class FormPanelTest {
             public Panel getTestPanel(String panelId) {
                 return new FormPanel(panelId,
                         new CompoundPropertyModel(
-                                new ValueMap("text=,submitSeen=false,errorSeen=false,buttonSeen=false")));
+                                new ValueMap("text=" 
+                                        + ",submitSeen=false"
+                                        + ",errorSeen=false"
+                                        + ",button1Seen=false"
+                                        + ",button2Seen=false"
+                                        )));
             }
         });
     }

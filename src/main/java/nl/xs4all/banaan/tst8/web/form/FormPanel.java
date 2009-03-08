@@ -33,17 +33,32 @@ public class FormPanel extends Panel {
         
         add(form);
         form.add(new TextField("text", String.class).setRequired(true));
-        form.add(new Button("submitButton", model) {
+        
+        // marked up as submit button
+        form.add(new Button("button1", model) {
             private static final long serialVersionUID = -2440693329626812016L;
 
             @Override
             public void onSubmit() {
                 ValueMap map = (ValueMap) getModelObject();
-                map.put("buttonSeen", "true");
+                map.put("button1Seen", "true");
             }
         });
+        
+        // marked up as plain button
+        form.add(new Button("button2", model) {
+            private static final long serialVersionUID = -2440693329626812016L;
+
+            @Override
+            public void onSubmit() {
+                ValueMap map = (ValueMap) getModelObject();
+                map.put("button2Seen", "true");
+            }
+        });
+        
         form.add(new Label("submitSeen"));
         form.add(new Label("errorSeen"));
-        form.add(new Label("buttonSeen"));
+        form.add(new Label("button1Seen"));
+        form.add(new Label("button2Seen"));
     }
 }
