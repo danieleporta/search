@@ -23,7 +23,7 @@ public class FormPanel extends Panel {
             }
         };
         add(form);
-        form.add(new TextField("text"));
+        form.add(new TextField("text").setRequired(true));
         form.add(new Label("submitSeen"));
     }
 }

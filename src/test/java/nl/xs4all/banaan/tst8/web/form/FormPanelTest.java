@@ -62,5 +62,23 @@ public class FormPanelTest {
         tester.assertModelValue("panel:form:submitSeen", "true");
     }
     
+    /** standard submit sequence with validation error */
+    @Test
+    public void testFormPanelError() {
+        tester.startPanel(new TestPanelSource() {
+            private static final long serialVersionUID = 1L;
+
+            public Panel getTestPanel(String panelId) {
+                return new FormPanel(panelId,
+                        new CompoundPropertyModel(
+                                new ValueMap("text=,submitSeen=false")));
+            }
+        });
+
+        tester.assertModelValue("panel:form:submitSeen", "false");
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.submit();
+        tester.assertModelValue("panel:form:submitSeen", "false");
+    }
     
 }
