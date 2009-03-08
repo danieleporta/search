@@ -1,5 +1,7 @@
 package nl.xs4all.banaan.tst8.web.form;
 
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -78,12 +80,24 @@ public class FormPanel extends Panel {
                 map.put("button4Seen", "true");
             }
         }.setDefaultFormProcessing(false));
+        
+        // ajax submit link can be outside form 
+        add(new AjaxSubmitLink("button5", form) {
+            private static final long serialVersionUID = -2473039751385349081L;
+
+            @Override
+            protected void onSubmit(AjaxRequestTarget target, Form form) {
+                ValueMap map = (ValueMap) getModelObject();
+                map.put("button5Seen", "true");
+            }
+        });
 
         form.add(new Label("submitSeen"));
         form.add(new Label("errorSeen"));
         form.add(new Label("button1Seen"));
         form.add(new Label("button2Seen"));
         form.add(new Label("button3Seen"));
-        form.add(new Label("button4Seen")); 
+        form.add(new Label("button4Seen"));
+        form.add(new Label("button5Seen"));
     }
 }

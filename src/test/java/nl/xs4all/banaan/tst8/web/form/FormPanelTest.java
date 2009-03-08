@@ -117,6 +117,14 @@ public class FormPanelTest {
         checkEvents(false, false, false, false, false, true);
     }  
     
+    // minimal test: no verification of button onSubmit() yet.
+    @Test
+    public void testFormPanelClickAjaxButtonWithJavascriptEnabledAndValidationError() {
+        makeTester();
+        tester.clickLink("panel:button5", true);
+        // dont update text field, triggering onError()
+        checkEvents(false, true, false, false, false, false);
+    }
     
     private String convert(Boolean val) {
         return val ? "true" : "false";
@@ -148,6 +156,7 @@ public class FormPanelTest {
                                         + ",button2Seen=false"
                                         + ",button3Seen=false"
                                         + ",button4Seen=false"
+                                        + ",button5Seen=false"
                                         )));
             }
         });
