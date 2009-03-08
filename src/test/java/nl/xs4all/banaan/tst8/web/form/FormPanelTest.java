@@ -25,37 +25,21 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/testContext.xml"})
 public class FormPanelTest {
+    
     @Resource
     private BasePageTester tester;
     
     /** show a form, don't push any buttons */
     @Test
     public void testPanelShowing() {
-        tester.startPanel(new TestPanelSource() {
-            private static final long serialVersionUID = 1L;
-
-            public Panel getTestPanel(String panelId) {
-                return new FormPanel(panelId,
-                        new CompoundPropertyModel(
-                                new ValueMap("text=,submitSeen=false,errorSeen=false")));
-            }
-        });
+        makeTester();
         tester.assertModelValue("panel:form:text", "");
     }
 
     /** standard submit sequence */
     @Test
     public void testFormPanelSubmit() {
-        tester.startPanel(new TestPanelSource() {
-            private static final long serialVersionUID = 1L;
-
-            public Panel getTestPanel(String panelId) {
-                return new FormPanel(panelId,
-                        new CompoundPropertyModel(
-                                new ValueMap("text=,submitSeen=false,errorSeen=false")));
-            }
-        });
-
+        makeTester();
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
         formTester.submit();
@@ -66,6 +50,15 @@ public class FormPanelTest {
     /** standard submit sequence with validation error */
     @Test
     public void testFormPanelError() {
+        makeTester();
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.submit();
+        tester.assertModelValue("panel:form:submitSeen", "false");
+        tester.assertModelValue("panel:form:errorSeen", "true");
+    }
+
+    /** create FormPanel to be tested */
+    private void makeTester() {
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
 
@@ -75,11 +68,5 @@ public class FormPanelTest {
                                 new ValueMap("text=,submitSeen=false,errorSeen=false")));
             }
         });
-
-        FormTester formTester = tester.newFormTester("panel:form");
-        formTester.submit();
-        tester.assertModelValue("panel:form:submitSeen", "false");
-        tester.assertModelValue("panel:form:errorSeen", "true");
     }
-    
 }
