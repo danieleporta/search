@@ -29,7 +29,7 @@ public class LetterPanelTest {
     private BasePageTester tester;
 
     @Test
-    public void testAddressPanel() {
+    public void testShowPanel() {
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
 
