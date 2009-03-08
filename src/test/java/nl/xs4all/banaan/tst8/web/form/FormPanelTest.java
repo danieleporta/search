@@ -45,6 +45,7 @@ public class FormPanelTest {
         formTester.submit();
         tester.assertModelValue("panel:form:submitSeen", "true");
         tester.assertModelValue("panel:form:errorSeen", "false");
+        tester.assertModelValue("panel:form:buttonSeen", "false");
     }
     
     /** standard submit sequence with validation error */
@@ -55,8 +56,20 @@ public class FormPanelTest {
         formTester.submit();
         tester.assertModelValue("panel:form:submitSeen", "false");
         tester.assertModelValue("panel:form:errorSeen", "true");
+        tester.assertModelValue("panel:form:buttonSeen", "false");
     }
 
+    @Test
+    public void testFormPanelClickSubmitButton() {
+        makeTester();
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.setValue("text", "required");
+        formTester.submit("submitButton");
+        tester.assertModelValue("panel:form:submitSeen", "true");
+        tester.assertModelValue("panel:form:errorSeen", "false");
+        tester.assertModelValue("panel:form:buttonSeen", "true");        
+    }
+    
     /** create FormPanel to be tested */
     private void makeTester() {
         tester.startPanel(new TestPanelSource() {
@@ -65,7 +78,7 @@ public class FormPanelTest {
             public Panel getTestPanel(String panelId) {
                 return new FormPanel(panelId,
                         new CompoundPropertyModel(
-                                new ValueMap("text=,submitSeen=false,errorSeen=false")));
+                                new ValueMap("text=,submitSeen=false,errorSeen=false,buttonSeen=false")));
             }
         });
     }

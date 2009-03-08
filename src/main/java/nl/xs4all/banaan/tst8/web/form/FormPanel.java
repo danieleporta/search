@@ -1,6 +1,7 @@
 package nl.xs4all.banaan.tst8.web.form;
 
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -32,7 +33,17 @@ public class FormPanel extends Panel {
         
         add(form);
         form.add(new TextField("text", String.class).setRequired(true));
+        form.add(new Button("submitButton", model) {
+            private static final long serialVersionUID = -2440693329626812016L;
+
+            @Override
+            public void onSubmit() {
+                ValueMap map = (ValueMap) getModelObject();
+                map.put("buttonSeen", "true");
+            }
+        });
         form.add(new Label("submitSeen"));
         form.add(new Label("errorSeen"));
+        form.add(new Label("buttonSeen"));
     }
 }
