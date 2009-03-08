@@ -43,11 +43,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
         formTester.submit();
-        tester.assertModelValue("panel:form:submitSeen", "true");
-        tester.assertModelValue("panel:form:errorSeen", "false");
-        tester.assertModelValue("panel:form:button1Seen", "false");
-        tester.assertModelValue("panel:form:button2Seen", "false");
-        tester.assertModelValue("panel:form:button3Seen", "false");
+        checkEvents(true, false, false, false, false);
     }
     
     /** standard submit sequence with validation error */
@@ -56,11 +52,7 @@ public class FormPanelTest {
         makeTester();
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.submit();
-        tester.assertModelValue("panel:form:submitSeen", "false");
-        tester.assertModelValue("panel:form:errorSeen", "true");
-        tester.assertModelValue("panel:form:button1Seen", "false");
-        tester.assertModelValue("panel:form:button2Seen", "false");
-        tester.assertModelValue("panel:form:button3Seen", "false");
+        checkEvents(false, true, false, false, false);
     }
 
     @Test
@@ -69,11 +61,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
         formTester.submit("button1");
-        tester.assertModelValue("panel:form:submitSeen", "true");
-        tester.assertModelValue("panel:form:errorSeen", "false");
-        tester.assertModelValue("panel:form:button1Seen", "true");        
-        tester.assertModelValue("panel:form:button2Seen", "false");
-        tester.assertModelValue("panel:form:button3Seen", "false");
+        checkEvents(true, false, true, false, false);
     }
     
     /** 
@@ -86,11 +74,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
         formTester.submit("button2");
-        tester.assertModelValue("panel:form:submitSeen", "true");
-        tester.assertModelValue("panel:form:errorSeen", "false");
-        tester.assertModelValue("panel:form:button1Seen", "false");        
-        tester.assertModelValue("panel:form:button2Seen", "true");
-        tester.assertModelValue("panel:form:button3Seen", "false");
+        checkEvents(true, false, false, true, false);
     }
     
     /** 
@@ -105,11 +89,20 @@ public class FormPanelTest {
     public void testFormPanelClickButtonWithOnClickEvenIfNoValidation() {
         makeTester();
         tester.clickLink("panel:form:button3");
-        tester.assertModelValue("panel:form:submitSeen", "false");
-        tester.assertModelValue("panel:form:errorSeen", "false");
-        tester.assertModelValue("panel:form:button1Seen", "false");        
-        tester.assertModelValue("panel:form:button2Seen", "false");
-        tester.assertModelValue("panel:form:button3Seen", "true");
+        checkEvents(false, false, false, false, true);
+    }
+
+    private String convert(Boolean val) {
+        return val ? "true" : "false";
+    }
+    
+    private void checkEvents(Boolean submit, Boolean error, 
+            Boolean button1, Boolean button2, Boolean button3) {
+        tester.assertModelValue("panel:form:submitSeen", convert(submit));
+        tester.assertModelValue("panel:form:errorSeen", convert(error));
+        tester.assertModelValue("panel:form:button1Seen", convert(button1));        
+        tester.assertModelValue("panel:form:button2Seen", convert(button2));
+        tester.assertModelValue("panel:form:button3Seen", convert(button3));
     }    
     
     
