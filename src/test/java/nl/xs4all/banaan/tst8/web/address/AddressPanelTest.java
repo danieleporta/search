@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.tester.TestPanelSource;
 import org.junit.Test;
