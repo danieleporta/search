@@ -37,7 +37,7 @@ public class FormPanelTest {
             public Panel getTestPanel(String panelId) {
                 return new FormPanel(panelId,
                         new CompoundPropertyModel(
-                                new ValueMap("text=required,submitSeen=false")));
+                                new ValueMap("text=required,submitSeen=false,errorSeen=false")));
             }
         });
         tester.assertModelValue("panel:form:text", "required");
@@ -52,7 +52,7 @@ public class FormPanelTest {
             public Panel getTestPanel(String panelId) {
                 return new FormPanel(panelId,
                         new CompoundPropertyModel(
-                                new ValueMap("text=required,submitSeen=false")));
+                                new ValueMap("text=required,submitSeen=false,errorSeen=false")));
             }
         });
 
@@ -60,6 +60,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.submit();
         tester.assertModelValue("panel:form:submitSeen", "true");
+        tester.assertModelValue("panel:form:errorSeen", "false");
     }
     
     /** standard submit sequence with validation error */
@@ -71,7 +72,7 @@ public class FormPanelTest {
             public Panel getTestPanel(String panelId) {
                 return new FormPanel(panelId,
                         new CompoundPropertyModel(
-                                new ValueMap("text=,submitSeen=false")));
+                                new ValueMap("text=,submitSeen=false,errorSeen=false")));
             }
         });
 
@@ -79,6 +80,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.submit();
         tester.assertModelValue("panel:form:submitSeen", "false");
+        tester.assertModelValue("panel:form:errorSeen", "true");
     }
     
 }

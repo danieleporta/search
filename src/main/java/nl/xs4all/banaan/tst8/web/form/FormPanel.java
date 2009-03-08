@@ -21,9 +21,18 @@ public class FormPanel extends Panel {
                 ValueMap map = (ValueMap) getModelObject();
                 map.put("submitSeen", "true");
             }
+
+            @Override
+            protected void onError() {
+                ValueMap map = (ValueMap) getModelObject();
+                map.put("errorSeen", "true");
+            }
+            
         };
+        
         add(form);
         form.add(new TextField("text").setRequired(true));
         form.add(new Label("submitSeen"));
+        form.add(new Label("errorSeen"));
     }
 }
