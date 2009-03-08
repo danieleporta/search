@@ -1,5 +1,8 @@
 package nl.xs4all.banaan.tst8.web.form;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
@@ -43,7 +46,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
         formTester.submit();
-        checkEvents(true, false, false, false, false, false);
+        checkEvents("submitSeen");
     }
     
     /** standard submit sequence with validation error */
@@ -52,7 +55,7 @@ public class FormPanelTest {
         makeTester();
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.submit();
-        checkEvents(false, true, false, false, false, false);
+        checkEvents("errorSeen");
     }
 
     @Test
@@ -61,7 +64,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
         formTester.submit("button1");
-        checkEvents(true, false, true, false, false, false);
+        checkEvents("submitSeen", "button1Seen");
     }
     
     /** 
@@ -74,7 +77,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
         formTester.submit("button2");
-        checkEvents(true, false, false, true, false, false);
+        checkEvents("submitSeen", "button2Seen");
     }
     
     /** 
@@ -89,7 +92,7 @@ public class FormPanelTest {
     public void testFormPanelClickButtonWithOnClickEvenIfNoValidation() {
         makeTester();
         tester.clickLink("panel:form:button3");
-        checkEvents(false, false, false, false, true, false);
+        checkEvents("button3Seen");
     }
 
     /**
@@ -103,7 +106,7 @@ public class FormPanelTest {
         formTester.setValue("text", "required");
         formTester.submit("button4");
         tester.assertModelValue("panel:form:text", "");
-        checkEvents(false, false, false, false, false, true);
+        checkEvents("button4Seen");
     }
     
     /**
@@ -114,7 +117,7 @@ public class FormPanelTest {
         makeTester();
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.submit("button4");
-        checkEvents(false, false, false, false, false, true);
+        checkEvents("button4Seen");
     }  
     
     // minimal test: no verification of button onSubmit() yet.
@@ -123,22 +126,23 @@ public class FormPanelTest {
         makeTester();
         tester.clickLink("panel:button5", true);
         // dont update text field, triggering onError()
-        checkEvents(false, true, false, false, false, false);
+        checkEvents("errorSeen");
     }
     
-    private String convert(Boolean val) {
-        return val ? "true" : "false";
-    }
     
-    private void checkEvents(Boolean submit, Boolean error, 
-            Boolean button1, Boolean button2, Boolean button3, Boolean button4) {
-        tester.assertModelValue("panel:form:submitSeen", convert(submit));
-        tester.assertModelValue("panel:form:errorSeen", convert(error));
-        tester.assertModelValue("panel:form:button1Seen", convert(button1));        
-        tester.assertModelValue("panel:form:button2Seen", convert(button2));
-        tester.assertModelValue("panel:form:button3Seen", convert(button3));
-        tester.assertModelValue("panel:form:button4Seen", convert(button4));
-    }    
+    private void checkEvents(String... expectedEvents) {
+        Set<String> set = new HashSet<String>();
+        for (String event : expectedEvents) {
+            set.add(event);
+        }
+        
+        String[] allEvents = {"submitSeen", "errorSeen",
+                "button1Seen", "button2Seen", "button3Seen", "button4Seen"};
+        for (String key: allEvents) {
+            tester.assertModelValue("panel:form:" + key,
+                    set.contains(key) ? "true" : "false"); 
+        }
+    }
     
     
     /** create FormPanel to be tested */
