@@ -31,7 +31,7 @@ public class FormPanel extends Panel {
         };
         
         add(form);
-        form.add(new TextField("text").setRequired(true));
+        form.add(new TextField("text", String.class).setRequired(true));
         form.add(new Label("submitSeen"));
         form.add(new Label("errorSeen"));
     }
