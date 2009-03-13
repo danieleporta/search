@@ -70,6 +70,7 @@ public class FormPanelTest {
     /** 
      * a button, marked up as "button" rather than "submit"
      * will submit the form just like an input of type submit.
+     * The button processing is done before the form processing.
      */
     @Test
     public void testFormPanelClickNonSubmitButton() {
@@ -77,7 +78,7 @@ public class FormPanelTest {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "required");
         formTester.submit("button2");
-        checkEvents("submitSeen", "button2Seen");
+        checkEvents("submitSeen", "button2Seen", "buttonBeforeSubmit");
     }
     
     /** 
@@ -130,7 +131,8 @@ public class FormPanelTest {
     }
     
     private String[] allEvents = {"submitSeen", "errorSeen",
-            "button1Seen", "button2Seen", "button3Seen", "button4Seen"};
+            "buttonBeforeSubmit",
+            "button1Seen", "button2Seen", "button3Seen", "button4Seen", "button5Seen"};
     
     private void checkEvents(String... expectedEvents) {
         Set<String> set = new HashSet<String>();

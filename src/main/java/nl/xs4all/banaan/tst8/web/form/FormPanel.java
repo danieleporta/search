@@ -56,6 +56,10 @@ public class FormPanel extends Panel {
             public void onSubmit() {
                 ValueMap map = (ValueMap) getModelObject();
                 map.put("button2Seen", "true");
+                map.put("buttonBeforeSubmit",
+                        map.get("submitSeen").equals("true")
+                            ? "false"
+                            : "true");
             }
         });
         
@@ -94,6 +98,7 @@ public class FormPanel extends Panel {
 
         form.add(new Label("submitSeen"));
         form.add(new Label("errorSeen"));
+        form.add(new Label("buttonBeforeSubmit"));
         form.add(new Label("button1Seen"));
         form.add(new Label("button2Seen"));
         form.add(new Label("button3Seen"));
