@@ -110,7 +110,7 @@ public class FormPanelTest {
     }
     
     /**
-     * without defaultFromProcessing,show absence of validation.
+     * without defaultFromProcessing, show absence of validation.
      */
     @Test
     public void testFormPanelClickButtonWithoutDefaultFormProcessingDoesNoValidation() {
@@ -129,21 +129,20 @@ public class FormPanelTest {
         checkEvents("errorSeen");
     }
     
+    private String[] allEvents = {"submitSeen", "errorSeen",
+            "button1Seen", "button2Seen", "button3Seen", "button4Seen"};
     
     private void checkEvents(String... expectedEvents) {
         Set<String> set = new HashSet<String>();
         for (String event : expectedEvents) {
             set.add(event);
         }
-        
-        String[] allEvents = {"submitSeen", "errorSeen",
-                "button1Seen", "button2Seen", "button3Seen", "button4Seen"};
+
         for (String key: allEvents) {
             tester.assertModelValue("panel:form:" + key,
                     set.contains(key) ? "true" : "false"); 
         }
     }
-    
     
     /** create FormPanel to be tested */
     private void makeTester() {
@@ -151,17 +150,12 @@ public class FormPanelTest {
             private static final long serialVersionUID = 1L;
 
             public Panel getTestPanel(String panelId) {
+                ValueMap map = new ValueMap("text=");
+                for (String key: allEvents) {
+                    map.add(key, "false");
+                }
                 return new FormPanel(panelId,
-                        new CompoundPropertyModel(
-                                new ValueMap("text=" 
-                                        + ",submitSeen=false"
-                                        + ",errorSeen=false"
-                                        + ",button1Seen=false"
-                                        + ",button2Seen=false"
-                                        + ",button3Seen=false"
-                                        + ",button4Seen=false"
-                                        + ",button5Seen=false"
-                                        )));
+                        new CompoundPropertyModel(map));
             }
         });
     }
