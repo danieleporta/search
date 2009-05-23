@@ -72,6 +72,18 @@
 
     <!-- LOGGING DEPENDENCIES - LOG4J -->
     <dependency>
+      <!--
+       ! SL4J is a logging facade used by eg wicket.
+       ! The underlying logging mechanism is selected
+       ! by depending on the slf4j to log4j mapping jar.
+       ! Note that spring uses a similar facade, commons-logging.
+       ! commons-logging will delegate to log4j if available.
+       ! If you need another destination, let commons-logging
+       ! delegate to slf4j; see http://www.slf4j.org/legacy.html
+       ! Note that javamail bypasses this logging config; this is because
+       ! the mail session is provided by the application container,
+       ! not by a jar included by the application.
+       !-->
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.4.2</version>
