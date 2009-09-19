@@ -3,12 +3,16 @@ package nl.xs4all.banaan.tst8.web.upload;
 
 import static org.junit.Assert.assertEquals;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import javax.annotation.Resource;
 
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.util.file.File;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.TestPanelSource;
 import org.apache.wicket.util.value.ValueMap;
@@ -50,5 +54,44 @@ public class UploadPanelTest {
         assertEquals("true", map.get("submitSeen"));
         assertEquals(false, map.get("haveUpload"));        
     }
-
+    
+    @Test
+    public void testThatResourceCanBeUploaded() throws URISyntaxException {
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.setFile("file", getResourceAsFile("/sample.txt"), "text/plain");
+        formTester.submit();
+        assertEquals("true", map.get("submitSeen"));
+        assertEquals(true, map.get("haveUpload"));
+        assertEquals("sample.txt", map.get("fileName"));
+        assertEquals(36L, map.get("fileSize"));
+        assertEquals("text/plain", map.get("fileType")); 
+    }
+    
+    @Test
+    public void testThatResourceTypeIsWhatTheClientSays() throws URISyntaxException {
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.setFile("file", getResourceAsFile("/sample.txt"), "image/png");
+        formTester.submit();
+        assertEquals("image/png", map.get("fileType")); 
+    }
+    
+    @Test
+    public void testThatResourceCanBeProvidedViaTester() throws URISyntaxException {
+        FormTester formTester = tester.newFormTester("panel:form");
+        // this would allow testing clients that talk to non-existing fields.
+        tester.getServletRequest().addFile("file", getResourceAsFile("/sample.txt"), "image/png");
+        formTester.submit();
+        assertEquals(true, map.get("haveUpload"));
+    }
+    
+    @Test
+    public void testThatYouCannotSimplyUseOddNamesForAttachements() throws URISyntaxException {
+        File file = getResourceAsFile("/sample.txt");
+        boolean canRename = file.renameTo(new File("/noot.txt"));
+        assertEquals(false, canRename);
+    }
+    
+    private File getResourceAsFile(String resourceName) throws URISyntaxException {
+        return new File(new URI(getClass().getResource(resourceName).toString()));
+    }
 }
