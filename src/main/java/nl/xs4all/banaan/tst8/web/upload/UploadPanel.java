@@ -29,8 +29,9 @@ public class UploadPanel extends Panel {
                 FileUpload upload = uploadField.getFileUpload();
                 map.put("haveUpload", upload != null);
                 if (upload != null) {
-                    String fileName = upload.getClientFileName();
-                    map.put("fileName", fileName);
+                    map.put("fileName", upload.getClientFileName());
+                    map.put("fileSize", upload.getSize());
+                    map.put("fileType", upload.getContentType());
                 }
             }
         };
@@ -41,6 +42,8 @@ public class UploadPanel extends Panel {
         add(new Label("submitSeen"));
         add(new Label("haveUpload"));
         add(new Label("fileName"));
+        add(new Label("fileSize"));
+        add(new Label("fileType"));
     }
 
 }
