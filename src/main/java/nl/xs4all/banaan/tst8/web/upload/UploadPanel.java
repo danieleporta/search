@@ -31,6 +31,7 @@ public class UploadPanel extends Panel {
                 if (upload != null) {
                     map.put("fileName", upload.getClientFileName());
                     map.put("fileSize", upload.getSize());
+                    // probably based on meta-info in http request
                     map.put("fileType", upload.getContentType());
                 }
             }
