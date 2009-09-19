@@ -9,6 +9,7 @@ import nl.xs4all.banaan.tst8.web.menu.MenuList;
 import nl.xs4all.banaan.tst8.web.notificator.NotificatorPage;
 import nl.xs4all.banaan.tst8.web.param.ParamPage;
 import nl.xs4all.banaan.tst8.web.property.PropertyPage;
+import nl.xs4all.banaan.tst8.web.upload.UploadPage;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -42,6 +43,7 @@ public class DemoApplication extends WebApplication
         menuList.add("param", ParamPage.class);        
         menuList.add("property", PropertyPage.class);
         menuList.add("notificator", NotificatorPage.class);
+        menuList.add("upload", UploadPage.class);
         
         // following error page is only used in production mode
         IApplicationSettings settings = getApplicationSettings();
