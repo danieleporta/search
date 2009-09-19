@@ -28,6 +28,10 @@ public class UploadPanel extends Panel {
                 map.put("submitSeen", "true");
                 FileUpload upload = uploadField.getFileUpload();
                 map.put("haveUpload", upload != null);
+                if (upload != null) {
+                    String fileName = upload.getClientFileName();
+                    map.put("fileName", fileName);
+                }
             }
         };
         add(form);
@@ -36,6 +40,7 @@ public class UploadPanel extends Panel {
         form.setMultiPart(true);
         add(new Label("submitSeen"));
         add(new Label("haveUpload"));
+        add(new Label("fileName"));
     }
 
 }
