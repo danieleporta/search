@@ -78,6 +78,14 @@ public class UploadPanelTest {
     }
     
     @Test
+    public void testThatFileContentIsAccessible() throws URISyntaxException {
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.setFile("file", getResourceAsFile("/sample.txt"), "text/plain");
+        formTester.submit();
+        assertEquals("sample text file for upload testing\n", map.get("fileContents"));
+    }
+    
+    @Test
     public void testThatResourceCanBeProvidedViaTester() throws URISyntaxException {
         FormTester formTester = tester.newFormTester("panel:form");
         // this would allow testing clients that talk to non-existing fields.

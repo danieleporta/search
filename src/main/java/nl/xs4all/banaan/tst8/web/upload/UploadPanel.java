@@ -1,5 +1,8 @@
 package nl.xs4all.banaan.tst8.web.upload;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
@@ -33,9 +36,32 @@ public class UploadPanel extends Panel {
                     map.put("fileSize", upload.getSize());
                     // probably based on meta-info in http request
                     map.put("fileType", upload.getContentType());
+                    map.put("fileContents", load(upload));
+                }
+            }
+
+            // pretend byte[] is string,
+            // good enough to test just text files in ASCII subset.
+            private String load(FileUpload upload) {
+                try {
+                    InputStream inputStream = upload.getInputStream();
+                    int count = inputStream.available();
+                    byte[] buf = new byte[count];
+                    int result = inputStream.read(buf);
+                    if (result != count) {
+                        return null;
+                    }
+                    StringBuilder sb = new StringBuilder();
+                    for (byte b : buf) {
+                       sb.appendCodePoint(b);
+                    }
+                    return sb.toString();
+                } catch (IOException e) {
+                    return null;
                 }
             }
         };
+        
         add(form);
         uploadField = new FileUploadField("file");
         form.add(uploadField);
