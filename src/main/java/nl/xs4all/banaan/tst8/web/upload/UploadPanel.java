@@ -5,6 +5,7 @@ import java.io.InputStream;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -28,6 +29,8 @@ public class UploadPanel extends Panel {
             @Override
             protected void onSubmit() {
                 ValueMap map = (ValueMap) getModelObject();
+                // to show when model is updated
+                map.put("textSeen", map.get("text"));
                 map.put("submitSeen", "true");
                 FileUpload upload = uploadField.getFileUpload();
                 map.put("haveUpload", upload != null);
@@ -80,7 +83,9 @@ public class UploadPanel extends Panel {
         add(form);
         uploadField = new FileUploadField("file");
         form.add(uploadField);
+        form.add(new TextField("text"));
         form.setMultiPart(true);
+        add(new Label("textSeen"));
         add(new Label("submitSeen"));
         add(new Label("haveUpload"));
         add(new Label("fileName"));

@@ -39,7 +39,7 @@ public class UploadPanelTest {
 
     @Before
     public void setUp() {
-        map = new ValueMap("");
+        map = new ValueMap("text=");
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
             

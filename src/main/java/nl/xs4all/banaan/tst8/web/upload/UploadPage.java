@@ -18,7 +18,7 @@ public class UploadPage extends BasePage {
     
     @Override
     public void doInit() throws ServiceException {
-        ValueMap map = new ValueMap("submitSeen=false");
+        ValueMap map = new ValueMap("text=,submitSeen=false");
         add (new UploadPanel("upload", new CompoundPropertyModel(map)));
     }
 }
