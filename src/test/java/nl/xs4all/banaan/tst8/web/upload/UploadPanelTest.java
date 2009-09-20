@@ -1,12 +1,15 @@
 package nl.xs4all.banaan.tst8.web.upload;
 
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.annotation.Resource;
+import javax.security.auth.login.FailedLoginException;
 
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 
@@ -91,7 +94,22 @@ public class UploadPanelTest {
         assertEquals(false, canRename);
     }
     
+    @Test
+    public void testThatResourcesThatDontExistCauseAnException() throws URISyntaxException {
+        try {
+            getResourceAsFile("/i-dont-exist.txt");
+            fail("missing resource went undetected");
+        }
+        catch (IllegalArgumentException e){
+            // ok
+        }
+    }
+    
     private File getResourceAsFile(String resourceName) throws URISyntaxException {
-        return new File(new URI(getClass().getResource(resourceName).toString()));
+        URL resource = getClass().getResource(resourceName);
+        if (resource == null) {
+            throw new IllegalArgumentException("No such resource: " + resourceName);
+        }
+        return new File(new URI(resource.toString()));
     }
 }
