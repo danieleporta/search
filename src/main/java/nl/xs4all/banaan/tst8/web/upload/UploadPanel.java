@@ -32,10 +32,19 @@ public class UploadPanel extends Panel {
                 FileUpload upload = uploadField.getFileUpload();
                 map.put("haveUpload", upload != null);
                 if (upload != null) {
+                    // RFC 2388 suggests filename encoding using RFC-2231;
+                    // also seen as unescaped UTF-8.
                     map.put("fileName", upload.getClientFileName());
                     map.put("fileSize", upload.getSize());
-                    // probably based on meta-info in http request
+                    // as sent by client, see RFC2388 4.5;
+                    // text/plain also seen without charset= or encoding parameter.
                     map.put("fileType", upload.getContentType());
+                    
+                    // content may be interpreted by browser as html
+                    // even if filename suffix or mimetype disagree;
+                    // this gives rise to CSS attacks.
+                    // http://www.adambarth.com/papers/2009/barth-caballero-song.pdf
+                    // http://tools.ietf.org/html/draft-abarth-mime-sniff-01
                     map.put("fileContents", load(upload));
                 }
             }
@@ -53,7 +62,13 @@ public class UploadPanel extends Panel {
                     }
                     StringBuilder sb = new StringBuilder();
                     for (byte b : buf) {
+                        try {
                        sb.appendCodePoint(b);
+                        }
+                        catch (IllegalArgumentException e) {
+                            // not a single-byte character
+                            return null;
+                        }
                     }
                     return sb.toString();
                 } catch (IOException e) {
