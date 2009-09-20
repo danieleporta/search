@@ -71,6 +71,7 @@ public class UploadPanel extends Panel {
         add(new Label("fileName"));
         add(new Label("fileSize"));
         add(new Label("fileType"));
+        add(new Label("fileContents"));
     }
 
 }
