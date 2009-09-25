@@ -8,6 +8,7 @@ import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 import nl.xs4all.banaan.tst8.web.letter.LetterPage;
 import nl.xs4all.banaan.tst8.web.notificator.NotificatorPage;
+import nl.xs4all.banaan.tst8.web.onchange.OnchangePage;
 import nl.xs4all.banaan.tst8.web.param.ParamPage;
 import nl.xs4all.banaan.tst8.web.property.PropertyPage;
 
@@ -55,13 +56,20 @@ public class BasePageTest extends SpringJUnitWicketTest {
     public void testClickLink5() {
         tester.startPage(HomePage.class);
         tester.clickLink("menu:bindings:4:value");
-        tester.checkBasePage(ParamPage.class);
+        tester.checkBasePage(OnchangePage.class);
     }
     
     @Test
     public void testClickLink6() {
         tester.startPage(HomePage.class);
         tester.clickLink("menu:bindings:5:value");
+        tester.checkBasePage(ParamPage.class);
+    }
+    
+    @Test
+    public void testClickLink7() {
+        tester.startPage(HomePage.class);
+        tester.clickLink("menu:bindings:6:value");
         tester.checkBasePage(PropertyPage.class);
     }
 
