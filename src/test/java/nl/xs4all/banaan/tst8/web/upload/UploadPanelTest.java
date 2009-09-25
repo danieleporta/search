@@ -1,6 +1,5 @@
 package nl.xs4all.banaan.tst8.web.upload;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -8,10 +7,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import javax.annotation.Resource;
-
-import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
-import nl.xs4all.banaan.tst8.web.DemoApplication;
+import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -21,29 +17,20 @@ import org.apache.wicket.util.tester.TestPanelSource;
 import org.apache.wicket.util.value.ValueMap;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 
 /**
  * Experiment with file upload on a form.
  * @author konijn
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"/testContext.xml"})
-public class UploadPanelTest {
-
-    @Resource
-    private DemoApplication demoApplication;
-    
-    private BasePageTester tester;
+public class UploadPanelTest extends SpringJUnitWicketTest {
     private ValueMap map;                   // model for the form
 
-    @Before
+    @Before @Override
     public void setUp() {
+        super.setUp();
         map = new ValueMap("text=x");
-        tester = new BasePageTester(demoApplication);
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
             
