@@ -61,9 +61,5 @@
   <bean id="demoApplication" class="nl.xs4all.banaan.tst8.web.DemoApplication">
     <property name="services" ref="services" />
   </bean>
-
-  <bean id="tester" class="nl.xs4all.banaan.tst8.fixtures.BasePageTester">
-    <constructor-arg ref="demoApplication" />
-  </bean>
-  
+ 
 </beans>

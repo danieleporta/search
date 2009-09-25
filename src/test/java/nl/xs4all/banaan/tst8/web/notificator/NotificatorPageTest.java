@@ -19,6 +19,7 @@ import nl.xs4all.banaan.tst8.service.Services;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.wicket.util.tester.FormTester;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.DirtiesContext;
@@ -29,13 +30,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations={"/testContext.xml"})
 public class NotificatorPageTest {
     @Resource
-    private BasePageTester tester;
-    
-    @Resource
     private DemoApplication demoApplication;
 
     @Resource
     private BuildInfo buildInfo;
+    
+    private BasePageTester tester;
+
+    @Before
+    public void setUp() {
+        tester = new BasePageTester(demoApplication);
+    }
 
     @DirtiesContext
     @Test

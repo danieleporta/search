@@ -6,12 +6,14 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.TestPanelSource;
 import org.apache.wicket.util.value.ValueMap;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,9 +30,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/testContext.xml"})
 public class FormPanelTest {
-    
     @Resource
+    private DemoApplication demoApplication;
+    
     private BasePageTester tester;
+
+    @Before
+    public void setUp() {
+        tester = new BasePageTester(demoApplication);
+    }
     
     /** show a form, don't push any buttons */
     @Test
