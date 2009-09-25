@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.wicket.markup.html.panel.Panel;
@@ -27,19 +28,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author konijn
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"/testContext.xml"})
-public class FormPanelTest {
-    @Resource
-    private DemoApplication demoApplication;
-    
-    private BasePageTester tester;
 
-    @Before
-    public void setUp() {
-        tester = new BasePageTester(demoApplication);
-    }
-    
+public class FormPanelTest extends SpringJUnitWicketTest {
+
     /** show a form, don't push any buttons */
     @Test
     public void testPanelShowing() {

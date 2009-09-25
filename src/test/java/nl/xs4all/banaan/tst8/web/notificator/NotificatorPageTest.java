@@ -1,6 +1,5 @@
 package nl.xs4all.banaan.tst8.web.notificator;
 
-
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BODY1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NOTIFICATION1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.SUBJECT1;
@@ -12,36 +11,20 @@ import static org.easymock.EasyMock.verify;
 
 import javax.annotation.Resource;
 
-import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
 import nl.xs4all.banaan.tst8.service.BuildInfo;
 import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.Services;
-import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.wicket.util.tester.FormTester;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"/testContext.xml"})
-public class NotificatorPageTest {
-    @Resource
-    private DemoApplication demoApplication;
+public class NotificatorPageTest extends SpringJUnitWicketTest {
 
     @Resource
     private BuildInfo buildInfo;
     
-    private BasePageTester tester;
-
-    @Before
-    public void setUp() {
-        tester = new BasePageTester(demoApplication);
-    }
-
     @DirtiesContext
     @Test
     public void testRenderNotificatorPage() {
