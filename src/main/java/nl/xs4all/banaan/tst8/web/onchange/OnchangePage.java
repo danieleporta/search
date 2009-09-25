@@ -19,7 +19,7 @@ public class OnchangePage extends BasePage {
     
     @Override
     public void doInit() throws ServiceException {
-        ValueMap map = new ValueMap("text=,submitSeen=false");
+        ValueMap map = new ValueMap("zipcode=,street=,submitSeen=false");
         add (new OnchangePanel("onchange", new CompoundPropertyModel(map)));
     }
 }
