@@ -62,10 +62,28 @@ public class OnchangePanel extends Panel {
             }
         });
         form.add (field);
+        
+        // second field with onchange behaviour, to testinteraction with required.
+        TextField zip2 = new TextField("zipcode2");
+        zip2.setRequired(true);
+        zip2.add(new AjaxFormComponentUpdatingBehavior("onchange"){
+            private static final long serialVersionUID = 3982553539546743877L;
+
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                ValueMap map = (ValueMap) getModelObject();
+                map.put("changeSeen", "true");
+                map.put("street", "prefill2");
+                target.addComponent(form);
+            }
+        });
+        form.add (zip2);
+        
         form.add (new TextField("street"));
         form.add((new Label("submitSeen")));
         form.add((new Label("changeSeen")));
         form.add((new Label("errorSeen")));
         form.add((new Label("streetSeen", new PropertyModel(model, "street"))));
+        form.add((new Label("zip2Seen", new PropertyModel(model, "zipcode2"))));
     }
 }

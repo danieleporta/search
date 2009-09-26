@@ -18,7 +18,7 @@ public class OnchangePanelTest extends SpringJUnitWicketTest {
     @Before @Override
     public void setUp() {
         super.setUp();
-        map = new ValueMap();
+        map = new ValueMap("zipcode2=junk");
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
             
@@ -48,5 +48,18 @@ public class OnchangePanelTest extends SpringJUnitWicketTest {
         assertEquals("aap", map.get("zipcode"));
         assertEquals("prefill", map.get("street"));
     }
+    
+    //
+    // To test an AJAX onchange event, fill values using formtester,
+    // then dont submit, but execute an ajax event.
+    //
+    @Test
+    public void testOnchangeWontHappenIfRequiredNotMet() {
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.setValue("zipcode2", "");
+        tester.executeAjaxEvent("panel:form:zipcode2", "onchange");
+        assertEquals(null, map.get("changeSeen"));
+        assertEquals(null, map.get("street"));
+    }  
 
 }
