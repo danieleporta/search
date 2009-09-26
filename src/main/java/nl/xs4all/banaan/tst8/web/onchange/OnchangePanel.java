@@ -108,6 +108,7 @@ public class OnchangePanel extends Panel {
                 // eg validation error or required-but-missing.
                 ValueMap map = (ValueMap) getModelObject();
                 map.put("errorSeen", "inZip3");
+                map.put("street", "that was an error");
                 target.addComponent(form);
             }
         });
