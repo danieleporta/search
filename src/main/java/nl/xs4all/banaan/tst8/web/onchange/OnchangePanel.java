@@ -76,6 +76,16 @@ public class OnchangePanel extends Panel {
                 map.put("street", "prefill2");
                 target.addComponent(form);
             }
+
+            @Override
+            protected void onError(AjaxRequestTarget target, RuntimeException e) {
+                super.onError(target, e);
+                // get here if no exception in onUpdate(),
+                // eg validation error or required-but-missing.
+                ValueMap map = (ValueMap) getModelObject();
+                map.put("errorSeen", "inZip2");
+                target.addComponent(form);
+            }
         });
         form.add (zip2);
         

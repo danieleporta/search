@@ -60,6 +60,7 @@ public class OnchangePanelTest extends SpringJUnitWicketTest {
         tester.executeAjaxEvent("panel:form:zipcode2", "onchange");
         assertEquals(null, map.get("changeSeen"));
         assertEquals(null, map.get("street"));
+        assertEquals("inZip2", map.get("errorSeen"));        
     }  
 
     @Test
@@ -69,5 +70,6 @@ public class OnchangePanelTest extends SpringJUnitWicketTest {
         tester.executeAjaxEvent("panel:form:zipcode2", "onchange");
         assertEquals("true", map.get("changeSeen"));
         assertEquals("prefill2", map.get("street"));
+        assertEquals(null, map.get("errorSeen"));
     } 
 }
