@@ -62,4 +62,12 @@ public class OnchangePanelTest extends SpringJUnitWicketTest {
         assertEquals(null, map.get("street"));
     }  
 
+    @Test
+    public void testOnchangeWillHappenIfRequiredIsMet() {
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.setValue("zipcode2", "yes");
+        tester.executeAjaxEvent("panel:form:zipcode2", "onchange");
+        assertEquals("true", map.get("changeSeen"));
+        assertEquals("prefill2", map.get("street"));
+    } 
 }
