@@ -58,7 +58,11 @@
     <property name="buildInfo" ref="buildInfo" />
   </bean>
   
-  <bean id="demoApplication" class="nl.xs4all.banaan.tst8.web.DemoApplication">
+  <!-- make this a prototype, otherwise junit tests will run init()
+       twice on the same webapp. -->
+  <bean id="demoApplication" 
+        class="nl.xs4all.banaan.tst8.web.DemoApplication"
+        scope="prototype">
     <property name="services" ref="services" />
   </bean>
  
