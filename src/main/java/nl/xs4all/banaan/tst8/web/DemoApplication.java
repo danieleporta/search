@@ -1,6 +1,7 @@
 package nl.xs4all.banaan.tst8.web;
 
 import nl.xs4all.banaan.tst8.service.Services;
+import nl.xs4all.banaan.tst8.web.base.BasePage;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
@@ -25,7 +26,7 @@ import org.apache.wicket.settings.IApplicationSettings;
 public class DemoApplication extends WebApplication
 {   
     private MenuList menuList;
-    
+
     /**
      * services injected via spring
      */
@@ -38,14 +39,14 @@ public class DemoApplication extends WebApplication
     @Override
     protected void init() {
         menuList = new MenuList();
-        menuList.add("home", HomePage.class);
-        menuList.add("jndi", JndiPage.class);
-        menuList.add("letter", LetterPage.class);
-        menuList.add("param", ParamPage.class);        
-        menuList.add("property", PropertyPage.class);
-        menuList.add("notificator", NotificatorPage.class);
-        menuList.add("upload", UploadPage.class);
-        menuList.add("onchange", OnchangePage.class);
+        addToMenu(HomePage.class, "home");
+        addToMenu(JndiPage.class, "jndi");
+        addToMenu(LetterPage.class, "letter");
+        addToMenu(ParamPage.class, "param");
+        addToMenu(PropertyPage.class, "property");
+        addToMenu(NotificatorPage.class, "notificator");
+        addToMenu(UploadPage.class, "upload");
+        addToMenu(OnchangePage.class, "onchange");
         
         // following error page is only used in production mode
         IApplicationSettings settings = getApplicationSettings();
@@ -56,6 +57,11 @@ public class DemoApplication extends WebApplication
         // getExceptionSettings().setUnexpectedExceptionDisplay(
         //        IExceptionSettings.SHOW_INTERNAL_ERROR_PAGE);
 
+    }
+
+    private void addToMenu(Class<? extends BasePage> target, String name) {
+        menuList.add(name, target);
+        mountBookmarkablePage(name, target);
     }
 	
     public MenuList getMenuList() {
