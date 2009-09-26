@@ -18,7 +18,7 @@ public class OnchangePanelTest extends SpringJUnitWicketTest {
     @Before @Override
     public void setUp() {
         super.setUp();
-        map = new ValueMap("zipcode2=junk");
+        map = new ValueMap("zipcode2=junk,zipcode3=123");
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
             
@@ -70,6 +70,26 @@ public class OnchangePanelTest extends SpringJUnitWicketTest {
         tester.executeAjaxEvent("panel:form:zipcode2", "onchange");
         assertEquals("true", map.get("changeSeen"));
         assertEquals("prefill2", map.get("street"));
+        assertEquals(null, map.get("errorSeen"));
+    } 
+    
+    @Test
+    public void testOnchangeWontHappenIfValidationFails() {
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.setValue("zipcode3", "bad");
+        tester.executeAjaxEvent("panel:form:zipcode3", "onchange");
+        assertEquals(null, map.get("changeSeen"));
+        assertEquals(null, map.get("street"));
+        assertEquals("inZip3", map.get("errorSeen"));
+    }
+    
+    @Test
+    public void testOnchangeWillHappenIfValidationPasses() {
+        FormTester formTester = tester.newFormTester("panel:form");
+        formTester.setValue("zipcode3", "999");
+        tester.executeAjaxEvent("panel:form:zipcode3", "onchange");
+        assertEquals("true", map.get("changeSeen"));
+        assertEquals("prefill3", map.get("street"));
         assertEquals(null, map.get("errorSeen"));
     } 
 }
