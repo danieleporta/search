@@ -17,6 +17,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
  *
  */
 public class PropertyPanel extends Panel {
+
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(PropertyPanel.class);
     
@@ -24,19 +25,7 @@ public class PropertyPanel extends Panel {
         super(id);
         getSession().info("building  property panel");
         
-        IModel model = new LoadableDetachableModel () {
-            private static final long serialVersionUID = 1L;
-            @Override
-            public Object load() {
-                try {
-                    return DemoApplication.get().getServices().
-                        getPropertyReader().read(location).getList();
-                } catch (ServiceException se) {
-                    logger.error("Caught Service Exception", se);
-                    throw new RuntimeException(se);
-                }
-            }
-        };
+        IModel model = new PropertyModel(location);
         
         add (new PropertyListView ("props", model) {
             private static final long serialVersionUID = 1L;
@@ -47,5 +36,26 @@ public class PropertyPanel extends Panel {
                 item.add(new Label("value"));
             }
         });
+    }
+    
+    private static final class PropertyModel extends LoadableDetachableModel {
+        private static final long serialVersionUID = 1L;
+
+        private final String location;
+        
+        private PropertyModel(String location) {
+            this.location = location;
+        }
+        
+        @Override
+        public Object load() {
+            try {
+                return DemoApplication.get().getServices().
+                getPropertyReader().read(location).getList();
+            } catch (ServiceException se) {
+                logger.error("Caught Service Exception", se);
+                throw new RuntimeException(se);
+            }
+        }
     }
 }
