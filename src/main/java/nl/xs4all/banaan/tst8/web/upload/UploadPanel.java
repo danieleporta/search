@@ -23,7 +23,7 @@ public class UploadPanel extends Panel {
     private FileUploadField uploadField;
 
     public UploadPanel(String id) {
-        this(id, new CompoundPropertyModel(new ValueMap("text=,submitSeen=false")));
+        this(id, new CompoundPropertyModel(makeModel()));
     }
     
     public UploadPanel(String id, IModel model) {
@@ -97,6 +97,11 @@ public class UploadPanel extends Panel {
         add(new Label("fileSize"));
         add(new Label("fileType"));
         add(new Label("fileContents"));
+    }
+
+    public static ValueMap makeModel() {
+        ValueMap map = new ValueMap("text=,submitSeen=false");
+        return map;
     }
 
 }
