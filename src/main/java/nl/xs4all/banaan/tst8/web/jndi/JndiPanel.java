@@ -21,6 +21,10 @@ import org.apache.wicket.model.LoadableDetachableModel;
 public class JndiPanel extends Panel {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(JndiPanel.class);
+    
+    public JndiPanel(String id) throws ServiceException {
+        this(id, "");
+    }
 
     public JndiPanel(String id, final String location) throws ServiceException {
         super(id);
