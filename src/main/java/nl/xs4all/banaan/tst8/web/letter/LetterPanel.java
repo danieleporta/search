@@ -1,7 +1,5 @@
 package nl.xs4all.banaan.tst8.web.letter;
 
-
-
 import nl.xs4all.banaan.tst8.domain.Address;
 import nl.xs4all.banaan.tst8.domain.Letter;
 import nl.xs4all.banaan.tst8.web.address.AddressPanel;
@@ -13,6 +11,12 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
+/**
+ * Example panel intended to show how a part of the model
+ * can be rendered by a sub panel.
+ * @author konijn
+ *
+ */
 public class LetterPanel extends Panel {
 
     private static final long serialVersionUID = 8379326263858269585L;
