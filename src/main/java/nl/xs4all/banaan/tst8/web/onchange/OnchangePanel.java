@@ -6,6 +6,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.value.ValueMap;
@@ -20,6 +21,16 @@ import org.apache.wicket.validation.validator.PatternValidator;
  */
 public class OnchangePanel extends Panel {
     private static final long serialVersionUID = 4815145731202521073L;
+
+    public OnchangePanel(String id) {
+        this(id, new CompoundPropertyModel(makeModel()));
+    }
+
+    /** default model for this panel */
+    public static ValueMap makeModel() {
+        return new ValueMap("zipcode=,zipcode2=junk,zipcode3=123,street=,submitSeen=false");
+    }
+    
     public OnchangePanel(String id, IModel model) {
         super(id, model);
         getSession().info("building onchange panel");
@@ -41,7 +52,6 @@ public class OnchangePanel extends Panel {
         };
         
         add(form);
-        
         
         // onchange is called after leaving the field (with tab, return or click elsewhere).
         // After updating target, focus is lost.  An alternative is target.addFocus(),
