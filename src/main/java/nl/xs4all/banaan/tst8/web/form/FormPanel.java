@@ -8,12 +8,38 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.value.ValueMap;
 
 
 public class FormPanel extends Panel {
     private static final long serialVersionUID = -190918054405562036L;
+    
+    /**
+     * these may be triggered by some button
+     */
+    public static String[] allEvents = { "submitSeen", "errorSeen",
+            "buttonBeforeSubmit", "button1Seen", "button2Seen", "button3Seen",
+            "button4Seen", "button5Seen" };
+
+
+    /**
+     * Default content for the map that serves as model for the panel.
+     * @return
+     */
+    private static ValueMap makeMap() {
+        ValueMap map = new ValueMap("text=");
+        for (String key: FormPanel.allEvents) {
+            map.add(key, "false");
+        }
+        return map;
+    }
+
+    
+    public FormPanel(String id) {
+        this (id, new CompoundPropertyModel(makeMap()));
+    }
     
     public FormPanel(String id, IModel model) {
         super(id, model);

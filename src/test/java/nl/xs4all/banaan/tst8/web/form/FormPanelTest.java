@@ -6,10 +6,8 @@ import java.util.Set;
 import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
 
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.TestPanelSource;
-import org.apache.wicket.util.value.ValueMap;
 import org.junit.Test;
 
 
@@ -121,19 +119,15 @@ public class FormPanelTest extends SpringJUnitWicketTest {
         checkEvents("errorSeen");
     }
     
-    private String[] allEvents = {"submitSeen", "errorSeen",
-            "buttonBeforeSubmit",
-            "button1Seen", "button2Seen", "button3Seen", "button4Seen", "button5Seen"};
-    
-    private void checkEvents(String... expectedEvents) {
-        Set<String> set = new HashSet<String>();
-        for (String event : expectedEvents) {
-            set.add(event);
+    private void checkEvents(String... expectedEventList) {
+        Set<String> expectedSet = new HashSet<String>();
+        for (String event : expectedEventList) {
+            expectedSet.add(event);
         }
 
-        for (String key: allEvents) {
+        for (String key: FormPanel.allEvents) {
             tester.assertModelValue("panel:form:" + key,
-                    set.contains(key) ? "true" : "false"); 
+                    expectedSet.contains(key) ? "true" : "false"); 
         }
     }
     
@@ -143,12 +137,7 @@ public class FormPanelTest extends SpringJUnitWicketTest {
             private static final long serialVersionUID = 1L;
 
             public Panel getTestPanel(String panelId) {
-                ValueMap map = new ValueMap("text=");
-                for (String key: allEvents) {
-                    map.add(key, "false");
-                }
-                return new FormPanel(panelId,
-                        new CompoundPropertyModel(map));
+                return new FormPanel(panelId);
             }
         });
     }
