@@ -10,7 +10,7 @@ import nl.xs4all.banaan.tst8.web.base.BasePage;
  */
 public class NotificatorPage extends BasePage {
    
-    private Notification notification;
+
 
     public NotificatorPage() {
         init();
@@ -18,7 +18,6 @@ public class NotificatorPage extends BasePage {
     
     @Override
     public void doInit() {
-        notification = new Notification();
-        add(new NotificationPanel("notification", notification));
+        add(new NotificationPanel("notification"));
     }
 }

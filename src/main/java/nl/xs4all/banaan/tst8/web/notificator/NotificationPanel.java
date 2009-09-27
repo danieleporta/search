@@ -13,9 +13,12 @@ import org.apache.wicket.validation.validator.EmailAddressValidator;
 
 public class NotificationPanel extends Panel {
     private static final long serialVersionUID = 1L;
+    
+    private Notification notification;
 
-    public NotificationPanel(String id, Notification notification) {
+    public NotificationPanel(String id) {
         super(id);
+        notification = new Notification();
         
         Form form = new Form("form", new CompoundPropertyModel(notification)) {
             private static final long serialVersionUID = 1L;
