@@ -1,7 +1,7 @@
 package nl.xs4all.banaan.tst8.web;
 
 import nl.xs4all.banaan.tst8.service.Services;
-import nl.xs4all.banaan.tst8.web.base.BasePage;
+import nl.xs4all.banaan.tst8.web.base.MenuPage;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
@@ -11,9 +11,9 @@ import nl.xs4all.banaan.tst8.web.notificator.NotificatorPage;
 import nl.xs4all.banaan.tst8.web.onchange.OnchangePage;
 import nl.xs4all.banaan.tst8.web.param.ParamPage;
 import nl.xs4all.banaan.tst8.web.property.PropertyPage;
-import nl.xs4all.banaan.tst8.web.upload.UploadPage;
 
 import org.apache.wicket.Application;
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.settings.IApplicationSettings;
 
@@ -39,13 +39,12 @@ public class DemoApplication extends WebApplication
     @Override
     protected void init() {
         menuList = new MenuList();
-        addToMenu(HomePage.class, "home");
         addToMenu(JndiPage.class, "jndi");
         addToMenu(LetterPage.class, "letter");
         addToMenu(ParamPage.class, "param");
         addToMenu(PropertyPage.class, "property");
         addToMenu(NotificatorPage.class, "notificator");
-        addToMenu(UploadPage.class, "upload");
+        addToMenu(MenuPage.class, "upload");
         addToMenu(OnchangePage.class, "onchange");
         
         // following error page is only used in production mode
@@ -59,7 +58,7 @@ public class DemoApplication extends WebApplication
 
     }
 
-    private void addToMenu(Class<? extends BasePage> target, String name) {
+    private void addToMenu(Class<? extends WebPage> target, String name) {
         menuList.add(name, target);
         mountBookmarkablePage(name, target);
     }

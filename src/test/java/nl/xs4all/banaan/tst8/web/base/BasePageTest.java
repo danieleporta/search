@@ -24,52 +24,46 @@ import org.junit.Test;
  */
 public class BasePageTest extends SpringJUnitWicketTest {
 
+    
+    @Test
+    public void testClickLink0() {
+        tester.startPage(HomePage.class);
+        tester.clickLink("menu:bindings:0:value");
+        tester.checkBasePage(JndiPage.class);
+    }
+    
     @Test
     public void testClickLink1() {
         tester.startPage(HomePage.class);
-        tester.clickLink("menu:bindings:0:value");
-        tester.checkBasePage(HomePage.class);
+        tester.clickLink("menu:bindings:1:value");
+        tester.checkBasePage(LetterPage.class);
     }
     
     @Test
     public void testClickLink2() {
         tester.startPage(HomePage.class);
-        tester.clickLink("menu:bindings:1:value");
-        tester.checkBasePage(JndiPage.class);
+        tester.clickLink("menu:bindings:2:value");
+        tester.checkBasePage(NotificatorPage.class);
     }
-    
+
     @Test
     public void testClickLink3() {
         tester.startPage(HomePage.class);
-        tester.clickLink("menu:bindings:2:value");
-        tester.checkBasePage(LetterPage.class);
+        tester.clickLink("menu:bindings:3:value");
+        tester.checkBasePage(OnchangePage.class);
     }
     
     @Test
     public void testClickLink4() {
         tester.startPage(HomePage.class);
-        tester.clickLink("menu:bindings:3:value");
-        tester.checkBasePage(NotificatorPage.class);
-    }
-
-    @Test
-    public void testClickLink5() {
-        tester.startPage(HomePage.class);
         tester.clickLink("menu:bindings:4:value");
-        tester.checkBasePage(OnchangePage.class);
-    }
-    
-    @Test
-    public void testClickLink6() {
-        tester.startPage(HomePage.class);
-        tester.clickLink("menu:bindings:5:value");
         tester.checkBasePage(ParamPage.class);
     }
     
     @Test
-    public void testClickLink7() {
+    public void testClickLink5() {
         tester.startPage(HomePage.class);
-        tester.clickLink("menu:bindings:6:value");
+        tester.clickLink("menu:bindings:5:value");
         tester.checkBasePage(PropertyPage.class);
     }
 

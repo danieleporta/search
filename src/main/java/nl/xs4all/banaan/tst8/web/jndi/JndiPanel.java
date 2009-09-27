@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8.web.jndi;
+ package nl.xs4all.banaan.tst8.web.jndi;
 
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.util.GenericBinding;
