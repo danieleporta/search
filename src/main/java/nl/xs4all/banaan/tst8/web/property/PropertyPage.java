@@ -4,10 +4,6 @@ import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.markup.html.form.Button;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.model.Model;
 
 
 /**
@@ -19,8 +15,6 @@ import org.apache.wicket.model.Model;
 
 public class PropertyPage extends BasePage {
     private String location;
-    private TextField field;
-    private Form form;
     
     public void setLocation(String location) {
         this.location = location;
@@ -43,21 +37,6 @@ public class PropertyPage extends BasePage {
 
     @Override
     public void doInit() throws ServiceException {
-        form = new Form("form");
-        field = new TextField("field", 
-                new Model(location));
-        form.add(field);
-        form.add(new Button("confirm") {
-            private static final long serialVersionUID = 7054234909853489009L;
-
-            @Override
-            public void onSubmit() {
-                String result = field.getModelObjectAsString();
-                setResponsePage(PropertyPage.class, 
-                        new PageParameters("location="+result));
-            }
-        });
-        add(form);
         add(new PropertyPanel("properties", location));
     }
 }

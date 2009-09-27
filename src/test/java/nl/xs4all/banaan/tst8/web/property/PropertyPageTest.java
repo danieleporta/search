@@ -75,7 +75,7 @@ public class PropertyPageTest extends SpringJUnitWicketTest {
     @Test
     public void testFormContents () {
         tester.startPage(PropertyPage.class);
-        FormTester formTester = tester.newFormTester("form");
+        FormTester formTester = tester.newFormTester("properties:form");
         assertEquals("", formTester.getTextComponentValue("field"));
         formTester.setValue("field", "/build.properties");
         formTester.submit("confirm");
