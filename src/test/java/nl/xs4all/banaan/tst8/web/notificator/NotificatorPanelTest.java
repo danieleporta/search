@@ -18,7 +18,7 @@ import org.apache.wicket.util.tester.TestPanelSource;
 import org.junit.Before;
 import org.junit.Test;
 
-public class NotificatorPageTest extends SpringJUnitWicketTest {
+public class NotificatorPanelTest extends SpringJUnitWicketTest {
    
     /** services will be filled with expectations for every test */
     private Services services;
