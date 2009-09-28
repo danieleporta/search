@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GenericBindingTest {
+public class AssocTest {
 
     private Assoc<Integer> binding;
 
