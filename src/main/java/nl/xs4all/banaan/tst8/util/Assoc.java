@@ -12,13 +12,13 @@ import java.util.Comparator;
  * The type o the value to be stored in the bindings;
  * key always string.
  */
-public class GenericBinding<T> {
+public class Assoc<T> {
     private static final long serialVersionUID = 1L;
 
     private String key;
     private T value;
 
-    public GenericBinding(String key, T value) {
+    public Assoc(String key, T value) {
         this.key = key;
         this.value = value;
     }
@@ -28,9 +28,9 @@ public class GenericBinding<T> {
      * @param <T>
      * @return
      */
-    public static <T> Comparator<GenericBinding<T>> comparator() {
-        return new Comparator<GenericBinding<T>> () {
-            public int compare(GenericBinding<T> o1, GenericBinding<T> o2) {
+    public static <T> Comparator<Assoc<T>> comparator() {
+        return new Comparator<Assoc<T>> () {
+            public int compare(Assoc<T> o1, Assoc<T> o2) {
                 return o1.getKey().compareTo(o2.getKey());
             }
         };

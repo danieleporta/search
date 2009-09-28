@@ -9,11 +9,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class GenericBindingListTest {
-    private GenericBindingList<String> bl;
+    private AssocList<String> bl;
 
     @Before
     public void setUp() throws Exception {
-        bl = new GenericBindingList<String>();
+        bl = new AssocList<String>();
         bl.add("aap", "aapval");
         bl.add("noot", "nootval");
         bl.add("mies", "miesval");
@@ -27,7 +27,7 @@ public class GenericBindingListTest {
 
     @Test
     public void testGetList() {
-        List<GenericBinding<String>> l = bl.getList();
+        List<Assoc<String>> l = bl.getList();
         assertEquals("aap", l.get(0).getKey());
         assertEquals("mies", l.get(1).getKey());
         assertEquals("noot", l.get(3).getKey());
@@ -35,13 +35,13 @@ public class GenericBindingListTest {
 
     @Test
     public void testFilterListFound() {
-        List<GenericBinding<String>> list = bl.filter("mies").getList();
+        List<Assoc<String>> list = bl.filter("mies").getList();
         assertEquals(3, list.size());
     }
 
     @Test
     public void testFilterListNotFound() {
-        List<GenericBinding<String>> list = bl.filter("schapen").getList();
+        List<Assoc<String>> list = bl.filter("schapen").getList();
         assertEquals(0, list.size());
     }    
 }

@@ -2,7 +2,7 @@ package nl.xs4all.banaan.tst8.util;
 
 import static org.junit.Assert.*;
 
-import nl.xs4all.banaan.tst8.util.GenericBinding;
+import nl.xs4all.banaan.tst8.util.Assoc;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,11 +10,11 @@ import org.junit.Test;
 
 public class GenericBindingTest {
 
-    private GenericBinding<Integer> binding;
+    private Assoc<Integer> binding;
 
     @Before
     public void setUp() throws Exception {
-        binding = new GenericBinding<Integer>("aap", 17);
+        binding = new Assoc<Integer>("aap", 17);
     }
 
     @After

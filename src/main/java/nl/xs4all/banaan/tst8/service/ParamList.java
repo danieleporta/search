@@ -4,7 +4,7 @@ import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
 
-import nl.xs4all.banaan.tst8.util.GenericBindingList;
+import nl.xs4all.banaan.tst8.util.AssocList;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 /**
@@ -14,7 +14,7 @@ import nl.xs4all.banaan.tst8.web.DemoApplication;
  * @author konijn
  *
  */
-public class ParamList extends GenericBindingList<String> {
+public class ParamList extends AssocList<String> {
 
     public ParamList () {
         super();

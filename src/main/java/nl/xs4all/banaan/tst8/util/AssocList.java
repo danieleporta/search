@@ -12,21 +12,21 @@ import java.util.List;
  * @param <T>
  * The type of the value in individual bindings.
  */
-public class GenericBindingList<T> {
+public class AssocList<T> {
     private static final long serialVersionUID = 1L;
 
-    private List<GenericBinding<T>> list;
+    private List<Assoc<T>> list;
     
-    public GenericBindingList () {
-        list = new LinkedList<GenericBinding<T>>();
+    public AssocList () {
+        list = new LinkedList<Assoc<T>>();
     }
     
     public void add (String key, T value) {
-        list.add(new GenericBinding<T>(key, value));
+        list.add(new Assoc<T>(key, value));
     }
     
-    public List<GenericBinding<T>> getList() {
-        Collections.sort(list, GenericBinding.<T>comparator());
+    public List<Assoc<T>> getList() {
+        Collections.sort(list, Assoc.<T>comparator());
         return list;
     }
 
@@ -34,9 +34,9 @@ public class GenericBindingList<T> {
      * @param substring
      * @return list of bindings where substring occurs in key
      */
-    public GenericBindingList<T> filter(String substring) {
-        GenericBindingList<T> result = new GenericBindingList<T>();
-        for (GenericBinding<T> binding : list) {
+    public AssocList<T> filter(String substring) {
+        AssocList<T> result = new AssocList<T>();
+        for (Assoc<T> binding : list) {
             String key = binding.getKey();
             if (key.contains(substring)) {
                 result.add(key, binding.getValue());

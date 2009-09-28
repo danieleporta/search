@@ -1,7 +1,7 @@
  package nl.xs4all.banaan.tst8.web.jndi;
 
 import nl.xs4all.banaan.tst8.service.ServiceException;
-import nl.xs4all.banaan.tst8.util.GenericBinding;
+import nl.xs4all.banaan.tst8.util.Assoc;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.log4j.Logger;
@@ -51,8 +51,8 @@ public class JndiPanel extends Panel {
 
             @Override
             public void populateItem (ListItem item) {
-                GenericBinding<Object> binding = 
-                    (GenericBinding<Object>) item.getModelObject();
+                Assoc<Object> binding = 
+                    (Assoc<Object>) item.getModelObject();
                 String path;
                 if (location.equals("")) {
                     path = binding.getKey();

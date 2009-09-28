@@ -1,6 +1,6 @@
 package nl.xs4all.banaan.tst8.web.menu;
 
-import nl.xs4all.banaan.tst8.util.GenericBindingList;
+import nl.xs4all.banaan.tst8.util.AssocList;
 
 import org.apache.wicket.markup.html.WebPage;
 
@@ -9,5 +9,5 @@ import org.apache.wicket.markup.html.WebPage;
  * @author konijn
  *
  */
-public class MenuList extends GenericBindingList<Class<? extends WebPage>> {
+public class MenuList extends AssocList<Class<? extends WebPage>> {
 }

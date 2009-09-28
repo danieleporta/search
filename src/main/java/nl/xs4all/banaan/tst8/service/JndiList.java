@@ -1,6 +1,6 @@
 package nl.xs4all.banaan.tst8.service;
 
-import nl.xs4all.banaan.tst8.util.GenericBindingList;
+import nl.xs4all.banaan.tst8.util.AssocList;
 
 /**
  * List of objects found via JNDI, set either in web.xml in war file,
@@ -8,5 +8,5 @@ import nl.xs4all.banaan.tst8.util.GenericBindingList;
  * @author konijn
  *
  */
-public class JndiList extends GenericBindingList<Object> {
+public class JndiList extends AssocList<Object> {
 }
