@@ -3,7 +3,7 @@ package nl.xs4all.banaan.tst8.web.menu;
 import nl.xs4all.banaan.tst8.util.Assoc;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
-import org.apache.wicket.MarkupContainer;
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -37,11 +37,17 @@ public class MenuPanel extends Panel {
         add (new PropertyListView("bindings", model) {
             private static final long serialVersionUID = 1L;
            
+            @SuppressWarnings("unchecked")
             @Override
             protected void populateItem (ListItem item) {
-                Assoc<Class<? extends WebPage>> binding = 
+                Assoc<Class<? extends WebPage>> assoc = 
                     (Assoc<Class<? extends WebPage>>) item.getModelObject();
-                BookmarkablePageLink pageLink = new BookmarkablePageLink("value", binding.getValue());
+                
+                PageParameters parameters = new PageParameters();
+                parameters.put("panel", assoc.getKey());
+                BookmarkablePageLink pageLink = new BookmarkablePageLink("value", 
+                        assoc.getValue(),
+                        parameters);
                 pageLink.add(new Label("key"));
                 item.add(pageLink);
             }
