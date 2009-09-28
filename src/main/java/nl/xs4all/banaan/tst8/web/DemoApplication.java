@@ -60,7 +60,6 @@ public class DemoApplication extends WebApplication
 
     private void addToMenu(Class<? extends WebPage> target, String name) {
         menuList.add(name, target);
-        mountBookmarkablePage(name, target);
     }
 	
     public MenuList getMenuList() {
