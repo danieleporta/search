@@ -1,6 +1,5 @@
 package nl.xs4all.banaan.tst8.web.notificator;
 
-import nl.xs4all.banaan.tst8.service.Notification;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 /**
