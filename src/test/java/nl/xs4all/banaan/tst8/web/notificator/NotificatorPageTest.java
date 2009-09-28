@@ -37,7 +37,6 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
      * Test that submitting the form results in invoking notificator
      * with expected message.
      */
-    @DirtiesContext
     @Test
     public void testRenderNotificatorPage2() {
         Notificator notificator = createMock(Notificator.class);
@@ -57,7 +56,6 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
         tester.assertNoErrorMessage();
     }
     
-    @DirtiesContext
     @Test
     public void testEmptyToFieldIsDetected() {
         Services services = createMock(Services.class);
@@ -73,7 +71,6 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
         tester.assertErrorMessages(new String[]{"Field 'to' is required."});
     }
     
-    @DirtiesContext
     @Test
     public void testEmptySubjectFieldIsDetected() {
         Services services = createMock(Services.class);
@@ -89,7 +86,6 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
         tester.assertErrorMessages(new String[]{"Field 'subject' is required."});
     }
     
-    @DirtiesContext
     @Test
     public void testEmptyBodyFieldIsDetected() {
         Services services = createMock(Services.class);
@@ -105,7 +101,6 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
         tester.assertErrorMessages(new String[]{"Field 'body' is required."});
     }
 
-    @DirtiesContext
     @Test
     public void testBrokenToFieldIsDetected() {
         Services services = createMock(Services.class);
