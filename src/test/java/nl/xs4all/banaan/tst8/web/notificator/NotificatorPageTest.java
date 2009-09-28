@@ -8,31 +8,31 @@ import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
-
-import javax.annotation.Resource;
-
 import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
-import nl.xs4all.banaan.tst8.service.BuildInfo;
 import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.Services;
 
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.tester.FormTester;
+import org.apache.wicket.util.tester.TestPanelSource;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.annotation.DirtiesContext;
 
 public class NotificatorPageTest extends SpringJUnitWicketTest {
-
-    @Resource
-    private BuildInfo buildInfo;
     
-    @DirtiesContext
-    @Test
-    public void testRenderNotificatorPage() {
-        tester.startPage(NotificatorPage.class);
-        tester.checkBasePage(NotificatorPage.class, "Send notifications");
-        tester.assertComponent("notification", NotificationPanel.class);
-    }
+    @Before @Override
+    public void setUp() {
+        super.setUp();
+        tester.startPanel(new TestPanelSource() {
+            private static final long serialVersionUID = 1L;
 
+            public Panel getTestPanel(String panelId) {
+                return new NotificationPanel(panelId);
+            }
+        });
+    }
+    
     /**
      * Test that submitting the form results in invoking notificator
      * with expected message.
@@ -44,19 +44,16 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
         Services services = createMock(Services.class);
         expect(services.getNotificator()).andReturn(notificator);
         notificator.send(NOTIFICATION1);
-        expect(services.getBuildInfo()).andReturn(buildInfo).times(2);
         replay(services, notificator);
         
         demoApplication.setServices(services);
-        tester.startPage(NotificatorPage.class);
-        FormTester formTester = tester.newFormTester("notification:form");
+        FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("to", TO1);
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
         formTester.submit();
         
         verify(services, notificator);
-        tester.assertRenderedPage(NotificatorPage.class);
         tester.assertNoErrorMessage();
     }
     
@@ -64,18 +61,15 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
     @Test
     public void testEmptyToFieldIsDetected() {
         Services services = createMock(Services.class);
-        expect(services.getBuildInfo()).andReturn(buildInfo).times(2);
         replay(services);
         
         demoApplication.setServices(services);
-        tester.startPage(NotificatorPage.class);
-        FormTester formTester = tester.newFormTester("notification:form");
+        FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
         formTester.submit();
         
         verify(services);
-        tester.assertRenderedPage(NotificatorPage.class);
         tester.assertErrorMessages(new String[]{"Field 'to' is required."});
     }
     
@@ -83,18 +77,15 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
     @Test
     public void testEmptySubjectFieldIsDetected() {
         Services services = createMock(Services.class);
-        expect(services.getBuildInfo()).andReturn(buildInfo).times(2);
         replay(services);
         
         demoApplication.setServices(services);
-        tester.startPage(NotificatorPage.class);
-        FormTester formTester = tester.newFormTester("notification:form");
+        FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("to", TO1);
         formTester.setValue("body", BODY1);
         formTester.submit();
         
         verify(services);
-        tester.assertRenderedPage(NotificatorPage.class);
         tester.assertErrorMessages(new String[]{"Field 'subject' is required."});
     }
     
@@ -102,18 +93,15 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
     @Test
     public void testEmptyBodyFieldIsDetected() {
         Services services = createMock(Services.class);
-        expect(services.getBuildInfo()).andReturn(buildInfo).times(2);
         replay(services);
         
         demoApplication.setServices(services);
-        tester.startPage(NotificatorPage.class);
-        FormTester formTester = tester.newFormTester("notification:form");
+        FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("to", TO1);
         formTester.setValue("subject", SUBJECT1);
         formTester.submit();
         
         verify(services);
-        tester.assertRenderedPage(NotificatorPage.class);
         tester.assertErrorMessages(new String[]{"Field 'body' is required."});
     }
 
@@ -121,19 +109,16 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
     @Test
     public void testBrokenToFieldIsDetected() {
         Services services = createMock(Services.class);
-        expect(services.getBuildInfo()).andReturn(buildInfo).times(2);
         replay(services);
         
         demoApplication.setServices(services);
-        tester.startPage(NotificatorPage.class);
-        FormTester formTester = tester.newFormTester("notification:form");
+        FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("to", "This is not a love song");
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
         formTester.submit();
         
         verify(services);
-        tester.assertRenderedPage(NotificatorPage.class);
         tester.assertErrorMessages(new String[]{
                 "'This is not a love song' is not a valid email address."});
     }
