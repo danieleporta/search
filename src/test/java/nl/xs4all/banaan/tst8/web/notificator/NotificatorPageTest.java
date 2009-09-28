@@ -17,13 +17,18 @@ import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.TestPanelSource;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.test.annotation.DirtiesContext;
 
 public class NotificatorPageTest extends SpringJUnitWicketTest {
-    
+   
+    /** services will be filled with expectations for every test */
+    private Services services;
+    private FormTester formTester;
+
     @Before @Override
     public void setUp() {
         super.setUp();
+        services = createMock(Services.class);
+        demoApplication.setServices(services);
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
 
@@ -31,6 +36,7 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
                 return new NotificationPanel(panelId);
             }
         });
+        formTester = tester.newFormTester("panel:form");
     }
     
     /**
@@ -40,13 +46,10 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
     @Test
     public void testRenderNotificatorPage2() {
         Notificator notificator = createMock(Notificator.class);
-        Services services = createMock(Services.class);
         expect(services.getNotificator()).andReturn(notificator);
         notificator.send(NOTIFICATION1);
         replay(services, notificator);
         
-        demoApplication.setServices(services);
-        FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("to", TO1);
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
@@ -58,11 +61,8 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
     
     @Test
     public void testEmptyToFieldIsDetected() {
-        Services services = createMock(Services.class);
         replay(services);
         
-        demoApplication.setServices(services);
-        FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
         formTester.submit();
@@ -73,11 +73,8 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
     
     @Test
     public void testEmptySubjectFieldIsDetected() {
-        Services services = createMock(Services.class);
         replay(services);
         
-        demoApplication.setServices(services);
-        FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("to", TO1);
         formTester.setValue("body", BODY1);
         formTester.submit();
@@ -88,11 +85,8 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
     
     @Test
     public void testEmptyBodyFieldIsDetected() {
-        Services services = createMock(Services.class);
         replay(services);
         
-        demoApplication.setServices(services);
-        FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("to", TO1);
         formTester.setValue("subject", SUBJECT1);
         formTester.submit();
@@ -103,11 +97,8 @@ public class NotificatorPageTest extends SpringJUnitWicketTest {
 
     @Test
     public void testBrokenToFieldIsDetected() {
-        Services services = createMock(Services.class);
         replay(services);
         
-        demoApplication.setServices(services);
-        FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("to", "This is not a love song");
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
