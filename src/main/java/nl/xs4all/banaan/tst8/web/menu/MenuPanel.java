@@ -3,6 +3,7 @@ package nl.xs4all.banaan.tst8.web.menu;
 import nl.xs4all.banaan.tst8.util.GenericBinding;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
+import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -40,8 +41,9 @@ public class MenuPanel extends Panel {
             protected void populateItem (ListItem item) {
                 GenericBinding<Class<? extends WebPage>> binding = 
                     (GenericBinding<Class<? extends WebPage>>) item.getModelObject();
-                item.add(new BookmarkablePageLink("value", binding.getValue()).
-                    add(new Label("key")));
+                BookmarkablePageLink pageLink = new BookmarkablePageLink("value", binding.getValue());
+                pageLink.add(new Label("key"));
+                item.add(pageLink);
             }
         });
     }
