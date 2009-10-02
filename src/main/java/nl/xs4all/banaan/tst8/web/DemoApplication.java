@@ -5,15 +5,23 @@ import nl.xs4all.banaan.tst8.web.base.MenuPage;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
+import nl.xs4all.banaan.tst8.web.jndi.JndiPanel;
 import nl.xs4all.banaan.tst8.web.letter.LetterPage;
+import nl.xs4all.banaan.tst8.web.letter.LetterPanel;
 import nl.xs4all.banaan.tst8.web.menu.MenuList;
+import nl.xs4all.banaan.tst8.web.notificator.NotificationPanel;
 import nl.xs4all.banaan.tst8.web.notificator.NotificatorPage;
 import nl.xs4all.banaan.tst8.web.onchange.OnchangePage;
+import nl.xs4all.banaan.tst8.web.onchange.OnchangePanel;
 import nl.xs4all.banaan.tst8.web.param.ParamPage;
+import nl.xs4all.banaan.tst8.web.param.ParamPanel;
 import nl.xs4all.banaan.tst8.web.property.PropertyPage;
+import nl.xs4all.banaan.tst8.web.property.PropertyPanel;
+import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.settings.IApplicationSettings;
 
@@ -39,13 +47,13 @@ public class DemoApplication extends WebApplication
     @Override
     protected void init() {
         menuList = new MenuList();
-        addToMenu(JndiPage.class, "jndi");
-        addToMenu(LetterPage.class, "letter");
-        addToMenu(ParamPage.class, "param");
-        addToMenu(PropertyPage.class, "property");
-        addToMenu(NotificatorPage.class, "notificator");
-        addToMenu(MenuPage.class, "upload");
-        addToMenu(OnchangePage.class, "onchange");
+        addToMenu(JndiPanel.class, "jndi");
+        addToMenu(LetterPanel.class, "letter");
+        addToMenu(ParamPanel.class, "param");
+        addToMenu(PropertyPanel.class, "property");
+        addToMenu(NotificationPanel.class, "notificator");
+        addToMenu(UploadPanel.class, "upload");
+        addToMenu(OnchangePanel.class, "onchange");
         
         // following error page is only used in production mode
         IApplicationSettings settings = getApplicationSettings();
@@ -58,7 +66,7 @@ public class DemoApplication extends WebApplication
 
     }
 
-    private void addToMenu(Class<? extends WebPage> target, String name) {
+    private void addToMenu(Class<? extends Panel> target, String name) {
         menuList.add(name, target);
     }
 	

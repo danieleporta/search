@@ -2,6 +2,7 @@ package nl.xs4all.banaan.tst8.web.menu;
 
 import nl.xs4all.banaan.tst8.util.Assoc;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
+import nl.xs4all.banaan.tst8.web.base.MenuPage;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
@@ -46,7 +47,7 @@ public class MenuPanel extends Panel {
                 PageParameters parameters = new PageParameters();
                 parameters.put("panel", assoc.getKey());
                 BookmarkablePageLink pageLink = new BookmarkablePageLink("value", 
-                        assoc.getValue(),
+                        MenuPage.class,
                         parameters);
                 pageLink.add(new Label("key"));
                 item.add(pageLink);

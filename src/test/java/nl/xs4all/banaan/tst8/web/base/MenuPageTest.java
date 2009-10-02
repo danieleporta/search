@@ -3,18 +3,13 @@ package nl.xs4all.banaan.tst8.web.base;
 
 import static org.junit.Assert.fail;
 import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.web.onchange.OnchangePanel;
 import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
 
 import org.apache.wicket.PageParameters;
 import org.junit.Test;
 
 public class MenuPageTest extends SpringJUnitWicketTest {
-
-    @Test
-    public void testConstruction() {
-        tester.startPage(MenuPage.class);
-        tester.assertRenderedPage(MenuPage.class);
-    }
 
     @Test
     public void testConstructionWithGoodParameter() {
@@ -41,6 +36,14 @@ public class MenuPageTest extends SpringJUnitWicketTest {
         tester.assertRenderedPage(MenuPage.class);
         tester.debugComponentTrees();
         tester.assertComponent("content", UploadPanel.class);
+    }
+    
+    @Test
+    public void testAnotherRenderedPanel() {
+        tester.startPage(MenuPage.class, new PageParameters("panel=onchange"));
+        tester.assertRenderedPage(MenuPage.class);
+        tester.debugComponentTrees();
+        tester.assertComponent("content", OnchangePanel.class);
     }
     
 }
