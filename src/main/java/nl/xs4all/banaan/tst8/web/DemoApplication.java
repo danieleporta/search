@@ -1,26 +1,18 @@
 package nl.xs4all.banaan.tst8.web;
 
 import nl.xs4all.banaan.tst8.service.Services;
-import nl.xs4all.banaan.tst8.web.base.MenuPage;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
-import nl.xs4all.banaan.tst8.web.jndi.JndiPage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPanel;
-import nl.xs4all.banaan.tst8.web.letter.LetterPage;
 import nl.xs4all.banaan.tst8.web.letter.LetterPanel;
 import nl.xs4all.banaan.tst8.web.menu.MenuList;
 import nl.xs4all.banaan.tst8.web.notificator.NotificationPanel;
-import nl.xs4all.banaan.tst8.web.notificator.NotificatorPage;
-import nl.xs4all.banaan.tst8.web.onchange.OnchangePage;
 import nl.xs4all.banaan.tst8.web.onchange.OnchangePanel;
-import nl.xs4all.banaan.tst8.web.param.ParamPage;
 import nl.xs4all.banaan.tst8.web.param.ParamPanel;
-import nl.xs4all.banaan.tst8.web.property.PropertyPage;
 import nl.xs4all.banaan.tst8.web.property.PropertyPanel;
 import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
 
 import org.apache.wicket.Application;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.settings.IApplicationSettings;
