@@ -1,11 +1,11 @@
-package nl.xs4all.banaan.tst8.web.base;
+package nl.xs4all.banaan.tst8.web.menu;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
-import nl.xs4all.banaan.tst8.web.menu.MenuList;
+import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.panel.Panel;

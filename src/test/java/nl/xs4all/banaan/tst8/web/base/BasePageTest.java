@@ -5,6 +5,7 @@ import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
 import nl.xs4all.banaan.tst8.fixtures.ThrowingPage;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
+import nl.xs4all.banaan.tst8.web.menu.MenuPage;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.util.tester.ITestPageSource;

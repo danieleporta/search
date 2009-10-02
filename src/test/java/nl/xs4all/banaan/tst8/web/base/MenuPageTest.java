@@ -3,6 +3,7 @@ package nl.xs4all.banaan.tst8.web.base;
 
 import static org.junit.Assert.fail;
 import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.web.menu.MenuPage;
 import nl.xs4all.banaan.tst8.web.onchange.OnchangePanel;
 import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
 
