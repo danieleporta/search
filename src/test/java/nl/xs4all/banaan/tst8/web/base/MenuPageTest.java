@@ -3,6 +3,7 @@ package nl.xs4all.banaan.tst8.web.base;
 
 import static org.junit.Assert.fail;
 import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
 
 import org.apache.wicket.PageParameters;
 import org.junit.Test;
@@ -32,6 +33,14 @@ public class MenuPageTest extends SpringJUnitWicketTest {
         catch (RuntimeException e) {
             // ok
         }
-    }    
+    }  
+    
+    @Test
+    public void testRenderedPanel() {
+        tester.startPage(MenuPage.class, new PageParameters("panel=upload"));
+        tester.assertRenderedPage(MenuPage.class);
+        tester.debugComponentTrees();
+        tester.assertComponent("content", UploadPanel.class);
+    }
     
 }
