@@ -4,11 +4,14 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import nl.xs4all.banaan.tst8.service.ServiceException;
+import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.web.buildInfo.BuildInfoPanel;
+import nl.xs4all.banaan.tst8.web.menu.MenuList;
 import nl.xs4all.banaan.tst8.web.menu.MenuPanel;
 import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
 
 import org.apache.log4j.Logger;
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -28,6 +31,17 @@ public class MenuPage extends WebPage {
     private Class<? extends Panel> panelClass;
 
     public MenuPage() {
+        go();
+    }
+    
+    public MenuPage(PageParameters pageParameters) {
+        String panelName = pageParameters.getString("panel", "");
+        MenuList menu = DemoApplication.get().getMenuList();
+        menu.lookup(panelName);
+        go();
+    }
+
+    private void go() {
         panelClass = UploadPanel.class;
         getSession().info("Setting up menupage");
         
@@ -45,7 +59,7 @@ public class MenuPage extends WebPage {
         }
     }
 
-
+    
     public Panel getPanel(String panelId) throws ServiceException {
         Class<?>[] signature = new Class<?>[] { String.class };
         

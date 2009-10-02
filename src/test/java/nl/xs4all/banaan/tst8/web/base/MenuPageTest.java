@@ -1,8 +1,10 @@
 package nl.xs4all.banaan.tst8.web.base;
 
 
+import static org.junit.Assert.fail;
 import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
 
+import org.apache.wicket.PageParameters;
 import org.junit.Test;
 
 public class MenuPageTest extends SpringJUnitWicketTest {
@@ -12,4 +14,24 @@ public class MenuPageTest extends SpringJUnitWicketTest {
         tester.startPage(MenuPage.class);
         tester.assertRenderedPage(MenuPage.class);
     }
+
+    @Test
+    public void testConstructionWithGoodParameter() {
+        tester.startPage(MenuPage.class, new PageParameters("panel=onchange"));
+        tester.assertRenderedPage(MenuPage.class);
+    }
+    
+    @Test
+    public void testConstructionWithBadParameter() {
+        try {
+            tester.startPage(MenuPage.class, new PageParameters("panel=IDontExist"));
+            tester.assertRenderedPage(MenuPage.class);
+            // TODO: consider returning not-found
+            fail("undetected error");
+        }
+        catch (RuntimeException e) {
+            // ok
+        }
+    }    
+    
 }
