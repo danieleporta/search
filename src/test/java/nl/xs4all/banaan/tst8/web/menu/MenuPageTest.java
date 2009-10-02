@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8.web.base;
+package nl.xs4all.banaan.tst8.web.menu;
 
 
 import static org.junit.Assert.fail;
