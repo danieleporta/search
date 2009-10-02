@@ -44,4 +44,14 @@ public class AssocList<T> {
         }
         return result;
     }
+    
+    public T lookup(String wanted) {
+        for (Assoc<T> binding : list) {
+            String key = binding.getKey();
+            if (key.equals(wanted)) {
+                return binding.getValue();
+            }
+        }
+        throw new IllegalArgumentException("Key not found: " + wanted);
+    }
 }

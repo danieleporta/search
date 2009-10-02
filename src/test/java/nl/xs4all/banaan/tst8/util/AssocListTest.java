@@ -43,5 +43,24 @@ public class AssocListTest {
     public void testFilterListNotFound() {
         List<Assoc<String>> list = bl.filter("schapen").getList();
         assertEquals(0, list.size());
-    }    
+    }  
+    
+    @Test
+    public void testLookup() {
+        String v = bl.lookup("aap");
+        assertEquals("aapval", v);
+    }
+    
+    @Test
+    public void testLookupNotfound() {
+        try {
+            bl.lookup("banaan");
+            fail("Exception undetected");
+        }
+        catch (IllegalArgumentException e) {
+            // ok
+        }
+    }
+    
+    
 }
