@@ -6,6 +6,7 @@ import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPanel;
 import nl.xs4all.banaan.tst8.web.letter.LetterPanel;
 import nl.xs4all.banaan.tst8.web.menu.MenuList;
+import nl.xs4all.banaan.tst8.web.menu.MenuPage;
 import nl.xs4all.banaan.tst8.web.notificator.NotificationPanel;
 import nl.xs4all.banaan.tst8.web.onchange.OnchangePanel;
 import nl.xs4all.banaan.tst8.web.param.ParamPanel;
@@ -46,6 +47,10 @@ public class DemoApplication extends WebApplication
         addToMenu(NotificationPanel.class, "notificator");
         addToMenu(UploadPanel.class, "upload");
         addToMenu(OnchangePanel.class, "onchange");
+        
+        // try accessing these via a wicket tester
+        mountBookmarkablePage("menu", MenuPage.class);
+        mountBookmarkablePage("error", ErrorPage.class);        
         
         // following error page is only used in production mode
         IApplicationSettings settings = getApplicationSettings();
