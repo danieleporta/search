@@ -33,16 +33,16 @@ public class HttpClientTest {
     public void testDeclareClient() {
         new HttpClient();
     }
-
+    
     @Test
-    public void testDeclareMethod() throws HttpException, IOException {
+    public void testDeclareMethodForRealClient() throws HttpException, IOException {
         new HttpClient();
         new GetMethod("http://localhost/index.html");
         // client.executeMethod(method);
     }
     
     @Test
-    public void testDeclareWithConnectionManager() throws HttpException, IOException {
+    public void testDeclareWithConnectionManagerForRealClient() throws HttpException, IOException {
         HttpConnectionManager manager = new SimpleHttpConnectionManager(true);
         new HttpClient(manager);
         new GetMethod("http://localhost/index.html");
@@ -64,5 +64,25 @@ public class HttpClientTest {
         method.releaseConnection();
     }
 
-
+    @Test
+    public void testGetResponse() throws HttpException, IOException {
+        HttpConnectionManager manager = new TestConnectionManager(true, map);
+        HttpClient client = new HttpClient(manager);
+        GetMethod method = new GetMethod("http://localhost/index.html");
+        client.executeMethod(method);
+        
+        assertEquals(200, method.getStatusCode());
+        assertEquals("HTTP/1.1 200 OK", method.getStatusLine().toString());
+        assertEquals("OK", method.getStatusText());
+        assertEquals("GET", method.getName());
+        assertEquals("/index.html", method.getPath());
+        assertEquals("ISO-8859-1", method.getRequestCharSet());
+        assertEquals("Content-Language: en-US\r\n", 
+                method.getResponseHeader("Content-Language").toString());
+        assertEquals(2050, method.getResponseContentLength());
+        assertEquals(2050, method.getResponseBody(3000).length);
+        method.releaseConnection();
+    }
+    
+    
 }
