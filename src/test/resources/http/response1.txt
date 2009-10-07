@@ -1,0 +1,43 @@
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Language: en-US
+Pragma: no-cache
+Cache-Control: no-cache, max-age=0, must-revalidate
+Content-Length: 2050
+Server: Jetty(6.1.14)
+
+<html>
+  <head>
+    <title>Property and Parameter Demo</title>
+  </head>
+  <body>
+    <h1>Property and Parameter Demo</h1>
+    <div id="menu" wicket:id="menu"><wicket:panel>
+  <ul>
+    <li wicket:id="bindings"><a href="menu/panel/jndi/" wicket:id="value"> <span wicket:id="key">jndi</span> </a></li><li wicket:id="bindings"><a href="menu/panel/letter/" wicket:id="value"> <span wicket:id="key">letter</span> </a></li><li wicket:id="bindings"><a href="menu/panel/notificator/" wicket:id="value"> <span wicket:id="key">notificator</span> </a></li><li wicket:id="bindings"><a href="menu/panel/onchange/" wicket:id="value"> <span wicket:id="key">onchange</span> </a></li><li wicket:id="bindings"><a href="menu/panel/param/" wicket:id="value"> <span wicket:id="key">param</span> </a></li><li wicket:id="bindings"><a href="menu/panel/property/" wicket:id="value"> <span wicket:id="key">property</span> </a></li><li wicket:id="bindings"><a href="menu/panel/upload/" wicket:id="value"> <span wicket:id="key">upload</span> </a></li>
+  </ul>
+</wicket:panel></div>
+    <div id="feedback" wicket:id="feedback"><wicket:panel>
+  <ul wicket:id="feedbackul">
+    <li class="feedbackPanelINFO" wicket:id="messages">
+      <span class="feedbackPanelINFO" wicket:id="message">building  menu panel</span>
+    </li><li class="feedbackPanelINFO" wicket:id="messages">
+      <span class="feedbackPanelINFO" wicket:id="message">Setting up basepage</span>
+    </li>
+  </ul>
+</wicket:panel></div>
+    <div id="main"><wicket:child><wicket:extend>
+  <p>This shows access of context parameters, properties and JNDI
+  queries.</p>
+</wicket:extend></wicket:child></div>
+    <div id="buildinfo" wicket:id="buildinfo"><wicket:panel>
+  <span>
+    <wicket:container wicket:id="group">nl.xs4all.banaan.tst8</wicket:container>
+    <wicket:container wicket:id="name">wicket-demo</wicket:container>
+    <wicket:container wicket:id="version">1.0-SNAPSHOT</wicket:container>
+    <wicket:container wicket:id="user">konijn</wicket:container>
+  </span>
+</wicket:panel></div>
+  </body>
+</html>
+
