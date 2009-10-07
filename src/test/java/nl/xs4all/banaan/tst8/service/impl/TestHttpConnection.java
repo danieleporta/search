@@ -46,16 +46,20 @@ public class TestHttpConnection extends HttpConnection {
 
     /** result of the last open */
     private InputStream inputStream;
+
+    /** the resource that will be returned by this connection */
+    private String resourceName;
     
    
     
 
-    public TestHttpConnection(HostConfiguration hostConfiguration, long timeout) {
+    public TestHttpConnection(HostConfiguration hostConfiguration, long timeout, String resourceName) {
         this(hostConfiguration.getProxyHost(),
                 hostConfiguration.getProxyPort(),
                 hostConfiguration.getHost(), 
                 hostConfiguration.getPort(), 
-                hostConfiguration.getProtocol());
+                hostConfiguration.getProtocol(),
+                resourceName);
         
     }
     
@@ -64,7 +68,8 @@ public class TestHttpConnection extends HttpConnection {
             int proxyPort,
             String host,
             int port,
-            Protocol protocol) {
+            Protocol protocol,
+            String resourceName) {
         super(proxyHost,proxyPort,host,port,protocol);
         logger.debug("constructor start");
         setProxyHost(proxyHost);
@@ -73,6 +78,7 @@ public class TestHttpConnection extends HttpConnection {
         setProtocol(protocol);
         setPort(getProtocol().resolvePort(port));
         params = new HttpConnectionParams();
+        this.resourceName = resourceName;
     }
 
     // used in HttpMethodDirector.executeWithRetry on IOException
@@ -260,10 +266,10 @@ public class TestHttpConnection extends HttpConnection {
         if (isOpen) {
             throw new IllegalStateException("opening twice on same connection");
         }
-        String name = "/http/response1.txt";
-        inputStream = getClass().getResourceAsStream(name);
+
+        inputStream = getClass().getResourceAsStream(resourceName);
         if (inputStream == null) {
-            throw new IllegalStateException("cannot open resource stream for: " + name);            
+            throw new IllegalStateException("cannot open resource stream for: " + resourceName);            
         }
         isOpen = true;
     }

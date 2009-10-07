@@ -13,6 +13,8 @@ import org.junit.Ignore;
  * Connection manager for use in {@link HttpClient} that returns responses from
  * a property file instead of from a socket connection.
  * 
+ * This connection manager extends the default connection manager.
+ * 
  * @author konijn
  * 
  */
@@ -60,7 +62,7 @@ public class TestConnectionManager extends SimpleHttpConnectionManager {
         if (httpConnection != null) {
             throw new IllegalStateException("cant get connection before releasing last one");
         }
-        httpConnection = new TestHttpConnection(hostConfiguration, timeout);
+        httpConnection = new TestHttpConnection(hostConfiguration, timeout, "/http/response1.txt");
         httpConnection.setHttpConnectionManager(this);
         httpConnection.getParams().setDefaults(this.params);
         return httpConnection;
