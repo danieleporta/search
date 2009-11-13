@@ -9,6 +9,10 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.junit.Before;
 import org.junit.Test;
 
+/** 
+ * Test that the WebApplicationFactory as used by web.xml
+ * can build a wicket application. 
+ */
 public class TestWebApplicationFactoryTest {
 
     private IWebApplicationFactory factory;
