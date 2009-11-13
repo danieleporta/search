@@ -1,5 +1,7 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
+import nl.xs4all.banaan.tst8.service.JndiReader;
+import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.Services;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 import nl.xs4all.banaan.tst8.wiring.TestApplicationModule;
@@ -23,12 +25,8 @@ public abstract class InjectedTest {
     public void startUp() {
         injector = Guice.createInjector(new TestApplicationModule());
     }
-    
-    public Services services() {
-        return injector.getInstance(Services.class);
-    }
-    
-    public DemoApplication application() {
-        return injector.getInstance(DemoApplication.class);
+   
+    public <T> T get(Class<T> clazz) {
+        return injector.getInstance(clazz);
     }
 }

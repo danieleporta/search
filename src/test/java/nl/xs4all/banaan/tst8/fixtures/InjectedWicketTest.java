@@ -17,7 +17,7 @@ public abstract class InjectedWicketTest extends InjectedTest {
 
     @Before
     public void setUp() {
-        demoApplication = application();
+        demoApplication = get(DemoApplication.class);
         tester = new BasePageTester(demoApplication);
     }
 }
