@@ -22,7 +22,7 @@ import com.google.inject.Injector;
 @Ignore
 public class TestWebApplicationFactory implements IWebApplicationFactory {
     public WebApplication createApplication(WicketFilter filter) {
-        Injector injector = Guice.createInjector(new ServiceModule());
+        Injector injector = Guice.createInjector(new TestApplicationModule());
         WebApplication application = injector.getInstance(DemoApplication.class);
         return application;
     }

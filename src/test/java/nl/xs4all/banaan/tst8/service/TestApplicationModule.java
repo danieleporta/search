@@ -28,7 +28,7 @@ import com.google.inject.Singleton;
  * @author konijn
  * 
  */
-public class ServiceModule extends AbstractModule {
+public class TestApplicationModule extends AbstractModule {
 
     private static final String DUMMY_BUILD_PROPERTIES = "/dummy-build.properties";
 

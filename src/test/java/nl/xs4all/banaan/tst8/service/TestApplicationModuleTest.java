@@ -12,13 +12,13 @@ import org.junit.Test;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-public class ServiceModuleTest {
+public class TestApplicationModuleTest {
 
     private Injector injector;
 
     @Before
     public void startUp() {
-        injector = Guice.createInjector(new ServiceModule());
+        injector = Guice.createInjector(new TestApplicationModule());
     }
    
     @Test
@@ -56,7 +56,7 @@ public class ServiceModuleTest {
     @Test
     public void testSingletonHasMeaningOnlyInASingleInjector() {
         Services services = injector.getInstance(Services.class);
-        Injector injector2 = Guice.createInjector(new ServiceModule());
+        Injector injector2 = Guice.createInjector(new TestApplicationModule());
         Services services2 = injector2.getInstance(Services.class);
         assertTrue(services != services2);
     }
