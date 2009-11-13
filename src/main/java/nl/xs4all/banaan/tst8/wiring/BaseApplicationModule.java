@@ -44,11 +44,12 @@ public abstract class BaseApplicationModule extends AbstractModule {
     
     public abstract @Provides @Singleton MailSender provideMailSender();
     public abstract @Provides @Singleton Context provideContext();
-    public abstract String getBuildPropertyResourceName();
+    public abstract @Provides @Singleton @BuildInfoResourceName String provideResourceName();
+    
 
     @Provides @Singleton
-    Properties provideBuildProperties() {
-        return getPropertiesFromResource(getBuildPropertyResourceName());
+    Properties provideBuildProperties(@BuildInfoResourceName String resourceName) {
+        return getPropertiesFromResource(resourceName);
     }
 
     /** helper to read properties from named resource */
@@ -62,5 +63,6 @@ public abstract class BaseApplicationModule extends AbstractModule {
             throw new RuntimeException("missing resource" + resourceName, e);
         }
     }
+
 
 }

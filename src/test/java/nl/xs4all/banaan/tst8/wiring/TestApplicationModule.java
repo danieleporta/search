@@ -27,8 +27,7 @@ public class TestApplicationModule extends BaseApplicationModule {
         return new MailSenderFixture();
     }
 
-    // TODO: decide visibility
-    @Override public String getBuildPropertyResourceName() {
-        return DUMMY_BUILD_PROPERTIES;
+    @Override public String provideResourceName() {
+        return DUMMY_BUILD_PROPERTIES;        
     }
 }

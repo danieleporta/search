@@ -17,9 +17,8 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 public class ProductionApplicationModule extends BaseApplicationModule {
     private static final String BUILD_PROPERTIES = "/build.properties";
 
-    @Override
-    public String getBuildPropertyResourceName() {
-        return BUILD_PROPERTIES;
+    @Override public String provideResourceName() {
+        return BUILD_PROPERTIES;        
     }
 
     @Override
