@@ -18,6 +18,8 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.settings.IApplicationSettings;
 
+import com.google.inject.Inject;
+
 /**
  * Application object for your web application. 
  * If you want to run this application without deploying, run the Start class.
@@ -71,6 +73,7 @@ public class DemoApplication extends WebApplication
         return menuList;
     }
     
+    @Inject
     public void setServices(Services services) {
         this.services = services;
     }

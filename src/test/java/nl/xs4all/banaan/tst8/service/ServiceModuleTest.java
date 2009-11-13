@@ -4,6 +4,8 @@ package nl.xs4all.banaan.tst8.service;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import nl.xs4all.banaan.tst8.web.DemoApplication;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -59,4 +61,10 @@ public class ServiceModuleTest {
         assertTrue(services != services2);
     }
     
+    @Test
+    public void testApplicationIsWired() {
+        DemoApplication application = injector.getInstance(DemoApplication.class);
+        assertNotNull(application.getServices().getBuildInfo().getName());
+    }
+
 }

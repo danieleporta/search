@@ -11,6 +11,8 @@ import nl.xs4all.banaan.tst8.service.ServiceException;
 
 import org.apache.log4j.Logger;
 
+import com.google.inject.Inject;
+
 /**
  * Implement the reading of JNDI.
  * @author konijn
@@ -30,6 +32,8 @@ public class JndiReaderImpl implements JndiReader {
     // http://jcp.org/aboutJava/communityprocess/final/jsr154/index.html
     //
     private Context initialContext;
+    
+    @Inject
     public void setInitialContext(Context initialContext) {
         this.initialContext = initialContext;
     }

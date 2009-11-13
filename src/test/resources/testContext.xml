@@ -14,21 +14,7 @@
          http://www.springframework.org/schema/util
                 http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
-  <bean id="jndiRootContext" class="nl.xs4all.banaan.tst8.fixtures.InitializedNamingContext">
-    <constructor-arg>
-      <map>
-        <entry key="elders/groet" value="goedemorgen" />
-        <entry key="aap" value="aapval" />
-        <entry key="dir1" value="DIR1-NODE" />
-        <entry key="jdbc" value="JDBC-NODE" />
-        <entry key="noot" value="nootval" />
-        <entry key="jdbc/mies" value="miesval" />
-        <entry key="jdbc/wim" value="wimval" />
-        <entry key="dir1/dir2" value="DIR2-NODE" />
-        <entry key="dir1/dir2/entry3" value="entry3val" />
-      </map>
-    </constructor-arg> 
-  </bean>
+  <bean id="jndiRootContext" class="nl.xs4all.banaan.tst8.fixtures.InitializedNamingContext" />
 
   <bean id="jndiReader" class="nl.xs4all.banaan.tst8.service.impl.JndiReaderImpl">
     <property name="initialContext" ref="jndiRootContext"></property>
