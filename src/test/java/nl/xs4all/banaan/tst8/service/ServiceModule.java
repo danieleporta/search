@@ -18,6 +18,7 @@ import nl.xs4all.banaan.tst8.web.DemoApplication;
 import org.springframework.mail.MailSender;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
 import com.google.inject.Scopes;
 
 /**
@@ -46,15 +47,15 @@ public class ServiceModule extends AbstractModule {
 
         // TODO: separate version for production
         bind(MailSender.class).to(MailSenderFixture.class);
-
-        // TODO: limit this to build properties only
-        // TODO: migrate to @Provides, making it lazy
-        // TODO: separate test and production
-        bind(Properties.class).toInstance(
-                getPropertiesFromResource(getBuildPropertyResourceName()));
-
+    }
+    
+    // TODO: limit this to build properties only
+    // TODO: separate test and production
+    @Provides Properties provideProperties() {
+        return getPropertiesFromResource(getBuildPropertyResourceName());
     }
 
+    /** helper to read properties from named resource */
     private Properties getPropertiesFromResource(String resourceName) {
         InputStream stream = this.getClass().getResourceAsStream(resourceName);
         Properties properties = new Properties();
