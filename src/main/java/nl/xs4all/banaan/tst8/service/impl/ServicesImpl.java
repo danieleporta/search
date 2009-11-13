@@ -1,5 +1,7 @@
 package nl.xs4all.banaan.tst8.service.impl;
 
+import com.google.inject.Inject;
+
 import nl.xs4all.banaan.tst8.service.BuildInfo;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.Notificator;
@@ -20,6 +22,7 @@ public class ServicesImpl implements Services {
     private PropertyReader propertyReader;
     private BuildInfo buildInfo;
     
+    @Inject
     public void setJndiReader(JndiReader jndiReader) {
         this.jndiReader = jndiReader;
     }
@@ -31,6 +34,7 @@ public class ServicesImpl implements Services {
         return jndiReader;
     }
 
+    @Inject
     public void setNotificator(Notificator notificator) {
         this.notificator = notificator;
     }
@@ -42,6 +46,7 @@ public class ServicesImpl implements Services {
         return notificator;
     }
     
+    @Inject
     public void setPropertyReader(PropertyReader propertyReader) {
         this.propertyReader = propertyReader;
     }
@@ -53,6 +58,7 @@ public class ServicesImpl implements Services {
         return propertyReader;
     }
     
+    @Inject
     public void setBuildInfo(BuildInfo buildInfo) {
         this.buildInfo = buildInfo;
     }

@@ -6,10 +6,13 @@ import nl.xs4all.banaan.tst8.service.Notificator;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
+import com.google.inject.Inject;
+
 public class NotificatorImpl implements Notificator {
 
     private MailSender mailSender;
     
+    @Inject
     public void setMailSender(MailSender mailSender) {
         this.mailSender = mailSender;
     }
