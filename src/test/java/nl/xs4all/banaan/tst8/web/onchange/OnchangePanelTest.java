@@ -2,7 +2,7 @@ package nl.xs4all.banaan.tst8.web.onchange;
 
 
 import static org.junit.Assert.assertEquals;
-import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -12,7 +12,7 @@ import org.apache.wicket.util.value.ValueMap;
 import org.junit.Before;
 import org.junit.Test;
 
-public class OnchangePanelTest extends SpringJUnitWicketTest {
+public class OnchangePanelTest extends InjectedWicketTest {
     private ValueMap map;                   // model for the form
 
     @Before @Override

@@ -9,7 +9,7 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NAME2;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.POSTAGE1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET2;
-import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -17,7 +17,7 @@ import org.apache.wicket.util.tester.TestPanelSource;
 import org.junit.Test;
 
 
-public class LetterPanelTest extends SpringJUnitWicketTest {
+public class LetterPanelTest extends InjectedWicketTest {
 
     @Test
     public void testShowPanel() {

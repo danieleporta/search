@@ -4,7 +4,7 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.ADDRESS1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.CITY1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NAME1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET1;
-import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -16,7 +16,7 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class AddressPanelTest extends SpringJUnitWicketTest {
+public class AddressPanelTest extends InjectedWicketTest {
     
     @Test
     public void testAddressPanel() {

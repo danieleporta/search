@@ -8,7 +8,7 @@ import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
-import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.Services;
 
@@ -18,7 +18,7 @@ import org.apache.wicket.util.tester.TestPanelSource;
 import org.junit.Before;
 import org.junit.Test;
 
-public class NotificatorPanelTest extends SpringJUnitWicketTest {
+public class NotificatorPanelTest extends InjectedWicketTest {
    
     /** services will be filled with expectations for every test */
     private Services services;

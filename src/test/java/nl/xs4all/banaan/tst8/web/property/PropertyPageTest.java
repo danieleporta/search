@@ -1,7 +1,7 @@
 package nl.xs4all.banaan.tst8.web.property;
 
 import static org.junit.Assert.assertEquals;
-import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
@@ -14,7 +14,7 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class PropertyPageTest extends SpringJUnitWicketTest {
+public class PropertyPageTest extends InjectedWicketTest {
     
     /**
      * default page shows system properties.

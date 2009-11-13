@@ -7,7 +7,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -24,7 +24,7 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class UploadPanelTest extends SpringJUnitWicketTest {
+public class UploadPanelTest extends InjectedWicketTest {
     private ValueMap map;                   // model for the form
 
     @Before @Override

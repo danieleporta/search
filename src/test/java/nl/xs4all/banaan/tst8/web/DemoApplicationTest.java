@@ -2,7 +2,7 @@ package nl.xs4all.banaan.tst8.web;
 
 
 import static org.junit.Assert.fail;
-import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.onchange.OnchangePanel;
@@ -11,7 +11,7 @@ import org.apache.wicket.protocol.http.MockHttpServletRequest;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Test;
 
-public class DemoApplicationTest extends SpringJUnitWicketTest {
+public class DemoApplicationTest extends InjectedWicketTest {
 
     @Test
     public void testProcessRequestCycle() {

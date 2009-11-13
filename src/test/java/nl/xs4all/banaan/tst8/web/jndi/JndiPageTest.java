@@ -1,6 +1,6 @@
 package nl.xs4all.banaan.tst8.web.jndi;
 
-import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
@@ -14,7 +14,7 @@ import org.junit.Test;
  *
  */
 
-public class JndiPageTest extends SpringJUnitWicketTest {
+public class JndiPageTest extends InjectedWicketTest {
 
     @Test
     public void testRenderJndiPage1() {

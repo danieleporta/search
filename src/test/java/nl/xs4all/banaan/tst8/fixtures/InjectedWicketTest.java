@@ -11,7 +11,7 @@ import org.junit.Before;
  * @author konijn
  *
  */
-public abstract class SpringJUnitWicketTest extends InjectedTest {
+public abstract class InjectedWicketTest extends InjectedTest {
     protected DemoApplication demoApplication;
     protected BasePageTester tester;
 

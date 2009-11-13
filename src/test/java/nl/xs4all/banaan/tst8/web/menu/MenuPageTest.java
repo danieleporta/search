@@ -2,7 +2,7 @@ package nl.xs4all.banaan.tst8.web.menu;
 
 
 import static org.junit.Assert.fail;
-import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 import nl.xs4all.banaan.tst8.web.menu.MenuPage;
 import nl.xs4all.banaan.tst8.web.onchange.OnchangePanel;
 import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
@@ -10,7 +10,7 @@ import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
 import org.apache.wicket.PageParameters;
 import org.junit.Test;
 
-public class MenuPageTest extends SpringJUnitWicketTest {
+public class MenuPageTest extends InjectedWicketTest {
 
     @Test
     public void testConstructionWithGoodParameter() {

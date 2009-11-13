@@ -1,7 +1,7 @@
 package nl.xs4all.banaan.tst8.web.base;
 
 
-import nl.xs4all.banaan.tst8.fixtures.SpringJUnitWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 import nl.xs4all.banaan.tst8.fixtures.ThrowingPage;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
@@ -17,7 +17,7 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class BasePageTest extends SpringJUnitWicketTest {
+public class BasePageTest extends InjectedWicketTest {
     
     @Test
     public void testClickLink0() {

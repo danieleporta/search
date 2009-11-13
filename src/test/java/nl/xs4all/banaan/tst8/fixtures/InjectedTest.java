@@ -10,6 +10,11 @@ import org.junit.Ignore;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+/**
+ * Base class for tests that need injection.
+ * @author konijn
+ *
+ */
 @Ignore
 public abstract class InjectedTest {
     private Injector injector;
