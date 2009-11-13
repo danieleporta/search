@@ -20,9 +20,10 @@ import org.springframework.mail.MailSender;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Scopes;
+import com.google.inject.Singleton;
 
 /**
- * How to inject a ServicesImpl for test purposes.
+ * Instruction for Guice on how to wire the test version of the application.
  * 
  * @author konijn
  * 
@@ -33,26 +34,29 @@ public class ServiceModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(DemoApplication.class);
-        
+        bind(DemoApplication.class).in(Scopes.SINGLETON);
         bind(Services.class).to(ServicesImpl.class).in(Scopes.SINGLETON);
-        
         bind(JndiReader.class).to(JndiReaderImpl.class).in(Scopes.SINGLETON);
-        // TODO separate test and production
-        bind(Context.class).to(InitializedNamingContext.class);
 
         bind(Notificator.class).to(NotificatorImpl.class);
         bind(PropertyReader.class).to(PropertyReaderImpl.class);
         bind(BuildInfo.class).to(BuildInfoImpl.class);
-
-        // TODO: separate version for production
-        bind(MailSender.class).to(MailSenderFixture.class);
     }
     
     // TODO: limit this to build properties only
     // TODO: separate test and production
-    @Provides Properties provideProperties() {
+    @Provides @Singleton Properties provideBuildProperties() {
         return getPropertiesFromResource(getBuildPropertyResourceName());
+    }
+ 
+    // TODO: production version
+    @Provides @Singleton Context provideContext() {
+        return new InitializedNamingContext();
+    }
+    
+    // TODO: production version
+    @Provides @Singleton MailSender provideMailSender() {
+        return new MailSenderFixture();
     }
 
     /** helper to read properties from named resource */
