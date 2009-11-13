@@ -51,7 +51,7 @@ public class ServiceModule extends AbstractModule {
         // TODO: migrate to @Provides, making it lazy
         // TODO: separate test and production
         bind(Properties.class).toInstance(
-                getPropertiesFromResource(DUMMY_BUILD_PROPERTIES));
+                getPropertiesFromResource(getBuildPropertyResourceName()));
 
     }
 
@@ -64,5 +64,9 @@ public class ServiceModule extends AbstractModule {
         } catch (IOException e) {
             throw new RuntimeException("missing resource" + resourceName, e);
         }
+    }
+    
+    private String getBuildPropertyResourceName() {
+        return DUMMY_BUILD_PROPERTIES;
     }
 }
