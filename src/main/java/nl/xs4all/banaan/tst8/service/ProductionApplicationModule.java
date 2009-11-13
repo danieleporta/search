@@ -1,10 +1,12 @@
 package nl.xs4all.banaan.tst8.service;
 
+import javax.mail.Session;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 /**
  * Tell Guice how to wire production version of the application.
@@ -21,25 +23,24 @@ public class ProductionApplicationModule extends BaseApplicationModule {
 
     @Override
     public Context provideContext() {
-        return jndiResourceLookup("env");
+        return (Context) jndiResourceLookup("");
     }
 
     @Override
     public MailSender provideMailSender() {
-        return jndiResourceLookup("mail/Session");
+        JavaMailSenderImpl sender = new JavaMailSenderImpl();
+        sender.setSession((Session) jndiResourceLookup("/mail/Session"));
+        return sender;
     }
 
-    @SuppressWarnings("unchecked")
-    private <T> T jndiResourceLookup(String name) {
+    /** look up JNDI resource in predefined part of the namespace. */
+    private Object jndiResourceLookup(String name) {
         try {
             InitialContext context = new InitialContext();
-            return (T) context.lookup("java:comp/" + name);
+            return context.lookup("java:comp/env" + name);
         } 
         catch (NamingException e) {
             throw new RuntimeException("lookup error - not found: " + name, e);
-        }
-        catch (ClassCastException e) {
-            throw new RuntimeException("lookup error - wrong type: " + name, e);
         }
     }
 }

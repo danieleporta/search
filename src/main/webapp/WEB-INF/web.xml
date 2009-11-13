@@ -29,7 +29,10 @@
     <init-param>
       <param-name>applicationFactoryClassName</param-name>
       <param-value>
+      <!--  
         org.apache.wicket.spring.SpringWebApplicationFactory
+       -->
+              nl.xs4all.banaan.tst8.service.ProductionWebApplicationFactory
       </param-value>
     </init-param>
   </filter>

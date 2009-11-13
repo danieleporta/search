@@ -27,11 +27,6 @@ import com.google.inject.Singleton;
  */
 public abstract class BaseApplicationModule extends AbstractModule {
 
-    public abstract String getBuildPropertyResourceName();
-    public abstract MailSender provideMailSender();
-    public abstract Context provideContext();
-
-
     @Override
     protected void configure() {
         bind(DemoApplication.class).in(Scopes.SINGLETON);
@@ -41,6 +36,10 @@ public abstract class BaseApplicationModule extends AbstractModule {
         bind(PropertyReader.class).to(PropertyReaderImpl.class).in(Scopes.SINGLETON);
         bind(BuildInfo.class).to(BuildInfoImpl.class);
     }
+    
+    public abstract @Provides @Singleton MailSender provideMailSender();
+    public abstract @Provides @Singleton Context provideContext();
+    public abstract String getBuildPropertyResourceName();
 
     @Provides @Singleton
     Properties provideBuildProperties() {
