@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import javax.naming.Context;
-
-import org.springframework.mail.MailSender;
-
 import nl.xs4all.banaan.tst8.service.BuildInfo;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.Notificator;
@@ -30,7 +26,7 @@ import com.google.inject.Singleton;
  * @author konijn
  *
  */
-public abstract class BaseApplicationModule extends AbstractModule {
+public class BaseApplicationModule extends AbstractModule {
 
     @Override
     protected void configure() {
@@ -42,11 +38,6 @@ public abstract class BaseApplicationModule extends AbstractModule {
         bind(BuildInfo.class).to(BuildInfoImpl.class);
     }
     
-    public abstract @Provides @Singleton MailSender provideMailSender();
-    public abstract @Provides @Singleton Context provideContext();
-    public abstract @Provides @Singleton @BuildInfoResourceName String provideResourceName();
-    
-
     @Provides @Singleton
     Properties provideBuildProperties(@BuildInfoResourceName String resourceName) {
         return getPropertiesFromResource(resourceName);
@@ -63,6 +54,4 @@ public abstract class BaseApplicationModule extends AbstractModule {
             throw new RuntimeException("missing resource" + resourceName, e);
         }
     }
-
-
 }

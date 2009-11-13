@@ -26,7 +26,9 @@ public abstract class BaseWebApplicationFactory implements IWebApplicationFactor
     public abstract Module getModule();
 
     public WebApplication createApplication(WicketFilter filter) {
-        Injector injector = Guice.createInjector(getModule());
+        Injector injector = Guice.createInjector(
+                new BaseApplicationModule(),
+                getModule());
         WebApplication application = injector.getInstance(DemoApplication.class);
         return application;
     }

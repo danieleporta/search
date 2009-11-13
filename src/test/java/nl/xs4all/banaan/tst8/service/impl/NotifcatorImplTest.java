@@ -10,7 +10,6 @@ import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
 import nl.xs4all.banaan.tst8.service.Notificator;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -18,11 +17,6 @@ import org.junit.Test;
  * @author konijn
  *
  */
-// TODO: the differenced between MailSender and MailSenderFixture
-// means  the mailsender is not treated as singleton.
-// this should be fixed by not doing inheritance in modules,
-// just provide a list.
-@Ignore
 public class NotifcatorImplTest extends InjectedTest {
     private Notificator notificator;
     private MailSenderFixture mailSenderFixture;

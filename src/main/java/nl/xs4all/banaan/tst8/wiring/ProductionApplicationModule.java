@@ -5,28 +5,35 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
+import com.google.inject.Singleton;
 
 /**
  * Tell Guice how to wire production version of the application.
  * @author konijn
  *
  */
-public class ProductionApplicationModule extends BaseApplicationModule {
+public class ProductionApplicationModule extends AbstractModule {
     private static final String BUILD_PROPERTIES = "/build.properties";
+    
+    @Override
+    protected void configure() {
+    }
 
-    @Override public String provideResourceName() {
+    @Provides @Singleton @BuildInfoResourceName public String provideResourceName() {
         return BUILD_PROPERTIES;        
     }
 
-    @Override
+    @Provides @Singleton
     public Context provideContext() {
         return (Context) jndiResourceLookup("");
     }
 
-    @Override
+    @Provides @Singleton
     public MailSender provideMailSender() {
         JavaMailSenderImpl sender = new JavaMailSenderImpl();
         sender.setSession((Session) jndiResourceLookup("/mail/Session"));

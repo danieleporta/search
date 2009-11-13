@@ -24,7 +24,7 @@
     <init-param>
       <param-name>applicationFactoryClassName</param-name>
       <param-value>
-        nl.xs4all.banaan.tst8.service.ProductionWebApplicationFactory
+        nl.xs4all.banaan.tst8.wiring.ProductionWebApplicationFactory
       </param-value>
     </init-param>
   </filter>
