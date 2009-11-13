@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.wiring;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +8,11 @@ import javax.naming.Context;
 
 import org.springframework.mail.MailSender;
 
+import nl.xs4all.banaan.tst8.service.BuildInfo;
+import nl.xs4all.banaan.tst8.service.JndiReader;
+import nl.xs4all.banaan.tst8.service.Notificator;
+import nl.xs4all.banaan.tst8.service.PropertyReader;
+import nl.xs4all.banaan.tst8.service.Services;
 import nl.xs4all.banaan.tst8.service.impl.BuildInfoImpl;
 import nl.xs4all.banaan.tst8.service.impl.JndiReaderImpl;
 import nl.xs4all.banaan.tst8.service.impl.NotificatorImpl;

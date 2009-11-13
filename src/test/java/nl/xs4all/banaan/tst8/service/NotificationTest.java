@@ -1,25 +1,24 @@
 package nl.xs4all.banaan.tst8.service;
 
-import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.*;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BODY1;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NOTIFICATION1;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NOTIFICATION2;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.SUBJECT1;
+import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.TO1;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Test the notification object used to send mail.
+ * @author konijn
+ *
+ */
 public class NotificationTest {
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-    
+   
     @Test
     public void testToString() {
         Notification notification = NOTIFICATION1;

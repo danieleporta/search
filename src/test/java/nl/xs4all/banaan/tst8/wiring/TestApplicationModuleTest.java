@@ -1,9 +1,10 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.wiring;
 
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import nl.xs4all.banaan.tst8.service.Services;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.junit.Before;
@@ -12,6 +13,12 @@ import org.junit.Test;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+/**
+ * Test that guice injector as configured
+ * with application module returns expected objects.
+ * @author konijn
+ *
+ */
 public class TestApplicationModuleTest {
 
     private Injector injector;

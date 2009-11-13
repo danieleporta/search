@@ -1,9 +1,10 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.wiring;
 
 import javax.mail.Session;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
 
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;

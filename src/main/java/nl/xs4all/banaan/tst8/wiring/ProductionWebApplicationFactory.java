@@ -1,4 +1,5 @@
-package nl.xs4all.banaan.tst8.service;
+package nl.xs4all.banaan.tst8.wiring;
+
 
 import com.google.inject.Module;
 
