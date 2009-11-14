@@ -13,7 +13,7 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 
 /**
- * Tell Guice how to wire production version of the application.
+ * Tell Guice how to wire production part of the application.
  * @author konijn
  *
  */
