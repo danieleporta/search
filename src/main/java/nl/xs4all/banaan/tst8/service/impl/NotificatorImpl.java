@@ -10,13 +10,13 @@ import com.google.inject.Inject;
 
 public class NotificatorImpl implements Notificator {
 
-    private MailSender mailSender;
+    private final MailSender mailSender;
     
     @Inject
-    public void setMailSender(MailSender mailSender) {
+    public NotificatorImpl(MailSender mailSender) {
         this.mailSender = mailSender;
     }
-    
+  
     public void send(Notification notification) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(notification.getTo());
