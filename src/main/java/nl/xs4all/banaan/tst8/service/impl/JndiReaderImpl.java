@@ -23,7 +23,7 @@ public class JndiReaderImpl implements JndiReader {
 
     // This context is expected to give access to resource root container,
     // the 'java:comp/env' part should be filled in by the 
-    // injecting Spring configuration.
+    // injecting configuration.
     //
     // JNDI can query multiple namespaces;
     // the java:comp/env path gives access to resource bindings
@@ -31,10 +31,10 @@ public class JndiReaderImpl implements JndiReader {
     // See servlet 2.4 spec, SRV 9.11, SRV 13.4.20, SRV 13.4.24, via
     // http://jcp.org/aboutJava/communityprocess/final/jsr154/index.html
     //
-    private Context initialContext;
+    private final Context initialContext;
     
     @Inject
-    public void setInitialContext(Context initialContext) {
+    public JndiReaderImpl(Context initialContext) {
         this.initialContext = initialContext;
     }
 
@@ -42,7 +42,6 @@ public class JndiReaderImpl implements JndiReader {
      * @see nl.xs4all.banaan.tst8.service.JndiReader#read(java.lang.String)
      */
     public JndiList read (String location) throws ServiceException {
-
         JndiList result = new JndiList();
         
         try {
