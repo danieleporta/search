@@ -39,24 +39,6 @@
       <artifactId>wicket</artifactId>
       <version>${wicket.version}</version>
     </dependency>
-    <!--
-      OPTIONAL <dependency> <groupId>org.apache.wicket</groupId>
-      <artifactId>wicket-extensions</artifactId>
-      <version>${wicket.version}</version> </dependency>
-    -->
-    <dependency>
-      <!-- The spring-web application factory. --> 
-      <groupId>org.apache.wicket</groupId>
-      <artifactId>wicket-spring</artifactId>
-      <version>${wicket.version}</version>
-      <!-- exclude spring 2.0 framework that wicket pulls in; clashes with 2.5.6 -->
-      <exclusions>
-        <exclusion>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
     
     <dependency>
       <groupId>com.google.inject</groupId>
