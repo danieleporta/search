@@ -57,8 +57,6 @@ public class DomainObjects {
     
     public static final BuildInfoImpl BUILD_INFO1;
     static {
-        BUILD_INFO1 = new BuildInfoImpl();
-        BUILD_INFO1.setProperties(BUILD_PROPERTIES1);
+        BUILD_INFO1 = new BuildInfoImpl(BUILD_PROPERTIES1);
     }
-
 }

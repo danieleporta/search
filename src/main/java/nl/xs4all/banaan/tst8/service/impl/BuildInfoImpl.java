@@ -6,11 +6,12 @@ import com.google.inject.Inject;
 
 import nl.xs4all.banaan.tst8.service.BuildInfo;
 
+/** implementation of buildinfo that is fed by a Properties object */
 public class BuildInfoImpl implements  BuildInfo {
-    Properties properties;
+    private final Properties properties;
     
     @Inject
-    public void setProperties(Properties properties) {
+    public BuildInfoImpl(Properties properties) {
         this.properties = properties;
     }
 
@@ -29,5 +30,4 @@ public class BuildInfoImpl implements  BuildInfo {
     public String getVersion() {
         return properties.getProperty("version");
     }
-
 }
