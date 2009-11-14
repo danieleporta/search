@@ -14,58 +14,35 @@ import nl.xs4all.banaan.tst8.service.Services;
  *
  */
 public class ServicesImpl implements Services {
-    /**
-     * services injected via spring
-     */
-    private JndiReader jndiReader;
-    private Notificator notificator;
-    private PropertyReader propertyReader;
-    private BuildInfo buildInfo;
-    
+    private final JndiReader jndiReader;
+    private final Notificator notificator;
+    private final PropertyReader propertyReader;
+    private final BuildInfo buildInfo;
+ 
     @Inject
-    public void setJndiReader(JndiReader jndiReader) {
+    public ServicesImpl(
+            JndiReader jndiReader,
+            Notificator notificator,
+            PropertyReader propertyReader,
+            BuildInfo buildInfo) {
         this.jndiReader = jndiReader;
+        this.notificator = notificator;
+        this.propertyReader = propertyReader;
+        this.buildInfo = buildInfo;
     }
     
-    /**
-     * @{inheritDoc}
-     */
     public JndiReader getJndiReader() {
         return jndiReader;
     }
 
-    @Inject
-    public void setNotificator(Notificator notificator) {
-        this.notificator = notificator;
-    }
-    
-    /**
-     * @{inheritDoc}
-     */
     public Notificator getNotificator() {
         return notificator;
     }
     
-    @Inject
-    public void setPropertyReader(PropertyReader propertyReader) {
-        this.propertyReader = propertyReader;
-    }
-    
-    /**
-     * @{inheritDoc}
-     */
     public PropertyReader getPropertyReader() {
         return propertyReader;
     }
-    
-    @Inject
-    public void setBuildInfo(BuildInfo buildInfo) {
-        this.buildInfo = buildInfo;
-    }
-    
-    /**
-     * @{inheritDoc}
-     */
+     
     public BuildInfo getBuildInfo() {
         return buildInfo;
     }
