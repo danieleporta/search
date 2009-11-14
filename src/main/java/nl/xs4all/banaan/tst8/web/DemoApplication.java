@@ -26,14 +26,15 @@ import com.google.inject.Inject;
  * 
  * @see wicket.myproject.Start#main(String[])
  */
-public class DemoApplication extends WebApplication
-{   
-    private MenuList menuList;
+public class DemoApplication extends WebApplication {
 
-    /**
-     * services injected via spring
-     */
-    private Services services;
+    private MenuList menuList;
+    private final Services services;
+    
+    @Inject
+    public DemoApplication(Services services) {
+        this.services = services;
+    }
     
     public static DemoApplication get() {
         return (DemoApplication) Application.get();
@@ -71,11 +72,6 @@ public class DemoApplication extends WebApplication
 	
     public MenuList getMenuList() {
         return menuList;
-    }
-    
-    @Inject
-    public void setServices(Services services) {
-        this.services = services;
     }
     
     public Services getServices() {
