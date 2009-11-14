@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8.web.notificator;
+package nl.xs4all.banaan.tst8.fixtures;
 
 
 import static org.easymock.EasyMock.createMock;
@@ -18,6 +18,7 @@ public class MockModule extends AbstractModule {
         this.classes = classes;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void configure() {
         for (Class<?> c : classes) {

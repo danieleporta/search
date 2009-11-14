@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8.web.notificator;
+package nl.xs4all.banaan.tst8.fixtures;
 
 import org.easymock.EasyMock;
 
