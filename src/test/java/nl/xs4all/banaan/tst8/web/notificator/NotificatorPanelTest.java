@@ -18,6 +18,15 @@ import org.apache.wicket.util.tester.TestPanelSource;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Test that UI invokes proper methods from service layer.
+ * 
+ * TODO: we use a setter to put the mock objects in the rest
+ * of the application, which conflicts with constructor injection.
+ * Would it be possible to put the mocks in the injector? 
+ * @author konijn
+ *
+ */
 public class NotificatorPanelTest extends InjectedWicketTest {
    
     /** services will be filled with expectations for every test */
