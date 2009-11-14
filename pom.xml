@@ -32,8 +32,6 @@
       <scope>provided</scope>
     </dependency>
      
-    <!--  WICKET DEPENDENCIES -->
-
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket</artifactId>
@@ -52,13 +50,14 @@
       <version>3.1</version>
     </dependency>
     
-    <!-- SPRING DEPENDENCIES -->
+    <!-- for simpleNamingContext -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <version>${spring.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <!-- Interface to java mail; used to be spring-support -->
       <groupId>org.springframework</groupId>
