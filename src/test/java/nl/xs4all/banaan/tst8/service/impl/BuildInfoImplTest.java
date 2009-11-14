@@ -22,7 +22,7 @@ public class BuildInfoImplTest extends InjectedTest {
     }
     
     @Test
-    public void testBuildInfoFieldsExistForSpringWiredBean() {
+    public void testBuildInfoFieldsExistForInjectedBean() {
         BuildInfo buildInfo = get(BuildInfo.class);
         assertEquals(BUILD_NAME1, buildInfo.getName());
         assertEquals(BUILD_GROUP1, buildInfo.getGroup());

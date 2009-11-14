@@ -6,9 +6,9 @@ package nl.xs4all.banaan.tst8.domain;
  *
  */
 public class Letter {
-    private Address from;
-    private Address to;
-    private Long postage;
+    private final Address from;
+    private final Address to;
+    private final Long postage;
     
     public Letter(Address from, Address to, Long postage) {
         this.from = from;

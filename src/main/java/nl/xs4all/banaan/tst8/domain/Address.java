@@ -1,9 +1,9 @@
 package nl.xs4all.banaan.tst8.domain;
 
 public class Address {
-    private String name;
-    private String street;
-    private String city;
+    private final String name;
+    private final String street;
+    private final String city;
     
     public Address(String name, String street, String city) {
         this.name = name;
