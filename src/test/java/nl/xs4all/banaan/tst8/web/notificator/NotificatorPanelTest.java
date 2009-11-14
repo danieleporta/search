@@ -4,13 +4,11 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BODY1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NOTIFICATION1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.SUBJECT1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.TO1;
-import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.replay;
-import static org.easymock.EasyMock.verify;
-import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.Services;
+import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.tester.FormTester;
@@ -20,24 +18,25 @@ import org.junit.Test;
 
 /**
  * Test that UI invokes proper methods from service layer.
- * 
- * TODO: we use a setter to put the mock objects in the rest
- * of the application, which conflicts with constructor injection.
- * Would it be possible to put the mocks in the injector? 
  * @author konijn
  *
  */
-public class NotificatorPanelTest extends InjectedWicketTest {
+public class NotificatorPanelTest {
    
-    /** services will be filled with expectations for every test */
+    private MockInjector mockInjector;
+    private DemoApplication demoApplication;
     private Services services;
+    private Notificator notificator;
+    private BasePageTester tester;
     private FormTester formTester;
 
-    @Before @Override
+    @Before
     public void setUp() {
-        super.setUp();
-        services = createMock(Services.class);
-        demoApplication.setServices(services);
+        mockInjector = new MockInjector(Services.class, Notificator.class);
+        services = mockInjector.get(Services.class);
+        notificator = mockInjector.get(Notificator.class);
+        demoApplication = mockInjector.get(DemoApplication.class);
+        tester = new BasePageTester(demoApplication);
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
 
@@ -54,67 +53,65 @@ public class NotificatorPanelTest extends InjectedWicketTest {
      */
     @Test
     public void testRenderNotificatorPage2() {
-        Notificator notificator = createMock(Notificator.class);
         expect(services.getNotificator()).andReturn(notificator);
         notificator.send(NOTIFICATION1);
-        replay(services, notificator);
-        
+        replay();
         formTester.setValue("to", TO1);
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
         formTester.submit();
-        
-        verify(services, notificator);
+        verify();
         tester.assertNoErrorMessage();
     }
+
     
     @Test
     public void testEmptyToFieldIsDetected() {
-        replay(services);
-        
+        replay();
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
         formTester.submit();
-        
-        verify(services);
+        verify();
         tester.assertErrorMessages(new String[]{"Field 'to' is required."});
     }
     
     @Test
     public void testEmptySubjectFieldIsDetected() {
-        replay(services);
-        
+        replay();
         formTester.setValue("to", TO1);
         formTester.setValue("body", BODY1);
         formTester.submit();
-        
-        verify(services);
+        verify();
         tester.assertErrorMessages(new String[]{"Field 'subject' is required."});
     }
     
     @Test
     public void testEmptyBodyFieldIsDetected() {
-        replay(services);
-        
+        replay();
         formTester.setValue("to", TO1);
         formTester.setValue("subject", SUBJECT1);
         formTester.submit();
-        
-        verify(services);
+        verify();
         tester.assertErrorMessages(new String[]{"Field 'body' is required."});
     }
 
     @Test
     public void testBrokenToFieldIsDetected() {
-        replay(services);
-        
+        replay();
         formTester.setValue("to", "This is not a love song");
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
         formTester.submit();
-        
-        verify(services);
+        verify();
         tester.assertErrorMessages(new String[]{
                 "'This is not a love song' is not a valid email address."});
+    }
+    
+    private void verify() {
+        mockInjector.verify();
+    }
+    
+    private void replay() {
+        mockInjector.replay();
     }
 }
