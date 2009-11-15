@@ -4,6 +4,7 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.ADDRESS1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.CITY1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NAME1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET1;
+import nl.xs4all.banaan.tst8.domain.Address;
 import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 
 import org.apache.wicket.markup.html.panel.Panel;
@@ -32,11 +33,11 @@ public class AddressPanelTest extends InjectedWicketTest {
         tester.assertLabel("panel:city", CITY1);
     }
     
-    private static class AddressModel extends LoadableDetachableModel {
+    private static class AddressModel extends LoadableDetachableModel<Address> {
         private static final long serialVersionUID = 1L;
 
         @Override
-        protected Object load() {
+        protected Address load() {
             return ADDRESS1;
         }
     }
