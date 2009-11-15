@@ -20,24 +20,24 @@ import org.apache.wicket.util.value.ValueMap;
  */
 public class UploadPanel extends Panel {
     private static final long serialVersionUID = -2070660918144252605L;
-    private FileUploadField uploadField;
+    private final FileUploadField uploadField;
 
     public UploadPanel(String id) {
-        this(id, new CompoundPropertyModel(makeModel()));
+        this(id, new CompoundPropertyModel<ValueMap>(makeModel()));
     }
     
-    public UploadPanel(String id, IModel model) {
+    public UploadPanel(String id, IModel<ValueMap> model) {
         super(id, model);
-        Form form = new Form("form", model) {
+        final Form<ValueMap> form = new Form<ValueMap>("form", model) {
             private static final long serialVersionUID = -2959490619312979077L;
 
             @Override
             protected void onSubmit() {
-                ValueMap map = (ValueMap) getModelObject();
+                final ValueMap map = getModelObject();
                 // to show when model is updated
                 map.put("textSeen", map.get("text"));
                 map.put("submitSeen", "true");
-                FileUpload upload = uploadField.getFileUpload();
+                final FileUpload upload = uploadField.getFileUpload();
                 map.put("haveUpload", upload != null);
                 if (upload != null) {
                     // RFC 2388 suggests filename encoding using RFC-2231;
@@ -61,17 +61,17 @@ public class UploadPanel extends Panel {
             // good enough to test just text files in ASCII subset.
             private String load(FileUpload upload) {
                 try {
-                    InputStream inputStream = upload.getInputStream();
-                    int count = inputStream.available();
-                    byte[] buf = new byte[count];
-                    int result = inputStream.read(buf);
+                    final InputStream inputStream = upload.getInputStream();
+                    final int count = inputStream.available();
+                    final byte[] buf = new byte[count];
+                    final int result = inputStream.read(buf);
                     if (result != count) {
                         return null;
                     }
-                    StringBuilder sb = new StringBuilder();
+                    final StringBuilder sb = new StringBuilder();
                     for (byte b : buf) {
                         try {
-                       sb.appendCodePoint(b);
+                            sb.appendCodePoint(b);
                         }
                         catch (IllegalArgumentException e) {
                             // not a single-byte character
@@ -86,9 +86,10 @@ public class UploadPanel extends Panel {
         };
         
         add(form);
+        
         uploadField = new FileUploadField("file");
         form.add(uploadField);
-        form.add(new TextField("text"));
+        form.add(new TextField<String>("text"));
         form.setMultiPart(true);
         add(new Label("textSeen"));
         add(new Label("submitSeen"));
@@ -100,8 +101,7 @@ public class UploadPanel extends Panel {
     }
 
     public static ValueMap makeModel() {
-        ValueMap map = new ValueMap("text=,submitSeen=false");
-        return map;
+        return new ValueMap("text=,submitSeen=false");
     }
 
 }

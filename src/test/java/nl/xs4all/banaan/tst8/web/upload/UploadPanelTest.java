@@ -35,7 +35,7 @@ public class UploadPanelTest extends InjectedWicketTest {
             private static final long serialVersionUID = 1L;
             
             public Panel getTestPanel(String panelId) {
-                return new UploadPanel(panelId, new CompoundPropertyModel(map));
+                return new UploadPanel(panelId, new CompoundPropertyModel<ValueMap>(map));
             }
         });
     }
