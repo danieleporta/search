@@ -1,7 +1,10 @@
 package nl.xs4all.banaan.tst8.web.param;
 
 
+import java.util.List;
+
 import nl.xs4all.banaan.tst8.service.ParamList;
+import nl.xs4all.banaan.tst8.util.Assoc;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -22,20 +25,20 @@ public class ParamPanel extends Panel {
         super(id);
         getSession().info("building  param panel");
 
-        IModel model = new LoadableDetachableModel () {
+        IModel<List<Assoc<String>>> model = new LoadableDetachableModel<List<Assoc<String>>> () {
             private static final long serialVersionUID = 1L;
             @Override
-            public Object load () {
-                ParamList paramList = new ParamList();
+            public List<Assoc<String>> load () {
+                final ParamList paramList = new ParamList();
                 return paramList.getList();
             }
         };
         
-        add (new PropertyListView("bindings", model) {
+        add (new PropertyListView<Assoc<String>>("bindings", model) {
             private static final long serialVersionUID = 1L;
            
             @Override
-            protected void populateItem (ListItem item) {
+            protected void populateItem (ListItem<Assoc<String>> item) {
                 item.add(new Label("key"));
                 item.add(new Label("value"));
             }
