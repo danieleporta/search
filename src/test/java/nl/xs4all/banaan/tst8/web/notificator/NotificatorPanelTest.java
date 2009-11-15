@@ -5,7 +5,8 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NOTIFICATION1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.SUBJECT1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.TO1;
 import static org.easymock.EasyMock.expect;
-import nl.xs4all.banaan.tst8.fixtures.MockInjectedWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.Services;
 
@@ -20,16 +21,19 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class NotificatorPanelTest extends MockInjectedWicketTest {
+public class NotificatorPanelTest {
+    private WicketMockInjector injector;
+    private BasePageTester tester;
+    private FormTester formTester;
     private Services services;
     private Notificator notificator;
-    private FormTester formTester;
 
     @Before
     public void setUp() {
-        mock(Services.class, Notificator.class);
-        services = get(Services.class);
-        notificator = get(Notificator.class);
+        injector = new WicketMockInjector(Services.class, Notificator.class);
+        services = injector.get(Services.class);
+        notificator = injector.get(Notificator.class);
+        tester = injector.tester();
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
 
@@ -44,53 +48,53 @@ public class NotificatorPanelTest extends MockInjectedWicketTest {
     public void testSubmittingFormDoesNotificatorWithExpectedMessage() {
         expect(services.getNotificator()).andReturn(notificator);
         notificator.send(NOTIFICATION1);
-        replay();
+        injector.replay();
         formTester.setValue("to", TO1);
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
         formTester.submit();
-        verify();
+        injector.verify();
         tester.assertNoErrorMessage();
     }
 
     @Test
     public void testEmptyToFieldIsDetected() {
-        replay();
+        injector.replay();
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
         formTester.submit();
-        verify();
+        injector.verify();
         tester.assertErrorMessages(new String[]{"Field 'to' is required."});
     }
     
     @Test
     public void testEmptySubjectFieldIsDetected() {
-        replay();
+        injector.replay();
         formTester.setValue("to", TO1);
         formTester.setValue("body", BODY1);
         formTester.submit();
-        verify();
+        injector.verify();
         tester.assertErrorMessages(new String[]{"Field 'subject' is required."});
     }
     
     @Test
     public void testEmptyBodyFieldIsDetected() {
-        replay();
+        injector.replay();
         formTester.setValue("to", TO1);
         formTester.setValue("subject", SUBJECT1);
         formTester.submit();
-        verify();
+        injector.verify();
         tester.assertErrorMessages(new String[]{"Field 'body' is required."});
     }
 
     @Test
     public void testBrokenToFieldIsDetected() {
-        replay();
+        injector.replay();
         formTester.setValue("to", "This is not a love song");
         formTester.setValue("subject", SUBJECT1);
         formTester.setValue("body", BODY1);
         formTester.submit();
-        verify();
+        injector.verify();
         tester.assertErrorMessages(new String[]{
                 "'This is not a love song' is not a valid email address."});
     }
