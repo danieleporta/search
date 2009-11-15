@@ -1,5 +1,7 @@
  package nl.xs4all.banaan.tst8.web.jndi;
 
+import java.util.List;
+
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.util.Assoc;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
@@ -30,11 +32,11 @@ public class JndiPanel extends Panel {
         super(id);
         getSession().info("building jndi panel");
 
-        IModel model = new LoadableDetachableModel() {
+        final IModel<List<Assoc<Object>>> model = new LoadableDetachableModel<List<Assoc<Object>>>() {
             private static final long serialVersionUID = -6205291386596032973L;
 
             @Override
-            public Object load() {
+            public List<Assoc<Object>> load() {
                 try {
                     return DemoApplication.get().getServices().
                         getJndiReader().read(location).getList();
@@ -46,23 +48,17 @@ public class JndiPanel extends Panel {
         };
         
         add(new Label("location", location));
-        add(new PropertyListView("bindings", model) {
+        add(new PropertyListView<Assoc<Object>>("bindings", model) {
             private static final long serialVersionUID = 1L;
 
             @Override
-            public void populateItem (ListItem item) {
-                Assoc<Object> binding = 
-                    (Assoc<Object>) item.getModelObject();
-                String path;
-                if (location.equals("")) {
-                    path = binding.getKey();
-                }
-                else {
-                    path = location + "/" + binding.getKey();
-                }
-                
+            public void populateItem (ListItem<Assoc<Object>> item) {
+                final Assoc<Object> binding = item.getModelObject();
+                final String path = location.equals("") 
+                        ? binding.getKey()
+                        : location + "/" + binding.getKey();
                 item.add(
-                    new BookmarkablePageLink(
+                    new BookmarkablePageLink<Void>(
                             "keylink", JndiPage.class,
                             new PageParameters("location=" + path)).
                                     add(new Label("keytext", binding.getKey())));
