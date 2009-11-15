@@ -2,17 +2,28 @@ package nl.xs4all.banaan.tst8.web;
 
 
 import static org.junit.Assert.fail;
-import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.onchange.OnchangePanel;
 
 import org.apache.wicket.protocol.http.MockHttpServletRequest;
 import org.apache.wicket.util.tester.WicketTester;
+import org.junit.Before;
 import org.junit.Test;
 
-public class DemoApplicationTest extends InjectedWicketTest {
+public class DemoApplicationTest {
 
+    private WicketMockInjector injector;
+    private BasePageTester tester;
+
+    @Before
+    public void setUp() {
+        injector = new WicketMockInjector();
+        tester = injector.tester();
+    }
+    
     @Test
     public void testProcessRequestCycle() {
         tester.processRequestCycle(HomePage.class);

@@ -7,7 +7,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -24,12 +25,15 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class UploadPanelTest extends InjectedWicketTest {
+public class UploadPanelTest  {
+    private WicketMockInjector injector;
+    private BasePageTester tester;
     private ValueMap map;                   // model for the form
 
-    @Before @Override
+    @Before
     public void setUp() {
-        super.setUp();
+        injector = new WicketMockInjector();
+        tester = injector.tester();
         map = new ValueMap("text=x");
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
@@ -76,7 +80,6 @@ public class UploadPanelTest extends InjectedWicketTest {
         assertEquals("sample text file for upload testing\n", map.get("fileContents"));
     }
     
-    
     @Test
     public void testTextFieldAcceptsInputAfterSubmitIfYouAlsoHaveFile() throws URISyntaxException {
         FormTester formTester = tester.newFormTester("panel:form");
@@ -114,7 +117,7 @@ public class UploadPanelTest extends InjectedWicketTest {
         //
         formTester.submit();
         assertEquals("true", map.get("submitSeen"));
-        // this was 1.3: assertEquals(null, map.get("text"));
+        // In 1.3: assertEquals(null, map.get("text"));
         assertEquals("aap", map.get("text"));
     }
 
@@ -129,7 +132,7 @@ public class UploadPanelTest extends InjectedWicketTest {
         // good: it does not show as file upload
         assertEquals(false, map.get("haveUpload"));
         // bad: but it still breaks other text fields.
-        // 1.3 assertEquals(null, map.get("text"));
+        // In 1.3: assertEquals(null, map.get("text"));
         assertEquals("aap", map.get("text"));
     }
     
@@ -155,16 +158,11 @@ public class UploadPanelTest extends InjectedWicketTest {
         assertEquals(true, map.get("haveUpload"));
     }
     
-    @Test
+    @Test(expected=IllegalArgumentException.class)
     public void testThatSetFileDoesNotAcceptNull() throws URISyntaxException {
         FormTester formTester = tester.newFormTester("panel:form");
-        try {
-            formTester.setFile("file", null, null);
-            fail("Null resource when setting file went undetected");
-        }
-        catch (IllegalArgumentException e) {
-            // ok
-        }
+        formTester.setFile("file", null, null);
+        fail("Null resource when setting file went undetected");
     }
     
     @Test
@@ -174,15 +172,10 @@ public class UploadPanelTest extends InjectedWicketTest {
         assertEquals(false, canRename);
     }
     
-    @Test
+    @Test(expected=IllegalArgumentException.class)
     public void testThatResourcesThatDontExistCauseAnException() throws URISyntaxException {
-        try {
-            getResourceAsFile("/i-dont-exist.txt");
-            fail("missing resource went undetected");
-        }
-        catch (IllegalArgumentException e){
-            // ok
-        }
+        getResourceAsFile("/i-dont-exist.txt");
+        fail("missing resource went undetected");
     }
     
     private File getResourceAsFile(String resourceName) throws URISyntaxException {

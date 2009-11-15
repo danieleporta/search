@@ -1,12 +1,14 @@
 package nl.xs4all.banaan.tst8.web.property;
 
 import static org.junit.Assert.assertEquals;
-import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.ITestPageSource;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -14,7 +16,15 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class PropertyPageTest extends InjectedWicketTest {
+public class PropertyPageTest {
+    private WicketMockInjector injector;
+    private BasePageTester tester;
+
+    @Before
+    public void setUp() {
+        injector = new WicketMockInjector();
+        tester = injector.tester();
+    }
     
     /**
      * default page shows system properties.

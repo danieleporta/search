@@ -1,10 +1,12 @@
 package nl.xs4all.banaan.tst8.web.jndi;
 
-import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.util.tester.ITestPageSource;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -14,7 +16,15 @@ import org.junit.Test;
  *
  */
 
-public class JndiPageTest extends InjectedWicketTest {
+public class JndiPageTest {
+    private WicketMockInjector injector;
+    private BasePageTester tester;
+
+    @Before
+    public void setUp() {
+        injector = new WicketMockInjector();
+        tester = injector.tester();
+    }
 
     @Test
     public void testRenderJndiPage1() {

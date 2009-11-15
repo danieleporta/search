@@ -10,15 +10,25 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.POSTAGE1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET2;
 import nl.xs4all.banaan.tst8.domain.Letter;
-import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.tester.TestPanelSource;
+import org.junit.Before;
 import org.junit.Test;
 
 
-public class LetterPanelTest extends InjectedWicketTest {
+public class LetterPanelTest {
+    private WicketMockInjector injector;
+    private BasePageTester tester;
+
+    @Before
+    public void setUp() {
+        injector = new WicketMockInjector();
+        tester = injector.tester();
+    }
 
     @Test
     public void testShowPanel() {

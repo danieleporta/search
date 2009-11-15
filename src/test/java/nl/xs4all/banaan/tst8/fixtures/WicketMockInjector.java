@@ -4,11 +4,9 @@ import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 /** mock injector that also prepares application and tester */
 public class WicketMockInjector extends MockInjector {
-    private final  BasePageTester tester;
     
     public WicketMockInjector(Class<?>... classes) {
         super(classes);
-        tester = new BasePageTester(application());
     }
     
     public DemoApplication application() {
@@ -16,6 +14,6 @@ public class WicketMockInjector extends MockInjector {
     }
     
     public BasePageTester tester() {
-        return tester;
+        return new BasePageTester(application());
     }
 }

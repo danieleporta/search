@@ -5,11 +5,13 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.CITY1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NAME1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET1;
 import nl.xs4all.banaan.tst8.domain.Address;
-import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
+import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.tester.TestPanelSource;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -17,8 +19,16 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class AddressPanelTest extends InjectedWicketTest {
-    
+public class AddressPanelTest {
+    private WicketMockInjector injector;
+    private BasePageTester tester;
+
+    @Before
+    public void setUp() {
+        injector = new WicketMockInjector();
+        tester = injector.tester();
+    }
+
     @Test
     public void testAddressPanel() {
         tester.startPanel(new TestPanelSource() {

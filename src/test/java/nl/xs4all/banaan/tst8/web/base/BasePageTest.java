@@ -1,14 +1,16 @@
 package nl.xs4all.banaan.tst8.web.base;
 
 
-import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
+import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.ThrowingPage;
+import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.menu.MenuPage;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.util.tester.ITestPageSource;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -17,7 +19,15 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class BasePageTest extends InjectedWicketTest {
+public class BasePageTest {
+    private WicketMockInjector injector;
+    private BasePageTester tester;
+
+    @Before
+    public void setUp() {
+        injector = new WicketMockInjector();
+        tester = injector.tester();
+    }
     
     @Test
     public void testClickLink0() {
