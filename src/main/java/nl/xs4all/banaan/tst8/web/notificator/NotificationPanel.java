@@ -20,21 +20,21 @@ public class NotificationPanel extends Panel {
         super(id);
         notification = new Notification();
         
-        Form form = new Form("form", new CompoundPropertyModel(notification)) {
+        final Form<Notification> form = new Form<Notification>("form", new CompoundPropertyModel<Notification>(notification)) {
             private static final long serialVersionUID = 1L;
 
             @Override
             protected void onSubmit() {
-                Notification notification = (Notification) getModelObject();
+                Notification notification = getModelObject();
                 DemoApplication.get().
                         getServices().getNotificator().send(notification);
             }
         };
-        form.add(new TextField("to")
+        form.add(new TextField<String>("to")
                 .setRequired(true)
                 .add(EmailAddressValidator.getInstance()));
-        form.add(new TextField("subject").setRequired(true));
-        form.add(new TextArea("body").setRequired(true));
+        form.add(new TextField<String>("subject").setRequired(true));
+        form.add(new TextArea<String>("body").setRequired(true));
         form.add(new Button("confirm"));
         add (form);
     }
