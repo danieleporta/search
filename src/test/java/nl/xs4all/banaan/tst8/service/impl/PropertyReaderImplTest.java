@@ -43,8 +43,7 @@ public class PropertyReaderImplTest {
     public void testNotFoundException () {
         PropertyReader reader = new PropertyReaderImpl();
         try {
-            @SuppressWarnings("unused")
-            PropertyList list = reader.read("/not/found/path/build.properties");
+            reader.read("/not/found/path/build.properties");
             fail("property file absence undetected");
         }
         catch (ServiceException se) {
