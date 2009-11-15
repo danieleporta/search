@@ -9,6 +9,7 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NAME2;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.POSTAGE1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET2;
+import nl.xs4all.banaan.tst8.domain.Letter;
 import nl.xs4all.banaan.tst8.fixtures.InjectedWicketTest;
 
 import org.apache.wicket.markup.html.panel.Panel;
@@ -37,12 +38,11 @@ public class LetterPanelTest extends InjectedWicketTest {
         tester.assertLabel("panel:postage", POSTAGE1.toString());    
     }
     
-    private static class LetterModel extends LoadableDetachableModel {
+    private static class LetterModel extends LoadableDetachableModel<Letter> {
         private static final long serialVersionUID = 1L;
         @Override
-        public Object load() {
+        public Letter load() {
             return LETTER1;
         }
     }
-
 }
