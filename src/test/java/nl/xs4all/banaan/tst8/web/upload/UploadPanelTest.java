@@ -89,7 +89,7 @@ public class UploadPanelTest extends InjectedWicketTest {
     }
     
     @Test
-    public void testTextFieldWithoutSetfileIsBroken() throws URISyntaxException {
+    public void testTextFieldWithoutSetfileWasBrokenButFixedIn143() throws URISyntaxException {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "aap");
         //
@@ -114,11 +114,12 @@ public class UploadPanelTest extends InjectedWicketTest {
         //
         formTester.submit();
         assertEquals("true", map.get("submitSeen"));
-        assertEquals(null, map.get("text"));
+        // this was 1.3: assertEquals(null, map.get("text"));
+        assertEquals("aap", map.get("text"));
     }
 
     @Test
-    public void testTextFieldIsAlsoBrokenWithEmptyFileField() throws URISyntaxException {
+    public void testTextFieldWasAlsoBrokenWithEmptyFileFieldButFixedIn143() throws URISyntaxException {
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("text", "aap");
         // try simply setting an empty field
@@ -128,7 +129,8 @@ public class UploadPanelTest extends InjectedWicketTest {
         // good: it does not show as file upload
         assertEquals(false, map.get("haveUpload"));
         // bad: but it still breaks other text fields.
-        assertEquals(null, map.get("text"));
+        // 1.3 assertEquals(null, map.get("text"));
+        assertEquals("aap", map.get("text"));
     }
     
     @Test

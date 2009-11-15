@@ -25,19 +25,19 @@ public class LetterPanel extends Panel {
         this (panelId, new LetterPanel.LetterModel());
     }
     
-    public LetterPanel(String panelId, IModel model) {
-        super(panelId, new CompoundPropertyModel(model));
+    public LetterPanel(String panelId, IModel<Letter> model) {
+        super(panelId, new CompoundPropertyModel<Letter>(model));
         
-        add(new AddressPanel("from", new ComponentPropertyModel("from")));
-        add(new AddressPanel("to", new ComponentPropertyModel("to")));
+        add(new AddressPanel("from", new ComponentPropertyModel<Address>("from")));
+        add(new AddressPanel("to", new ComponentPropertyModel<Address>("to")));
         add(new Label("postage"));
     }
 
-    private static class LetterModel extends LoadableDetachableModel {
+    private static class LetterModel extends LoadableDetachableModel<Letter> {
         private static final long serialVersionUID = 3207586619607652567L;
         
         @Override
-        protected Object load() {
+        protected Letter load() {
             return new Letter (
                     new Address("twiet", "aap", "noot"),
                     new Address("mies", "wim", "zus"),

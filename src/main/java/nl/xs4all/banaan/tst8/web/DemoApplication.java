@@ -14,6 +14,7 @@ import nl.xs4all.banaan.tst8.web.property.PropertyPanel;
 import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
 
 import org.apache.wicket.Application;
+import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.settings.IApplicationSettings;
@@ -82,7 +83,7 @@ public class DemoApplication extends WebApplication {
      * @see wicket.Application#getHomePage()
      */
     @Override
-    public Class<?> getHomePage() {
+    public Class<? extends Page> getHomePage() {
         return HomePage.class;
     }
 }

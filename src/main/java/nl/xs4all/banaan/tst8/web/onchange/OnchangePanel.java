@@ -23,7 +23,7 @@ public class OnchangePanel extends Panel {
     private static final long serialVersionUID = 4815145731202521073L;
 
     public OnchangePanel(String id) {
-        this(id, new CompoundPropertyModel(makeModel()));
+        this(id, new CompoundPropertyModel<ValueMap>(makeModel()));
     }
 
     /** default model for this panel */
@@ -31,22 +31,22 @@ public class OnchangePanel extends Panel {
         return new ValueMap("zipcode=,zipcode2=junk,zipcode3=123,street=,submitSeen=false");
     }
     
-    public OnchangePanel(String id, IModel model) {
+    public OnchangePanel(String id, IModel<ValueMap> model) {
         super(id, model);
         getSession().info("building onchange panel");
         
-        final Form form = new Form("form", model) {
+        final Form<ValueMap> form = new Form<ValueMap>("form", model) {
             private static final long serialVersionUID = -5412242628570636316L;
             
             @Override
             protected void onSubmit() {
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = getModelObject();
                 map.put("submitSeen", "true");
             }
             
             @Override
             protected void onError() {
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = getModelObject();
                 map.put("errorSeen", "true");
             }
         };
@@ -56,13 +56,13 @@ public class OnchangePanel extends Panel {
         // onchange is called after leaving the field (with tab, return or click elsewhere).
         // After updating target, focus is lost.  An alternative is target.addFocus(),
         // which risks unintended overwrite of prefill.
-        TextField zip = new TextField("zipcode");
+        TextField<String> zip = new TextField<String>("zipcode");
         zip.add(new AjaxFormComponentUpdatingBehavior("onchange"){
             private static final long serialVersionUID = 3982553539546743877L;
 
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = form.getModelObject();
                 map.put("changeSeen", "true");
                 map.put("street", "prefill");
                 target.addComponent(form);
@@ -71,14 +71,14 @@ public class OnchangePanel extends Panel {
         form.add (zip);
         
         // second field with onchange behavior, to test interaction with required.
-        TextField zip2 = new TextField("zipcode2");
+        TextField<String> zip2 = new TextField<String>("zipcode2");
         zip2.setRequired(true);
         zip2.add(new AjaxFormComponentUpdatingBehavior("onchange"){
             private static final long serialVersionUID = 3982553539546743877L;
 
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = form.getModelObject();
                 map.put("changeSeen", "true");
                 map.put("street", "prefill2");
                 target.addComponent(form);
@@ -89,7 +89,7 @@ public class OnchangePanel extends Panel {
                 super.onError(target, e);
                 // get here if no exception in onUpdate(),
                 // eg validation error or required-but-missing.
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = form.getModelObject();
                 map.put("errorSeen", "inZip2");
                 target.addComponent(form);
             }
@@ -97,7 +97,7 @@ public class OnchangePanel extends Panel {
         form.add (zip2);
         
         // third ajax field, this one both required and with validator
-        TextField zip3 = new TextField("zipcode3");
+        TextField<String> zip3 = new TextField<String>("zipcode3");
         zip3.setRequired(true);
         zip3.add(new PatternValidator("\\d+"));
         zip3.add(new AjaxFormComponentUpdatingBehavior("onchange"){
@@ -105,7 +105,7 @@ public class OnchangePanel extends Panel {
 
             @Override
             protected void onUpdate(AjaxRequestTarget target) {
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = form.getModelObject();
                 map.put("changeSeen", "true");
                 map.put("street", "prefill3");
                 target.addComponent(form);
@@ -116,7 +116,7 @@ public class OnchangePanel extends Panel {
                 super.onError(target, e);
                 // get here if no exception in onUpdate(),
                 // eg validation error or required-but-missing.
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = form.getModelObject();
                 map.put("errorSeen", "inZip3");
                 map.put("street", "that was an error");
                 target.addComponent(form);
@@ -124,12 +124,12 @@ public class OnchangePanel extends Panel {
         });
         form.add (zip3);
         
-        form.add (new TextField("street"));
+        form.add (new TextField<String>("street"));
         form.add((new Label("submitSeen")));
         form.add((new Label("changeSeen")));
         form.add((new Label("errorSeen")));
-        form.add((new Label("streetSeen", new PropertyModel(model, "street"))));
-        form.add((new Label("zip2Seen", new PropertyModel(model, "zipcode2"))));
-        form.add((new Label("zip3Seen", new PropertyModel(model, "zipcode3"))));
+        form.add((new Label("streetSeen", new PropertyModel<String>(model, "street"))));
+        form.add((new Label("zip2Seen", new PropertyModel<String>(model, "zipcode2"))));
+        form.add((new Label("zip3Seen", new PropertyModel<String>(model, "zipcode3"))));
     }
 }

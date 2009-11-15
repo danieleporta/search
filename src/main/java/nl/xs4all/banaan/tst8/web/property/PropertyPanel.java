@@ -1,6 +1,9 @@
 package nl.xs4all.banaan.tst8.web.property;
 
+import java.util.List;
+
 import nl.xs4all.banaan.tst8.service.ServiceException;
+import nl.xs4all.banaan.tst8.util.Assoc;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.log4j.Logger;
@@ -26,8 +29,8 @@ public class PropertyPanel extends Panel {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(PropertyPanel.class);
     
-    private TextField field;
-    private Form form;
+    private TextField<String> field;
+    private Form<Void> form;
     
 
     public PropertyPanel(String id) {
@@ -38,36 +41,36 @@ public class PropertyPanel extends Panel {
         super(id);
         getSession().info("building  property panel");
         
-        IModel model = new PropertyModel(location);
+        IModel<List<Assoc<String>>> model = new PropertyModel(location);
         
-        form = new Form("form");
-        field = new TextField("field", 
-                new Model(location));
+        form = new Form<Void>("form");
+        field = new TextField<String>("field", 
+                new Model<String>(location));
         form.add(field);
         form.add(new Button("confirm") {
             private static final long serialVersionUID = 7054234909853489009L;
 
             @Override
             public void onSubmit() {
-                String result = field.getModelObjectAsString();
+                String result = field.getModelObject();
                 setResponsePage(PropertyPage.class, 
                         new PageParameters("location="+result));
             }
         });
         add(form);
         
-        add (new PropertyListView ("props", model) {
+        add (new PropertyListView<Assoc<String>> ("props", model) {
             private static final long serialVersionUID = 1L;
            
             @Override
-            public void populateItem (ListItem item) {
+            public void populateItem (ListItem<Assoc<String>> item) {
                 item.add(new Label("key"));
                 item.add(new Label("value"));
             }
         });
     }
     
-    private static final class PropertyModel extends LoadableDetachableModel {
+    private static final class PropertyModel extends LoadableDetachableModel<List<Assoc<String>>> {
         private static final long serialVersionUID = 1L;
 
         private final String location;
@@ -77,7 +80,7 @@ public class PropertyPanel extends Panel {
         }
         
         @Override
-        public Object load() {
+        public List<Assoc<String>> load() {
             try {
                 return DemoApplication.get().getServices().
                 getPropertyReader().read(location).getList();

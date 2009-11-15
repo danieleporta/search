@@ -19,7 +19,7 @@ public class FormPanel extends Panel {
     /**
      * these may be triggered by some button
      */
-    public static String[] allEvents = { "submitSeen", "errorSeen",
+    public static final String[] allEvents = { "submitSeen", "errorSeen",
             "buttonBeforeSubmit", "button1Seen", "button2Seen", "button3Seen",
             "button4Seen", "button5Seen" };
 
@@ -38,49 +38,51 @@ public class FormPanel extends Panel {
 
     
     public FormPanel(String id) {
-        this (id, new CompoundPropertyModel(makeMap()));
+        this (id, new CompoundPropertyModel<ValueMap>(makeMap()));
     }
     
-    public FormPanel(String id, IModel model) {
+    public FormPanel(String id, IModel<ValueMap> model) {
         super(id, model);
-        Form form = new Form("form", model) {
+        final Form<ValueMap> form = new Form<ValueMap>("form", model) {
             private static final long serialVersionUID = -5412242628570636316L;
 
             @Override
             protected void onSubmit() {
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = getModelObject();
                 map.put("submitSeen", "true");
             }
 
             @Override
             protected void onError() {
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = getModelObject();
                 map.put("errorSeen", "true");
             }
             
         };
         
         add(form);
-        form.add(new TextField("text", String.class).setRequired(true));
+        form.add(new TextField<String>("text", String.class).setRequired(true));
         
         // marked up as submit button
-        form.add(new Button("button1", model) {
+        form.add(new Button("button1") {
             private static final long serialVersionUID = -2440693329626812016L;
 
             @Override
             public void onSubmit() {
-                ValueMap map = (ValueMap) getModelObject();
+                // note that the model of the button is used to display text on it.
+                // here we record an action in model object of enclosing form.
+                ValueMap map = form.getModelObject();
                 map.put("button1Seen", "true");
             }
         });
         
         // marked up as plain button
-        form.add(new Button("button2", model) {
+        form.add(new Button("button2") {
             private static final long serialVersionUID = -2440693329626812016L;
 
             @Override
             public void onSubmit() {
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = form.getModelObject();
                 map.put("button2Seen", "true");
                 map.put("buttonBeforeSubmit",
                         map.get("submitSeen").equals("true")
@@ -90,23 +92,23 @@ public class FormPanel extends Panel {
         });
         
         // a link, marked up as plain button
-        form.add(new Link("button3", model) {
+        form.add(new Link<ValueMap>("button3", model) {
             private static final long serialVersionUID = -2538713712765931224L;
 
             @Override
             public void onClick() {
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = getModelObject();
                 map.put("button3Seen", "true");
             }
         });
         
         // marked up as plain button, without form processing
-        form.add(new Button("button4", model) {
+        form.add(new Button("button4") {
             private static final long serialVersionUID = -2440693329626812016L;
 
             @Override
             public void onSubmit() {
-                ValueMap map = (ValueMap) getModelObject();
+                ValueMap map = form.getModelObject();
                 map.put("button4Seen", "true");
             }
         }.setDefaultFormProcessing(false));
@@ -116,8 +118,8 @@ public class FormPanel extends Panel {
             private static final long serialVersionUID = -2473039751385349081L;
 
             @Override
-            protected void onSubmit(AjaxRequestTarget target, Form form) {
-                ValueMap map = (ValueMap) getModelObject();
+            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+                ValueMap map = (ValueMap) getDefaultModelObject();
                 map.put("button5Seen", "true");
             }
         });
