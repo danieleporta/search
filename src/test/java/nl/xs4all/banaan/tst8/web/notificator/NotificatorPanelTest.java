@@ -25,14 +25,10 @@ public class NotificatorPanelTest {
     private WicketMockInjector injector;
     private BasePageTester tester;
     private FormTester formTester;
-    private Services services;
-    private Notificator notificator;
 
     @Before
     public void setUp() {
         injector = new WicketMockInjector(Services.class, Notificator.class);
-        services = injector.get(Services.class);
-        notificator = injector.get(Notificator.class);
         tester = injector.tester();
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
@@ -46,6 +42,8 @@ public class NotificatorPanelTest {
 
     @Test
     public void testSubmittingFormDoesNotificatorWithExpectedMessage() {
+        final Services services = injector.get(Services.class);
+        final Notificator notificator = injector.get(Notificator.class);
         expect(services.getNotificator()).andReturn(notificator);
         notificator.send(NOTIFICATION1);
         injector.replay();

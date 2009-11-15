@@ -22,17 +22,17 @@ import com.google.inject.util.Modules;
  */
 public class MockInjector {
     private final Injector injector;
-    private final Class<?>[] classes;
+    private final Class<?>[] mockedClasses;
     
-    public MockInjector(Class<?>... classes) {
-        this.classes = classes;
+    public MockInjector(Class<?>... mockedClasses) {
+        this.mockedClasses = mockedClasses;
         injector = Guice.createInjector(Modules.override(
                 new BaseApplicationModule(),
                 new TestApplicationModule()).
                 with(new AbstractModule() {
                     @Override @SuppressWarnings("unchecked")
                     protected void configure() {
-                        for (Class<?> c : MockInjector.this.classes) {
+                        for (Class<?> c : MockInjector.this.mockedClasses) {
                             ((AnnotatedBindingBuilder<Object>) bind(c)).toInstance(createMock(c));
                         }
                     }
@@ -46,14 +46,14 @@ public class MockInjector {
 
     /** put all mock objects in replay mode */
     public void replay() {
-        for (Class<?> c: classes) {
+        for (Class<?> c: mockedClasses) {
             EasyMock.replay(get(c));
         }
     }
 
     /** verify all mock objects have seen the expected invocations */
     public void verify() {
-        for (Class<?> c: classes) {
+        for (Class<?> c: mockedClasses) {
             EasyMock.verify(get(c));
         }
     }
