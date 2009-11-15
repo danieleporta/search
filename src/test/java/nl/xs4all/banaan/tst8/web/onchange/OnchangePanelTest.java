@@ -23,14 +23,14 @@ public class OnchangePanelTest extends InjectedWicketTest {
             private static final long serialVersionUID = 1L;
             
             public Panel getTestPanel(String panelId) {
-                return new OnchangePanel(panelId, new CompoundPropertyModel(map));
+                return new OnchangePanel(panelId, new CompoundPropertyModel<ValueMap>(map));
             }
         });
     }
     
     @Test
     public void testSubmitButtonWorks() {
-        FormTester formTester = tester.newFormTester("panel:form");
+        final FormTester formTester = tester.newFormTester("panel:form");
         formTester.submit();
         assertEquals("true", map.get("submitSeen"));
     }
@@ -41,7 +41,7 @@ public class OnchangePanelTest extends InjectedWicketTest {
     //
     @Test
     public void testOnchangeGetsInvoked() {
-        FormTester formTester = tester.newFormTester("panel:form");
+        final FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("zipcode", "aap");
         tester.executeAjaxEvent("panel:form:zipcode", "onchange");
         assertEquals("true", map.get("changeSeen"));
@@ -55,7 +55,7 @@ public class OnchangePanelTest extends InjectedWicketTest {
     //
     @Test
     public void testOnchangeWontHappenIfRequiredNotMet() {
-        FormTester formTester = tester.newFormTester("panel:form");
+        final FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("zipcode2", "");
         tester.executeAjaxEvent("panel:form:zipcode2", "onchange");
         assertEquals(null, map.get("changeSeen"));
@@ -65,7 +65,7 @@ public class OnchangePanelTest extends InjectedWicketTest {
 
     @Test
     public void testOnchangeWillHappenIfRequiredIsMet() {
-        FormTester formTester = tester.newFormTester("panel:form");
+        final FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("zipcode2", "yes");
         tester.executeAjaxEvent("panel:form:zipcode2", "onchange");
         assertEquals("true", map.get("changeSeen"));
@@ -75,7 +75,7 @@ public class OnchangePanelTest extends InjectedWicketTest {
     
     @Test
     public void testOnchangeWontHappenIfValidationFails() {
-        FormTester formTester = tester.newFormTester("panel:form");
+        final FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("zipcode3", "bad");
         tester.executeAjaxEvent("panel:form:zipcode3", "onchange");
         assertEquals(null, map.get("changeSeen"));
@@ -85,7 +85,7 @@ public class OnchangePanelTest extends InjectedWicketTest {
     
     @Test
     public void testOnchangeWillHappenIfValidationPasses() {
-        FormTester formTester = tester.newFormTester("panel:form");
+        final FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("zipcode3", "999");
         tester.executeAjaxEvent("panel:form:zipcode3", "onchange");
         assertEquals("true", map.get("changeSeen"));
