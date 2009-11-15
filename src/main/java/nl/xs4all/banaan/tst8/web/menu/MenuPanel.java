@@ -1,10 +1,11 @@
 package nl.xs4all.banaan.tst8.web.menu;
 
+import java.util.List;
+
 import nl.xs4all.banaan.tst8.util.Assoc;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -25,27 +26,25 @@ public class MenuPanel extends Panel {
         super(id);
         getSession().info("building  menu panel");
 
-        IModel model = new LoadableDetachableModel () {
+        final IModel<List<Assoc<Class<? extends Panel>>>> model = new LoadableDetachableModel<List<Assoc<Class<? extends Panel>>>> () {
             private static final long serialVersionUID = 1328703313038270829L;
 
             @Override
-            public Object load () {
+            public List<Assoc<Class<? extends Panel>>> load () {
                 return DemoApplication.get().getMenuList().getList();
             }
         };
         
-        add (new PropertyListView("bindings", model) {
+        add (new PropertyListView<Assoc<Class<? extends Panel>>>("bindings", model) {
             private static final long serialVersionUID = 1L;
-           
-            @SuppressWarnings("unchecked")
+
             @Override
-            protected void populateItem (ListItem item) {
-                Assoc<Class<? extends WebPage>> assoc = 
-                    (Assoc<Class<? extends WebPage>>) item.getModelObject();
+            protected void populateItem (ListItem<Assoc<Class<? extends Panel>>> item) {
+                Assoc<Class<? extends Panel>> assoc = item.getModelObject();
                 
-                PageParameters parameters = new PageParameters();
+                final PageParameters parameters = new PageParameters();
                 parameters.put("panel", assoc.getKey());
-                BookmarkablePageLink pageLink = new BookmarkablePageLink("value", 
+                final BookmarkablePageLink<Void> pageLink = new BookmarkablePageLink<Void>("value", 
                         MenuPage.class,
                         parameters);
                 pageLink.add(new Label("key"));
