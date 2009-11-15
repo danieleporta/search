@@ -2,7 +2,7 @@ package nl.xs4all.banaan.tst8.service.impl;
 
 
 import static org.junit.Assert.assertTrue;
-import nl.xs4all.banaan.tst8.fixtures.InjectedTest;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 import nl.xs4all.banaan.tst8.service.JndiList;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.ServiceException;
@@ -14,11 +14,12 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class JndiReaderImplTest extends InjectedTest {
+public class JndiReaderImplTest {
 
     @Test
     public void testRead () throws ServiceException {
-        JndiReader jndiReader = get(JndiReader.class);
+        MockInjector injector = new MockInjector();
+        JndiReader jndiReader = injector.get(JndiReader.class);
         JndiList list = jndiReader.read("elders");
         assertTrue(list.getList().size() > 0);
     }

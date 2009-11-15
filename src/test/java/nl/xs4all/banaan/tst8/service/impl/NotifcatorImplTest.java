@@ -5,8 +5,8 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NOTIFICATION1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NOTIFICATION2;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.SUBJECT2;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.TO1;
-import nl.xs4all.banaan.tst8.fixtures.InjectedTest;
 import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 import nl.xs4all.banaan.tst8.service.Notificator;
 
 import org.junit.Before;
@@ -17,14 +17,16 @@ import org.junit.Test;
  * @author konijn
  *
  */
-public class NotifcatorImplTest extends InjectedTest {
+public class NotifcatorImplTest {
     private Notificator notificator;
     private MailSenderFixture mailSenderFixture;
+    private MockInjector injector;
     
     @Before
     public void setUp() {
-        notificator = get(Notificator.class);
-        mailSenderFixture = get(MailSenderFixture.class);
+        injector = new MockInjector();
+        notificator = injector.get(Notificator.class);
+        mailSenderFixture = injector.get(MailSenderFixture.class);
     }
 
     @Test

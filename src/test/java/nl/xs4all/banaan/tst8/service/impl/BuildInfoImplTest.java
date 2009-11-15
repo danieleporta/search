@@ -6,13 +6,20 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_NAME1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_USER1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_VERSION1;
 import static org.junit.Assert.assertEquals;
-import nl.xs4all.banaan.tst8.fixtures.InjectedTest;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 import nl.xs4all.banaan.tst8.service.BuildInfo;
 
+import org.junit.Before;
 import org.junit.Test;
 
-public class BuildInfoImplTest extends InjectedTest {
-   
+public class BuildInfoImplTest {
+    private MockInjector injector;
+
+    @Before
+    public void setUp() {
+        injector = new MockInjector();
+    }
+    
     @Test
     public void testBuildInfoFieldsExist() {
         assertEquals(BUILD_NAME1, BUILD_INFO1.getName());
@@ -23,7 +30,7 @@ public class BuildInfoImplTest extends InjectedTest {
     
     @Test
     public void testBuildInfoFieldsExistForInjectedBean() {
-        BuildInfo buildInfo = get(BuildInfo.class);
+        BuildInfo buildInfo = injector.get(BuildInfo.class);
         assertEquals(BUILD_NAME1, buildInfo.getName());
         assertEquals(BUILD_GROUP1, buildInfo.getGroup());
         assertEquals(BUILD_VERSION1, buildInfo.getVersion());        
