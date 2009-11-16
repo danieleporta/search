@@ -21,7 +21,7 @@ import com.google.inject.util.Modules;
  *
  */
 public class MockInjector {
-    private final Injector injector;
+    protected final Injector injector;
     private final Class<?>[] mockedClasses;
     
     public MockInjector(Class<?>... mockedClasses) {

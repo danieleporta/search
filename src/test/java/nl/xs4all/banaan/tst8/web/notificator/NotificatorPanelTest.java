@@ -4,7 +4,6 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BODY1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NOTIFICATION1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.SUBJECT1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.TO1;
-import static org.easymock.EasyMock.expect;
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 import nl.xs4all.banaan.tst8.service.Notificator;
@@ -42,9 +41,7 @@ public class NotificatorPanelTest {
 
     @Test
     public void testSubmittingFormDoesNotificatorWithExpectedMessage() {
-        final Services services = injector.get(Services.class);
         final Notificator notificator = injector.get(Notificator.class);
-        expect(services.getNotificator()).andReturn(notificator);
         notificator.send(NOTIFICATION1);
         injector.replay();
         formTester.setValue("to", TO1);

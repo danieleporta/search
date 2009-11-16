@@ -128,6 +128,17 @@
       <version>2.4</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>org.apache.wicket</groupId>
+    	<artifactId>wicket-guice</artifactId>
+    	<version>1.4.3</version>
+        <exclusions>
+          <exclusion>
+          <groupId>com.google.code.guice</groupId>
+          <artifactId>guice</artifactId>
+          </exclusion>
+    	</exclusions>
+    </dependency>
   </dependencies>
 
   <build>
