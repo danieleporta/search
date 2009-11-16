@@ -17,13 +17,10 @@ public class NotificationPanel extends Panel {
     private static final long serialVersionUID = 1L;
     
     @Inject private Notificator notificator;
-    
-    private Notification notification;
 
     public NotificationPanel(String id) {
         super(id);
-        notification = new Notification();
-        
+        final Notification notification = new Notification();
         final Form<Notification> form = new Form<Notification>("form", new CompoundPropertyModel<Notification>(notification)) {
             private static final long serialVersionUID = 1L;
 
