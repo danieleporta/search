@@ -1,6 +1,5 @@
 package nl.xs4all.banaan.tst8.web;
 
-import nl.xs4all.banaan.tst8.service.Services;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPanel;
@@ -30,11 +29,9 @@ import com.google.inject.Inject;
 public class DemoApplication extends WebApplication {
 
     private MenuList menuList;
-    private final Services services;
     
     @Inject
-    public DemoApplication(Services services) {
-        this.services = services;
+    public DemoApplication() {
     }
     
     public static DemoApplication get() {
@@ -75,10 +72,6 @@ public class DemoApplication extends WebApplication {
         return menuList;
     }
     
-    public Services getServices() {
-        return services;
-    }
-
     /**
      * @see wicket.Application#getHomePage()
      */

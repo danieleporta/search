@@ -2,9 +2,9 @@
 
 import java.util.List;
 
+import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.util.Assoc;
-import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
@@ -16,6 +16,8 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
+import com.google.inject.Inject;
+
 /**
  * Show JNDI data, given a location to find them
  *
@@ -23,6 +25,8 @@ import org.apache.wicket.model.LoadableDetachableModel;
 public class JndiPanel extends Panel {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(JndiPanel.class);
+    
+    @Inject JndiReader jndiReader;
     
     public JndiPanel(String id) throws ServiceException {
         this(id, "");
@@ -38,8 +42,7 @@ public class JndiPanel extends Panel {
             @Override
             public List<Assoc<Object>> load() {
                 try {
-                    return DemoApplication.get().getServices().
-                        getJndiReader().read(location).getList();
+                    return jndiReader.read(location).getList();
                 } catch (ServiceException se) {
                     logger.error("Caught Service Exception", se);
                     throw new RuntimeException(se);

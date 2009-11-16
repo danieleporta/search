@@ -8,12 +8,10 @@ import nl.xs4all.banaan.tst8.service.BuildInfo;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.Notificator;
 import nl.xs4all.banaan.tst8.service.PropertyReader;
-import nl.xs4all.banaan.tst8.service.Services;
 import nl.xs4all.banaan.tst8.service.impl.BuildInfoImpl;
 import nl.xs4all.banaan.tst8.service.impl.JndiReaderImpl;
 import nl.xs4all.banaan.tst8.service.impl.NotificatorImpl;
 import nl.xs4all.banaan.tst8.service.impl.PropertyReaderImpl;
-import nl.xs4all.banaan.tst8.service.impl.ServicesImpl;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import com.google.inject.AbstractModule;
@@ -31,11 +29,10 @@ public class BaseApplicationModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(DemoApplication.class).in(Scopes.SINGLETON);
-        bind(Services.class).to(ServicesImpl.class).in(Scopes.SINGLETON);
         bind(JndiReader.class).to(JndiReaderImpl.class).in(Scopes.SINGLETON);
         bind(Notificator.class).to(NotificatorImpl.class).in(Scopes.SINGLETON);
         bind(PropertyReader.class).to(PropertyReaderImpl.class).in(Scopes.SINGLETON);
-        bind(BuildInfo.class).to(BuildInfoImpl.class);
+        bind(BuildInfo.class).to(BuildInfoImpl.class).in(Scopes.SINGLETON);
     }
     
     @Provides @Singleton

@@ -2,9 +2,9 @@ package nl.xs4all.banaan.tst8.web.property;
 
 import java.util.List;
 
+import nl.xs4all.banaan.tst8.service.PropertyReader;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.util.Assoc;
-import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import org.apache.log4j.Logger;
 import org.apache.wicket.PageParameters;
@@ -19,6 +19,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
 
+import com.google.inject.Inject;
+
 /**
  * Display key/value pairs in some property set.
  * @author konijn
@@ -32,6 +34,7 @@ public class PropertyPanel extends Panel {
     private TextField<String> field;
     private Form<Void> form;
     
+    @Inject PropertyReader propertyReader;
 
     public PropertyPanel(String id) {
         this(id, "");
@@ -70,7 +73,7 @@ public class PropertyPanel extends Panel {
         });
     }
     
-    private static final class PropertyModel extends LoadableDetachableModel<List<Assoc<String>>> {
+    private final class PropertyModel extends LoadableDetachableModel<List<Assoc<String>>> {
         private static final long serialVersionUID = 1L;
 
         private final String location;
@@ -82,8 +85,7 @@ public class PropertyPanel extends Panel {
         @Override
         public List<Assoc<String>> load() {
             try {
-                return DemoApplication.get().getServices().
-                getPropertyReader().read(location).getList();
+                return propertyReader.read(location).getList();
             } catch (ServiceException se) {
                 logger.error("Caught Service Exception", se);
                 throw new RuntimeException(se);

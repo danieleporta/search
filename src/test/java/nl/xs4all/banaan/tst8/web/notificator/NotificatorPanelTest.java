@@ -7,7 +7,6 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.TO1;
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 import nl.xs4all.banaan.tst8.service.Notificator;
-import nl.xs4all.banaan.tst8.service.Services;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.tester.FormTester;
@@ -27,7 +26,7 @@ public class NotificatorPanelTest {
 
     @Before
     public void setUp() {
-        injector = new WicketMockInjector(Services.class, Notificator.class);
+        injector = new WicketMockInjector(Notificator.class);
         tester = injector.tester();
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;
