@@ -10,6 +10,7 @@ import nl.xs4all.banaan.tst8.web.notificator.NotificationPanel;
 import nl.xs4all.banaan.tst8.web.onchange.OnchangePanel;
 import nl.xs4all.banaan.tst8.web.param.ParamPanel;
 import nl.xs4all.banaan.tst8.web.property.PropertyPanel;
+import nl.xs4all.banaan.tst8.web.subclass.SubClassPanel;
 import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
 
 import org.apache.wicket.Application;
@@ -48,6 +49,7 @@ public class DemoApplication extends WebApplication {
         addToMenu(NotificationPanel.class, "notificator");
         addToMenu(UploadPanel.class, "upload");
         addToMenu(OnchangePanel.class, "onchange");
+        addToMenu(SubClassPanel.class, "subclass");
         
         // try accessing these via a wicket tester
         mountBookmarkablePage("menu", MenuPage.class);
