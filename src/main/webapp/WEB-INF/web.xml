@@ -7,6 +7,13 @@
 
   <display-name>tst8-app</display-name>
 
+  <context-param>
+    <param-name>configuration</param-name>
+    <!-- in development mode, wicket:id is left in output -->
+    <param-value>deployment</param-value>
+  </context-param>
+  
+
   <!--
     There are three means to configure Wickets configuration mode and
     they are tested in the order given.
