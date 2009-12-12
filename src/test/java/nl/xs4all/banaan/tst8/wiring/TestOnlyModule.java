@@ -21,7 +21,7 @@ import com.google.inject.Singleton;
  * 
  */
 @Ignore
-public class TestApplicationModule extends AbstractModule {
+public class TestOnlyModule extends AbstractModule {
     private static final String DUMMY_BUILD_PROPERTIES = "/dummy-build.properties";
 
     @Override

@@ -16,6 +16,6 @@ import com.google.inject.Module;
 public class TestWebApplicationFactory extends BaseWebApplicationFactory {
     @Override
     public Module getModule() {
-        return new TestApplicationModule();
+        return new TestOnlyModule();
     }
 }

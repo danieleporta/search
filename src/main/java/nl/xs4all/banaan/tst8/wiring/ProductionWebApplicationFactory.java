@@ -11,6 +11,6 @@ import com.google.inject.Module;
 public class ProductionWebApplicationFactory extends BaseWebApplicationFactory {
     @Override
     public Module getModule() {
-        return new ProductionApplicationModule();
+        return new ProductionOnlyModule();
     }
 }

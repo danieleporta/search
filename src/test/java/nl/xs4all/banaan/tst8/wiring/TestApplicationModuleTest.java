@@ -28,9 +28,7 @@ public class TestApplicationModuleTest {
 
     @Before
     public void startUp() {
-        injector = Guice.createInjector(
-                new BaseApplicationModule(),
-                new TestApplicationModule());
+        injector = Guice.createInjector(new TestModule());
     }
    
     @Test
@@ -52,9 +50,7 @@ public class TestApplicationModuleTest {
     @Test
     public void testSingletonHasMeaningOnlyInASingleInjector() {
         BuildInfo buildInfo = injector.getInstance(BuildInfo.class);
-        Injector injector2 = Guice.createInjector(
-                new BaseApplicationModule(),
-                new TestApplicationModule());
+        Injector injector2 = Guice.createInjector(new TestModule());
         BuildInfo buildInfo2 = injector2.getInstance(BuildInfo.class);
         assertTrue(buildInfo != buildInfo2);
     }

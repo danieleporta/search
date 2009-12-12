@@ -5,7 +5,7 @@ import static org.easymock.EasyMock.createMock;
 import org.easymock.EasyMock;
 
 import nl.xs4all.banaan.tst8.wiring.BaseApplicationModule;
-import nl.xs4all.banaan.tst8.wiring.TestApplicationModule;
+import nl.xs4all.banaan.tst8.wiring.TestOnlyModule;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -28,7 +28,7 @@ public class MockInjector {
         this.mockedClasses = mockedClasses;
         injector = Guice.createInjector(Modules.override(
                 new BaseApplicationModule(),
-                new TestApplicationModule()).
+                new TestOnlyModule()).
                 with(new AbstractModule() {
                     @Override @SuppressWarnings("unchecked")
                     protected void configure() {

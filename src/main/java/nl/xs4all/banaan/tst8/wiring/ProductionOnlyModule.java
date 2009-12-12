@@ -17,7 +17,7 @@ import com.google.inject.Singleton;
  * @author konijn
  *
  */
-public class ProductionApplicationModule extends AbstractModule {
+public class ProductionOnlyModule extends AbstractModule {
     private static final String BUILD_PROPERTIES = "/build.properties";
     
     @Override
