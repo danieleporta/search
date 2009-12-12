@@ -16,7 +16,6 @@ import nl.xs4all.banaan.tst8.web.DemoApplication;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 
 /**
@@ -28,11 +27,11 @@ public class BaseApplicationModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(DemoApplication.class).in(Scopes.SINGLETON);
-        bind(JndiReader.class).to(JndiReaderImpl.class).in(Scopes.SINGLETON);
-        bind(Notificator.class).to(NotificatorImpl.class).in(Scopes.SINGLETON);
-        bind(PropertyReader.class).to(PropertyReaderImpl.class).in(Scopes.SINGLETON);
-        bind(BuildInfo.class).to(BuildInfoImpl.class).in(Scopes.SINGLETON);
+        bind(DemoApplication.class).in(Singleton.class);
+        bind(JndiReader.class).to(JndiReaderImpl.class).in(Singleton.class);
+        bind(Notificator.class).to(NotificatorImpl.class).in(Singleton.class);
+        bind(PropertyReader.class).to(PropertyReaderImpl.class).in(Singleton.class);
+        bind(BuildInfo.class).to(BuildInfoImpl.class).in(Singleton.class);
     }
     
     @Provides @Singleton

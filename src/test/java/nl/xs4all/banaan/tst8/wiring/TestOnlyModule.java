@@ -11,7 +11,6 @@ import org.springframework.mail.MailSender;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.google.inject.Scopes;
 import com.google.inject.Singleton;
 
 /**
@@ -26,9 +25,9 @@ public class TestOnlyModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(MailSenderFixture.class).in(Scopes.SINGLETON);
-        bind(MailSender.class).to(MailSenderFixture.class).in(Scopes.SINGLETON);
-        bind(Context.class).to(InitializedNamingContext.class).in(Scopes.SINGLETON);
+        bind(MailSenderFixture.class).in(Singleton.class);
+        bind(MailSender.class).to(MailSenderFixture.class).in(Singleton.class);
+        bind(Context.class).to(InitializedNamingContext.class).in(Singleton.class);
     }
 
     @Provides @Singleton @BuildInfoResourceName public String provideResourceName() {
