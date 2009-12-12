@@ -1,11 +1,9 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
 import static org.easymock.EasyMock.createMock;
+import nl.xs4all.banaan.tst8.wiring.TestModule;
 
 import org.easymock.EasyMock;
-
-import nl.xs4all.banaan.tst8.wiring.BaseApplicationModule;
-import nl.xs4all.banaan.tst8.wiring.TestOnlyModule;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -26,9 +24,7 @@ public class MockInjector {
     
     public MockInjector(Class<?>... mockedClasses) {
         this.mockedClasses = mockedClasses;
-        injector = Guice.createInjector(Modules.override(
-                new BaseApplicationModule(),
-                new TestOnlyModule()).
+        injector = Guice.createInjector(Modules.override(new TestModule()).
                 with(new AbstractModule() {
                     @Override @SuppressWarnings("unchecked")
                     protected void configure() {
