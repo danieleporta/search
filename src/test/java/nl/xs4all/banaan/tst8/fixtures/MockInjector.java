@@ -1,14 +1,11 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
-import static org.easymock.EasyMock.createMock;
 import nl.xs4all.banaan.tst8.wiring.TestModule;
 
 import org.easymock.EasyMock;
 
-import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.binder.AnnotatedBindingBuilder;
 import com.google.inject.util.Modules;
 
 
@@ -24,15 +21,9 @@ public class MockInjector {
     
     public MockInjector(Class<?>... mockedClasses) {
         this.mockedClasses = mockedClasses;
-        injector = Guice.createInjector(Modules.override(new TestModule()).
-                with(new AbstractModule() {
-                    @Override @SuppressWarnings("unchecked")
-                    protected void configure() {
-                        for (Class<?> c : MockInjector.this.mockedClasses) {
-                            ((AnnotatedBindingBuilder<Object>) bind(c)).toInstance(createMock(c));
-                        }
-                    }
-                }));
+        injector = Guice.createInjector(
+                Modules.override(new TestModule()).
+                        with(new MockModule(mockedClasses)));
     }
     
     /** retrieve object from the underlying injector */
