@@ -26,14 +26,7 @@ public class MenuPanel extends Panel {
         super(id);
         getSession().info("building  menu panel");
 
-        final IModel<List<Assoc<Class<? extends Panel>>>> model = new LoadableDetachableModel<List<Assoc<Class<? extends Panel>>>> () {
-            private static final long serialVersionUID = 1328703313038270829L;
-
-            @Override
-            public List<Assoc<Class<? extends Panel>>> load () {
-                return DemoApplication.get().getMenuList().getList();
-            }
-        };
+        final IModel<List<Assoc<Class<? extends Panel>>>> model = new MenuModel();
         
         add (new PropertyListView<Assoc<Class<? extends Panel>>>("bindings", model) {
             private static final long serialVersionUID = 1L;
