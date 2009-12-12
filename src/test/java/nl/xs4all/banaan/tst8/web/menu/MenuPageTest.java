@@ -45,7 +45,6 @@ public class MenuPageTest {
     public void testRenderedPanel() {
         tester.startPage(MenuPage.class, new PageParameters("panel=upload"));
         tester.assertRenderedPage(MenuPage.class);
-        tester.debugComponentTrees();
         tester.assertComponent("content", UploadPanel.class);
     }
     
@@ -53,7 +52,6 @@ public class MenuPageTest {
     public void testAnotherRenderedPanel() {
         tester.startPage(MenuPage.class, new PageParameters("panel=onchange"));
         tester.assertRenderedPage(MenuPage.class);
-        tester.debugComponentTrees();
         tester.assertComponent("content", OnchangePanel.class);
     }
     
