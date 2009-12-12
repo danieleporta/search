@@ -1,7 +1,5 @@
 package nl.xs4all.banaan.tst8.wiring;
 
-import nl.xs4all.banaan.tst8.web.DemoApplication;
-
 import org.apache.wicket.guice.GuiceComponentInjector;
 import org.apache.wicket.protocol.http.IWebApplicationFactory;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -30,7 +28,7 @@ public abstract class BaseWebApplicationFactory implements IWebApplicationFactor
         Injector injector = Guice.createInjector(
                 new BaseApplicationModule(),
                 getModule());
-        WebApplication application = injector.getInstance(DemoApplication.class);
+        WebApplication application = injector.getInstance(WebApplication.class);
         application.addComponentInstantiationListener(
                 new GuiceComponentInjector(application, injector));
         return application;

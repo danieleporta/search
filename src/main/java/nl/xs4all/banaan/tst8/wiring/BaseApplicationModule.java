@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.wicket.protocol.http.WebApplication;
+
 import nl.xs4all.banaan.tst8.service.BuildInfo;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.Notificator;
@@ -28,6 +30,7 @@ public class BaseApplicationModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(DemoApplication.class).in(Singleton.class);
+        bind(WebApplication.class).to(DemoApplication.class);
         bind(JndiReader.class).to(JndiReaderImpl.class).in(Singleton.class);
         bind(Notificator.class).to(NotificatorImpl.class).in(Singleton.class);
         bind(PropertyReader.class).to(PropertyReaderImpl.class).in(Singleton.class);
