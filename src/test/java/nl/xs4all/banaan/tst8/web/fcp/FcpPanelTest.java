@@ -30,7 +30,7 @@ public class FcpPanelTest {
     public void testFormPanelClickSubmitButton() {
         makeTester();
         FormTester formTester = tester.newFormTester("panel:form");
-        formTester.setValue("name", "required");
+        formTester.setValue("name:input", "required");
         formTester.submit();
         assertEquals("required", FcpPanel.theObject.getName());
 
