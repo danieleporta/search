@@ -1,6 +1,7 @@
 package nl.xs4all.banaan.tst8.web;
 
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
+import nl.xs4all.banaan.tst8.web.fcp.FcpPanel;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.jndi.JndiPanel;
 import nl.xs4all.banaan.tst8.web.letter.LetterPanel;
@@ -50,6 +51,7 @@ public class DemoApplication extends WebApplication {
         addToMenu(UploadPanel.class, "upload");
         addToMenu(OnchangePanel.class, "onchange");
         addToMenu(SubClassPanel.class, "subclass");
+        addToMenu(FcpPanel.class, "fcp");        
         
         // try accessing these via a wicket tester
         mountBookmarkablePage("menu", MenuPage.class);
