@@ -27,13 +27,14 @@ public class FcpPanelTest {
     }
     
     @Test
-    public void testFormPanelClickSubmitButton() {
+    public void testFcpPanelClickSubmitButton() {
         makeTester();
         FormTester formTester = tester.newFormTester("panel:form");
         formTester.setValue("name:input", "required");
+        formTester.setValue("street:input", "also required");
         formTester.submit();
         assertEquals("required", FcpPanel.theObject.getName());
-
+        assertEquals("also required", FcpPanel.theObject.getStreet());
     }
     
     /** create FcpPanel to be tested */

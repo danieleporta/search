@@ -31,13 +31,15 @@ public class FcpPanel extends Panel {
                     @Override
                     protected void onSubmit() {
                         System.out.println("name: " + theObject.getName());
+                        System.out.println("street: " + theObject.getStreet());
                     }
             
         };
         add(form);
         
-        form.add(new MyFcp("name"));
-
+        form.add(new MyFcp("name", "What is the name?"));
+        form.add(new MyFcp("street", "What is the street?"));
+        
     }
     
     private static class AddressModel extends LoadableDetachableModel<Address> {

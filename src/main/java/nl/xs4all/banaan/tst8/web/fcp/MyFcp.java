@@ -31,9 +31,9 @@ public class MyFcp extends FormComponentPanel<String> {
         this.inputValue = inputValue;
     }
 
-    public MyFcp(String id) {
+    public MyFcp(String id, String prompt) {
         super(id);
-        add(new Label("prompt", "Prompt goes here"));
+        add(new Label("prompt", prompt));
         input = new TextField<String>("input", new PropertyModel<String>(this, "inputValue"));
         add(input);
     }
