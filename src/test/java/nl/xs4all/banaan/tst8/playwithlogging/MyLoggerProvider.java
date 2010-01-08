@@ -19,12 +19,10 @@ public class MyLoggerProvider<T> implements Provider<MyLogger<T>> {
     }
 
     public MyLogger<T> get() {
-        // needs to be replaced with factory call to slf4j
         ParameterizedType type = (ParameterizedType) t.getType();
         Class<?> actualParameterClass = (Class<?>) type.getActualTypeArguments()[0];
         Logger logger = LoggerFactory.getLogger(actualParameterClass);
-        logger.info("now what?");
-        return new MyLoggerImpl<T>(t);
+        return new MyLoggerImpl<T>(logger);
     }
 
 }

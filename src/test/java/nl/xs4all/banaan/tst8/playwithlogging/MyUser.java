@@ -9,6 +9,7 @@ public class MyUser {
     @Inject
     public MyUser(MyLogger<MyUser> logger) {
         this.logger = logger;
+        logger.info("MyUser was created");
     }
     
     public String getLoggerName() {
