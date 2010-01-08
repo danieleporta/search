@@ -4,6 +4,7 @@ import org.junit.Ignore;
 import org.slf4j.Logger;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Key;
 
 /** 
  * Bind slf4j loggers for a list of classes provided in the module constructor. 
@@ -41,6 +42,14 @@ public class LogModule extends AbstractModule {
         bind(Logger.class)
         .annotatedWith(new LogForImpl(type))
         .toProvider(new LoggerProvider(type));
+    }
+
+    /**
+     * put this key in the injector to find logger for type.
+     * Intended to integrate mock loggers.
+     */
+    public static Key<Logger> key(Class<?> type) {
+        return Key.get(Logger.class, new LogForImpl(type));
     }
 }
 

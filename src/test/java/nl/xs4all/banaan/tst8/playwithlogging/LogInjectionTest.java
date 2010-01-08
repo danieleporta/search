@@ -4,9 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Key;
 
 public class LogInjectionTest {
     
@@ -20,9 +22,15 @@ public class LogInjectionTest {
     }
 
     @Test
-    public void shouldLoggingAnnotationBeEqualForSameClass() {
+    public void testLoggingAnnotationEqualForSameClass() {
         LogForImpl annotation = new LogForImpl(MyUser.class);
         assertEquals(annotation, new LogForImpl(MyUser.class));
+    }
+    
+    @Test
+    public void testLoggingAnnotationUnequalForOtherClass() {
+        LogForImpl annotation = new LogForImpl(MyUser.class);
+        assertFalse(annotation.equals(new LogForImpl(MySecondUser.class)));
     }
     
     @Test
@@ -36,4 +44,18 @@ public class LogInjectionTest {
         MySecondUser user = injector.getInstance(MySecondUser.class);
         assertEquals("nl.xs4all.banaan.tst8.playwithlogging.MySecondUser", user.getLoggerName());
     }
+    
+    @Test
+    public void testExplicitRetrievalOfLogger() {
+        Key<Logger> key = Key.get(Logger.class, new LogForImpl(MyUser.class));
+        Logger logger = injector.getInstance(key);
+        logger.info("found the logger");
+    }
+    
+    @Test
+    public void testRetrievalOfLoggerWithKeyHelper() {
+        Logger logger = injector.getInstance(LogModule.key(MyUser.class));
+        assertEquals("nl.xs4all.banaan.tst8.playwithlogging.MyUser", logger.getName());
+    }    
+    
 }
