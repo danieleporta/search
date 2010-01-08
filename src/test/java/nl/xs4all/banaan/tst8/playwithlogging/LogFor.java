@@ -7,8 +7,9 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 import com.google.inject.BindingAnnotation;
 
+/** indicate that a Logger should log for this class */
 @BindingAnnotation @Target({ FIELD, PARAMETER, METHOD }) @Retention(RUNTIME)
-public @interface MyLogging {
+public @interface LogFor {
     /** want logging for this class */
     Class<?> value();
 }

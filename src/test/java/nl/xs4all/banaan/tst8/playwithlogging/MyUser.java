@@ -9,7 +9,7 @@ public class MyUser {
     private final Logger logger;
 
     @Inject
-    public MyUser(@MyLogging(MyUser.class) Logger logger) {
+    public MyUser(@LogFor(MyUser.class) Logger logger) {
         this.logger = logger;
         logger.info("Created {}", this);
     }

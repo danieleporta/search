@@ -9,7 +9,7 @@ public class MySecondUser {
     private final Logger logger;
 
     @Inject
-    public MySecondUser(@MyLogging(MySecondUser.class) Logger logger) {
+    public MySecondUser(@LogFor(MySecondUser.class) Logger logger) {
         this.logger = logger;
         logger.info("MySecondUser was created");
     }
