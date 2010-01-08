@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Key;
+import com.google.inject.Singleton;
 
 /** 
  * Bind slf4j loggers for a list of classes provided in the module constructor. 
@@ -23,7 +24,7 @@ public class LogModule extends AbstractModule {
     private final Class<?>[] loggedClasses;
 
     /**
-     * Create a logmodule that binds slf4j Logger with annotation
+     * Create a logmodule that binds a singleton slf4j Logger with annotation
      * @LogFor(User.class), for each User in loggedClasses.
      */
     public LogModule(Class<?> ... loggedClasses) {
@@ -41,7 +42,8 @@ public class LogModule extends AbstractModule {
     private <T >void bindLogger(Class<T> type) {
         bind(Logger.class)
         .annotatedWith(new LogForImpl(type))
-        .toProvider(new LoggerProvider(type));
+        .toProvider(new LoggerProvider(type))
+        .in(Singleton.class);
     }
 
     /**
