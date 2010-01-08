@@ -9,7 +9,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.TypeLiteral;
 
-public class MyLoggerProvider<T> implements Provider<MyLogger<T>> {
+public class MyLoggerProvider<T> implements Provider<Logger> {
     
     private TypeLiteral<MyLogger<T>> t;
 
@@ -18,11 +18,11 @@ public class MyLoggerProvider<T> implements Provider<MyLogger<T>> {
         this.t = t;
     }
 
-    public MyLogger<T> get() {
+    public Logger get() {
         ParameterizedType type = (ParameterizedType) t.getType();
         Class<?> actualParameterClass = (Class<?>) type.getActualTypeArguments()[0];
         Logger logger = LoggerFactory.getLogger(actualParameterClass);
-        return new MyLoggerImpl<T>(logger);
+        return logger;
     }
 
 }

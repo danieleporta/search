@@ -8,7 +8,7 @@ import com.google.inject.Inject;
 /** 
  * Logger for class T; this just delegates to SLF4J.
  */
-public class MyLoggerImpl<T> implements MyLogger<T> {
+public class MyLoggerImpl<T> implements Logger {
     
     private final Logger logger;
     

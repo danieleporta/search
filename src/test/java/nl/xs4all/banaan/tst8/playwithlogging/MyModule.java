@@ -1,8 +1,7 @@
 package nl.xs4all.banaan.tst8.playwithlogging;
 
-import java.lang.annotation.Annotation;
-
 import org.junit.Ignore;
+import org.slf4j.Logger;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.TypeLiteral;
@@ -19,11 +18,10 @@ public class MyModule extends AbstractModule {
     }
 
     private <T >void bindLogger(Class<T> type) {
-        bind(myLoggerType(type))
+        bind(Logger.class)
             .annotatedWith(new MyLoggingImpl(type))
             .toProvider(new MyLoggerProvider<T>(myLoggerType(type)));
     }
-
     
     @SuppressWarnings("unchecked")
     private <T> TypeLiteral<MyLogger<T>> myLoggerType(Class <T> type) {
