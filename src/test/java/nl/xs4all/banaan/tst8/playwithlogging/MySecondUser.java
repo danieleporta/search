@@ -3,13 +3,13 @@ package nl.xs4all.banaan.tst8.playwithlogging;
 import com.google.inject.Inject;
 
 /** some random service that needs a logger */
-public class MyUser {
-    private final MyLogger<MyUser> logger;
+public class MySecondUser {
+    private final MyLogger<MySecondUser> logger;
 
     @Inject
-    public MyUser(MyLogger<MyUser> logger) {
+    public MySecondUser(MyLogger<MySecondUser> logger) {
         this.logger = logger;
-        logger.info("Created {}", this);
+        logger.info("MySecondUser was created");
     }
     
     public String getLoggerName() {
