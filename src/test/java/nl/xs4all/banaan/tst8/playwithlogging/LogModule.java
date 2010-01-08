@@ -5,7 +5,11 @@ import org.slf4j.Logger;
 
 import com.google.inject.AbstractModule;
 
-/** bind slf4j loggers for some specific classes */
+/** 
+ * Bind slf4j loggers for a list of classes provided in the module constructor. 
+ * Users that want such a logger to be injected in the consructor must annotate it
+ * with @LogFor(User.class).
+ */
 @Ignore
 public class LogModule extends AbstractModule {
  
@@ -14,15 +18,29 @@ public class LogModule extends AbstractModule {
     // feature is unlikely to be implemented
     // http://code.google.com/p/google-guice/issues/detail?id=27
 
+    /** bind logger for these classes*/
+    private final Class<?>[] loggedClasses;
+
+    /**
+     * Create a logmodule that binds slf4j Logger with annotation
+     * @LogFor(User.class), for each User in loggedClasses.
+     */
+    public LogModule(Class<?> ... loggedClasses) {
+        super();
+        this.loggedClasses = loggedClasses;
+    }
+    
     @Override
     protected void configure() {
-        bindLogger(MyUser.class);
-        bindLogger(MySecondUser.class);
+        for (Class<?> c : loggedClasses) {
+            bindLogger(c);
+        }
     }
 
     private <T >void bindLogger(Class<T> type) {
         bind(Logger.class)
-            .annotatedWith(new LogForImpl(type))
-            .toProvider(new LoggerProvider(type));
+        .annotatedWith(new LogForImpl(type))
+        .toProvider(new LoggerProvider(type));
     }
 }
+
