@@ -21,7 +21,7 @@ public class MyFcp extends FormComponentPanel<String> {
      * from the enclosed textfield.
      * 
      */
-    private String inputValue = "aap";
+    private String inputValue;
     private TextField<String> input;
 
     public String getInputValue() {
@@ -33,6 +33,7 @@ public class MyFcp extends FormComponentPanel<String> {
 
     public MyFcp(String id, String prompt) {
         super(id);
+        inputValue = getModelObject();
         add(new Label("prompt", prompt));
         input = new TextField<String>("input", new PropertyModel<String>(this, "inputValue"));
         add(input);
