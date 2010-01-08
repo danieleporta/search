@@ -10,6 +10,12 @@ import com.google.inject.Injector;
 public class MyTest {
 
     @Test
+    public void shouldLoggingAnnotationBeEqualForSameClass() {
+        MyLoggingImpl annotation = new MyLoggingImpl(MyUser.class);
+        assertEquals(annotation, new MyLoggingImpl(MyUser.class));
+    }
+    
+    @Test
     public void testMyUserIsInjected() {
         Injector injector = Guice.createInjector(new MyModule());
         MyUser user = injector.getInstance(MyUser.class);

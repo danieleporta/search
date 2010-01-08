@@ -7,7 +7,7 @@ public class MySecondUser {
     private final MyLogger<MySecondUser> logger;
 
     @Inject
-    public MySecondUser(MyLogger<MySecondUser> logger) {
+    public MySecondUser(@MyLogging(MySecondUser.class) MyLogger<MySecondUser> logger) {
         this.logger = logger;
         logger.info("MySecondUser was created");
     }
