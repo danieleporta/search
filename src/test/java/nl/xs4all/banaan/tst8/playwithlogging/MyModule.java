@@ -10,6 +10,8 @@ public class MyModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bind(new TypeLiteral<MyLogger<MyUser>>(){}).to(new TypeLiteral<MyLoggerImpl<MyUser>>(){});
+        bind(new TypeLiteral<MyLogger<MyUser>>(){}).
+            toProvider(new MyLoggerProvider<MyUser>(
+                    new TypeLiteral<MyLogger<MyUser>>(){}));
     }
 }
