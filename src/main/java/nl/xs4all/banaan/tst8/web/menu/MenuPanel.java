@@ -1,8 +1,7 @@
 package nl.xs4all.banaan.tst8.web.menu;
 
 import java.util.List;
-
-import nl.xs4all.banaan.tst8.util.Assoc;
+import java.util.Map.Entry;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
@@ -24,14 +23,14 @@ public class MenuPanel extends Panel {
         super(id);
         getSession().info("building  menu panel");
 
-        final IModel<List<Assoc<Class<? extends Panel>>>> model = new MenuModel();
+        final IModel<List<Entry<String, Class<? extends Panel>>>> model = new MenuModel();
         
-        add (new PropertyListView<Assoc<Class<? extends Panel>>>("bindings", model) {
+        add (new PropertyListView<Entry<String, Class<? extends Panel>>>("bindings", model) {
             private static final long serialVersionUID = 1L;
 
             @Override
-            protected void populateItem (ListItem<Assoc<Class<? extends Panel>>> item) {
-                Assoc<Class<? extends Panel>> assoc = item.getModelObject();
+            protected void populateItem (ListItem<Entry<String, Class<? extends Panel>>> item) {
+                Entry<String, Class<? extends Panel>> assoc = item.getModelObject();
                 
                 final PageParameters parameters = new PageParameters();
                 parameters.put("panel", assoc.getKey());
