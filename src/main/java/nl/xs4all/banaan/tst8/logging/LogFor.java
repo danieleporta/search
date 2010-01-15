@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8.playwithlogging;
+package nl.xs4all.banaan.tst8.logging;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

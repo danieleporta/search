@@ -1,4 +1,6 @@
-package nl.xs4all.banaan.tst8.playwithlogging;
+package nl.xs4all.banaan.tst8.logging;
+
+import nl.xs4all.banaan.tst8.wiring.LogModule;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;

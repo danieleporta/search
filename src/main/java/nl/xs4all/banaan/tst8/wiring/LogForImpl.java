@@ -1,6 +1,8 @@
-package nl.xs4all.banaan.tst8.playwithlogging;
+package nl.xs4all.banaan.tst8.wiring;
 
 import java.lang.annotation.Annotation;
+
+import nl.xs4all.banaan.tst8.logging.LogFor;
 
 /**
  * implement the LogFor annotation, so that we can create instances that can
@@ -18,7 +20,7 @@ public class LogForImpl implements LogFor {
      *  for equality against an annotation lifted with reflection from some
      *  constructor that is about to be injected.
      */
-    LogForImpl(Class<?> type) {
+    public LogForImpl(Class<?> type) {
         value = type;
     }
     

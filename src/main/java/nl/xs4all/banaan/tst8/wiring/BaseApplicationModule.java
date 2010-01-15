@@ -35,6 +35,8 @@ public class BaseApplicationModule extends AbstractModule {
         bind(Notificator.class).to(NotificatorImpl.class).in(Singleton.class);
         bind(PropertyReader.class).to(PropertyReaderImpl.class).in(Singleton.class);
         bind(BuildInfo.class).to(BuildInfoImpl.class).in(Singleton.class);
+        
+        install(new LogModule(JndiReaderImpl.class));
     }
     
     @Provides @Singleton

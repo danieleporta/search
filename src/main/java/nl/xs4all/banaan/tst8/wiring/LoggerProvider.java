@@ -1,4 +1,4 @@
-package nl.xs4all.banaan.tst8.playwithlogging;
+package nl.xs4all.banaan.tst8.wiring;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

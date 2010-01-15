@@ -2,8 +2,6 @@ package nl.xs4all.banaan.tst8.service;
 
 import java.io.Serializable;
 
-import org.apache.log4j.Logger;
-
 /**
  * A notification is a message sent by the application via E-mail.
  * @author konijn
@@ -11,7 +9,6 @@ import org.apache.log4j.Logger;
  */
 public class Notification implements Serializable {
     private static final long serialVersionUID = 1L;
-    private static Logger logger = Logger.getLogger(Notification.class);
     
     private String to;
     private String subject;
@@ -68,7 +65,6 @@ public class Notification implements Serializable {
      */
     @Override
     public boolean equals(Object obj) {
-        logger.debug ("Notification equals called");
         if (this == obj)
             return true;
         if (obj == null)

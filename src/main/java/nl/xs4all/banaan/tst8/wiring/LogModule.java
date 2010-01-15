@@ -1,4 +1,5 @@
-package nl.xs4all.banaan.tst8.playwithlogging;
+package nl.xs4all.banaan.tst8.wiring;
+
 
 import org.junit.Ignore;
 import org.slf4j.Logger;
@@ -40,17 +41,17 @@ public class LogModule extends AbstractModule {
     }
 
     private <T >void bindLogger(Class<T> type) {
-        bind(Logger.class)
-        .annotatedWith(new LogForImpl(type))
+        bind(loggerKey(type))
         .toProvider(new LoggerProvider(type))
         .in(Singleton.class);
     }
 
     /**
-     * put this key in the injector to find logger for type.
-     * Intended to integrate mock loggers.
+     * Key for SLF4J Logger that is annotated with @LogFor(type).
+     * Can be used in module to bind the logger, or in injector
+     * to retrieve it.
      */
-    public static Key<Logger> key(Class<?> type) {
+    public static Key<Logger> loggerKey(Class<?> type) {
         return Key.get(Logger.class, new LogForImpl(type));
     }
 }

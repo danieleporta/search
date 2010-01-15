@@ -5,11 +5,12 @@ import javax.naming.Context;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 
+import org.slf4j.Logger;
+
+import nl.xs4all.banaan.tst8.logging.LogFor;
 import nl.xs4all.banaan.tst8.service.JndiList;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.ServiceException;
-
-import org.apache.log4j.Logger;
 
 import com.google.inject.Inject;
 
@@ -19,7 +20,6 @@ import com.google.inject.Inject;
  *
  */
 public class JndiReaderImpl implements JndiReader {
-    private static Logger logger = Logger.getLogger(JndiReaderImpl.class);
 
     // This context is expected to give access to resource root container,
     // the 'java:comp/env' part should be filled in by the 
@@ -32,10 +32,13 @@ public class JndiReaderImpl implements JndiReader {
     // http://jcp.org/aboutJava/communityprocess/final/jsr154/index.html
     //
     private final Context initialContext;
+    private final Logger logger;
     
     @Inject
-    public JndiReaderImpl(Context initialContext) {
+    public JndiReaderImpl(Context initialContext,
+            @LogFor(JndiReaderImpl.class) Logger logger) {
         this.initialContext = initialContext;
+        this.logger = logger;
     }
 
     /* (non-Javadoc)
