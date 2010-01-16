@@ -44,21 +44,20 @@ public class PropertyPanel extends Panel {
         
         IModel<List<Assoc<String>>> model = new PropertyModel(propertyReader, logger, location);
         
-        form = new Form<Void>("form");
-        field = new TextField<String>("field", 
-                new Model<String>(location));
-        form.add(field);
-        // TODO: just use form default onSubmit.
-        form.add(new Button("confirm") {
-            private static final long serialVersionUID = 7054234909853489009L;
-
+        form = new Form<Void>("form") {
+            private static final long serialVersionUID = 1L;
+            
             @Override
             public void onSubmit() {
                 String result = field.getModelObject();
                 setResponsePage(PropertyPage.class, 
                         new PageParameters("location="+result));
             }
-        });
+        };
+        field = new TextField<String>("field", 
+                new Model<String>(location));
+        form.add(field);
+
         add(form);
         
         add (new PropertyListView<Assoc<String>> ("props", model) {

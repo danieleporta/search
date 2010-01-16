@@ -88,7 +88,7 @@ public class PropertyPageTest {
         FormTester formTester = tester.newFormTester("properties:form");
         assertEquals("", formTester.getTextComponentValue("field"));
         formTester.setValue("field", "/build.properties");
-        formTester.submit("confirm");
+        formTester.submit();
         tester.checkBasePage(PropertyPage.class, "group");
     }
 }
