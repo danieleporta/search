@@ -3,7 +3,6 @@ package nl.xs4all.banaan.tst8.web.property;
 import java.util.List;
 
 import nl.xs4all.banaan.tst8.service.PropertyReader;
-import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.util.Assoc;
 
 import org.apache.log4j.Logger;
@@ -16,7 +15,6 @@ import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
 
 import com.google.inject.Inject;
@@ -44,12 +42,13 @@ public class PropertyPanel extends Panel {
         super(id);
         getSession().info("building  property panel");
         
-        IModel<List<Assoc<String>>> model = new PropertyModel(location);
+        IModel<List<Assoc<String>>> model = new PropertyModel(propertyReader, logger, location);
         
         form = new Form<Void>("form");
         field = new TextField<String>("field", 
                 new Model<String>(location));
         form.add(field);
+        // TODO: just use form default onSubmit.
         form.add(new Button("confirm") {
             private static final long serialVersionUID = 7054234909853489009L;
 
@@ -71,25 +70,5 @@ public class PropertyPanel extends Panel {
                 item.add(new Label("value"));
             }
         });
-    }
-    
-    private final class PropertyModel extends LoadableDetachableModel<List<Assoc<String>>> {
-        private static final long serialVersionUID = 1L;
-
-        private final String location;
-        
-        private PropertyModel(String location) {
-            this.location = location;
-        }
-        
-        @Override
-        public List<Assoc<String>> load() {
-            try {
-                return propertyReader.read(location).getList();
-            } catch (ServiceException se) {
-                logger.error("Caught Service Exception", se);
-                throw new RuntimeException(se);
-            }
-        }
     }
 }
