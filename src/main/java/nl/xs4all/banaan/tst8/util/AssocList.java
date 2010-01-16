@@ -30,21 +30,6 @@ public class AssocList<T> {
         return list;
     }
 
-    /**
-     * @param substring
-     * @return list of bindings where substring occurs in key
-     */
-    public AssocList<T> filter(String substring) {
-        AssocList<T> result = new AssocList<T>();
-        for (Assoc<T> binding : list) {
-            String key = binding.getKey();
-            if (key.contains(substring)) {
-                result.add(key, binding.getValue());
-            }
-        }
-        return result;
-    }
-    
     public T lookup(String wanted) {
         for (Assoc<T> binding : list) {
             String key = binding.getKey();

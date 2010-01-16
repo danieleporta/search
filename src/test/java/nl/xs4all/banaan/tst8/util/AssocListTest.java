@@ -1,10 +1,10 @@
 package nl.xs4all.banaan.tst8.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,10 +21,6 @@ public class AssocListTest {
         bl.add("zprefix-mies-postfix", "zval");
     }
 
-    @After
-    public void tearDown() throws Exception {
-    }
-
     @Test
     public void testGetList() {
         List<Assoc<String>> l = bl.getList();
@@ -32,19 +28,7 @@ public class AssocListTest {
         assertEquals("mies", l.get(1).getKey());
         assertEquals("noot", l.get(3).getKey());
     }
-
-    @Test
-    public void testFilterListFound() {
-        List<Assoc<String>> list = bl.filter("mies").getList();
-        assertEquals(3, list.size());
-    }
-
-    @Test
-    public void testFilterListNotFound() {
-        List<Assoc<String>> list = bl.filter("schapen").getList();
-        assertEquals(0, list.size());
-    }  
-    
+   
     @Test
     public void testLookup() {
         String v = bl.lookup("aap");
@@ -61,6 +45,4 @@ public class AssocListTest {
             // ok
         }
     }
-    
-    
 }

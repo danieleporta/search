@@ -32,7 +32,7 @@ class PropertyModel extends LoadableDetachableModel<List<Assoc<String>>> {
         try {
             //  TODO: find a clean way to show an alternative panel
             // if no properties are found at location.
-            return propertyReader.read(location).getList();
+            return propertyReader.read(location);
         } catch (ServiceException se) {
             
             // can't do this because not serialisable.

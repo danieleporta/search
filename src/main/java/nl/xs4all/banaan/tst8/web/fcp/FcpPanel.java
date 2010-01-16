@@ -5,13 +5,10 @@ package nl.xs4all.banaan.tst8.web.fcp;
 import nl.xs4all.banaan.tst8.domain.Address;
 
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.ComponentPropertyModel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.PropertyModel;
 
 public class FcpPanel extends Panel {
     private static final long serialVersionUID = 8379326263858269585L;
