@@ -4,10 +4,8 @@ import static org.junit.Assert.assertEquals;
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
-import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.util.tester.FormTester;
-import org.apache.wicket.util.tester.ITestPageSource;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,18 +40,16 @@ public class PropertyPageTest {
     public void testRenderPropertyPage2() {
         tester.startPage(new PropertyPage("/build.properties"));
         tester.checkBasePage(PropertyPage.class, "Properties", "group");
+        tester.assertInvisible("properties:bad");
+        tester.assertVisible("properties:good");
     }
     
-    @Test
+    
+    @Test()
     public void testServiceError() {
-        tester.checkServiceException (new ITestPageSource () {
-            private static final long serialVersionUID = 1L;
-
-            public Page getTestPage (){
-                return new PropertyPage("/not/found/build.properties");   
-            }
-        },
-        "not/found");
+        tester.startPage(new PropertyPage("/not/found/build.properties"));
+        tester.assertVisible("properties:bad");
+        tester.assertInvisible("properties:good");
     }
         
     /**

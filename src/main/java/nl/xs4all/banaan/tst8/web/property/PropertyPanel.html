@@ -6,12 +6,16 @@
     <input wicket:id="field" type="text" />
     <input type="submit" value="Confirm" />
   </form>
-  <table>
-    <tr wicket:id="props">
-      <td wicket:id="key">bla</td>
-      <td wicket:id="value">bla bla bla</td>
-    </tr>
-  </table>
+  <wicket:enclosure child="good">
+    <table>
+      <tr wicket:id="good">
+        <td wicket:id="key">bla</td>
+        <td wicket:id="value">bla bla bla</td>
+      </tr>
+    </table>
+  </wicket:enclosure>
+  <div>Error message: <span wicket:id="bad">[error here]</span></div>
+  
 </wicket:panel>
 </body>
 </html>

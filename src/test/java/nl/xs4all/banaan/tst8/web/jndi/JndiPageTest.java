@@ -3,9 +3,8 @@ package nl.xs4all.banaan.tst8.web.jndi;
 import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
-import org.apache.wicket.Page;
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.util.tester.ITestPageSource;
+import org.apache.wicket.WicketRuntimeException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -99,16 +98,9 @@ public class JndiPageTest {
     /**
      * see that unknown location results in error
      */
-    @Test
+    @Test(expected = WicketRuntimeException.class)
     public void testServiceError() {
-        tester.checkServiceException (new ITestPageSource () {
-            private static final long serialVersionUID = 5720624554600813387L;
-
-            public Page getTestPage (){
-                return new JndiPage(new PageParameters ("location=never/never/land"));   
-            }
-        },
-        "not found", "never/land");
+        tester.startPage(new JndiPage(new PageParameters ("location=never/never/land")));
     }
     
     /**

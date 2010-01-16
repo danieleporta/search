@@ -5,13 +5,14 @@ import java.util.List;
 import nl.xs4all.banaan.tst8.service.PropertyReader;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.util.Assoc;
+import nl.xs4all.banaan.tst8.util.Either;
 
 import org.apache.wicket.model.LoadableDetachableModel;
 
 /**
  * Model that provides access to a list of properties in resource at given location.
  */
-class PropertyModel extends LoadableDetachableModel<List<Assoc<String>>> {
+class PropertyModel extends LoadableDetachableModel<Either<List<Assoc<String>>,String>> {
     private static final long serialVersionUID = 1L;
 
     private final PropertyReader propertyReader;
@@ -24,13 +25,11 @@ class PropertyModel extends LoadableDetachableModel<List<Assoc<String>>> {
     }
     
     @Override
-    public List<Assoc<String>> load() {
+    public Either<List<Assoc<String>>,String> load() {
         try {
-            //  TODO: find a clean way to show an alternative panel
-            // if no properties are found at location.
-            return propertyReader.read(location);
+            return Either.good(propertyReader.read(location));
         } catch (ServiceException se) {
-            throw new RuntimeException(se);
+            return Either.bad(se.getMessage());
         }
     }
 }
