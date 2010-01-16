@@ -41,7 +41,7 @@ public class PropertyPanel extends Panel {
         super(id);
         getSession().info("building  property panel");
         
-        IModel<List<Assoc<String>>> model = new PropertyModel(propertyReader, logger, location);
+        IModel<List<Assoc<String>>> model = new PropertyModel(propertyReader, location);
         
         form = new Form<Void>("form") {
             private static final long serialVersionUID = 1L;
