@@ -79,7 +79,7 @@ public class PropertyPageTest {
     }
     
     /**
-     * There should be a form with a field and a button;
+     * There should be a form with a field;
      * used to select what property file to display.
      */
     @Test
