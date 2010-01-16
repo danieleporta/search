@@ -16,7 +16,7 @@ class PropertyModel extends LoadableDetachableModel<List<Assoc<String>>> {
     private static final long serialVersionUID = 1L;
 
     private final PropertyReader propertyReader;
-    private final Logger logger;
+    // private final Logger logger;
     private final String location;
 
     
@@ -24,7 +24,7 @@ class PropertyModel extends LoadableDetachableModel<List<Assoc<String>>> {
         
         this.location = location;
         this.propertyReader = propertyReader;
-        this.logger = logger;
+        // this.logger = logger;
     }
     
     @Override
@@ -34,7 +34,9 @@ class PropertyModel extends LoadableDetachableModel<List<Assoc<String>>> {
             // if no properties are found at location.
             return propertyReader.read(location).getList();
         } catch (ServiceException se) {
-            logger.error("Caught Service Exception", se);
+            
+            // can't do this because not serialisable.
+            // logger.error("Caught Service Exception", se);
             throw new RuntimeException(se);
         }
     }
