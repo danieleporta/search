@@ -12,14 +12,14 @@ import org.apache.wicket.model.LoadableDetachableModel;
 /**
  * Model that provides access to a list of properties in resource at given location.
  */
-class PropertyModel extends LoadableDetachableModel<Either<List<Assoc<String>>,String>> {
+class EitherPropertyModel extends LoadableDetachableModel<Either<List<Assoc<String>>,String>> {
     private static final long serialVersionUID = 1L;
 
     private final PropertyReader propertyReader;
     private final String location;
 
     
-    public PropertyModel(PropertyReader propertyReader, String location) {
+    public EitherPropertyModel(PropertyReader propertyReader, String location) {
         this.location = location;
         this.propertyReader = propertyReader;
     }
