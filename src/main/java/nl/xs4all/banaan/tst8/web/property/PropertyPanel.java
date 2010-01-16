@@ -45,22 +45,16 @@ public class PropertyPanel extends Panel {
 
         propertyModel = new EitherPropertyModel(propertyReader, this.location);
         setDefaultModel(new CompoundPropertyModel<Either<List<Assoc<String>>,String>>(propertyModel));
-        
-        
         add(createForm());
         add(createList());
-        
-        // perhaps cleaner to do this via getSession.error?
-        Label label = new Label("bad") {
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            public boolean isVisible() {
-                return ! propertyModel.getObject().isGood();
-            }            
-        };
-        add(label);
-        
+    }
+    
+    @Override
+    protected void onBeforeRender() {
+        super.onBeforeRender();
+        if (! propertyModel.getObject().isGood()) {
+            getSession().error(propertyModel.getObject().getBad());
+        }
     }
 
 

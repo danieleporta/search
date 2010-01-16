@@ -40,16 +40,16 @@ public class PropertyPageTest {
     public void testRenderPropertyPage2() {
         tester.startPage(new PropertyPage("/build.properties"));
         tester.checkBasePage(PropertyPage.class, "Properties", "group");
-        tester.assertInvisible("properties:bad");
         tester.assertVisible("properties:good");
+        tester.assertNoErrorMessage();
     }
     
     
     @Test()
     public void testServiceError() {
         tester.startPage(new PropertyPage("/not/found/build.properties"));
-        tester.assertVisible("properties:bad");
         tester.assertInvisible("properties:good");
+        tester.assertErrorMessages(new String[] {"property file not found: /not/found/build.properties"});
     }
         
     /**
