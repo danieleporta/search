@@ -10,9 +10,11 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
+/** test panel for A FormComponentPanel */
 public class FcpPanel extends Panel {
     private static final long serialVersionUID = 8379326263858269585L;
 
+    /** backing object for model for this page. */
     public static Address theObject = new Address("twiet", "aap", "noot");
     
     public FcpPanel(String panelId) {

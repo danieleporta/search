@@ -20,11 +20,7 @@ import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
-/**
- * Menulist maps name of menu item to page to be visited
- * @author konijn
- *
- */
+/** Maps name of menu item to page to be visited */
 public class MenuList {
     private static Map<String, Class<? extends Panel>> map;
     

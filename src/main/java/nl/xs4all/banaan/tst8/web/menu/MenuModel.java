@@ -14,6 +14,4 @@ public class MenuModel extends LoadableDetachableModel<List<Entry<String, Class<
     public List<Entry<String,Class<? extends Panel>>> load () {
         return MenuList.getList();
     }
-   
-
 }

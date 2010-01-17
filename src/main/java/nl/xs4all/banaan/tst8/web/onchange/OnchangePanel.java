@@ -16,8 +16,6 @@ import org.apache.wicket.validation.validator.PatternValidator;
  * Show how an AJAX callback may be used to put content
  * in another field.  The canonical use case is filling
  * in street and city when zipcode is entered.
- * @author konijn
- *
  */
 public class OnchangePanel extends Panel {
     private static final long serialVersionUID = 4815145731202521073L;
