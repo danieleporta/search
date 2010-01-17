@@ -1,9 +1,9 @@
 package nl.xs4all.banaan.tst8.web.jndi;
 
-import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ import org.junit.Test;
 
 public class JndiPageTest {
     private WicketMockInjector injector;
-    private BasePageTester tester;
+    private WicketTester tester;
 
     @Before
     public void setUp() {
@@ -27,26 +27,26 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPage1() {
         tester.startPage(JndiPage.class);
-        tester.checkBasePage(JndiPage.class, "aapval");
+        tester.assertRenderedPage(JndiPage.class);
+        tester.assertContains("aapval");
     }
  
     @Test
     public void testRenderJndiPage2() {
         tester.startPage(new JndiPage());
-        tester.checkBasePage(JndiPage.class, "aapval");
-    } 
+        tester.assertContains("aapval");    } 
     
     @Test
     public void testRenderJndiPage3() {
         tester.startPage(new JndiPage(""));
-        tester.checkBasePage(JndiPage.class, "aapval");
+        tester.assertContains("aapval");
     }  
     
     @Test
     public void testRenderJndiPage4() {
         // check for value found under jdbc key
         tester.startPage(new JndiPage("jdbc"));
-        tester.checkBasePage(JndiPage.class, "miesval");
+        tester.assertContains("miesval");   
     }
     
     /**
@@ -55,7 +55,7 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPageParam1() {
         tester.startPage(new JndiPage(new PageParameters ()));
-        tester.checkBasePage(JndiPage.class, "aapval");
+        tester.assertContains("aapval");
     }
     
     /**
@@ -64,7 +64,7 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPageParam2() {
         tester.startPage(new JndiPage(new PageParameters ("garbage=ignored")));
-        tester.checkBasePage(JndiPage.class, "aapval");
+        tester.assertContains("aapval");
     } 
     
     /**
@@ -73,7 +73,7 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPageParam3() {
         tester.startPage(new JndiPage(new PageParameters ("location=")));
-        tester.checkBasePage(JndiPage.class, "aapval");
+        tester.assertContains("aapval");
     } 
     
     /**
@@ -82,7 +82,7 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPageParam4() {
         tester.startPage(new JndiPage(new PageParameters ("location=dir1")));
-        tester.checkBasePage(JndiPage.class, "DIR2");
+        tester.assertContains("DIR2");
     }
     
     /**
@@ -91,7 +91,7 @@ public class JndiPageTest {
     @Test
     public void testRenderJndiPageParam5() {
         tester.startPage(new JndiPage(new PageParameters ("location=dir1/dir2")));
-        tester.checkBasePage(JndiPage.class, "entry3val");
+        tester.assertContains("entry3val");
     }
    
     @Test()
@@ -110,7 +110,9 @@ public class JndiPageTest {
         tester.clickLink("jndi:good:1:keylink");
 
         // in dir1, we see its own name, plus ptr to dir2
-        tester.checkBasePage(JndiPage.class, "dir1", "dir2", "DIR2\\-NODE");
+        tester.assertContains("dir1");
+        tester.assertContains("dir2");
+        tester.assertContains("DIR2\\-NODE");
     }
     
     @Test
@@ -118,8 +120,9 @@ public class JndiPageTest {
         // check clickability of jndi entries
         tester.startPage(new JndiPage(new PageParameters ("location=dir1")));
  
-        // click to dir2, find entry2val there
+        // click to dir2, find entry3val there
         tester.clickLink("jndi:good:0:keylink");
-        tester.checkBasePage(JndiPage.class, "dir2", "entry3val");
+        tester.assertContains("dir2");
+        tester.assertContains("entry3val");
     } 
 }

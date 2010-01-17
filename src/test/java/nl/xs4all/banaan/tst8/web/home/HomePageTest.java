@@ -1,8 +1,8 @@
 package nl.xs4all.banaan.tst8.web.home;
 
-import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
+import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import org.junit.Test;
  */
 public class HomePageTest {
     private WicketMockInjector injector;
-    private BasePageTester tester;
+    private WicketTester tester;
 
     @Before
     public void setUp() {
@@ -22,6 +22,7 @@ public class HomePageTest {
     @Test
     public void testRenderMyPage() {
         tester.startPage(HomePage.class);
-        tester.checkBasePage(HomePage.class, "This shows");
+        tester.assertRenderedPage(HomePage.class);
+        tester.assertContains("This shows");
     }
 }

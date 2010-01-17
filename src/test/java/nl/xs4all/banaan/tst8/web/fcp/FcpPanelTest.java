@@ -2,12 +2,12 @@ package nl.xs4all.banaan.tst8.web.fcp;
 
 
 import static org.junit.Assert.assertEquals;
-import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.TestPanelSource;
+import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ import org.junit.Test;
  */
 public class FcpPanelTest {
     private WicketMockInjector injector;
-    private BasePageTester tester;
+    private WicketTester tester;
 
     @Before
     public void setUp() throws Exception {

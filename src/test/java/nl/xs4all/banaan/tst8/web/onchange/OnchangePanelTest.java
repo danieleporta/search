@@ -2,20 +2,20 @@ package nl.xs4all.banaan.tst8.web.onchange;
 
 
 import static org.junit.Assert.assertEquals;
-import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.TestPanelSource;
+import org.apache.wicket.util.tester.WicketTester;
 import org.apache.wicket.util.value.ValueMap;
 import org.junit.Before;
 import org.junit.Test;
 
 public class OnchangePanelTest {
     private WicketMockInjector injector;
-    private BasePageTester tester;
+    private WicketTester tester;
     private ValueMap map;                   // model for the form
 
     @Before

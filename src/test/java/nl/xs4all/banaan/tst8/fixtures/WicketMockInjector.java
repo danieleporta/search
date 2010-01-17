@@ -1,8 +1,9 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
-import org.apache.wicket.guice.GuiceComponentInjector;
-
 import nl.xs4all.banaan.tst8.web.DemoApplication;
+
+import org.apache.wicket.guice.GuiceComponentInjector;
+import org.apache.wicket.util.tester.WicketTester;
 
 /** 
  * mock injector that also prepares application and tester,
@@ -23,7 +24,7 @@ public class WicketMockInjector extends MockInjector {
         return application;
     }
     
-    public BasePageTester tester() {
-        return new BasePageTester(application());
+    public WicketTester tester() {
+        return new WicketTester(application());
     }
 }

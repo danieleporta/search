@@ -14,8 +14,6 @@ import org.apache.wicket.model.LoadableDetachableModel;
 /**
  * Example panel intended to show how a part of the model
  * can be rendered by a sub panel.
- * @author konijn
- *
  */
 public class LetterPanel extends Panel {
 

@@ -1,19 +1,19 @@
 package nl.xs4all.banaan.tst8.web.subclass;
 
 
-import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.tester.TestPanelSource;
+import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
 /** experiment with making subclass of a component with minimal HTML. */
 public class SubClassPanelTest {
     private WicketMockInjector injector;
-    private BasePageTester tester;
+    private WicketTester tester;
 
     @Before
     public void setUp() {
