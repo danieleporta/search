@@ -5,6 +5,7 @@ import java.util.List;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.util.Assoc;
+import nl.xs4all.banaan.tst8.util.Either;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
@@ -12,7 +13,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.CompoundPropertyModel;
 
 import com.google.inject.Inject;
 
@@ -24,6 +25,8 @@ public class JndiPanel extends Panel {
     private static final long serialVersionUID = 1L;
    
     @Inject JndiReader jndiReader;
+
+    private final JndiModel jndiModel;
     
     public JndiPanel(String id) throws ServiceException {
         this(id, "");
@@ -33,10 +36,16 @@ public class JndiPanel extends Panel {
         super(id);
         getSession().info("building jndi panel");
 
-        final IModel<List<Assoc<Object>>> model = new JndiModel(location, jndiReader);
+        jndiModel = new JndiModel(location, jndiReader);
+        setDefaultModel(new CompoundPropertyModel<Either<List<Assoc<Object>>,String>>(jndiModel));
         
         add(new Label("location", location));
-        add(new PropertyListView<Assoc<Object>>("bindings", model) {
+        add(createList(location));
+
+    }
+
+    private PropertyListView<Assoc<Object>> createList(final String location) {
+        PropertyListView<Assoc<Object>> propertyListView = new PropertyListView<Assoc<Object>>("good") {
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -53,7 +62,20 @@ public class JndiPanel extends Panel {
                         
                 item.add(new Label("value"));
             }
-        });
-
+            
+            @Override
+            public boolean isVisible() {
+                return jndiModel.getObject().isGood();
+            }
+        };
+        return propertyListView;
+    }
+    
+    @Override
+    protected void onBeforeRender() {
+        super.onBeforeRender();
+        if (! jndiModel.getObject().isGood()) {
+            getSession().error(jndiModel.getObject().getBad());
+        }
     }
 }

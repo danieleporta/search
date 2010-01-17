@@ -4,7 +4,6 @@ import nl.xs4all.banaan.tst8.fixtures.BasePageTester;
 import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
 
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.WicketRuntimeException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -95,12 +94,19 @@ public class JndiPageTest {
         tester.checkBasePage(JndiPage.class, "entry3val");
     }
     
-    /**
-     * see that unknown location results in error
-     */
-    @Test(expected = WicketRuntimeException.class)
+//    /**
+//     * see that unknown location results in error
+//     */
+//    @Test(expected = WicketRuntimeException.class)
+//    public void testServiceError() {
+//        tester.startPage(new JndiPage(new PageParameters ("location=never/never/land")));
+//    }
+    
+    @Test()
     public void testServiceError() {
         tester.startPage(new JndiPage(new PageParameters ("location=never/never/land")));
+        tester.assertInvisible("jndi:good");
+        tester.assertErrorMessages(new String[] {"JNDI location not found: never/never/land"});
     }
     
     /**
@@ -114,8 +120,8 @@ public class JndiPageTest {
         tester.startPage(JndiPage.class);
         tester.debugComponentTrees();
         // dir1 should lead to known page
-        tester.clickLink("jndi:bindings:1:keylink");
-tester.debugComponentTrees();
+        tester.clickLink("jndi:good:1:keylink");
+
         // in dir1, we see its own name, plus ptr to dir2
         tester.checkBasePage(JndiPage.class, "dir1", "dir2", "DIR2\\-NODE");
     }
@@ -126,7 +132,7 @@ tester.debugComponentTrees();
         tester.startPage(new JndiPage(new PageParameters ("location=dir1")));
  
         // click to dir2, find entry2val there
-        tester.clickLink("jndi:bindings:0:keylink");
+        tester.clickLink("jndi:good:0:keylink");
         tester.checkBasePage(JndiPage.class, "dir2", "entry3val");
     } 
 }

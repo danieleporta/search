@@ -5,15 +5,13 @@ import java.util.List;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.util.Assoc;
+import nl.xs4all.banaan.tst8.util.Either;
 
-import org.apache.log4j.Logger;
 import org.apache.wicket.model.LoadableDetachableModel;
 
 /** Model to return list of JNDI bindings at given location */
-public class JndiModel extends LoadableDetachableModel<List<Assoc<Object>>> {
+public class JndiModel extends LoadableDetachableModel<Either<List<Assoc<Object>>,String>> {
     private static final long serialVersionUID = 1L;
-    
-    private static final Logger logger = Logger.getLogger(JndiModel.class);
     
     // "easiest way to get dependency in model is to pass it from component"
     // http://markmail.org/message/o53vqwilxbnlul5j
@@ -27,13 +25,11 @@ public class JndiModel extends LoadableDetachableModel<List<Assoc<Object>>> {
     }
     
     @Override
-    public List<Assoc<Object>> load() {
+    public Either<List<Assoc<Object>>,String> load() {
         try {
-            return jndiReader.read(location);
+            return Either.good(jndiReader.read(location));
         } catch (ServiceException se) {
-            logger.error("Caught Service Exception", se);
-            throw new RuntimeException(se);
+            return Either.bad(se.getMessage());
         }
     }
-
 }
