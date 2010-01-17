@@ -93,15 +93,7 @@ public class JndiPageTest {
         tester.startPage(new JndiPage(new PageParameters ("location=dir1/dir2")));
         tester.checkBasePage(JndiPage.class, "entry3val");
     }
-    
-//    /**
-//     * see that unknown location results in error
-//     */
-//    @Test(expected = WicketRuntimeException.class)
-//    public void testServiceError() {
-//        tester.startPage(new JndiPage(new PageParameters ("location=never/never/land")));
-//    }
-    
+   
     @Test()
     public void testServiceError() {
         tester.startPage(new JndiPage(new PageParameters ("location=never/never/land")));
@@ -109,11 +101,6 @@ public class JndiPageTest {
         tester.assertErrorMessages(new String[] {"JNDI location not found: never/never/land"});
     }
     
-    /**
-     * Clickthrough works better with bookmarkable pages than with
-     * links: link wants to save whole rendered page in session,
-     * which requires serialisability.
-     */
     @Test
     public void testRenderJndiPage5() {
         // check clickability of jndi entries
