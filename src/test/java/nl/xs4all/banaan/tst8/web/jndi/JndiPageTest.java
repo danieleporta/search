@@ -112,10 +112,10 @@ public class JndiPageTest {
     public void testRenderJndiPage5() {
         // check clickability of jndi entries
         tester.startPage(JndiPage.class);
- 
+        tester.debugComponentTrees();
         // dir1 should lead to known page
         tester.clickLink("jndi:bindings:1:keylink");
-
+tester.debugComponentTrees();
         // in dir1, we see its own name, plus ptr to dir2
         tester.checkBasePage(JndiPage.class, "dir1", "dir2", "DIR2\\-NODE");
     }

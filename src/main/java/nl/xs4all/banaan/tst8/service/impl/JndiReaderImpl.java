@@ -1,16 +1,20 @@
 package nl.xs4all.banaan.tst8.service.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import javax.naming.Binding;
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 
-import org.slf4j.Logger;
-
 import nl.xs4all.banaan.tst8.logging.LogFor;
-import nl.xs4all.banaan.tst8.service.JndiList;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.ServiceException;
+import nl.xs4all.banaan.tst8.util.Assoc;
+
+import org.slf4j.Logger;
 
 import com.google.inject.Inject;
 
@@ -41,11 +45,8 @@ public class JndiReaderImpl implements JndiReader {
         this.logger = logger;
     }
 
-    /* (non-Javadoc)
-     * @see nl.xs4all.banaan.tst8.service.JndiReader#read(java.lang.String)
-     */
-    public JndiList read (String location) throws ServiceException {
-        JndiList result = new JndiList();
+    public List<Assoc<Object>> read (String location) throws ServiceException {
+        List<Assoc<Object>> result = new ArrayList<Assoc<Object>>();
         
         try {
             logger.debug("start jndilist init for " + location + "." );
@@ -54,7 +55,7 @@ public class JndiReaderImpl implements JndiReader {
             logger.debug("jndilist have context");
             while (e.hasMoreElements()) {
                 Binding b = e.nextElement();
-                result.add(b.getName(), b.getObject());
+                result.add(new Assoc<Object>(b.getName(), b.getObject()));
             }
             logger.debug("jndilist completed iteration");
             
@@ -63,6 +64,7 @@ public class JndiReaderImpl implements JndiReader {
             throw new ServiceException("JNDI location not found" + location, 
                     ne);
         }
+        Collections.sort(result);
         return result;
     }
 }

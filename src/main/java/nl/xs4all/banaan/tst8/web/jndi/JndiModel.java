@@ -29,7 +29,7 @@ public class JndiModel extends LoadableDetachableModel<List<Assoc<Object>>> {
     @Override
     public List<Assoc<Object>> load() {
         try {
-            return jndiReader.read(location).getList();
+            return jndiReader.read(location);
         } catch (ServiceException se) {
             logger.error("Caught Service Exception", se);
             throw new RuntimeException(se);
