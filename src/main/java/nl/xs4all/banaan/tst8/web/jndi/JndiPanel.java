@@ -32,7 +32,7 @@ public class JndiPanel extends Panel {
         this(id, "");
     }
 
-    public JndiPanel(String id, final String location) throws ServiceException {
+    public JndiPanel(String id, final String location) {
         super(id);
         getSession().info("building jndi panel");
 
