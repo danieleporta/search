@@ -1,6 +1,5 @@
 package nl.xs4all.banaan.tst8.web.property;
 
-import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.web.base.BasePage;
 
 import org.apache.wicket.PageParameters;
@@ -14,29 +13,16 @@ import org.apache.wicket.PageParameters;
  */
 
 public class PropertyPage extends BasePage {
-    private String location;
-    
-    public void setLocation(String location) {
-        this.location = location;
-    }
     
     public PropertyPage() {
-        setLocation("");
-        init();
-    }
-    
-    public PropertyPage(String location) {
-        setLocation(location);
-        init();
+        this("");
     }
 
     public PropertyPage(PageParameters parameters) {
-        setLocation(parameters.getString("location", ""));
-        init();
+        this(parameters.getString("location", ""));
     }
-
-    @Override
-    public void doInit() throws ServiceException {
+    
+    public PropertyPage(String location) {
         add(new PropertyPanel("properties", location));
     }
 }
