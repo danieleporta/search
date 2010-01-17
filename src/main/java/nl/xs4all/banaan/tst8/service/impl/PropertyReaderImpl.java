@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Properties;
 import java.util.Map.Entry;
@@ -27,11 +26,7 @@ public class PropertyReaderImpl implements PropertyReader {
             String value = (String) entry.getValue();
             result.add (new Assoc<String>(key, value));
         }
-        Collections.sort(result, new Comparator<Assoc<String>> () {
-            public int compare(Assoc<String> o1, Assoc<String> o2) {
-                return o1.getKey().compareTo(o2.getKey());
-            }
-        });
+        Collections.sort(result);
         return result;
     }
 

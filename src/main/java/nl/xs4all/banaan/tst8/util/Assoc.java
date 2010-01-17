@@ -12,7 +12,7 @@ import java.util.Comparator;
  * The type o the value to be stored in the bindings;
  * key always string.
  */
-public class Assoc<T> {
+public class Assoc<T> implements Comparable<Assoc<T>>{
     private static final long serialVersionUID = 1L;
 
     private String key;
@@ -23,17 +23,8 @@ public class Assoc<T> {
         this.value = value;
     }
 
-    /**
-     * comparator for use in collections.sort().
-     * @param <T>
-     * @return
-     */
-    public static <T> Comparator<Assoc<T>> comparator() {
-        return new Comparator<Assoc<T>> () {
-            public int compare(Assoc<T> o1, Assoc<T> o2) {
-                return o1.getKey().compareTo(o2.getKey());
-            }
-        };
+    public int compareTo(Assoc<T> o) {
+        return getKey().compareTo(o.getKey());
     }
 
     public void setKey(String key) {
@@ -51,4 +42,5 @@ public class Assoc<T> {
     public T getValue() {
         return value;
     }
+
 }

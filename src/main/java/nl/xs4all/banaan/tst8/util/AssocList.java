@@ -26,7 +26,7 @@ public class AssocList<T> {
     }
     
     public List<Assoc<T>> getList() {
-        Collections.sort(list, Assoc.<T>comparator());
+        Collections.sort(list);
         return list;
     }
 
