@@ -1,10 +1,7 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
 
-import java.util.ArrayList;
 import java.util.List;
-
-import nl.xs4all.banaan.tst8.wiring.TestModule;
 
 import org.easymock.EasyMock;
 
@@ -24,25 +21,13 @@ import com.google.inject.util.Modules;
 public class MockInjector {
     protected final Injector injector;
     private final List<Key<?>> mockedKeys;
-
-    public MockInjector(Class<?>... mockedClasses) {
-        this(new TestModule(), classesToKeys(mockedClasses));
-    }
-    
+   
     public MockInjector(Module module, List<Key<?>> mockedKeys) {
         this.mockedKeys = mockedKeys;
         injector = Guice.createInjector(
                 Modules.override(module).
                 with(new MockModule(this.mockedKeys)));
     }    
-
-    private static List<Key<?>> classesToKeys(Class<?>... mockedClasses) {
-        List<Key<?>> keys = new ArrayList<Key<?>>();
-        for (Class<?> clazz : mockedClasses) {
-            keys.add(Key.get(clazz));
-        }
-        return keys;
-    }
     
     /** retrieve object from the underlying injector */
     public <T> T get(Class<T> clazz) {

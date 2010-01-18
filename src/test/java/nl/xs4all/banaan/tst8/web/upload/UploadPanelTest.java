@@ -22,11 +22,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-/**
- * Experiment with file upload on a form.
- * @author konijn
- *
- */
+/** Experiment with file upload on a form. */
 public class UploadPanelTest  {
     private MockInjector injector;
     private WicketTester tester;
