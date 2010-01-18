@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 import nl.xs4all.banaan.tst8.fixtures.MockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjectorBuilder;
+import nl.xs4all.banaan.tst8.wiring.TestModule;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -32,7 +34,7 @@ public class UploadPanelTest  {
 
     @Before
     public void setUp() {
-        injector = new MockInjector();
+        injector = new MockInjectorBuilder(new TestModule()).build();
         tester = injector.get(WicketTester.class);
         map = new ValueMap("text=x");
         tester.startPanel(new TestPanelSource() {

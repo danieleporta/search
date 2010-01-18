@@ -3,6 +3,8 @@ package nl.xs4all.banaan.tst8.web.fcp;
 
 import static org.junit.Assert.assertEquals;
 import nl.xs4all.banaan.tst8.fixtures.MockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjectorBuilder;
+import nl.xs4all.banaan.tst8.wiring.TestModule;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.tester.FormTester;
@@ -22,7 +24,7 @@ public class FcpPanelTest {
 
     @Before
     public void setUp() throws Exception {
-        injector = new MockInjector();
+        injector = new MockInjectorBuilder(new TestModule()).build();
         tester = injector.get(WicketTester.class);
     }
     

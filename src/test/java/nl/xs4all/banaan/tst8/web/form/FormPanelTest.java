@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import nl.xs4all.banaan.tst8.fixtures.MockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjectorBuilder;
+import nl.xs4all.banaan.tst8.wiring.TestModule;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.tester.FormTester;
@@ -27,7 +29,7 @@ public class FormPanelTest {
 
     @Before
     public void setUp() {
-        injector = new MockInjector();
+        injector = new MockInjectorBuilder(new TestModule()).build();
         tester = injector.get(WicketTester.class);
     }
 

@@ -6,6 +6,8 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NAME1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET1;
 import nl.xs4all.banaan.tst8.domain.Address;
 import nl.xs4all.banaan.tst8.fixtures.MockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjectorBuilder;
+import nl.xs4all.banaan.tst8.wiring.TestModule;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -25,7 +27,7 @@ public class AddressPanelTest {
 
     @Before
     public void setUp() {
-        injector = new MockInjector();
+        injector = new MockInjectorBuilder(new TestModule()).build();
         tester = injector.get(WicketTester.class);
     }
 

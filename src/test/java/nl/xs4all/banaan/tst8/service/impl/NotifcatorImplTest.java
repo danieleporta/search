@@ -7,7 +7,9 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.SUBJECT2;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.TO1;
 import nl.xs4all.banaan.tst8.fixtures.MailSenderFixture;
 import nl.xs4all.banaan.tst8.fixtures.MockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjectorBuilder;
 import nl.xs4all.banaan.tst8.service.Notificator;
+import nl.xs4all.banaan.tst8.wiring.TestModule;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,14 +26,13 @@ public class NotifcatorImplTest {
     
     @Before
     public void setUp() {
-        injector = new MockInjector();
+        injector = new MockInjectorBuilder(new TestModule()).build();
         notificator = injector.get(Notificator.class);
         mailSenderFixture = injector.get(MailSenderFixture.class);
     }
 
     @Test
-    public void testSender() {
-        // the sender starts of empty.
+    public void testSenderStartsEmpty() {
         mailSenderFixture.checkMessageCount(0);
     }
 

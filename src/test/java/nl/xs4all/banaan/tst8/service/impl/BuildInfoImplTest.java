@@ -7,7 +7,9 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_USER1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_VERSION1;
 import static org.junit.Assert.assertEquals;
 import nl.xs4all.banaan.tst8.fixtures.MockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjectorBuilder;
 import nl.xs4all.banaan.tst8.service.BuildInfo;
+import nl.xs4all.banaan.tst8.wiring.TestModule;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +19,7 @@ public class BuildInfoImplTest {
 
     @Before
     public void setUp() {
-        injector = new MockInjector();
+        injector = new MockInjectorBuilder(new TestModule()).build();
     }
     
     @Test
