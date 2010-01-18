@@ -1,7 +1,7 @@
 package nl.xs4all.banaan.tst8.web.base;
 
 
-import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.menu.MenuPage;
 
@@ -16,13 +16,13 @@ import org.junit.Test;
  *
  */
 public class BasePageTest {
-    private WicketMockInjector injector;
+    private MockInjector injector;
     private WicketTester tester;
 
     @Before
     public void setUp() {
-        injector = new WicketMockInjector();
-        tester = injector.tester();
+        injector = new MockInjector();
+        tester = injector.get(WicketTester.class);
     }
     
     @Test

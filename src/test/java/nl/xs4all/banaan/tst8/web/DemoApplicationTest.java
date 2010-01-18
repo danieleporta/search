@@ -2,7 +2,7 @@ package nl.xs4all.banaan.tst8.web;
 
 
 import static org.junit.Assert.fail;
-import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.onchange.OnchangePanel;
@@ -14,13 +14,13 @@ import org.junit.Test;
 
 public class DemoApplicationTest {
 
-    private WicketMockInjector injector;
+    private MockInjector injector;
     private WicketTester tester;
 
     @Before
     public void setUp() {
-        injector = new WicketMockInjector();
-        tester = injector.tester();
+        injector = new MockInjector();
+        tester = injector.get(WicketTester.class);
     }
     
     @Test

@@ -2,7 +2,7 @@ package nl.xs4all.banaan.tst8.web.onchange;
 
 
 import static org.junit.Assert.assertEquals;
-import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -14,14 +14,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class OnchangePanelTest {
-    private WicketMockInjector injector;
+    private MockInjector injector;
     private WicketTester tester;
     private ValueMap map;                   // model for the form
 
     @Before
     public void setUp() {
-        injector = new WicketMockInjector();
-        tester = injector.tester();
+        injector = new MockInjector();
+        tester = injector.get(WicketTester.class);
         map = OnchangePanel.makeModel();
         tester.startPanel(new TestPanelSource() {
             private static final long serialVersionUID = 1L;

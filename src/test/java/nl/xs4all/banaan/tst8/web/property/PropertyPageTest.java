@@ -1,7 +1,7 @@
 package nl.xs4all.banaan.tst8.web.property;
 
 import static org.junit.Assert.assertEquals;
-import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.util.tester.FormTester;
@@ -15,13 +15,13 @@ import org.junit.Test;
  *
  */
 public class PropertyPageTest {
-    private WicketMockInjector injector;
+    private MockInjector injector;
     private WicketTester tester;
 
     @Before
     public void setUp() {
-        injector = new WicketMockInjector();
-        tester = injector.tester();
+        injector = new MockInjector();
+        tester = injector.get(WicketTester.class);
     }
     
     /** default page shows system properties. */
@@ -32,9 +32,7 @@ public class PropertyPageTest {
         tester.assertContains("user.name");
     }
 
-    /**
-     * access property file
-     */
+    /** access property file */
     @Test
     public void testRenderPropertyPage2() {
         tester.startPage(new PropertyPage("/build.properties"));
@@ -44,7 +42,6 @@ public class PropertyPageTest {
         tester.assertNoErrorMessage();
     }
     
-    
     @Test()
     public void testServiceError() {
         tester.startPage(new PropertyPage("/not/found/build.properties"));
@@ -52,9 +49,7 @@ public class PropertyPageTest {
         tester.assertErrorMessages(new String[] {"property file not found: /not/found/build.properties"});
     }
         
-    /**
-     * empty location to system properties
-     */
+    /** empty location leads to system properties */
     @Test
     public void testRenderPropertyViaPageParam() {
         tester.startPage(new PropertyPage(new PageParameters ()));

@@ -3,7 +3,7 @@ package nl.xs4all.banaan.tst8.web.form;
 import java.util.HashSet;
 import java.util.Set;
 
-import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.tester.FormTester;
@@ -22,15 +22,14 @@ import org.junit.Test;
  */
 
 public class FormPanelTest {
-    private WicketMockInjector injector;
+    private MockInjector injector;
     private WicketTester tester;
 
     @Before
     public void setUp() {
-        injector = new WicketMockInjector();
-        tester = injector.tester();
+        injector = new MockInjector();
+        tester = injector.get(WicketTester.class);
     }
-
 
     /** show a form, don't push any buttons */
     @Test

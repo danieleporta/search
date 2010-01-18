@@ -5,7 +5,7 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_GROUP1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_NAME1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_USER1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.BUILD_VERSION1;
-import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.tester.TestPanelSource;
@@ -20,13 +20,13 @@ import org.junit.Test;
  */
 
 public class BuildInfoPanelTest {
-    private WicketMockInjector injector;
+    private MockInjector injector;
     private WicketTester tester;
 
     @Before
     public void setUp() {
-        injector = new WicketMockInjector();
-        tester = injector.tester();
+        injector = new MockInjector();
+        tester = injector.get(WicketTester.class);
     }
     
     @Test

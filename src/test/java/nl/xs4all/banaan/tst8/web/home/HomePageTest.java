@@ -1,6 +1,6 @@
 package nl.xs4all.banaan.tst8.web.home;
 
-import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -10,13 +10,13 @@ import org.junit.Test;
  * Simple test using the WicketTester
  */
 public class HomePageTest {
-    private WicketMockInjector injector;
+    private MockInjector injector;
     private WicketTester tester;
 
     @Before
     public void setUp() {
-        injector = new WicketMockInjector();
-        tester = injector.tester();
+        injector = new MockInjector();
+        tester = injector.get(WicketTester.class);
     }
 
     @Test

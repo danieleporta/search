@@ -5,7 +5,7 @@ import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.CITY1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.NAME1;
 import static nl.xs4all.banaan.tst8.fixtures.DomainObjects.STREET1;
 import nl.xs4all.banaan.tst8.domain.Address;
-import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -20,13 +20,13 @@ import org.junit.Test;
  *
  */
 public class AddressPanelTest {
-    private WicketMockInjector injector;
+    private MockInjector injector;
     private WicketTester tester;
 
     @Before
     public void setUp() {
-        injector = new WicketMockInjector();
-        tester = injector.tester();
+        injector = new MockInjector();
+        tester = injector.get(WicketTester.class);
     }
 
     @Test

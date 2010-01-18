@@ -1,8 +1,7 @@
 package nl.xs4all.banaan.tst8.web.menu;
 
 
-import static org.junit.Assert.fail;
-import nl.xs4all.banaan.tst8.fixtures.WicketMockInjector;
+import nl.xs4all.banaan.tst8.fixtures.MockInjector;
 import nl.xs4all.banaan.tst8.web.onchange.OnchangePanel;
 import nl.xs4all.banaan.tst8.web.upload.UploadPanel;
 
@@ -12,15 +11,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MenuPageTest {
-    private WicketMockInjector injector;
+    private MockInjector injector;
     private WicketTester tester;
 
     @Before
     public void setUp() {
-        injector = new WicketMockInjector();
-        tester = injector.tester();
+        injector = new MockInjector();
+        tester = injector.get(WicketTester.class);
     }
-
 
     @Test
     public void testConstructionWithGoodParameter() {
@@ -28,17 +26,10 @@ public class MenuPageTest {
         tester.assertRenderedPage(MenuPage.class);
     }
     
-    @Test
+    @Test(expected = RuntimeException.class)
     public void testConstructionWithBadParameter() {
-        try {
-            tester.startPage(MenuPage.class, new PageParameters("panel=IDontExist"));
-            tester.assertRenderedPage(MenuPage.class);
-            // TODO: consider returning not-found
-            fail("undetected error");
-        }
-        catch (RuntimeException e) {
-            // ok
-        }
+        tester.startPage(MenuPage.class, new PageParameters("panel=IDontExist"));
+        tester.assertRenderedPage(MenuPage.class);
     }  
     
     @Test
