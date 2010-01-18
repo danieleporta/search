@@ -1,6 +1,5 @@
 package nl.xs4all.banaan.tst8.fixtures;
 
-
 import java.util.List;
 
 import org.easymock.EasyMock;
@@ -11,13 +10,7 @@ import com.google.inject.Key;
 import com.google.inject.Module;
 import com.google.inject.util.Modules;
 
-
-/**
- * Wrapper for a normal test injector, except that
- * specific interfaces or keys can be mocked.
- * @author konijn
- *
- */
+/** Wrapper for Guice injector where interfaces or keys can be mocked. */
 public class MockInjector {
     protected final Injector injector;
     private final List<Key<?>> mockedKeys;
