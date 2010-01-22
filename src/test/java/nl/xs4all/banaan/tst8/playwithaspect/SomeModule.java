@@ -1,48 +1,25 @@
 package nl.xs4all.banaan.tst8.playwithaspect;
 
-import org.aopalliance.intercept.MethodInterceptor;
-import org.easymock.EasyMock;
+import org.junit.Ignore;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Provider;
+import com.google.inject.Singleton;
 import com.google.inject.matcher.Matchers;
 
 /** 
- * to test an interceptor, set up a module where the interface
- * is bound to a mock, and every invocation is intercepted.
+ * Module that applies an interceptor to all invocations
+ * of SomeInterfaceImpl objects.  The point is how to test the interceptor;
+ * see {@link SomeInterceptorTest}. 
  */
-public class SomeModule<T> extends AbstractModule {
+@Ignore
+public class SomeModule extends AbstractModule {
     
-    private Class<T> iface;
-    private MethodInterceptor interceptor;
-    private T mock;
-
-    public SomeModule(Class<T> iface, MethodInterceptor interceptor) {
-        this.iface = iface;
-        this.interceptor = interceptor;
-    }
-
     @Override
     protected void configure() {
-        bind(iface).toProvider(new Provider<T>() {
-
-            public T get() {
-                mock = EasyMock.createMock(iface);
-                System.out.println("make mock " + mock);
-                return mock;
-            }
-        });
-        
-        // this wont work: interceptor does not get added to objects
-        // created by provider.
+        bind(SomeInterface.class).to(SomeInterfaceImpl.class).in(Singleton.class);        
         bindInterceptor(
-                Matchers.any(),
+                Matchers.subclassesOf(SomeInterfaceImpl.class),
                 Matchers.any(), 
-                interceptor);
-    }
-    
-    public T getMock() {
-        System.out.println("get mock " + mock);
-        return mock;
+                new SomeInterceptor());
     }
 }
