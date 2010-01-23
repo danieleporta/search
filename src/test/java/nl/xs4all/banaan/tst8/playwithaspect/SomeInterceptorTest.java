@@ -19,19 +19,17 @@ public class SomeInterceptorTest {
 
     @Test
     public void testInterceptorProceedsTwice() {
-        // the interceptor to be tested
+        SomeInterface mock = EasyMock.createMock(SomeInterface.class);
         SomeInterceptor interceptor = new SomeInterceptor();
-        MockDriver<SomeInterface> driver = new MockDriver<SomeInterface>(SomeInterface.class, interceptor);
+        SomeInterface proxy = MockDriver.getProxy(SomeInterface.class, mock, interceptor);
         
         // expected behavior
-        final SomeInterface mock = driver.getMock();
         EasyMock.expect(mock.run("aap", "noot")).andReturn("aapnoot");
         EasyMock.expect(mock.run("noot", "aap")).andReturn("nootaap");
         EasyMock.replay(mock);
 
         // invoke the proxy, this should trigger the interceptor
-        SomeInterface object = driver.getProxy();
-        object.run("aap", "noot");
+        proxy.run("aap", "noot");
         
         // verify the expected behavior
         EasyMock.verify(mock);
