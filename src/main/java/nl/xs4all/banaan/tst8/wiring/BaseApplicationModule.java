@@ -9,10 +9,12 @@ import org.apache.wicket.protocol.http.WebApplication;
 import nl.xs4all.banaan.tst8.service.BuildInfo;
 import nl.xs4all.banaan.tst8.service.JndiReader;
 import nl.xs4all.banaan.tst8.service.Notificator;
+import nl.xs4all.banaan.tst8.service.ParamReader;
 import nl.xs4all.banaan.tst8.service.PropertyReader;
 import nl.xs4all.banaan.tst8.service.impl.BuildInfoImpl;
 import nl.xs4all.banaan.tst8.service.impl.JndiReaderImpl;
 import nl.xs4all.banaan.tst8.service.impl.NotificatorImpl;
+import nl.xs4all.banaan.tst8.service.impl.ParamReaderImpl;
 import nl.xs4all.banaan.tst8.service.impl.PropertyReaderImpl;
 import nl.xs4all.banaan.tst8.web.DemoApplication;
 
@@ -33,6 +35,7 @@ public class BaseApplicationModule extends AbstractModule {
         bind(WebApplication.class).to(DemoApplication.class);
         bind(JndiReader.class).to(JndiReaderImpl.class).in(Singleton.class);
         bind(Notificator.class).to(NotificatorImpl.class).in(Singleton.class);
+        bind(ParamReader.class).to(ParamReaderImpl.class).in(Singleton.class);
         bind(PropertyReader.class).to(PropertyReaderImpl.class).in(Singleton.class);
         bind(BuildInfo.class).to(BuildInfoImpl.class).in(Singleton.class);
         

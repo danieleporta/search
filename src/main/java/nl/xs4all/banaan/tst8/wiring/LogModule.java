@@ -1,7 +1,5 @@
 package nl.xs4all.banaan.tst8.wiring;
 
-
-import org.junit.Ignore;
 import org.slf4j.Logger;
 
 import com.google.inject.AbstractModule;
@@ -10,10 +8,9 @@ import com.google.inject.Singleton;
 
 /** 
  * Bind slf4j loggers for a list of classes provided in the module constructor. 
- * Users that want such a logger to be injected in the consructor must annotate it
+ * Users that want such a logger to be injected in the constructor must annotate it
  * with @LogFor(User.class).
  */
-@Ignore
 public class LogModule extends AbstractModule {
  
     // It would be nice if we could just read the annotation

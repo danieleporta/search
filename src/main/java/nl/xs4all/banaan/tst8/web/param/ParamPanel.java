@@ -3,7 +3,7 @@ package nl.xs4all.banaan.tst8.web.param;
 
 import java.util.List;
 
-import nl.xs4all.banaan.tst8.service.ParamList;
+import nl.xs4all.banaan.tst8.service.ParamReader;
 import nl.xs4all.banaan.tst8.util.Assoc;
 
 import org.apache.wicket.markup.html.basic.Label;
@@ -13,13 +13,15 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
+import com.google.inject.Inject;
+
 /**
- * The actual panel with initialisation parameters provided by servlet context.
- * @author konijn
- *
+ * Panel with initialisation parameters provided by servlet context.
  */
 public class ParamPanel extends Panel {
     private static final long serialVersionUID = 1L;
+    
+    @Inject ParamReader paramReader;
     
     public ParamPanel(String id) {
         super(id);
@@ -29,8 +31,7 @@ public class ParamPanel extends Panel {
             private static final long serialVersionUID = 1L;
             @Override
             public List<Assoc<String>> load () {
-                final ParamList paramList = new ParamList();
-                return paramList.getList();
+                return paramReader.read();
             }
         };
         
