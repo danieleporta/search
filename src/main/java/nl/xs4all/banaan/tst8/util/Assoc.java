@@ -1,6 +1,5 @@
 package nl.xs4all.banaan.tst8.util;
 
-import java.util.Comparator;
 
 /**
  * A binding says a string and object go together;
@@ -27,20 +26,11 @@ public class Assoc<T> implements Comparable<Assoc<T>>{
         return getKey().compareTo(o.getKey());
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
-
     public String getKey() {
         return key;
-    }
-
-    public void setValue(T value) {
-        this.value = value;
     }
 
     public T getValue() {
         return value;
     }
-
 }

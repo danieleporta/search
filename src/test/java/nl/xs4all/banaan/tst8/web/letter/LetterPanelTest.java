@@ -50,6 +50,18 @@ public class LetterPanelTest {
         tester.assertLabel("panel:postage", POSTAGE1.toString());    
     }
     
+    @Test
+    public void testConstructorWithoutExplicitModel() {
+        tester.startPanel(new TestPanelSource() {
+            private static final long serialVersionUID = 1L;
+
+            public Panel getTestPanel(String panelId) {
+                return new LetterPanel(panelId);
+            }
+        });
+        tester.assertLabel("panel:from:name", "twiet");
+    }
+    
     private static class LetterModel extends LoadableDetachableModel<Letter> {
         private static final long serialVersionUID = 1L;
         @Override

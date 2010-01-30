@@ -32,12 +32,7 @@ public class PropertyPanel extends Panel {
     
     /** object underlying the field that specifies resource to show */
     private String location;
-    
 
-    public PropertyPanel(String id) {
-        this(id, "");
-    }
-    
     public PropertyPanel(String id, final String location) {
         super(id);
         this.location = location;

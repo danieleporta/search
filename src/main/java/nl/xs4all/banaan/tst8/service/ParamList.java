@@ -5,7 +5,8 @@ import java.util.Enumeration;
 import javax.servlet.ServletContext;
 
 import nl.xs4all.banaan.tst8.util.AssocList;
-import nl.xs4all.banaan.tst8.web.DemoApplication;
+
+import org.apache.wicket.protocol.http.WebApplication;
 
 /**
  * List of configuration parameters as provided by the environment,
@@ -18,7 +19,7 @@ public class ParamList extends AssocList<String> {
 
     public ParamList () {
         super();
-        DemoApplication app = DemoApplication.get();
+        WebApplication app = WebApplication.get();
         ServletContext sc = app.getServletContext();
         Enumeration<?> e = sc.getInitParameterNames();
         while (e.hasMoreElements()) {

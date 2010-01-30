@@ -173,7 +173,6 @@ public class UploadPanelTest  {
     @Test(expected=IllegalArgumentException.class)
     public void testThatResourcesThatDontExistCauseAnException() throws URISyntaxException {
         getResourceAsFile("/i-dont-exist.txt");
-        fail("missing resource went undetected");
     }
     
     private File getResourceAsFile(String resourceName) throws URISyntaxException {

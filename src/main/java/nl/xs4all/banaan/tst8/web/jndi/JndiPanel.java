@@ -3,7 +3,6 @@
 import java.util.List;
 
 import nl.xs4all.banaan.tst8.service.JndiReader;
-import nl.xs4all.banaan.tst8.service.ServiceException;
 import nl.xs4all.banaan.tst8.util.Assoc;
 import nl.xs4all.banaan.tst8.util.Either;
 
@@ -24,10 +23,6 @@ public class JndiPanel extends Panel {
     @Inject JndiReader jndiReader;
 
     private final JndiModel jndiModel;
-    
-    public JndiPanel(String id) throws ServiceException {
-        this(id, "");
-    }
 
     public JndiPanel(String id, final String location) {
         super(id);

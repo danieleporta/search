@@ -4,7 +4,6 @@ import nl.xs4all.banaan.tst8.web.error.ErrorPage;
 import nl.xs4all.banaan.tst8.web.home.HomePage;
 import nl.xs4all.banaan.tst8.web.menu.MenuPage;
 
-import org.apache.wicket.Application;
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.settings.IApplicationSettings;
@@ -23,14 +22,8 @@ public class DemoApplication extends WebApplication {
     public DemoApplication() {
     }
     
-    public static DemoApplication get() {
-        return (DemoApplication) Application.get();
-    }
-    
     @Override
     protected void init() {
-    
-        
         // try accessing these via a wicket tester
         mountBookmarkablePage("menu", MenuPage.class);
         mountBookmarkablePage("error", ErrorPage.class);        
