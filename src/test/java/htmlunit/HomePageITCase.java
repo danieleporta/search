@@ -4,7 +4,6 @@ package htmlunit;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.w3c.dom.Node;
 
@@ -15,11 +14,10 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 /**
  * Basic test of the application from the outside,
- * assumes a running instance.  This needs to be moved
- * outside the unit test environment.
+ * assumes a running instance.
+ * Name causes it to be run by failsafe (integration) but not surefire (junit).
  */
-@Ignore
-public class HomePageTest {
+public class HomePageITCase {
     
     private static final String BASE = "http://localhost:8080/tst8-app/";
 
