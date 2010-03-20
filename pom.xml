@@ -26,10 +26,59 @@
 
   <modules>
     <module>tst8-war</module>
+    <module>tst8-intgr</module>
   </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.5</source>
+            <target>1.5</target>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <!-- 
+            This plugin runs *ITcase.java, while surefire only does *Test.java.
+            Note that this cannot have a separate directory from junit tests.
+            
+            Note that JUnit4 in eclipe cannot ignore filename patterns in
+            run configuration; that makes it difficult to run only junit
+            tests from IDE.  The cleanest solution is probably to use
+            two maven modules that can be tested independently in eclipse.
+            
+            http://docs.codehaus.org/display/MAVENUSER/Maven+and+Integration+Testing
+            http://docs.codehaus.org/display/JETTY/Maven+Jetty+Plugin
+            -->
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>failsafe-maven-plugin</artifactId>
+          <version>2.4.3-alpha-1</version>
+        </plugin>
+        
+
+      </plugins>
+    </pluginManagement>
+  </build>
 
   <dependencyManagement>
     <dependencies>
+       
+      <dependency>
+        <groupId>nl.xs4all.banaan.tst8</groupId>
+        <artifactId>tst8-war</artifactId>
+        <type>war</type>
+        <version>${project.version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>com.google.inject</groupId>
+        <artifactId>guice</artifactId>
+        <version>2.0</version>
+      </dependency>
       <dependency>
         <groupId>javax.mail</groupId>
         <artifactId>mail</artifactId>

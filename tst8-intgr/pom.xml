@@ -1,0 +1,322 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>nl.xs4all.banaan.tst8</groupId>
+  <artifactId>tst8-intgr</artifactId>
+  <packaging>pom</packaging>
+  <name>tst8-intgr</name>
+  <description>
+    A test to find effective ways to do testing and deployment
+    of a wicket application.  The Intgration test
+  </description>
+
+  <parent>
+    <groupId>nl.xs4all.banaan.tst8</groupId>
+    <artifactId>tst8-app</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  
+  <dependencies>
+    <dependency>
+      <groupId>nl.xs4all.banaan.tst8</groupId>
+      <artifactId>tst8-war</artifactId>
+      <type>war</type>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+    </dependency>
+
+    <dependency>
+    	<groupId>org.apache.wicket</groupId>
+    	<artifactId>wicket-guice</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+    </dependency> 
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mortbay.jetty</groupId>
+      <artifactId>jetty</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mortbay.jetty</groupId>
+      <artifactId>jetty-util</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mortbay.jetty</groupId>
+      <artifactId>jetty-management</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.easymock</groupId>
+      <artifactId>easymock</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>net.sourceforge.htmlunit</groupId>
+      <artifactId>htmlunit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/templates</directory>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**</include>
+        </includes>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <filtering>false</filtering>
+        <directory>src/test/java</directory>
+        <includes>
+          <include>**</include>
+        </includes>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </testResource>
+      <testResource>
+        <filtering>false</filtering>
+        <directory>src/test/resources</directory>
+        <includes>
+          <include>**</include>
+        </includes>
+      </testResource>
+    </testResources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        
+                <executions>
+          <execution>
+            <id>testCompile</id>
+            <!-- this is packaged as a pom, not a jar, so if we want the compiler,
+            ask for it explicitly. -->
+            <phase>test-compile</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+          </executions>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <!-- 
+          This plugin runs *ITcase.java, while surefire only does *Test.java.
+          Note that this cannot have a separate directory from junit tests.
+          
+          Note that JUnit4 in eclipe cannot ignore filename patterns in
+          run configuration; that makes it difficult to run only junit
+          tests from IDE.  The cleanest solution is probably to use
+          two maven modules that can be tested independently in eclipse.
+          
+          http://docs.codehaus.org/display/MAVENUSER/Maven+and+Integration+Testing
+          http://docs.codehaus.org/display/JETTY/Maven+Jetty+Plugin
+          -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>failsafe-maven-plugin</artifactId>
+        <version>2.4.3-alpha-1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <plugin>
+        <!-- 
+          This plugin allows running the application on port 8080 in a jetty
+          container for testing purposes by doing mvn jetty:run.
+          The jetty container is embedded within maven.
+          The application needs to be compiled but not packaged into a war.
+          http://jetty.mortbay.org/jetty/maven-plugin/run-mojo.html
+          -->
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>maven-jetty-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>start-jetty</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>deploy-war</goal>
+            </goals>
+            <configuration>
+              <scanIntervalSeconds>0</scanIntervalSeconds>
+              <daemon>true</daemon>
+            </configuration>
+          </execution>
+          <execution>
+            <id>stop-jetty</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+          </execution>
+        </executions>
+
+          <configuration>
+            <contextPath>/tst8-app</contextPath>
+            <webAppSourceDirectory>${project.build.directory}/crap</webAppSourceDirectory>
+            <!-- jetty override is only for jetty:run -->
+            <jettyConfig>jetty.xml</jettyConfig>
+            <overrideWebXml>${basedir}/../tst8-war/src/jetty/override-web.xml</overrideWebXml>
+            <!-- needed for command line stop -->
+            <stopPort>9966</stopPort>
+            <stopKey>foo</stopKey>
+            <webApp>target/crap.war</webApp>
+          </configuration>
+
+      </plugin>
+
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.1</version>
+        <executions>
+            <execution>
+                <id>unpack</id>
+                <phase>initialize</phase>
+                <goals>
+                    <goal>unpack</goal>
+                </goals>
+                <configuration>
+                     <artifactItems>
+                        <artifactItem>
+			      <groupId>nl.xs4all.banaan.tst8</groupId>
+			      <artifactId>tst8-war</artifactId>
+			      <type>war</type>
+                            <overWrite>false</overWrite>
+                            <outputDirectory>${project.build.directory}/crap</outputDirectory>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </execution>
+            
+                        <execution>
+                <id>copy</id>
+                <phase>initialize</phase>
+                <goals>
+                    <goal>copy</goal>
+                </goals>
+                <configuration>
+                     <artifactItems>
+                        <artifactItem>
+                              <groupId>nl.xs4all.banaan.tst8</groupId>
+                              <artifactId>tst8-war</artifactId>
+                              <type>war</type>
+                            <destFileName>crap.war</destFileName>
+
+                            <overWrite>false</overWrite>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+            </execution>
+            
+        </executions>
+    </plugin>
+
+
+
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <!--  test coverage -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+
+</project>
