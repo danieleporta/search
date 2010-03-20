@@ -142,7 +142,6 @@
         </executions>
         <configuration>
           <contextPath>/tst8-app</contextPath>
-          <webAppSourceDirectory>${project.build.directory}/crap</webAppSourceDirectory>
           <!-- jettyOverride, configuring a specific webapp, is only for jetty:run;
             for jetty:deploy-war, you only have jettyConfig, wich configures a complete
             jetty server with all webapps in it. -->
@@ -160,24 +159,6 @@
         <artifactId>maven-dependency-plugin</artifactId>
         <version>2.1</version>
         <executions>
-          <execution>
-            <id>unpack</id>
-            <phase>initialize</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>nl.xs4all.banaan.tst8</groupId>
-                  <artifactId>tst8-war</artifactId>
-                  <type>war</type>
-                  <overWrite>false</overWrite>
-                  <outputDirectory>${project.build.directory}/crap</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
           <execution>
             <id>copy</id>
             <phase>initialize</phase>
