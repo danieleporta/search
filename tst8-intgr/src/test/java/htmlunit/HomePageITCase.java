@@ -52,7 +52,6 @@ public class HomePageITCase {
         final WebClient webClient = new WebClient();
         final HtmlPage page = webClient.getPage(BASE);
         HtmlElement menu = page.getElementById("menu");
-        // hmm, where does the web client get its default namespace?
         List<?> list = menu.getByXPath("ul/li[1]/a");
         Assert.assertTrue(list.size() == 1);
         HtmlAnchor anchor = (HtmlAnchor) list.get(0);

@@ -23,6 +23,12 @@
       <artifactId>mail</artifactId>
       <scope>provided</scope>
     </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
      
     <dependency>
       <groupId>org.apache.wicket</groupId>
@@ -70,34 +76,10 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-
-    <dependency>
-      <groupId>org.mortbay.jetty</groupId>
-      <artifactId>jetty</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mortbay.jetty</groupId>
-      <artifactId>jetty-util</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mortbay.jetty</groupId>
-      <artifactId>jetty-management</artifactId>
-      <scope>provided</scope>
-    </dependency>
     
     <dependency>
       <groupId>org.easymock</groupId>
       <artifactId>easymock</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>net.sourceforge.htmlunit</groupId>
-      <artifactId>htmlunit</artifactId>
       <scope>test</scope>
     </dependency>
 
@@ -155,7 +137,6 @@
           -->
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>maven-jetty-plugin</artifactId>
-        
           <configuration>
             <contextPath>/tst8-app</contextPath>
             <!-- assume we're calledfrom direct submodule of main pom. sigh. -->
@@ -166,13 +147,6 @@
             <stopPort>9966</stopPort>
             <stopKey>foo</stopKey>
           </configuration>
-
-        
-        
-        
-        
-        
-        
       </plugin>
     </plugins>
   </build>
