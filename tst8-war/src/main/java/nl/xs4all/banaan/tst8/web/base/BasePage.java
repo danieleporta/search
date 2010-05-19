@@ -9,8 +9,6 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 /**
  * BasePage provides menu and feedback; other pages
  * will add their panels to this.
- * @author konijn
- *
  */
 public abstract class BasePage extends WebPage {
     public BasePage() {
