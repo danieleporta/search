@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class DatabaseConnectionTest {
+public class HsqldbConnectionTest {
 
     /** because of shutdown, database will be dropped when closing last connection */
     private static final String CONNECT_STRING = "jdbc:hsqldb:mem:mydb;shutdown=true";
