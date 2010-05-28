@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="nl.xs4all.banaan.tst8.domain">
+    <class name="Post">
+      <id name="id" type="long" column="ID">
+        <generator class="native" />
+      </id>
+      <property name="subject" column="SUBJECT" type="string"/>
+      <property name="content" column="CONTENT" type="string"/>
+
+    </class>
+
+</hibernate-mapping>
