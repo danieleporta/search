@@ -66,6 +66,12 @@
         <version>1.2.135</version>
       </dependency>
 
+      <dependency>
+        <!-- bytecode generator used by hibernate 3.3.2.GA -->
+        <groupId>javassist</groupId>
+        <artifactId>javassist</artifactId>
+        <version>3.8.0.GA</version>
+      </dependency>
       
       <dependency>
         <groupId>javax.mail</groupId>
@@ -110,7 +116,14 @@
         <artifactId>commons-httpclient</artifactId>
         <version>3.1</version>
       </dependency>
-      
+
+
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>3.3.2.GA</version>
+      </dependency>
+            
       <dependency>
         <groupId>org.hsqldb</groupId>
         <artifactId>hsqldb</artifactId>

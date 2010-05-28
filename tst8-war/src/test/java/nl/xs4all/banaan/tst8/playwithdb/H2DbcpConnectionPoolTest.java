@@ -18,6 +18,9 @@ import org.junit.Test;
  */
 public class H2DbcpConnectionPoolTest {
 
+    private static final String MYDB_URL = "jdbc:h2:mem:mydb";
+    private static final String H2_DRIVER = "org.h2.Driver";
+
     @Test
     public void testDataSourceIsLimited() {
         DataSource source = makeDataSource();
@@ -32,12 +35,21 @@ public class H2DbcpConnectionPoolTest {
             Assert.assertEquals(8, i);
         }
     }
+    
+    public void testConnectionsCanBeReused() throws Exception {
+        DataSource source = makeDataSource();
+        int i;
+        for (i = 0; i < 10; i++) {
+            Connection connection = source.getConnection();
+            connection.close();
+        }
+    }
 
     private DataSource makeDataSource() {
         // In eg Jetty, the DataSource is created directly and added to JNDI
         BasicDataSource source = new BasicDataSource();
-        source.setDriverClassName("org.h2.Driver");
-        source.setUrl("jdbc:h2:mem:mydb");
+        source.setDriverClassName(H2_DRIVER);
+        source.setUrl(MYDB_URL);
         // default unlimited
         source.setMaxOpenPreparedStatements(10);
         // default 8
@@ -76,8 +88,8 @@ public class H2DbcpConnectionPoolTest {
         // see http://tomcat.apache.org/tomcat-4.1-doc/printer/jndi-datasource-examples-howto.html
         
         Properties properties = new Properties();
-        properties.put("driverClassName", "org.h2.Driver");
-        properties.put("url", "jdbc:h2:mem:mydb");
+        properties.put("driverClassName", H2_DRIVER);
+        properties.put("url", MYDB_URL);
         properties.put("username", "");
         properties.put("password", "");
         properties.put("maxOpenPreparedStatements", "10");

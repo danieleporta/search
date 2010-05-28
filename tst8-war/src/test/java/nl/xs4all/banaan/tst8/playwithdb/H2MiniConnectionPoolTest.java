@@ -45,6 +45,15 @@ public class H2MiniConnectionPoolTest {
             makeConnection(dataSource);
         }
     }
+    
+    public void testConnectionsCanBeReused() throws SQLException {
+        DataSource dataSource = makePoolBasedDataSource();
+        int i;
+        for (i = 0; i < 10; i++) {
+            Connection connection = makeConnection(dataSource);
+            connection.close();
+        }
+    }
 
     private Connection makeConnection(DataSource dataSource) throws SQLException {
          return dataSource.getConnection();
