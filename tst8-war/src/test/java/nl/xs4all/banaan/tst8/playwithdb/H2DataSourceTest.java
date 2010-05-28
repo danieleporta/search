@@ -45,11 +45,11 @@ public class H2DataSourceTest {
         }
     }
 
-    private Connection makeConnection(DataSource dataSource) throws SQLException {
+    private static Connection makeConnection(DataSource dataSource) throws SQLException {
          return dataSource.getConnection();
     }
 
-    private DataSource makeDataSource() {
+    private static DataSource makeDataSource() {
         JdbcDataSource dataSource = new JdbcDataSource();
         dataSource.setURL(CONNECT_STRING);
         // user and password optional
@@ -81,7 +81,7 @@ public class H2DataSourceTest {
         }
     }
     
-    private void shutdownDatabaseAndDropAllTables() throws SQLException {
+    private static void shutdownDatabaseAndDropAllTables() throws SQLException {
         makeConnection(makeDataSource())
             .createStatement()
             .execute("shutdown immediately");
