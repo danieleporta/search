@@ -2,6 +2,7 @@ package nl.xs4all.banaan.tst8.playwithaspect;
 
 import java.lang.reflect.Method;
 
+import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.junit.Ignore;
 
@@ -25,7 +26,7 @@ public class MockDriver {
      * @param <T> the interface the interceptor should adhere to
      */
     @SuppressWarnings("unchecked")
-    public static <T> T getProxy(Class<T> iface, final T service, final SomeInterceptor interceptor) {
+    public static <T> T getProxy(Class<T> iface, final T service, final MethodInterceptor interceptor) {
         Enhancer e = new Enhancer();
         e.setInterfaces(new Class[]{iface} );
         e.setCallback(new com.google.inject.internal.cglib.proxy.MethodInterceptor() {

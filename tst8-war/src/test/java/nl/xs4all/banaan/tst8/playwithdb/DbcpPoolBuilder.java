@@ -19,13 +19,14 @@ public class DbcpPoolBuilder {
     // private static final String MYDB_URL = "jdbc:h2:mem:mydb;TRACE_LEVEL_SYSTEM_OUT=3";
     private static final String MYDB_URL = "jdbc:h2:mem:mydb";
 
-    public static DataSource makeDataSourceReadCommited() {
+    /** synchronisation for testing purposes; no visible effect. */
+    public synchronized static DataSource makeDataSourceReadCommited() {
         BasicDataSource source = makeDataSourceWithUnspecifiedIsolation();
         source.setDefaultTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
         return source;
     }
 
-    public static DataSource makeDataSourceReadUncommited() {
+    public synchronized static DataSource makeDataSourceReadUncommited() {
         BasicDataSource source = makeDataSourceWithUnspecifiedIsolation();
         source.setDefaultTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
         return source;
@@ -50,7 +51,7 @@ public class DbcpPoolBuilder {
         return source;
     }
 
-    public static DataSource makeDataSourceViaFactory() throws Exception {
+    public synchronized static DataSource makeDataSourceViaFactory() throws Exception {
         // In Tomcat, the datasource is created via a factory, 
         // fed by properties stored next to the factory in JNDI.
         // the actual construction is then done with
@@ -72,7 +73,7 @@ public class DbcpPoolBuilder {
         return BasicDataSourceFactory.createDataSource(properties);
     }
     
-    public static void shutdownDatabaseAndDropAllTables() throws SQLException {
+    public synchronized static void shutdownDatabaseAndDropAllTables() throws SQLException {
         DataSource dataSource = makeDataSourceReadCommited();
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
