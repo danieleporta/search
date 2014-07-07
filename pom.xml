@@ -1,0 +1,223 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>nl.xs4all.banaan.tst8</groupId>
+  <artifactId>tst8-app</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>tst8-app</name>
+  <description>
+    A test to find effective ways to do testing and deployment
+    of a wicket application.
+  </description>
+  
+  <scm>
+    <url>http://github.com/ekonijn/wicket-demo/tree/master</url>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <modules>
+    <module>tst8-war</module>
+    <module>tst8-intgr</module>
+  </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.5</source>
+            <target>1.5</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <dependencyManagement>
+    <dependencies>
+       
+      <dependency>
+        <groupId>nl.xs4all.banaan.tst8</groupId>
+        <artifactId>tst8-war</artifactId>
+        <type>war</type>
+        <version>${project.version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>com.google.inject</groupId>
+        <artifactId>guice</artifactId>
+        <version>2.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>1.2.135</version>
+      </dependency>
+
+      <dependency>
+        <!-- bytecode generator used by hibernate 3.3.2.GA -->
+        <groupId>javassist</groupId>
+        <artifactId>javassist</artifactId>
+        <version>3.8.0.GA</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>javax.mail</groupId>
+        <artifactId>mail</artifactId>
+        <version>1.4.1</version>
+        <scope>provided</scope>
+      </dependency>
+      
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
+        <scope>provided</scope>
+      </dependency>
+       
+      <dependency>
+        <groupId>org.apache.wicket</groupId>
+        <artifactId>wicket</artifactId>
+        <version>${wicket.version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>com.google.inject</groupId>
+        <artifactId>guice</artifactId>
+        <version>2.0</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.wicket</groupId>
+          <artifactId>wicket-guice</artifactId>
+          <version>1.4.3</version>
+          <exclusions>
+            <exclusion>
+            <groupId>com.google.code.guice</groupId>
+            <artifactId>guice</artifactId>
+            </exclusion>
+          </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-httpclient</groupId>
+        <artifactId>commons-httpclient</artifactId>
+        <version>3.1</version>
+      </dependency>
+
+
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>3.3.2.GA</version>
+      </dependency>
+            
+      <dependency>
+        <groupId>org.hsqldb</groupId>
+        <artifactId>hsqldb</artifactId>
+        <version>1.8.0.10</version>
+      </dependency>
+      
+      <!-- for simpleNamingContext -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <!-- Interface to java mail; used to be spring-support -->
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>${spring.version}</version>
+      </dependency> 
+
+      <!-- LOGGING DEPENDENCIES - LOG4J -->
+      <dependency>
+        <!--
+         ! SL4J is a logging facade used by eg wicket.
+         ! The underlying logging mechanism is selected
+         ! by depending on the slf4j to log4j mapping jar.
+         ! Note that spring uses a similar facade, commons-logging.
+         ! commons-logging will delegate to log4j if available.
+         ! If you need another destination, let commons-logging
+         ! delegate to slf4j; see http://www.slf4j.org/legacy.html
+         ! Note that javamail bypasses this logging config; this is because
+         ! the mail session is provided by the application container,
+         ! not by a jar included by the application.
+         !-->
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.4.2</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.14</version>
+      </dependency>
+
+      <!--  JUNIT DEPENDENCY FOR TESTING -->
+      <dependency>
+        <groupId>junit</groupId>
+        <!-- for 4.5, junit-dep does not have hamcrest builtin
+          but declares a dependency, which simplifies 
+          spring-mock integration. for 4.4 junit-dep breaks maven.
+          -->
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+     
+      <!--  EASYMOCK FOR TESTING -->
+      <dependency>
+        <groupId>org.easymock</groupId>
+        <artifactId>easymock</artifactId>
+        <version>2.4</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- EXPERIMENTAL: HTMLUNIT FOR INTEGRATION TESTING -->
+      <dependency>
+        <groupId>net.sourceforge.htmlunit</groupId>
+        <artifactId>htmlunit</artifactId>
+        <version>2.7</version>
+        <scope>test</scope>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <!--  test coverage -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <properties>
+    <!--  spring-test 2.5.6 breaks on junit 4.5
+      see http://jira.springframework.org/browse/SPR-5145
+     -->
+    <junit.version>4.4</junit.version>
+    <wicket.version>1.4.3</wicket.version>
+    <jetty.version>6.1.4</jetty.version>
+    <spring.version>2.5.6</spring.version>
+  </properties>
+</project>

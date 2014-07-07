@@ -1,0 +1,23 @@
+    ------------
+    Introduction
+    ------------
+        
+About the Wicket Demo
+
+    This is a test vehicle for a number of java components:
+    wicket, spring etc.
+        
+    The idea is to produce something working within the following
+    constraints:
+        
+        * Everything is unit tested
+        
+        * The same war file can be used different servers without
+          <any> modification inside the war.
+          
+        * The artifacts can be built on different systems without <any> 
+          modification of the pom.xml file.
+          
+    Oh, and to find out whether we can do figures in documentation.
+        
+[images/picture.png] Like so.

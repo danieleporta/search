@@ -1,0 +1,6 @@
+# ignore these boring files
+.classpath
+.project
+.settings
+*.swp
+target

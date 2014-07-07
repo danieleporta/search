@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app 
+  xmlns="http://java.sun.com/xml/ns/j2ee" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+  version="2.4">
+
+  <display-name>tst8-app</display-name>
+
+  <!--
+    There are three means to configure Wickets configuration mode and
+    they are tested in the order given.
+      1) A system property: -Dwicket.configuration 
+      2) servlet specific <init-param> 
+      3) context specific <context-param>
+    The value might be either "development"
+    (reloading when templates change) or "deployment". If no
+    configuration is found, "development" is the default.
+  -->
+  <context-param>
+    <param-name>configuration</param-name>
+    <!-- in development mode, wicket:id is left in output -->
+    <param-value>deployment</param-value>
+  </context-param>
+
+  <filter>
+    <filter-name>wicket.tst8-app</filter-name>
+    <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
+    <init-param>
+      <param-name>applicationFactoryClassName</param-name>
+      <param-value>org.apache.wicket.guice.GuiceWebApplicationFactory</param-value>
+    </init-param>
+    <init-param>
+      <param-name>module</param-name>
+      <param-value>nl.xs4all.banaan.tst8.wiring.ProductionModule</param-value>
+    </init-param>
+    <init-param>
+      <param-name>wicket-guice.stage</param-name>
+      <param-value>DEVELOPMENT</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>wicket.tst8-app</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- use mail/Session from container-provided JNDI -->
+  <resource-ref>
+    <res-ref-name>mail/Session</res-ref-name>
+    <res-type>javax.mail.Session</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  <!--
+    Two meaningless properties to be examined via JNDI
+    Normally these are set via the container rather than via web.xml
+  -->
+  <env-entry>
+    <env-entry-name>myprop</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>jansen</env-entry-value>
+  </env-entry>
+
+  <env-entry>
+    <env-entry-name>mydir/otherprop</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+    <env-entry-value>pietersen</env-entry-value>
+  </env-entry>
+
+  <!--
+    Yet another meaningless property, accessed like so: 
+    String value = getServletContext().getInitParameter("name");
+    enumerate these params via getInitParameterNames.
+    see Servlet specification, SRV 3.3.
+  -->
+  <context-param>
+    <description>
+        An example setting accessible without JNDI to the servlet.
+    </description>
+    <param-name>webmaster</param-name>
+    <param-value>myaddress@mycompany.com</param-value>
+  </context-param>
+ 
+</web-app>

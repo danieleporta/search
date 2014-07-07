@@ -1,0 +1,49 @@
+    -------
+    Testing
+    -------
+        
+Testing the Application
+
+    There are a number of testing methods that need to be combined
+    to achieve best coverage for least effort.
+    
+* Testing the service layer
+
+    The notification service uses E-mail.  
+    It interfaces to the outside world via a MailSender injected by Spring.
+    In production, this MailSender will be provided by the servlet container;
+    for testing purposes, we have a mock sender that simply keeps all messages
+    in an outbox for later analysis.
+
+* Testing the web layer
+
+    In testing the web layer, 
+    we need to verify contents of the various widget after creating pages,
+    clicking links and submitting forms.  This is covered by WicketTester.
+    
+    We also need to verify interaction with the service layer.  
+    To do this there are at least three different approaches:
+    
+      * Add logging to the services; verify contents of the log after
+        running the web interaction.
+        
+      * Write a proxy for the service locator that does the logging;
+        let the proxy wrap the returned services in a loggin proxy as well.
+        Again, verify contents of the log after running the web interaction.
+        The advantage of this approach is that services do not have to be
+        modified to support logging.
+        
+      * Use aspect-oriented programming to add the logging to services.
+        Spring-aop makes it possible to wrap services in a logger without
+        having to write any custom proxy or reflection code.
+        
+      * Using {{{http://www.easymock.org/}EasyMock}} or 
+        {{{http://www.jmock.org/}JMock}}.
+        Replace the service objects with mock objects that will verify 
+        they are invoked as intended.
+        
+    We're using mock objects rather than logging here, 
+    because this makes it easier to test 
+    that the web layer properly handles service exceptions,
+    and because of the complications of matching the arguments of service
+    invocations in the logging approach.

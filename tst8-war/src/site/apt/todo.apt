@@ -1,0 +1,58 @@
+    ------------
+    Progress
+    ------------
+        
+Progress
+
+    Features built so far and stuff that would be interesting to test.
+        
+* Todo
+
+        * example tomcat configuration to provide jndi settings
+        
+        * hibernate
+        
+        * JMX
+
+        * testing for valid html
+
+* Done
+
+        * example jetty configuration
+        
+        * jetty started via maven
+        
+        * mailer configuration via jndi/spring
+       
+        * field validation in notification screen
+          
+        * easymock to verify interaction between web and service layer?
+        
+        * intercepting service locator?
+          Put a proxy in front of the service locator to make a log
+          of which services are looked up, and to make a log of the
+          actions on those services; a kind of two-level easymock.
+        
+        * central service interface wired as single component into webapp.
+          this makes webapp contents more manageable and makes it easier
+          to test access to service layer.
+        
+        * spring-wiring the test setup, it's becoming biggish.
+        
+        * mocking the jndi initial context 
+        
+        * jndi properties via spring injection
+
+        * Simple wicket application
+        
+        * junit testing
+        
+        * spring dependency injection
+        
+        * junit testing fixtures centralised
+        
+        * accessing JNDI data
+        
+        * accessing servlet initialisation parameters
+        
+        * putting build time properties in the application

@@ -1,0 +1,17 @@
+<html>
+<body>
+<wicket:panel>
+  <h3>Send notifications</h3>
+  <form wicket:id="form">
+    <p>To: <input wicket:id="to" type="text" /></p>
+    <p>Subject: <input wicket:id="subject" type="text" /></p>
+    <div>
+    <textarea wicket:id="body" cols="40" rows="10">
+      Message here.
+    </textarea>
+    </div>
+    <input wicket:id="confirm" type="submit" value="Confirm" />
+  </form>
+</wicket:panel>
+</body>
+</html>

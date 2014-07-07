@@ -1,0 +1,113 @@
+    ----------
+    Installing
+    ----------
+        
+Building and Installing the Wicket Demo
+
+    The build and installation procedures are designed to be
+    portable and repeatable:
+    
+     * the same tree should be suitable for building on any
+       development station,
+       
+     * the same war file should be suitable for deployment
+       on any application container.  One-time configuration
+       of the application is acceptable, but upgrades should be a
+       simple matter of dropping in the war file.
+       
+* Building with Maven
+
+    The Maven configuration file, <<<pom.xml>>>, is the truth.
+    This will download dependencies as required, given access
+    to the default public repositories.  Build commands:
+    
+--------------------
+mvn clean                -- remove generated files
+mvn compile              -- build class files
+mvn test                 -- build and execute test suite
+mvn package              -- test and package in war file
+mvn install              -- put in private repository on dev station
+# mvn deploy             -- TBD
+mvn site                 -- build documentation site
+# mvn site-deploy        -- TBD
+--------------------
+    
+* Building with Eclipse
+
+    The Eclipse IDE can be used to run the test suite, provided
+    all dependencies are known to Eclipse.  Since dependencies
+    can change over time, the clean way to make these dependencies
+    known is to generate them from Maven, as follows:
+    
+     * <<<mvn eclipse:clean eclipse:eclipse>>>;
+       This will generate eclipse project files.
+       
+     * In Eclipse, you can now do menu -> file -> import...
+       -> "import existing project" to make the project
+       visible.
+     
+     * In Eclipse, navigate to menu -> window -> preferences ->
+       "classpath variables", and make a variable M2_REPO
+       that points to the private repository of your Maven
+       installation, something like "$HOME/.m2/repository".
+       
+     * you can now right-click the project and run-as junit-test.
+     
+     * when new dependencies are added to the maven configuration
+       file, rerun <<<mvn eclipse:eclipse>>>, and in Eclipse
+       use F5 to let it refresh information from the file system.
+    
+    For details, see the
+    {{{http://maven.apache.org/guides/mini/guide-ide-eclipse.html}user Guide.}}
+    
+* Deploying the Application
+
+    The details of deployment vary between application servers,
+    but the goal is the same: the application server should 
+    provide a mailSession, plus some init parameters used for testing.
+    
+* Deploying on Tomcat
+
+    Tomcat should provide a mailSession to the application;
+    to support this, 
+    download {{{http://java.sun.com/products/javamail/}Java Mail}},
+    unpack it,
+    and install the contained file <<<mail.jar>>> in <<<$CATALINA_HOME/lib>>>.
+    
+    To process attachments, you may also need
+    {{{http://java.sun.com/javase/technologies/desktop/javabeans/glasgow/jaf.html}the java activation framework}}.
+
+* Deploying on Jetty
+
+    With Maven the application can be deployed to an embedded Jetty
+    application server.  This is convenient and allows turn-round times,
+    since Maven takes care of downloading any required dependencies, 
+    and the application does not have to be packaged before deploying.
+    
+    To configure the environment of the web application, 
+    Jetty uses two configuration files: 
+    <<<jetty-env.xml>>> and <<<override-web.xml>>>.
+    The first is used to define JNDI resources for all applications
+    running in the container, 
+    the second overrides init parameters normally set in the war-file
+    for an individual application.
+    Sample configurations are provided in <<<src/jetty>>>.
+
+    TBD: activation via properties.
+
+* Deploying with Eclipse WTP
+
+    The Eclipse Web Tools Platform (WTP) makes it possible
+    to manage and configure application servers such as Tomcat
+    from within Eclipse.
+    
+    However, server management with WTP only works from within
+    a projects that are specifically configured to support it,
+    and Maven does not seem to support generating configurations
+    for versions of WTP newer than 2.0.  For this reason,
+    no WTP support in this application. 
+    
+    
+
+
+     
